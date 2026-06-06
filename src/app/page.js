@@ -184,20 +184,21 @@ function HeroSection() {
 
         {/* Bottom-right stat boxes — positioned absolutely to lower-right of section */}
         <div
-          className="absolute bottom-0 right-0 flex"
+          className="absolute bottom-0 right-0 flex justify-end"
           style={{
             background: "rgba(10,22,40,0.72)",
             backdropFilter: "blur(4px)",
+
           }}
         >
           {HERO_STATS.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center text-center text-white"
+              className="flex flex-col items-center text-center text-white rounded flex-1 px-4 py-5 sm:px-8 sm:py-6 md:px-12 md:py-7"
               style={{
-                padding: "20px 28px",
+                
                 borderLeft: idx > 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                minWidth: "130px",
+                
               }}
             >
               <item.icon
