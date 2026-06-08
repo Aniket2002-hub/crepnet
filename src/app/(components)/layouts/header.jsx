@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     href: "/resources",
     dropdown: ["Blog", "Reports", "Webinars", "Case Studies"],
   },
-  { label: "Events", href: "/events" },
+  { label: "Events", href: "/event" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -36,8 +36,8 @@ export default function Header() {
           {/* ── Logo ── */}
           <Link href="/" className="flex flex-col leading-none select-none">
             <span className="text-2xl font-black tracking-tight">
-              <span className="text-[#1a2744]">CREP</span>
-              <span className="text-[#c9a84c]">NET</span>
+              <span className="text-[#c9a84c]">RPEC</span>
+              {/* <span className="text-[#c9a84c]">NET</span> */}
             </span>
             <span className="text-[8px] tracking-[0.22em] text-gray-400 font-semibold uppercase mt-0.5">
               Connect · Collaborate · Grow
@@ -95,7 +95,7 @@ export default function Header() {
               href="/join"
               className="px-4 py-2 text-sm font-bold text-white bg-[#c9a84c] rounded-lg hover:bg-[#b8963e] transition-all duration-200 shadow-md hover:shadow-lg"
             >
-              Join CREPNET
+              Join RPEC 
             </Link>
           </div>
 
