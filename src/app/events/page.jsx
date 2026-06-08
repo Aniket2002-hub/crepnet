@@ -161,7 +161,7 @@ function HeroBanner() {
         <div className="flex flex-wrap gap-8">
           {HERO_STATS.map((s, i) => (
             <div key={i} className="flex items-center gap-3">
-              <s.icon size={32} strokeWidth={1.2} className="text-white/60" />
+              <s.icon size={32} strokeWidth={1.2} className="text-[#be9438]" />
               <div>
                 <p className="text-white font-bold text-xl leading-tight">{s.value}</p>
                 <p className="text-gray-400 text-xs">{s.label}</p>
@@ -234,11 +234,11 @@ function MainContent() {
       <div className="grid lg:grid-cols-[1fr_360px] gap-8">
 
         {/* LEFT COLUMN */}
-        <div>
+        <div className="border shadow-md p-4 rounded border-[#fdfdfd]">
           {/* Upcoming Events */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#1a2744]">Upcoming Events</h2>
-            <Link href="#" className="text-[#be9438] text-sm font-semibold flex items-center gap-1 hover:underline">
+            <Link href="#" className="text-[#326695] text-sm font-semibold flex items-center gap-1 hover:underline">
               View All Events <ArrowRight size={14} />
             </Link>
           </div>
@@ -290,8 +290,13 @@ function MainContent() {
           </div>
 
           {/* Why Attend */}
+<<<<<<< HEAD:src/app/event/page.jsx
           <div className="mt-8 bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6">
             <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend RPEC Events?</h3>
+=======
+          <div className="mt-8 bg-[#f7f3f0] rounded-2xl border border-gray-100 p-6">
+            <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend CREPNET Events?</h3>
+>>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               {WHY_ATTEND.map((w, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
@@ -312,7 +317,7 @@ function MainContent() {
           <div>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-bold text-[#1a2744]">Past Event Highlights</h2>
-              <Link href="#" className="text-[#be9438] text-xs font-semibold flex items-center gap-1 hover:underline">
+              <Link href="#" className="text-[#326695] text-xs font-semibold flex items-center gap-1 hover:underline">
                 View Gallery <ArrowRight size={12} />
               </Link>
             </div>
@@ -378,11 +383,11 @@ function MainContent() {
 // ─────────────────────────────────────────────────────────────
 function PastEventsSection() {
   return (
-    <section className="border-t border-gray-100 bg-white py-10">
+    <section className="border-t border-gray-100 bg-[#1a2744] py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-[#1a2744]">Past Events &amp; Conferences</h2>
-          <Link href="#" className="text-[#be9438] text-sm font-semibold flex items-center gap-1 hover:underline">
+          <h2 className="text-xl font-bold text-white">Past Events &amp; Conferences</h2>
+          <Link href="#" className="text-white text-sm font-semibold flex items-center gap-1 hover:underline">
             Explore All Past Events <ArrowRight size={14} />
           </Link>
         </div>
@@ -390,13 +395,18 @@ function PastEventsSection() {
         <div className="relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {PAST_EVENTS.map((ev, i) => (
-              <div key={i} className="flex gap-3 border border-gray-100 rounded-xl overflow-hidden bg-white hover:shadow-md transition-all">
+              <div key={i} className="flex gap-3 border border-gray-50 rounded-xl overflow-hidden bg-[#1a2744] hover:shadow-md transition-all">
                 <div className="w-24 shrink-0 overflow-hidden">
                   <img src={ev.img} alt={ev.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="py-3 pr-3 flex flex-col justify-center">
+<<<<<<< HEAD:src/app/event/page.jsx
                   <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">RPEC</p>
                   <h4 className="text-[#1a2744] font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+=======
+                  <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">CREPNET</p>
+                  <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+>>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
                   <div className="flex items-center gap-1 text-gray-400 text-[10px] mb-1">
                     <Calendar size={10} />
                     <span>{ev.date}</span>
