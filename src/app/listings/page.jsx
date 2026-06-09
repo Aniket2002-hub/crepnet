@@ -419,8 +419,7 @@ function ResultSection() {
 //
 
 function BottomCTA() {
-  const onClickHandler = () => {};
-
+ 
   return (
     <div className="max-w-7xl mx-auto  px-6 lg:px-10 pb-12">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-6 bg-[#011d42] p-5 sm:p-6 rounded-2xl shadow-lg">
@@ -439,7 +438,7 @@ function BottomCTA() {
         </div>
 
         <Link
-          href="/login"
+          href="/join"
           className="w-full sm:w-auto shrink-0 bg-[#c9a84c] px-4 py-2.5 sm:py-3 text-base sm:text-lg lg:text-xl rounded-lg text-white font-semibold text-center"
         >
           Join as Developer
@@ -459,6 +458,9 @@ export default function Listings() {
   const [city, setCity] = useState("All Cities");
   const [assetType, setAssetType] = useState("All Asset Types");
   const [sortBy, setSortBy] = useState("Featured");
+
+  
+
 
   return (
     <main className="antialiased bg-[#f8fafc] min-h-screen">
