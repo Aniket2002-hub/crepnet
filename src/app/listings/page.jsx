@@ -36,7 +36,8 @@ const LISTINGS_CATEGORIES = [
 const DEVELOPER_DATA = [
   {
     name: "Sumeru Developers",
-    image: "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     location: "Mumbai, Maharashtra",
     description:
       "Leading real estate developer with 25+ years of expertise in delivering world-class commercial, retail and mixed-use spaces.",
@@ -48,7 +49,8 @@ const DEVELOPER_DATA = [
   },
   {
     name: "Acme Realty",
-    image: "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     location: "Bengaluru, Karnataka",
     description:
       "Creating innovative workspaces and IT parks that empower businesses and communities.",
@@ -60,7 +62,8 @@ const DEVELOPER_DATA = [
   },
   {
     name: "Skyline Spaces",
-    image: "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     location: "Delhi NCR",
     description:
       "Specialists in premium commercial, retail and mixed-use developments across North India.",
@@ -72,7 +75,8 @@ const DEVELOPER_DATA = [
   },
   {
     name: "UrbanWorks",
-    image: "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     location: "Pune, Maharashtra",
     description:
       "Sustainable real estate solutions with a focus on design, innovation and long-term value.",
@@ -114,12 +118,12 @@ const SORT_OPTIONS = [
 function HeroBanner() {
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#f4f6f8]"
+      className="relative w-full overflow-hidden bg-[#f4f6f8be] max-w-7xl mx-auto "
       style={{ minHeight: "220px" }}
     >
       {/* Layer 1: skyline image anchored to the right */}
       <div
-        className="absolute inset-0 bg-no-repeat bg-right opacity-50"
+        className="absolute inset-0 bg-cover bg-center opacity-50"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1750073472835-9c1065cb6253?q=80&w=1800&auto=format&fit=crop')",
@@ -132,7 +136,7 @@ function HeroBanner() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to right, #f4f6f8 30%, rgba(244,246,248,0.92) 50%, rgba(244,246,248,0.25) 100%)",
+            "linear-gradient(to right, #f4f6f8 30%, rgba(244,246,248,0.92) 40%, rgba(244,246,248,0.25) 100%)",
         }}
       />
 
@@ -162,7 +166,7 @@ function CategoryTabs({ activeCategory, setActiveCategory }) {
   return (
     <div className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-center">
-        <div className="flex overflow-x-auto scrollbar-hide">
+        <div className="flex overflow-x-auto md:scrollbar-hide">
           {LISTINGS_CATEGORIES.map(({ title, icon: Icon }) => {
             const isActive = activeCategory === title;
 
@@ -319,6 +323,7 @@ function DeveloperCard({ developer }) {
 
   return (
     <article className="relative bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+      {/* featured tag */}
       {developer.featured && (
         <span className="absolute top-0 left-0 z-10 bg-[#c9a84c] text-white text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-br-lg">
           Featured
@@ -409,6 +414,41 @@ function ResultSection() {
   );
 }
 
+//
+// BOTTOM CTA (ARE U A DEVELOPER?)
+//
+
+function BottomCTA() {
+  const onClickHandler = () => {};
+
+  return (
+    <div className="max-w-7xl mx-auto  px-6 lg:px-10 pb-12">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-6 bg-[#011d42] p-5 sm:p-6 rounded-2xl shadow-lg">
+        <div className="flex gap-4 sm:gap-6 items-center min-w-0">
+          <div className="flex items-center justify-center rounded-full border border-[#c9a84c] p-2 sm:p-3 shrink-0">
+            <BsBuildingsFill className="text-[#c9a84c] w-8 h-8 sm:w-10 sm:h-10" />
+          </div>
+          <div className="text-white min-w-0">
+            <h1 className="text-white text-xl sm:text-2xl font-semibold mb-1 sm:mb-2">
+              Are you a Developer?
+            </h1>
+            <p className="text-sm sm:text-base text-white/90 leading-snug">
+              Join CREPNET and unlock endless oppurtunities
+            </p>
+          </div>
+        </div>
+
+        <Link
+          href="/login"
+          className="w-full sm:w-auto shrink-0 bg-[#c9a84c] px-4 py-2.5 sm:py-3 text-base sm:text-lg lg:text-xl rounded-lg text-white font-semibold text-center"
+        >
+          Join as Developer
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 // ─────────────────────────────────────────────────────────────
 // PAGE
 // ─────────────────────────────────────────────────────────────
@@ -437,6 +477,7 @@ export default function Listings() {
       />
       <ResultsBar count={4} sortBy={sortBy} setSortBy={setSortBy} />
       <ResultSection></ResultSection>
+      <BottomCTA />
     </main>
   );
 }
