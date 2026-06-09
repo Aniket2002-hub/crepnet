@@ -125,15 +125,15 @@ function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to right, #0d1e35 38%, rgba(13,30,53,0.82) 58%, rgba(13,30,53,0.3) 80%, rgba(13,30,53,0.05) 100%)",
+            "linear-gradient(to right, #0d1e35 30%, rgba(13,30,53,0.82) 58%, rgba(13,30,53,0.3) 80%, rgba(13,30,53,0.05) 100%)",
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 flex flex-col justify-center" style={{ minHeight: "90vh", paddingTop: "60px", paddingBottom: "100px" }}>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10  flex flex-col justify-start" style={{ minHeight: "90vh", paddingTop: "140px", paddingBottom: "100px" }}>
 
         {/* Left column: text + CTAs */}
-        <div className="max-w-xl">
+        <div className="max-w-xl ">
           <h1
             className="text-white font-bold leading-tight mb-3"
             style={{ fontSize: "clamp(26px, 3.5vw, 42px)", letterSpacing: "-0.01em" }}
@@ -184,20 +184,21 @@ function HeroSection() {
 
         {/* Bottom-right stat boxes — positioned absolutely to lower-right of section */}
         <div
-          className="absolute bottom-0 right-0 flex"
+          className="absolute bottom-0 right-0 flex justify-end"
           style={{
             background: "rgba(10,22,40,0.72)",
             backdropFilter: "blur(4px)",
+
           }}
         >
           {HERO_STATS.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center text-center text-white"
+              className="flex flex-col items-center text-center text-white rounded flex-1 px-4 py-5 sm:px-8 sm:py-6 md:px-12 md:py-7"
               style={{
-                padding: "20px 28px",
+                
                 borderLeft: idx > 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                minWidth: "130px",
+                
               }}
             >
               <item.icon
