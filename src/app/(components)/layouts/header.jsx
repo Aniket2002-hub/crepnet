@@ -142,7 +142,7 @@ export default function Header() {
               href="/join"
               className="text-center py-2.5 text-sm font-bold text-white bg-[#c9a84c] rounded-lg hover:bg-[#b8963e] transition-all"
             >
-              Join CREPNET
+              Join RPEC
             </Link>
           </div>
         </div>
