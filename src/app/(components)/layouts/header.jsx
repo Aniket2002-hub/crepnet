@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     href: "/resources",
     dropdown: ["Blog", "Reports", "Webinars", "Case Studies"],
   },
-  { label: "Events", href: "/event" },
+  { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -144,7 +144,7 @@ export default function Header() {
             >
               Join RPEC
             </Link>
-            
+
           </div>
         </div>
       )}
