@@ -292,16 +292,8 @@ function MainContent() {
           </div>
 
           {/* Why Attend */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:src/app/event/page.jsx
-          <div className="mt-8 bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6">
-            <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend RPEC Events?</h3>
-=======
->>>>>>> 10a8a1f61ebb3b1af2fe3b60f00c72a3aa57099a
           <div className="mt-8 bg-[#f7f3f0] rounded-2xl border border-gray-100 p-6">
             <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend CREPNET Events?</h3>
->>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               {WHY_ATTEND.map((w, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
@@ -405,18 +397,8 @@ function PastEventsSection() {
                   <img src={ev.img} alt={ev.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="py-3 pr-3 flex flex-col justify-center">
-<<<<<<< HEAD
                   <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">CREPNET</p>
                   <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
-=======
-<<<<<<< HEAD:src/app/event/page.jsx
-                  <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">RPEC</p>
-                  <h4 className="text-[#1a2744] font-bold text-xs leading-snug mb-2">{ev.title}</h4>
-=======
-                  <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">CREPNET</p>
-                  <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
->>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
->>>>>>> 10a8a1f61ebb3b1af2fe3b60f00c72a3aa57099a
                   <div className="flex items-center gap-1 text-gray-400 text-[10px] mb-1">
                     <Calendar size={10} />
                     <span>{ev.date}</span>

@@ -9,12 +9,12 @@ const geist = Geist({
 });
 
 export const metadata = {
-  title: "CREPNET – India's Premier Network for Commercial Real Estate",
+  title: "RPEC – India's Premier Network for Commercial Real Estate",
   description:
     "Connecting Office, Retail, Hospitality, Logistics & Investments with Global Opportunities. One Network. Endless Possibilities.",
   keywords: "commercial real estate, CRE network, India, office space, retail, logistics, investments",
   openGraph: {
-    title: "CREPNET – India's Premier Network for Commercial Real Estate",
+    title: "RPEC – India's Premier Network for Commercial Real Estate",
     description: "One Network. Endless Possibilities.",
     type: "website",
   },
