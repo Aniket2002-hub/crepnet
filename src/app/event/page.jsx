@@ -283,10 +283,10 @@ function MainContent() {
             </div>
 
             {/* Nav arrows */}
-            <button className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50 hidden xl:flex">
+            <button className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-gray-200 rounded-full  items-center justify-center shadow-sm hover:bg-gray-50 hidden xl:flex">
               <ChevronLeft size={16} className="text-gray-600" />
             </button>
-            <button className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50 hidden xl:flex">
+            <button className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-gray-200 rounded-full  items-center justify-center shadow-sm hover:bg-gray-50 hidden xl:flex">
               <ChevronRight size={16} className="text-gray-600" />
             </button>
           </div>
