@@ -29,7 +29,7 @@ const UPCOMING_EVENTS = [
     featured: true,
     date: "18",
     month: "JUN",
-    title: "CREPNET India Commercial Real Estate Summit 2024",
+    title: "RPEC India Commercial Real Estate Summit 2024",
     venue: "Jio World Convention Centre, Mumbai",
     desc: "India's largest gathering of CRE leaders, developers & occupiers.",
     img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80",
@@ -78,15 +78,15 @@ const PAST_HIGHLIGHTS = [
 
 const TESTIMONIALS = [
   {
-    quote: "CREPNET events provide a unique platform to connect, collaborate and create impactful business opportunities that shape the future of commercial real estate.",
+    quote: "RPEC events provide a unique platform to connect, collaborate and create impactful business opportunities that shape the future of commercial real estate.",
     author: "Anil Mehta, Managing Director, Prestige Group",
   },
   {
-    quote: "The quality of networking and insights at CREPNET summits is unmatched. Every edition delivers real value for our business.",
+    quote: "The quality of networking and insights at RPEC summits is unmatched. Every edition delivers real value for our business.",
     author: "Priya Sharma, Head of Strategy, Embassy Group",
   },
   {
-    quote: "CREPNET conferences bring together the best minds in CRE. The connections made here have been invaluable to our growth.",
+    quote: "RPEC conferences bring together the best minds in CRE. The connections made here have been invaluable to our growth.",
     author: "Rajiv Kumar, CEO, Blackstone India",
   },
 ];
@@ -101,7 +101,7 @@ const WHY_ATTEND = [
 
 const PAST_EVENTS = [
   {
-    title: "CREPNET Annual Real Estate Summit 2024",
+    title: "RPEC Annual Real Estate Summit 2024",
     date: "15 May 2024",
     city: "Mumbai",
     img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=80",
@@ -144,7 +144,7 @@ function HeroBanner() {
       {/* Watermark logo area on right */}
       <div className="absolute right-[18%] top-1/2 -translate-y-1/2 text-center opacity-80 hidden lg:block">
         <div className="border-2 border-white/30 px-6 py-3 inline-block mb-2">
-          <span className="text-white font-bold text-2xl tracking-widest">CREPNET</span>
+          <span className="text-white font-bold text-2xl tracking-widest">RPEC</span>
         </div>
         <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Connected Communities.</p>
         <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Limitless Opportunities.</p>
@@ -156,7 +156,7 @@ function HeroBanner() {
         </h1>
         <div style={{ width: "56px", height: "3px", background: "#be9438", borderRadius: "2px", marginBottom: "16px" }} />
         <p className="text-gray-300 mb-10 max-w-md" style={{ fontSize: "14px", lineHeight: "1.7", fontWeight: 300 }}>
-          CREPNET brings together industry leaders, innovators and decision makers through high-impact events, conferences and summits across India and beyond.
+          RPEC brings together industry leaders, innovators and decision makers through high-impact events, conferences and summits across India and beyond.
         </p>
 
         {/* Stats row */}
@@ -292,8 +292,16 @@ function MainContent() {
           </div>
 
           {/* Why Attend */}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:src/app/event/page.jsx
+          <div className="mt-8 bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6">
+            <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend RPEC Events?</h3>
+=======
+>>>>>>> 10a8a1f61ebb3b1af2fe3b60f00c72a3aa57099a
           <div className="mt-8 bg-[#f7f3f0] rounded-2xl border border-gray-100 p-6">
             <h3 className="text-base font-bold text-[#1a2744] mb-5">Why Attend CREPNET Events?</h3>
+>>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               {WHY_ATTEND.map((w, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
@@ -397,8 +405,18 @@ function PastEventsSection() {
                   <img src={ev.img} alt={ev.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="py-3 pr-3 flex flex-col justify-center">
+<<<<<<< HEAD
                   <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">CREPNET</p>
                   <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+=======
+<<<<<<< HEAD:src/app/event/page.jsx
+                  <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">RPEC</p>
+                  <h4 className="text-[#1a2744] font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+=======
+                  <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">CREPNET</p>
+                  <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+>>>>>>> 8d8669f (changes background of 'Past events & Conferences section' and also 'why attend' section):src/app/events/page.jsx
+>>>>>>> 10a8a1f61ebb3b1af2fe3b60f00c72a3aa57099a
                   <div className="flex items-center gap-1 text-gray-400 text-[10px] mb-1">
                     <Calendar size={10} />
                     <span>{ev.date}</span>
@@ -436,7 +454,7 @@ function HostEventBanner() {
             <Building2 size={22} strokeWidth={1.5} className="text-[#be9438]" />
           </div>
           <div>
-            <h3 className="text-[#1a2744] font-bold text-base">Host Your Event with CREPNET</h3>
+            <h3 className="text-[#1a2744] font-bold text-base">Host Your Event with RPEC</h3>
             <p className="text-gray-500 text-xs">
               Partner with us to organize impactful events that connect, engage and create lasting value.
             </p>
