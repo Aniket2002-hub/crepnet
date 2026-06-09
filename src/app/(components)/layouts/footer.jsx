@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-xl font-bold text-white">Stay Ahead with CREPNET</h3>
+              <h3 className="text-xl font-bold text-white">Stay Ahead with RPEC</h3>
               <p className="text-gray-400 text-sm mt-1">
                 Get the latest market insights, opportunities &amp; industry updates.
               </p>
@@ -82,8 +82,8 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="mb-5">
               <span className="text-2xl font-black tracking-tight">
-                <span className="text-white">CREP</span>
-                <span className="text-[#c9a84c]">NET</span>
+                <span className="text-white">RPEC</span>
+                <span className="text-[#c9a84c]"></span>
               </span>
               <p className="text-[8px] tracking-[0.22em] text-gray-500 font-semibold uppercase mt-0.5">
                 Connect · Collaborate · Grow
@@ -139,7 +139,18 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-            <p className="text-gray-500 text-xs">© 2024 CREPNET. All Rights Reserved.</p>
+           <p className="text-gray-500 text-xs text-center sm:text-right">
+  © 2025 RPEC. All Rights Reserved. (
+  <Link
+    href="https://ireedindia.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-[#c9a84c] hover:text-white font-medium transition-colors"
+  >
+    Powered by IREED MEDIA
+  </Link>
+  )
+</p>
           </div>
         </div>
       </div>
