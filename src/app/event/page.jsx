@@ -398,7 +398,7 @@ function PastEventsSection() {
                 </div>
                 <div className="py-3 pr-3 flex flex-col justify-center">
                   <p className="text-[10px] font-bold text-[#be9438] uppercase tracking-wider mb-1">RPEC</p>
-                  <h4 className="text-[#1a2744] font-bold text-xs leading-snug mb-2">{ev.title}</h4>
+                  <h4 className="text-white font-bold text-xs leading-snug mb-2">{ev.title}</h4>
                   <div className="flex items-center gap-1 text-gray-400 text-[10px] mb-1">
                     <Calendar size={10} />
                     <span>{ev.date}</span>
