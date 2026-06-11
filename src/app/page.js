@@ -138,7 +138,7 @@ function HeroSection() {
             className="text-white font-bold leading-tight mb-3"
             style={{ fontSize: "clamp(26px, 3.5vw, 42px)", letterSpacing: "-0.01em" }}
           >
-            India's Premier Network for<br />Commercial Real Estate
+            India's Premier Network for<br /> Real Estate professionals
           </h1>
 
           {/* Gold accent line under heading */}
