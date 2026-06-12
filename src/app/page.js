@@ -1,248 +1,155 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
-import { 
-  Users, Building2, BarChart3, Globe2, 
-  ShoppingBag, Hotel, Truck, BadgeDollarSign, 
-  Globe, Construction, Store, TrendingUp, 
-  Handshake, Settings2, Landmark, ArrowRight, PlayCircle
+import {
+  Users, Building2, BarChart3, Globe2,
+  TrendingUp, Handshake, ArrowRight,
+  Search, ChevronDown, Bell, Award, BookOpen,
+  MessageSquare, MapPin, Clock, ChevronLeft, ChevronRight,
+  Network
 } from "lucide-react";
 
-// ─────────────────────────────────────────────────────────────
-// DATA
-// ─────────────────────────────────────────────────────────────
-
-const HERO_STATS = [
-  { title: "One Platform", subtitle: "All Stakeholders", icon: Users },
-  { title: "More Opportunities", subtitle: "Business & Growth", icon: Handshake },
-  { title: "Real Intelligence", subtitle: "Data · Insights · Trends", icon: BarChart3 },
-  { title: "Global Connections", subtitle: "Local Expertise", icon: Globe2 },
+const FEATURE_STRIPS = [
+  { icon: Users, label: "Network", desc: "Connect with verified real estate professionals" },
+  { icon: Handshake, label: "Collaborate", desc: "Work together on projects & deals" },
+  { icon: BookOpen, label: "Learn", desc: "Access insights, articles & industry knowledge" },
+  { icon: TrendingUp, label: "Grow", desc: "Find opportunities & grow your business" },
+  { icon: Bell, label: "Stay Updated", desc: "Get the latest news, trends & updates" },
+  { icon: Award, label: "Build Reputation", desc: "Showcase your expertise & build your brand" },
 ];
 
-const ECOSYSTEM_ITEMS = [
-  {
-    title: "Office",
-    subtitle: "Offices, GCCs, Flex & Coworking Spaces",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
-    icon: Building2,
-  },
-  {
-    title: "Retail",
-    subtitle: "Malls, High Streets, Luxury & Brands",
-    img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&q=80",
-    icon: ShoppingBag,
-  },
-  {
-    title: "Hospitality",
-    subtitle: "Hotels, Resorts, Serviced Apartments",
-    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80",
-    icon: Hotel,
-  },
-  {
-    title: "Logistics & Industrial",
-    subtitle: "Warehousing, Parks, Supply Chain Hubs",
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80",
-    icon: Truck,
-  },
-  {
-    title: "Investments",
-    subtitle: "REITs, Funds, IPCs & Private Equity",
-    img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80",
-    icon: BadgeDollarSign,
-  },
-  {
-    title: "International Trade",
-    subtitle: "Trade Bodies, Missions, Global Expansion",
-    img: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=80",
-    icon: Globe,
-  },
+const STATS_BAR = [
+  { value: "25,000+", label: "Professionals", icon: Users },
+  { value: "3,500+", label: "Companies", icon: Building2 },
+  { value: "120+", label: "Cities", icon: MapPin },
+  { value: "850+", label: "Industry Experts", icon: Users },
+  { value: "150+", label: "Active Groups", icon: Network },
+  { value: "50+", label: "Events Every Year", icon: BarChart3 },
 ];
 
-const STAKEHOLDERS = [
-  { title: "Developers", subtitle: "Create & Showcase Your Projects", icon: Construction },
-  { title: "Occupiers & Brands", subtitle: "Find the Right Spaces to Grow", icon: Store },
-  { title: "Investors", subtitle: "Discover High-Quality Investment Opportunities", icon: TrendingUp },
-  { title: "Consultants & Advisors", subtitle: "Expand Your Network & Influence", icon: Users },
-  { title: "Service Providers", subtitle: "Offer Solutions & Build Partnerships", icon: Settings2 },
-  { title: "Government & Trade Bodies", subtitle: "Promote Trade & Economic Growth", icon: Landmark },
+const COMMUNITY_MEMBERS = [
+  { name: "Rohit Mehta", role: "Director – Investments", company: "Blackstone", city: "Mumbai", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+  { name: "Ananya Sharma", role: "Head – Workplace Solutions, India", company: "JLL", city: "Bengaluru", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+  { name: "Vikram Kapoor", role: "CEO", company: "Assetz Property Group", city: "Mumbai", img: "https://randomuser.me/api/portraits/men/65.jpg" },
+  { name: "Neha Iyer", role: "Senior Architect", company: "Morphogenesis", city: "Delhi", img: "https://randomuser.me/api/portraits/women/68.jpg" },
 ];
 
-const OPPORTUNITIES = [
-  {
-    cat: "OFFICE SPACE",
-    catCls: "text-blue-600 bg-blue-50",
-    title: "Grade A Office Building",
-    loc: "BKC, Mumbai",
-    size: "250,000 sq ft",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&q=80",
-    tab: "Office",
-  },
-  {
-    cat: "RETAIL SPACE",
-    catCls: "text-emerald-600 bg-emerald-50",
-    title: "Premium High Street Space",
-    loc: "Connaught Place, New Delhi",
-    size: "4,500 sq ft",
-    img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=200&q=80",
-    tab: "Retail",
-  },
-  {
-    cat: "WAREHOUSE",
-    catCls: "text-orange-600 bg-orange-50",
-    title: "Logistics Park",
-    loc: "NH-48, Bengaluru",
-    size: "500,000 sq ft",
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&q=80",
-    tab: "Logistics",
-  },
+const EVENTS = [
+  { day: "18", month: "JUN", title: "RPEC Annual Summit 2024", venue: "Jio World Convention Centre, Mumbai", time: "09:00 AM – 06:00 PM IST" },
+  { day: "24", month: "JUN", title: "Retail Real Estate Networking Meet", venue: "The Leela Ambience, Gurugram", time: "04:00 PM – 07:00 PM IST" },
+  { day: "07", month: "JUL", title: "GCC & Office Leadership Forum", venue: "ITC Gardenia, Bengaluru", time: "09:30 AM – 05:00 PM IST" },
 ];
 
-const STATS = [
-  { value: "10,000+", label: "Professionals", icon: Users },
-  { value: "2,500+", label: "Companies", icon: Building2 },
-  { value: "30+", label: "Countries Connected", icon: Globe2 },
-  { value: "5,000+", label: "Opportunities", icon: Handshake },
-  { value: "100+", label: "Cities Covered", icon: TrendingUp },
+const DISCUSSIONS = [
+  { user: "Arvind Nandan", topic: "Future of Office Spaces in Tier 2 Cities", time: "2h ago", replies: 32, img: "https://randomuser.me/api/portraits/men/11.jpg" },
+  { user: "Puneet Khurana", topic: "How to Evaluate Retail Locations Effectively?", time: "5h ago", replies: 28, img: "https://randomuser.me/api/portraits/men/22.jpg" },
+  { user: "Neha Iyer", topic: "Sustainability in Real Estate Development", time: "1d ago", replies: 41, img: "https://randomuser.me/api/portraits/women/68.jpg" },
+  { user: "Vimal Nadar", topic: "Co-working vs Managed Offices – What's Next?", time: "1d ago", replies: 19, img: "https://randomuser.me/api/portraits/men/55.jpg" },
 ];
 
-// ─────────────────────────────────────────────────────────────
-// HERO SECTION — matches screenshot exactly
-// ─────────────────────────────────────────────────────────────
+const BOTTOM_FEATURES = [
+  { icon: Users, title: "Join Groups", desc: "Be part of topic-based professional groups" },
+  { icon: BookOpen, title: "Share Knowledge", desc: "Contribute articles, insights & best practices" },
+  { icon: TrendingUp, title: "Find Opportunities", desc: "Discover projects, jobs & business leads" },
+];
+
+
+// ─── HERO SECTION ────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden" style={{ minHeight: "85vh", background: "#0d1e35" }}>
-      {/* Background cityscape image — right-aligned, fading left */}
-      <div
-        className="absolute inset-0 bg-cover bg-right bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=90')",
-          backgroundPosition: "60% center",
-        }}
-      />
-      {/* Dark overlay — stronger on left, transparent on right */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to right, #0d1e35 30%, rgba(13,30,53,0.82) 58%, rgba(13,30,53,0.3) 80%, rgba(13,30,53,0.05) 100%)",
-        }}
-      />
+    <section style={{ position: "relative", background: "#0d1e35", overflow: "hidden" }}>
+      {/* Background: professionals photo on right */}
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=85')",
+        backgroundSize: "cover", backgroundPosition: "65% center",
+      }} />
+      {/* Gradient overlay — dark left, transparent right */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(to right, #0d1e35 38%, rgba(13,30,53,0.85) 55%, rgba(13,30,53,0.35) 75%, rgba(13,30,53,0.1) 100%)",
+      }} />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10  flex flex-col justify-start" style={{ minHeight: "90vh", paddingTop: "140px", paddingBottom: "100px" }}>
-
-        {/* Left column: text + CTAs */}
-        <div className="max-w-xl ">
-          <h1
-            className="text-white font-bold leading-tight mb-3"
-            style={{ fontSize: "clamp(26px, 3.5vw, 42px)", letterSpacing: "-0.01em" }}
-          >
-            India's Premier Network for<br /> Real Estate professionals
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "1280px", margin: "0 auto", padding: "70px 28px 60px" }}>
+        <div style={{ maxWidth: "520px" }}>
+          <h1 style={{ fontSize: "clamp(28px,3.8vw,46px)", fontWeight: 800, color: "#fff", lineHeight: 1.2, margin: 0 }}>
+            India's Largest Community of<br />
+            <span style={{ color: "#c9a84c" }}>Real Estate Professionals</span>
           </h1>
-
-          {/* Gold accent line under heading */}
-          <div style={{ width: "64px", height: "3px", background: "#be9438", borderRadius: "2px", marginBottom: "20px" }} />
-
-          <p className="text-gray-300 mb-8" style={{ fontSize: "15px", lineHeight: "1.65", fontWeight: 300 }}>
-            Connecting Office, Retail, Hospitality, Logistics &amp; Investments with Global Opportunities.
-            <br />
-            <span className="text-white font-medium">One Network. Endless Possibilities.</span>
+          <div style={{ width: "56px", height: "3px", background: "#c9a84c", borderRadius: "2px", margin: "14px 0 18px" }} />
+          <p style={{ color: "#e5e7eb", fontSize: "14px", lineHeight: 1.7, margin: "0 0 8px", fontWeight: 600 }}>
+            Connect. Collaborate. Grow.
           </p>
-
-          {/* CTA Buttons — matching screenshot */}
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/join"
-              className="flex items-center gap-2 font-semibold text-white transition-all"
-              style={{
-                background: "#be9438",
-                padding: "11px 26px",
-                borderRadius: "6px",
-                fontSize: "14px",
-                letterSpacing: "0.01em",
-              }}
-            >
-              Join the Network <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/ecosystem"
-              className="flex items-center gap-2 font-semibold text-white transition-all"
-              style={{
-                border: "1.5px solid rgba(255,255,255,0.55)",
-                padding: "11px 26px",
-                borderRadius: "6px",
-                fontSize: "14px",
-                letterSpacing: "0.01em",
-                background: "transparent",
-              }}
-            >
-              Explore the Ecosystem <PlayCircle size={16} />
-            </Link>
+          <p style={{ color: "#d1d5db", fontSize: "13.5px", lineHeight: 1.7, margin: "0 0 28px" }}>
+            Join a trusted network of professionals, exchange knowledge,<br />
+            discover opportunities and grow your business together.
+          </p>
+          <div style={{ display: "flex", gap: "12px" }}>
+            <a href="/join" style={{
+              background: "#c9a84c", color: "#fff", padding: "11px 24px",
+              borderRadius: "6px", fontSize: "13.5px", fontWeight: 700, textDecoration: "none"
+            }}>Join the Community</a>
+            <a href="/explore" style={{
+              border: "1.5px solid rgba(255,255,255,0.6)", color: "#fff", padding: "11px 24px",
+              borderRadius: "6px", fontSize: "13.5px", fontWeight: 600, textDecoration: "none",
+              background: "transparent"
+            }}>Explore Community</a>
           </div>
         </div>
+      </div>
 
-        {/* Bottom-right stat boxes — positioned absolutely to lower-right of section */}
-        <div
-          className="absolute bottom-0 right-0 flex justify-end"
-          style={{
-            background: "rgba(10,22,40,0.72)",
-            backdropFilter: "blur(4px)",
-
-          }}
-        >
-          {HERO_STATS.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center text-center text-white rounded flex-1 px-4 py-5 sm:px-8 sm:py-6 md:px-12 md:py-7"
-              style={{
-                
-                borderLeft: idx > 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                
-              }}
-            >
-              <item.icon
-                className="mb-3"
-                style={{ width: "28px", height: "28px", color: "rgba(255,255,255,0.7)", strokeWidth: 1.5 }}
-              />
-              <h4 style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.02em", lineHeight: 1.2 }}>
-                {item.title}
-              </h4>
-              <p style={{ fontSize: "11px", color: "#9ca3af", marginTop: "3px" }}>{item.subtitle}</p>
+      {/* Search Bar */}
+      <div style={{ position: "relative", zIndex: 2, background: "rgba(10,20,38,0.92)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "16px 28px" }}>
+          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+            <div style={{
+              flex: 2, display: "flex", alignItems: "center", gap: "10px",
+              background: "#fff", borderRadius: "6px", padding: "0 14px", height: "46px"
+            }}>
+              <Search size={16} color="#9ca3af" />
+              <input placeholder="Search professionals, companies, groups..." style={{
+                border: "none", outline: "none", flex: 1, fontSize: "13px", color: "#374151"
+              }} />
             </div>
-          ))}
+            <div style={{
+              flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between",
+              background: "#fff", borderRadius: "6px", padding: "0 14px", height: "46px", cursor: "pointer"
+            }}>
+              <span style={{ fontSize: "13px", color: "#9ca3af" }}>Select Expertise</span>
+              <ChevronDown size={14} color="#9ca3af" />
+            </div>
+            <div style={{
+              flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between",
+              background: "#fff", borderRadius: "6px", padding: "0 14px", height: "46px", cursor: "pointer"
+            }}>
+              <span style={{ fontSize: "13px", color: "#9ca3af" }}>Select Location</span>
+              <ChevronDown size={14} color="#9ca3af" />
+            </div>
+            <button style={{
+              background: "#c9a84c", color: "#fff", padding: "0 28px", height: "46px",
+              borderRadius: "6px", fontSize: "14px", fontWeight: 700, border: "none", cursor: "pointer"
+            }}>Search</button>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-// ECOSYSTEM SECTION
-// ─────────────────────────────────────────────────────────────
-function EcosystemSection() {
+// ─── FEATURE STRIP ────────────────────────────────────────────
+function FeatureStrip() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-[#c9a84c] text-xs font-bold tracking-[0.3em] uppercase mb-4">A Connected Ecosystem</p>
-          <h2 className="text-4xl font-bold text-[#1a2744]">
-            All of Commercial <span className="text-[#c9a84c]">Real Estate professionals</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {ECOSYSTEM_ITEMS.map((item) => (
-            <div key={item.title} className="group flex flex-col bg-[#F8FAFC] rounded-2xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
-              <div className="p-6 flex flex-col items-center text-center">
-                <div className="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-7 h-7 text-[#1a2744]" strokeWidth={1.5} />
-                </div>
-                <h3 className="font-bold text-[#1a2744] text-base mb-1">{item.title}</h3>
-                <p className="text-gray-500 text-[11px] leading-tight">{item.subtitle}</p>
-              </div>
-              <div className="mt-auto h-32 overflow-hidden">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+    <section style={{ background: "#fff", borderBottom: "1px solid #e5e7eb" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+          {FEATURE_STRIPS.map((item, i) => (
+            <div key={i} style={{
+              display: "flex", alignItems: "center", gap: "12px",
+              padding: "20px 16px", borderRight: i < 5 ? "1px solid #e5e7eb" : "none"
+            }}>
+              <item.icon size={36} color="#1a2744" strokeWidth={1.2} style={{ flexShrink: 0 }} />
+              <div>
+                <div style={{ fontSize: "13px", fontWeight: 700, color: "#1a2744" }}>{item.label}</div>
+                <div style={{ fontSize: "11px", color: "#6b7280", lineHeight: 1.4, marginTop: "2px" }}>{item.desc}</div>
               </div>
             </div>
           ))}
@@ -252,97 +159,196 @@ function EcosystemSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-// STAKEHOLDERS & MARKETPLACE
-// ─────────────────────────────────────────────────────────────
-function StakeholdersSection() {
-  const [activeTab, setActiveTab] = useState("All");
+// ─── STATS BAR ───────────────────────────────────────────────
+function StatsBar() {
   return (
-    <section className="py-24 bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-20">
-        
+    <section style={{ background: "#0d1e35" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+          {STATS_BAR.map((stat, i) => (
+            <div key={i} style={{
+              display: "flex", alignItems: "center", gap: "14px",
+              padding: "22px 20px", borderRight: i < 5 ? "1px solid rgba(255,255,255,0.08)" : "none"
+            }}>
+              <stat.icon size={36} color="#c9a84c" strokeWidth={1.2} style={{ flexShrink: 0 }} />
+              <div>
+                <div style={{ fontSize: "22px", fontWeight: 800, color: "#c9a84c", lineHeight: 1 }}>{stat.value}</div>
+                <div style={{ fontSize: "11px", color: "#9ca3af", marginTop: "3px" }}>{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── THREE-COLUMN SECTION ────────────────────────────────────
+function ThreeColumnSection() {
+  return (
+    <section style={{ background: "#f9fafb", padding: "40px 0" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "32px" }}>
+
+        {/* Community Spotlight */}
         <div>
-          <p className="text-[#c9a84c] text-xs font-bold tracking-widest uppercase mb-4">Who We Connect</p>
-          <h2 className="text-4xl font-bold text-[#1a2744] leading-tight mb-12">
-            Bringing Together the Right People & Opportunities
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {STAKEHOLDERS.map((s) => (
-              <div key={s.title} className="flex items-center gap-4 p-5 bg-white rounded-xl border border-gray-100 hover:border-[#c9a84c]/50 transition-all group cursor-pointer">
-                <div className="p-3 rounded-lg bg-gray-50 group-hover:bg-[#c9a84c]/10 text-[#1a2744] transition-colors">
-                  <s.icon size={24} strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#1a2744] text-sm">{s.title}</h4>
-                  <p className="text-gray-500 text-[11px]">{s.subtitle}</p>
-                </div>
-              </div>
-            ))}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+            <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#1a2744", margin: 0 }}>Community Spotlight</h2>
+            <a href="/community" style={{ fontSize: "12px", color: "#c9a84c", fontWeight: 600, textDecoration: "none" }}>View all</a>
           </div>
-          <button className="mt-10 bg-[#1a2744] text-white px-8 py-3 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-black transition-colors">
-            View All Stakeholders <ArrowRight size={16} />
-          </button>
+          <div style={{ position: "relative" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              {COMMUNITY_MEMBERS.map((m, i) => (
+                <div key={i} style={{
+                  background: "#fff", border: "1px solid #e5e7eb", borderRadius: "10px",
+                  padding: "14px 12px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center"
+                }}>
+                  <img src={m.img} alt={m.name} style={{ width: "60px", height: "60px", borderRadius: "50%", objectFit: "cover", marginBottom: "8px", border: "2px solid #e5e7eb" }} />
+                  <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#1a2744" }}>{m.name}</div>
+                  <div style={{ fontSize: "10.5px", color: "#6b7280", marginTop: "2px", lineHeight: 1.3 }}>{m.role}</div>
+                  <div style={{ fontSize: "10.5px", color: "#6b7280" }}>{m.company}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "3px", marginTop: "4px" }}>
+                    <MapPin size={10} color="#9ca3af" />
+                    <span style={{ fontSize: "10px", color: "#9ca3af" }}>{m.city}</span>
+                  </div>
+                  <button style={{
+                    marginTop: "10px", padding: "5px 20px", border: "1px solid #d1d5db",
+                    borderRadius: "5px", fontSize: "11px", fontWeight: 600, color: "#1a2744",
+                    background: "#fff", cursor: "pointer", width: "100%"
+                  }}>Connect</button>
+                </div>
+              ))}
+            </div>
+            {/* Prev/Next arrows */}
+            <button style={{
+              position: "absolute", left: "-14px", top: "50%", transform: "translateY(-50%)",
+              width: "28px", height: "28px", borderRadius: "50%", background: "#fff",
+              border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", boxShadow: "0 1px 4px rgba(0,0,0,0.1)"
+            }}>
+              <ChevronLeft size={14} color="#374151" />
+            </button>
+            <button style={{
+              position: "absolute", right: "-14px", top: "50%", transform: "translateY(-50%)",
+              width: "28px", height: "28px", borderRadius: "50%", background: "#fff",
+              border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", boxShadow: "0 1px 4px rgba(0,0,0,0.1)"
+            }}>
+              <ChevronRight size={14} color="#374151" />
+            </button>
+          </div>
         </div>
 
-        <div className="bg-[#0A1628] rounded-3xl p-8 shadow-2xl">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
-            <span className="text-[#c9a84c] text-[10px] font-bold tracking-widest uppercase">Live Marketplace</span>
+        {/* Upcoming Events */}
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+            <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#1a2744", margin: 0 }}>Upcoming Events</h2>
+            <a href="/events" style={{ fontSize: "12px", color: "#c9a84c", fontWeight: 600, textDecoration: "none" }}>View all</a>
           </div>
-          <h3 className="text-3xl font-bold text-white mb-8">Explore Opportunities</h3>
-          
-          <div className="flex gap-4 border-b border-white/10 mb-8 overflow-x-auto pb-2">
-            {["All", "Office", "Retail", "Hospitality", "Logistics"].map(tab => (
-              <button 
-                key={tab} 
-                onClick={() => setActiveTab(tab)}
-                className={`text-sm font-medium pb-2 transition-all ${activeTab === tab ? "text-[#c9a84c] border-b-2 border-[#c9a84c]" : "text-gray-500"}`}
-              >
-                {tab}
-              </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+            {EVENTS.map((ev, i) => (
+              <div key={i} style={{
+                background: "#fff", border: "1px solid #e5e7eb", borderRadius: "10px",
+                padding: "14px 16px", display: "flex", gap: "14px", alignItems: "flex-start"
+              }}>
+                <div style={{
+                  minWidth: "52px", background: "#1a2744", borderRadius: "8px",
+                  display: "flex", flexDirection: "column", alignItems: "center", padding: "8px 10px"
+                }}>
+                  <span style={{ fontSize: "20px", fontWeight: 800, color: "#fff", lineHeight: 1 }}>{ev.day}</span>
+                  <span style={{ fontSize: "10px", color: "#c9a84c", fontWeight: 700, marginTop: "2px" }}>{ev.month}</span>
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#1a2744", marginBottom: "5px" }}>{ev.title}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px", marginBottom: "3px" }}>
+                    <MapPin size={11} color="#9ca3af" />
+                    <span style={{ fontSize: "11px", color: "#6b7280" }}>{ev.venue}</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    <Clock size={11} color="#9ca3af" />
+                    <span style={{ fontSize: "11px", color: "#6b7280" }}>{ev.time}</span>
+                  </div>
+                </div>
+                <button style={{
+                  background: "#1a2744", color: "#fff", padding: "7px 14px", borderRadius: "6px",
+                  fontSize: "11.5px", fontWeight: 700, border: "none", cursor: "pointer", flexShrink: 0
+                }}>Register</button>
+              </div>
             ))}
           </div>
+        </div>
 
-          <div className="space-y-4">
-            {OPPORTUNITIES.map((opp, i) => (
-              <div key={i} className="flex gap-4 bg-white/5 hover:bg-white/10 p-4 rounded-2xl transition-all cursor-pointer items-center border border-white/5">
-                <img src={opp.img} className="w-20 h-16 object-cover rounded-xl" />
-                <div className="flex-1">
-                  <span className="text-[9px] font-bold text-[#c9a84c] uppercase tracking-tighter">{opp.cat}</span>
-                  <h4 className="text-white font-bold text-sm">{opp.title}</h4>
-                  <p className="text-gray-500 text-xs">{opp.loc}</p>
+        {/* Popular Discussions */}
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+            <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#1a2744", margin: 0 }}>Popular Discussions</h2>
+            <a href="/discussions" style={{ fontSize: "12px", color: "#c9a84c", fontWeight: 600, textDecoration: "none" }}>View all</a>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            {DISCUSSIONS.map((d, i) => (
+              <div key={i} style={{
+                background: "#fff", border: "1px solid #e5e7eb", borderRadius: "10px",
+                padding: "14px 16px", display: "flex", gap: "12px", alignItems: "center",
+                marginBottom: "10px"
+              }}>
+                <img src={d.img} alt={d.user} style={{ width: "40px", height: "40px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: "13px", fontWeight: 600, color: "#1a2744", lineHeight: 1.35 }}>{d.topic}</div>
+                  <div style={{ fontSize: "11px", color: "#9ca3af", marginTop: "4px" }}>{d.user} · {d.time}</div>
                 </div>
-                <div className="text-right">
-                  <p className="text-white font-bold text-sm">{opp.size}</p>
-                  <p className="text-emerald-400 text-[10px] font-bold">Available</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
+                  <MessageSquare size={13} color="#9ca3af" />
+                  <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 600 }}>{d.replies}</span>
                 </div>
               </div>
             ))}
           </div>
-          
-          <button className="mt-8 text-[#c9a84c] font-bold text-sm flex items-center gap-2 hover:underline">
-            View All Opportunities <ArrowRight size={16} />
-          </button>
         </div>
       </div>
     </section>
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-// STATS SECTION
-// ─────────────────────────────────────────────────────────────
-function StatsSection() {
+// ─── BOTTOM CTA SECTION ──────────────────────────────────────
+function BottomCTASection() {
   return (
-    <section className="bg-[#0A1628] py-20 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-5 gap-10">
-        {STATS.map((s, i) => (
-          <div key={i} className="text-center group">
-            <div className="flex justify-center mb-4">
-              <s.icon size={32} className="text-[#c9a84c]/80 group-hover:text-[#c9a84c] transition-colors" strokeWidth={1} />
+    <section style={{ background: "#fff", padding: "48px 0", borderTop: "1px solid #e5e7eb" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1.5fr 0.8fr 1fr 1fr 1fr", gap: "32px", alignItems: "center" }}>
+
+        {/* Left text */}
+        <div>
+          <h2 style={{ fontSize: "26px", fontWeight: 800, color: "#1a2744", margin: "0 0 10px", lineHeight: 1.25 }}>
+            Create. Connect. Collaborate.
+          </h2>
+          <p style={{ fontSize: "13px", color: "#6b7280", lineHeight: 1.6, margin: "0 0 20px" }}>
+            Join groups, participate in discussions, share knowledge<br />
+            and build meaningful professional relationships.
+          </p>
+          <a href="/explore" style={{
+            display: "inline-block", background: "#1a2744", color: "#fff",
+            padding: "10px 22px", borderRadius: "6px", fontSize: "13px", fontWeight: 700,
+            textDecoration: "none"
+          }}>Explore Community</a>
+        </div>
+
+        {/* Illustration placeholder */}
+        <div style={{
+          background: "#f3f4f6", borderRadius: "12px", height: "130px",
+          display: "flex", alignItems: "center", justifyContent: "center"
+        }}>
+          <Users size={48} color="#d1d5db" strokeWidth={1} />
+        </div>
+
+        {/* Feature blocks */}
+        {BOTTOM_FEATURES.map((f, i) => (
+          <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "10px" }}>
+            <div style={{
+              width: "56px", height: "56px", borderRadius: "50%", background: "#f3f4f6",
+              display: "flex", alignItems: "center", justifyContent: "center"
+            }}>
+              <f.icon size={26} color="#1a2744" strokeWidth={1.4} />
             </div>
-            <h3 className="text-3xl font-bold text-white mb-1">{s.value}</h3>
-            <p className="text-gray-500 text-xs uppercase tracking-widest">{s.label}</p>
+            <div style={{ fontSize: "14px", fontWeight: 700, color: "#1a2744" }}>{f.title}</div>
+            <div style={{ fontSize: "12px", color: "#6b7280", lineHeight: 1.4 }}>{f.desc}</div>
           </div>
         ))}
       </div>
@@ -350,13 +356,15 @@ function StatsSection() {
   );
 }
 
+// ─── PAGE ─────────────────────────────────────────────────────
 export default function Page() {
   return (
-    <main className="antialiased">
+    <main style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
       <HeroSection />
-      <EcosystemSection />
-      <StakeholdersSection />
-      <StatsSection />
+      <FeatureStrip />
+      <StatsBar />
+      <ThreeColumnSection />
+      <BottomCTASection />
     </main>
   );
 }
