@@ -361,6 +361,7 @@ export default function Page() {
   return (
     <main style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
       <HeroSection />
+      
       <FeatureStrip />
       <StatsBar />
       <ThreeColumnSection />
