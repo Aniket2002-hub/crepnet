@@ -27,10 +27,10 @@ const STATS_BAR = [
 ];
 
 const COMMUNITY_MEMBERS = [
-  { name: "Rohit Mehta", role: "Director – Investments", company: "Blackstone", city: "Mumbai", img: "https://randomuser.me/api/portraits/men/32.jpg" },
-  { name: "Ananya Sharma", role: "Head – Workplace Solutions, India", company: "JLL", city: "Bengaluru", img: "https://randomuser.me/api/portraits/women/44.jpg" },
-  { name: "Vikram Kapoor", role: "CEO", company: "Assetz Property Group", city: "Mumbai", img: "https://randomuser.me/api/portraits/men/65.jpg" },
-  { name: "Neha Iyer", role: "Senior Architect", company: "Morphogenesis", city: "Delhi", img: "https://randomuser.me/api/portraits/women/68.jpg" },
+  { name: "Rohit Mehta", role: "Director – Investments", company: "Blackstone", city: "Mumbai", img: "/" },
+  { name: "Ananya Sharma", role: "Head – Workplace Solutions, India", company: "JLL", city: "Bengaluru", img: "/" },
+  { name: "Vikram Kapoor", role: "CEO", company: "Assetz Property Group", city: "Mumbai", img: "/" },
+  { name: "Neha Iyer", role: "Senior Architect", company: "Morphogenesis", city: "Delhi", img: "/" },
 ];
 
 const EVENTS = [
@@ -361,7 +361,7 @@ export default function Page() {
   return (
     <main style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
       <HeroSection />
-      
+
       <FeatureStrip />
       <StatsBar />
       <ThreeColumnSection />
