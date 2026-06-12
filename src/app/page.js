@@ -227,7 +227,7 @@ function EcosystemSection() {
         <div className="text-center mb-16">
           <p className="text-[#c9a84c] text-xs font-bold tracking-[0.3em] uppercase mb-4">A Connected Ecosystem</p>
           <h2 className="text-4xl font-bold text-[#1a2744]">
-            All of Commercial Real Estate. <span className="text-[#c9a84c]">One Platform.</span>
+            All of Commercial <span className="text-[#c9a84c]">Real Estate professionals</span>
           </h2>
         </div>
 
