@@ -432,7 +432,7 @@ function BottomCTA() {
               Are you a Developer?
             </h1>
             <p className="text-sm sm:text-base text-white/90 leading-snug">
-              Join RPEC and unlock endless oppurtunities
+              Join REPC and unlock endless oppurtunities
             </p>
           </div>
         </div>
