@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 const NAV_ITEMS = [
-  { label: "About Us", href: "/about" },
+  { label: "About Us", href: "/about-us" },
   {
     label: "Community",
     href: "/community",
