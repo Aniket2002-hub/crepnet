@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const FOOTER_LINKS = {
   Company: ["About Us", "Our Team", "Careers", "Press & Media", "Contact Us"],
@@ -47,6 +49,9 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="bg-[#0f1a2e] text-white">
 
