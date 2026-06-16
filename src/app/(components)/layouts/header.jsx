@@ -4,26 +4,49 @@ import Link from "next/link";
 
 const NAV_ITEMS = [
   { label: "About Us", href: "/about-us" },
+
   {
     label: "Community",
     href: "/community",
-    dropdown: ["Member Directory", "Survey"],
+    dropdown: [
+      { label: "Member Directory", href: "/community/member-directory" },
+      { label: "Survey", href: "/community/survey" },
+    ],
   },
+
   {
     label: "Events",
     href: "/events",
-    dropdown: ["Awards", "Summits", "Conferences", "Networking", "Webinars"],
+    dropdown: [
+      { label: "Awards", href: "/events/awards" },
+      { label: "Summits", href: "/events/summits" },
+      { label: "Conferences", href: "/events/conferences" },
+      { label: "Networking", href: "/events/networking" },
+      { label: "Webinars", href: "/events/webinars" },
+    ],
   },
+
   {
     label: "Knowledge Hub",
     href: "/knowledge-hub",
-    dropdown: ["Articles", "Reports", "Podcasts", "Market News"],
+    dropdown: [
+      { label: "Articles", href: "/knowledge-hub/articles" },
+      { label: "Reports", href: "/knowledge-hub/reports" },
+      { label: "Podcasts", href: "/knowledge-hub/podcasts" },
+      { label: "Market News", href: "/knowledge-hub/market-news" },
+    ],
   },
+
   {
     label: "Companies",
     href: "/companies",
-    dropdown: ["Developers", "Retail Brands", "Service Providers"],
+    dropdown: [
+      { label: "Developers", href: "/companies/developers" },
+      { label: "Retail Brands", href: "/companies/retail-brands" },
+      { label: "Service Providers", href: "/companies/service-providers" },
+    ],
   },
+
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -124,11 +147,11 @@ export default function Header() {
                     <div className="bg-white border border-gray-100 rounded-xl shadow-2xl py-2">
                       {item.dropdown.map((sub) => (
                         <Link
-                          key={sub}
-                          href="#"
+                          key={sub.label}
+                          href={sub.href}
                           className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#1a2744] hover:bg-amber-50 transition-colors"
                         >
-                          {sub}
+                          {sub.label}
                         </Link>
                       ))}
                     </div>
