@@ -1,12 +1,22 @@
 "use client";
-import Link from "next/link";
 
-const FOOTER_LINKS = {
-  Company: ["About Us", "Our Team", "Careers", "Press & Media", "Contact Us"],
-  Ecosystem: ["Office Spaces", "Retail", "Hospitality", "Logistics & Industrial", "Investments", "International Trade"],
-  Solutions: ["For Developers", "For Occupiers & Brands", "For Investors", "For Consultants", "For Service Providers", "For Government Bodies"],
-  Resources: ["Market Intelligence", "Reports & Research", "Blog & Insights", "Webinars", "Events", "Case Studies"],
-};
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  Handshake,
+  Users,
+  ArrowRight,
+  Clock,
+} from "lucide-react";
+
+const GOLD = "#d6a44a";
+
+// const FOOTER_LINKS = {
+//   Company: ["About Us", "Our Team", "Careers", "Press & Media", "Contact Us"],
+//   Ecosystem: ["Office Spaces", "Retail", "Hospitality", "Logistics & Industrial", "Investments", "International Trade"],
+//   Solutions: ["For Developers", "For Occupiers & Brands", "For Investors", "For Consultants", "For Service Providers", "For Government Bodies"],
+//   Resources: ["Market Intelligence", "Reports & Research", "Blog & Insights", "Webinars", "Events", "Case Studies"],
+// };
 
 const SOCIAL_LINKS = [
   {
