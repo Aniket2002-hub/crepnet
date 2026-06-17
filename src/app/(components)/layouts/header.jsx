@@ -7,7 +7,7 @@ const NAV_ITEMS = [
 
   {
     label: "Community",
-    href: "/community",
+    href: "/",
     dropdown: [
       { label: "Member Directory", href: "/community/member-directory" },
       { label: "Survey", href: "/community/survey" },
