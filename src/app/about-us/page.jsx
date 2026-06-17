@@ -53,14 +53,14 @@ const values = [
 
 const founders = [
   {
-    name: "",
+    name: "Vipin Arora",
     role: "Co-Founder & Chairman",
     bio: "Amitabh brings over 30 years of experience in real estate development and investment. He has led landmark projects across India and believes in the power of community to accelerate industry progress.",
     why: "To create a platform where professionals can connect beyond business, collaborate for impact, and build the future of real estate in India.",
     img: "/",
   },
   {
-    name: "",
+    name: "Bhaswar Paul",
     role: "Co-Founder & Managing Director",
     bio: "Rajeev is a real estate strategist and advisor with 25+ years in the industry, specializing in market intelligence, corporate real estate, and advisory for global investors.",
     why: "To bring professionals together to share knowledge, solve challenges, and unlock opportunities that create long-term value for the ecosystem.",
@@ -98,110 +98,6 @@ export default function AboutPage() {
             REPC is India&apos;s largest community of real estate
             professionals working together to learn, collaborate, and grow.
           </p>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0B1F3A]">
-              <Target className="h-7 w-7 text-white" />
-            </div>
-            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
-              Our Mission
-            </h2>
-            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-5 leading-relaxed text-slate-600">
-              To connect real estate professionals, foster collaboration,
-              share knowledge, and create opportunities that drive growth,
-              innovation, and long-term value for the industry and the
-              communities we serve.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E8A33D]">
-              <Eye className="h-7 w-7 text-white" />
-            </div>
-            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
-              Our Vision
-            </h2>
-            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-5 leading-relaxed text-slate-600">
-              To be the most trusted and influential real estate professional
-              community, empowering leaders and shaping a sustainable and
-              inclusive real estate ecosystem.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Power of Networking */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-12">
-        <div className="overflow-hidden rounded-2xl bg-[#0B1F3A]">
-          <div className="grid lg:grid-cols-2">
-            <div className="relative h-64 lg:h-auto">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
-                alt="Professionals networking"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="p-8 lg:p-12">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/40">
-                <Users className="h-7 w-7 text-white" />
-              </div>
-              <h2 className="mt-6 text-[19px] font-extrabold text-white">
-                The Power of Networking
-              </h2>
-              <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-              <p className="mt-5 leading-relaxed text-slate-300">
-                At REPC, we believe meaningful connections create lasting
-                impact. Our community brings together developers, investors,
-                occupiers, consultants, architects, and industry experts to
-                exchange ideas, solve challenges, and unlock new
-                opportunities&mdash;together.
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
-                {stats.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="flex items-center gap-3">
-                    <Icon className="h-8 w-8 text-[#E8A33D]" />
-                    <div>
-                      <p className="text-lg font-bold text-white">{value}</p>
-                      <p className="text-xs text-slate-300">{label}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
-        <div className="text-center">
-          <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
-            Our Values
-          </h2>
-          <div className="mx-auto mt-3 h-1 w-16 bg-[#E8A33D]" />
-        </div>
-
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
-          {values.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-50">
-                <Icon className="h-7 w-7 text-[#0B1F3A]" />
-              </div>
-              <h3 className="mt-4 font-bold text-[#0B1F3A]">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                {desc}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -248,6 +144,110 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0B1F3A]">
+              <Target className="h-7 w-7 text-white" />
+            </div>
+            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
+              Our Mission
+            </h2>
+            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
+            <p className="mt-5 leading-relaxed text-slate-600">
+              To connect real estate professionals, foster collaboration,
+              share knowledge, and create opportunities that drive growth,
+              innovation, and long-term value for the industry and the
+              communities we serve.
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E8A33D]">
+              <Eye className="h-7 w-7 text-white" />
+            </div>
+            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
+              Our Vision
+            </h2>
+            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
+            <p className="mt-5 leading-relaxed text-slate-600">
+              To be the most trusted and influential real estate professional
+              community, empowering leaders and shaping a sustainable and
+              inclusive real estate ecosystem.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+        <div className="text-center">
+          <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
+            Our Values
+          </h2>
+          <div className="mx-auto mt-3 h-1 w-16 bg-[#E8A33D]" />
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
+          {values.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-50">
+                <Icon className="h-7 w-7 text-[#0B1F3A]" />
+              </div>
+              <h3 className="mt-4 font-bold text-[#0B1F3A]">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Power of Networking */}
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+        <div className="overflow-hidden rounded-2xl bg-[#0B1F3A]">
+          <div className="grid lg:grid-cols-2">
+            <div className="relative h-64 lg:h-auto">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
+                alt="Professionals networking"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+
+            <div className="p-8 lg:p-12">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/40">
+                <Users className="h-7 w-7 text-white" />
+              </div>
+              <h2 className="mt-6 text-[19px] font-extrabold text-white">
+                The Power of Networking
+              </h2>
+              <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
+              <p className="mt-5 leading-relaxed text-slate-300">
+                At REPC, we believe meaningful connections create lasting
+                impact. Our community brings together developers, investors,
+                occupiers, consultants, architects, and industry experts to
+                exchange ideas, solve challenges, and unlock new
+                opportunities&mdash;together.
+              </p>
+
+              <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                {stats.map(({ icon: Icon, value, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <Icon className="h-8 w-8 text-[#E8A33D]" />
+                    <div>
+                      <p className="text-lg font-bold text-white">{value}</p>
+                      <p className="text-xs text-slate-300">{label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -55,15 +55,15 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-  {
-    name: "YouTube",
-    href: "#",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M21.582 7.186a2.506 2.506 0 00-1.768-1.768C18.254 5 12 5 12 5s-6.254 0-7.814.418A2.506 2.506 0 002.418 7.186C2 8.746 2 12 2 12s0 3.254.418 4.814a2.506 2.506 0 001.768 1.768C5.746 19 12 19 12 19s6.254 0 7.814-.418a2.506 2.506 0 001.768-1.768C22 15.254 22 12 22 12s0-3.254-.418-4.814zM10 15V9l6 3-6 3z" />
-      </svg>
-    ),
-  },
+  // {
+  //   name: "YouTube",
+  //   href: "#",
+  //   icon: (
+  //     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+  //       <path d="M21.582 7.186a2.506 2.506 0 00-1.768-1.768C18.254 5 12 5 12 5s-6.254 0-7.814.418A2.506 2.506 0 002.418 7.186C2 8.746 2 12 2 12s0 3.254.418 4.814a2.506 2.506 0 001.768 1.768C5.746 19 12 19 12 19s6.254 0 7.814-.418a2.506 2.506 0 001.768-1.768C22 15.254 22 12 22 12s0-3.254-.418-4.814zM10 15V9l6 3-6 3z" />
+  //     </svg>
+  //   ),
+  // },
 ];
 
 const LINK_COLUMNS = [
@@ -150,34 +150,34 @@ export default function Footer() {
           {/* CTA cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:w-[440px] lg:flex-shrink-0">
             {/* Partner With Us */}
-            <div className="rounded-xl border border-white/15 bg-white/[0.03] p-6">
+            <div className="flex h-full flex-col rounded-xl border border-white/15 bg-white/[0.03] p-6">
               <Handshake className="h-7 w-7" style={{ color: GOLD }} strokeWidth={1.5} />
               <h3 className="mt-4 flex items-center gap-2 text-base font-bold text-white">
                 Partner With Us
                 <span className="h-px w-6" style={{ backgroundColor: GOLD }} />
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">
                 Collaborate with industry leaders, sponsor events, and showcase your brand to a
                 targeted audience.
               </p>
-              <button className="mt-5 inline-flex items-center gap-2 rounded-lg border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
+              <button className="mt-5 inline-flex items-center gap-2 self-start rounded-lg border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
                 Explore Partnerships
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
 
             {/* Join Our Network */}
-            <div className="rounded-xl bg-gradient-to-br from-[#7a4f1c] to-[#a06b29] p-6">
+            <div className="flex h-full flex-col rounded-xl bg-gradient-to-br from-[#7a4f1c] to-[#a06b29] p-6">
               <Users className="h-7 w-7 text-white" strokeWidth={1.5} />
               <h3 className="mt-4 flex items-center gap-2 text-base font-bold text-white">
                 Join Our Network
                 <span className="h-px w-6 bg-white/70" />
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/90">
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-white/90">
                 Become a part of a trusted community of real estate professionals and unlock
                 endless opportunities.
               </p>
-              <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[#5c3a14] transition-colors hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <button className="mt-5 inline-flex items-center gap-2 self-start rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[#5c3a14] transition-colors hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
                 Join REPC Now
                 <ArrowRight className="h-4 w-4" />
               </button>
