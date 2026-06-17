@@ -105,7 +105,12 @@ function MobileMenu() {
   );
 }
 
+import { usePathname } from "next/navigation";
+
 export default function Header() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

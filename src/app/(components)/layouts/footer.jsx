@@ -1,9 +1,12 @@
+"use client";
 import Link from "next/link";
-import { Handshake, Users, ArrowRight, Clock } from "lucide-react";
 
-// npm install lucide-react   (if not already in your project)
-
-const GOLD = "#d6a44a";
+const FOOTER_LINKS = {
+  Company: ["About Us", "Our Team", "Careers", "Press & Media", "Contact Us"],
+  Ecosystem: ["Office Spaces", "Retail", "Hospitality", "Logistics & Industrial", "Investments", "International Trade"],
+  Solutions: ["For Developers", "For Occupiers & Brands", "For Investors", "For Consultants", "For Service Providers", "For Government Bodies"],
+  Resources: ["Market Intelligence", "Reports & Research", "Blog & Insights", "Webinars", "Events", "Case Studies"],
+};
 
 const SOCIAL_LINKS = [
   {
@@ -69,6 +72,9 @@ const LINK_COLUMNS = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="bg-[#041530] text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
