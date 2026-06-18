@@ -165,10 +165,10 @@ export default function Header() {
     <Image
       src="/logo-repc-removebg-preview.png"
       alt="REPC Logo"
-      width={500}
-      height={175}
+      width={700}
+      height={250}
       priority
-      className="h-24 w-auto object-contain"
+      className="h-26 w-auto object-contain"
     />
   </Link>
 

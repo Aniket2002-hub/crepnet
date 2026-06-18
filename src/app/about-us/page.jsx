@@ -53,19 +53,18 @@ const values = [
 
 const founders = [
   {
-    name: "Vipin Arora",
-    role: "Co-Founder & Chairman",
-    bio: "Amitabh brings over 30 years of experience in real estate development and investment. He has led landmark projects across India and believes in the power of community to accelerate industry progress.",
-    why: "To create a platform where professionals can connect beyond business, collaborate for impact, and build the future of real estate in India.",
-    img: "/",
-  },
-  {
     name: "Bhaswar Paul",
     role: "Co-Founder & Managing Director",
-    bio: "Rajeev is a real estate strategist and advisor with 25+ years in the industry, specializing in market intelligence, corporate real estate, and advisory for global investors.",
-    why: "To bring professionals together to share knowledge, solve challenges, and unlock opportunities that create long-term value for the ecosystem.",
-    img: "/",
+    bio: "Bhaswar Paul is a visionary entrepreneur and industry leader with a deep commitment to transforming India's real estate ecosystem through collaboration, innovation, and knowledge sharing. As the Founder of REPC and CEO & Founder of IREED India, he has been instrumental in creating platforms that connect developers, investors, occupiers, consultants, service providers, and industry professionals across the real estate value chain. With extensive experience in real estate advisory, business networking, industry research, and ecosystem development, Bhaswar has consistently championed initiatives that foster meaningful partnerships, promote market intelligence, and accelerate industry growth. Under his leadership, REPC has evolved into a vibrant professional community dedicated to connecting professionals, facilitating opportunities, and driving thought leadership within the sector. His vision is centered on building a stronger, more connected real estate community where professionals can collaborate, learn, innovate, and create lasting business impact. Through REPC and IREED India, he continues to bridge industry stakeholders and contribute to the advancement of India's real estate landscape.",
+    img: "/paul-sir.jpg",
   },
+  {
+    name: "Vipin Arora",
+    role: "Co-Founder & Chairman",
+    bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind REPC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping REPC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through REPC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
+    img: "/vipin-sir.jfif",
+  },
+  
 ];
 
 export default function AboutPage() {
@@ -102,7 +101,7 @@ export default function AboutPage() {
       </section>
 
       {/* People Behind REPC */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-slate-50 py-16 ">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="text-center">
             <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
@@ -115,31 +114,27 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-10 md:grid-cols-2">
+          <div className="mt-12 grid gap-12 md:grid-cols-2">
             {founders.map((f) => (
-              <div key={f.name} className="grid gap-6 sm:grid-cols-[160px_1fr]">
-                <div className="relative h-48 w-full overflow-hidden rounded-xl sm:h-full">
+              <div key={f.name} className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                {/* Fixed Portrait Aspect Ratio for Founders */}
+                <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-xl sm:w-36">
                   <img
                     src={f.img}
                     alt={f.name}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
                   />
                 </div>
                 <div>
                   <h3 className="text-[15px] font-extrabold text-[#0B1F3A]">
                     {f.name}
                   </h3>
-                  <p className="text-sm font-semibold text-[#E8A33D]">
+                  {/* <p className="text-xs font-semibold text-[#E8A33D]">
                     {f.role}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  </p> */}
+                  {/* Smaller, cleaner paragraph tracking for long bios */}
+                  <p className="mt-3 text-xs leading-relaxed text-slate-500">
                     {f.bio}
-                  </p>
-                  <p className="mt-4 text-sm font-semibold text-[#E8A33D]">
-                    Why he started REPC
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    {f.why}
                   </p>
                 </div>
               </div>
