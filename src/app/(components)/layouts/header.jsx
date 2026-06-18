@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -157,17 +158,19 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
 
-          {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none select-none">
-            <span className="text-2xl font-black tracking-tight text-[#c9a84c]">
-              REPC
-            </span>
-            <span className="text-[8px] tracking-[0.22em] text-gray-400 font-semibold uppercase mt-0.5">
-              Connect · Collaborate · Grow
-            </span>
-          </Link>
+  {/* Logo */}
+  <Link href="/" className="flex items-center select-none">
+    <Image
+      src="/logo-repc-removebg-preview.png"
+      alt="REPC Logo"
+      width={500}
+      height={175}
+      priority
+      className="h-24 w-auto object-contain"
+    />
+  </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-0.5">
