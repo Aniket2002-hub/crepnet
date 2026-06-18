@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
@@ -160,17 +161,15 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-  {/* Logo */}
-  <Link href="/" className="flex items-center select-none">
-    <Image
-      src="/logo-repc-removebg-preview.png"
-      alt="REPC Logo"
-      width={700}
-      height={250}
-      priority
-      className="h-26 w-auto object-contain"
-    />
-  </Link>
+          {/* Logo */}
+          <Link href="/" className="flex flex-col leading-none select-none">
+            <span className="text-2xl font-black tracking-tight text-[#c9a84c]">
+              REPC
+            </span>
+            <span className="text-[8px] tracking-[0.22em] text-gray-400 font-semibold uppercase mt-0.5">
+              Connect · Collaborate · Grow
+            </span>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-0.5">
