@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
@@ -160,13 +161,17 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none select-none">
-            <span className="text-2xl font-black tracking-tight text-[#c9a84c]">
-              REPC
-            </span>
-            <span className="text-[8px] tracking-[0.22em] text-gray-400 font-semibold uppercase mt-0.5">
-              Connect · Collaborate · Grow
-            </span>
+          <Link href="/" className="flex items-center" style={{ height: "64px", width: "130px" }}>
+            <div style={{ margin: "5px 0 0 -10px" }}>
+              <Image
+                src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
+                alt="REPC - Real Estate Professional Community"
+                width={150}
+                height={150}
+                style={{ width: "115px", height: "auto", maxWidth: "none" }}
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Nav */}
