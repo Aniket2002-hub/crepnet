@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
@@ -158,19 +158,19 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24">
 
-  {/* Logo */}
-  <Link href="/" className="flex items-center select-none">
-    <Image
-      src="/logo-repc-removebg-preview.png"
-      alt="REPC Logo"
-      width={500}
-      height={175}
-      priority
-      className="h-24 w-auto object-contain"
-    />
-  </Link>
+          {/* Logo Container - Expanded further to optimize readability */}
+          <Link href="/" className="flex items-center justify-start shrink-0 select-none py-1 h-full">
+            <Image
+              src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
+              alt="REPC"
+              width={500} // High base buffer prevents blurriness during optimization
+              height={180} 
+              priority
+              className="h-24 sm:h-28 w-auto object-contain object-left scale-110 transition-all duration-200"
+            />
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-0.5">

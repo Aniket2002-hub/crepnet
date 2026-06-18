@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Target,
   Eye,
@@ -9,6 +12,8 @@ import {
   Globe2,
   Building2,
   MapPin,
+  X,
+  Briefcase,
 } from "lucide-react";
 
 const stats = [
@@ -52,26 +57,27 @@ const values = [
 ];
 
 const founders = [
-  {
+   {
     name: "Vipin Arora",
-    role: "Co-Founder & Chairman",
-    bio: "Amitabh brings over 30 years of experience in real estate development and investment. He has led landmark projects across India and believes in the power of community to accelerate industry progress.",
-    why: "To create a platform where professionals can connect beyond business, collaborate for impact, and build the future of real estate in India.",
-    img: "/",
+    role: "Founder ",
+    bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind REPC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping REPC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through REPC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
+    img: "/vipin-sir.jfif",
   },
   {
     name: "Bhaswar Paul",
-    role: "Co-Founder & Managing Director",
-    bio: "Rajeev is a real estate strategist and advisor with 25+ years in the industry, specializing in market intelligence, corporate real estate, and advisory for global investors.",
-    why: "To bring professionals together to share knowledge, solve challenges, and unlock opportunities that create long-term value for the ecosystem.",
-    img: "/",
+    role: "Co-Founder ",
+    bio: "Bhaswar Paul is a visionary entrepreneur and industry leader with a deep commitment to transforming India's real estate ecosystem through collaboration, innovation, and knowledge sharing. As the Founder of REPC and CEO & Founder of IREED India, he has been instrumental in creating platforms that connect developers, investors, occupiers, consultants, service providers, and industry professionals across the real estate value chain. With extensive experience in real estate advisory, business networking, industry research, and ecosystem development, Bhaswar has consistently championed initiatives that foster meaningful partnerships, promote market intelligence, and accelerate industry growth. Under his leadership, REPC has evolved into a vibrant professional community dedicated to connecting professionals, facilitating opportunities, and driving thought leadership within the sector. His vision is centered on building a stronger, more connected real estate community where professionals can collaborate, learn, innovate, and create lasting business impact. Through REPC and IREED India, he continues to bridge industry stakeholders and contribute to the advancement of India's real estate landscape.",
+    img: "/paul-sir.jpg",
   },
+ 
 ];
 
 export default function AboutPage() {
+  const [selectedFounder, setSelectedFounder] = useState(null);
+
   return (
-    <main className="bg-white">
-      {/* Hero */}
+    <main className="bg-white relative">
+      {/* 1. Hero Banner Section */}
       <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
           <img
@@ -82,7 +88,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
             ABOUT REPC
           </p>
@@ -101,45 +107,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* People Behind REPC */}
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="text-center">
+      {/* 2. People Behind REPC Section */}
+      <section className="bg-slate-50 pb-8 lg:pb-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
+          <div className="text-center pt-8 lg:pt-12">
             <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
               The People Behind REPC
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-              REPC was founded by industry leaders with a shared vision to
-              create a united, knowledge-driven community for real estate
-              professionals.
+            <p className="mx-auto mt-3 max-w-2xl text-slate-600 text-sm">
+              REPC was founded by industry leaders with a shared vision. Click a profile to view their full bio and journey.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-10 md:grid-cols-2">
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
             {founders.map((f) => (
-              <div key={f.name} className="grid gap-6 sm:grid-cols-[160px_1fr]">
-                <div className="relative h-48 w-full overflow-hidden rounded-xl sm:h-full">
+              <div 
+                key={f.name} 
+                onClick={() => setSelectedFounder(f)}
+                className="flex flex-col gap-6 sm:flex-row sm:items-start p-4 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-100 transition duration-300 cursor-pointer group"
+              >
+                <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-xl sm:w-36 shadow-sm group-hover:scale-[1.02] transition duration-300">
                   <img
                     src={f.img}
                     alt={f.name}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
                   />
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <span className="bg-white/90 text-[#0B1F3A] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm">View Bio</span>
+                  </div>
                 </div>
                 <div>
-                  <h3 className="text-[15px] font-extrabold text-[#0B1F3A]">
+                  <h3 className="text-[16px] font-extrabold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200">
                     {f.name}
                   </h3>
-                  <p className="text-sm font-semibold text-[#E8A33D]">
-                    {f.role}
+                  <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1">
+                    <Briefcase className="h-3 w-3 text-[#E8A33D]" /> {f.role}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2.5 text-xs leading-relaxed text-slate-500 line-clamp-4">
                     {f.bio}
-                  </p>
-                  <p className="mt-4 text-sm font-semibold text-[#E8A33D]">
-                    Why he started REPC
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    {f.why}
                   </p>
                 </div>
               </div>
@@ -148,18 +153,62 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#0B1F3A]">
-              <Target className="h-7 w-7 text-white" />
+      {/* Pop-up Modal Design */}
+      {selectedFounder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+          <div 
+            className="absolute inset-0 bg-[#0B1F3A]/60 backdrop-blur-sm transition-opacity duration-300"
+            onClick={() => setSelectedFounder(null)}
+          />
+          
+          <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden z-10 border border-slate-100 max-h-[90vh] flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-200">
+            <button 
+              onClick={() => setSelectedFounder(null)}
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <div className="relative w-full md:w-2/5 bg-[#0B1F3A] shrink-0 min-h-[240px] md:min-h-full flex flex-col justify-end p-6 md:p-8">
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={selectedFounder.img} 
+                  alt={selectedFounder.name} 
+                  className="w-full h-full object-cover object-top opacity-40 mix-blend-luminosity"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
+              </div>
+              
+              <div className="relative z-10">
+                <h3 className="text-xl font-extrabold text-white">{selectedFounder.name}</h3>
+                <div className="mt-2 h-[2px] w-10 bg-[#E8A33D]" />
+                <p className="mt-2 text-xs font-medium text-slate-300 tracking-wide leading-relaxed">{selectedFounder.role}</p>
+              </div>
             </div>
-            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
+
+            <div className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto custom-scrollbar">
+              <p className="text-xs uppercase tracking-widest text-[#E8A33D] font-bold">Leadership Profile</p>
+              <h4 className="text-base font-extrabold text-[#0B1F3A] mt-1">Professional Journey</h4>
+              <p className="mt-4 text-xs md:text-sm leading-relaxed text-slate-600 whitespace-pre-line font-medium">
+                {selectedFounder.bio}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Mission & Vision Section */}
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl bg-slate-50 p-6 lg:p-8">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0B1F3A]">
+              <Target className="h-6 w-6 text-white" />
+            </div>
+            <h2 className="mt-4 text-[18px] font-extrabold text-[#0B1F3A]">
               Our Mission
             </h2>
-            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-5 leading-relaxed text-slate-600">
+            <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
               To connect real estate professionals, foster collaboration,
               share knowledge, and create opportunities that drive growth,
               innovation, and long-term value for the industry and the
@@ -167,15 +216,15 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-slate-50 p-8 lg:p-10">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E8A33D]">
-              <Eye className="h-7 w-7 text-white" />
+          <div className="rounded-2xl bg-slate-50 p-6 lg:p-8">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E8A33D]">
+              <Eye className="h-6 w-6 text-white" />
             </div>
-            <h2 className="mt-6 text-[19px] font-extrabold text-[#0B1F3A]">
+            <h2 className="mt-4 text-[18px] font-extrabold text-[#0B1F3A]">
               Our Vision
             </h2>
-            <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-5 leading-relaxed text-slate-600">
+            <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
               To be the most trusted and influential real estate professional
               community, empowering leaders and shaping a sustainable and
               inclusive real estate ecosystem.
@@ -184,8 +233,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+      {/* 4. Our Values Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
         <div className="text-center">
           <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
             Our Values
@@ -193,14 +242,14 @@ export default function AboutPage() {
           <div className="mx-auto mt-3 h-1 w-16 bg-[#E8A33D]" />
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
           {values.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-50">
-                <Icon className="h-7 w-7 text-[#0B1F3A]" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-50">
+                <Icon className="h-6 w-6 text-[#0B1F3A]" />
               </div>
-              <h3 className="mt-4 font-bold text-[#0B1F3A]">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              <h3 className="mt-3 font-bold text-[#0B1F3A]">{title}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
                 {desc}
               </p>
             </div>
@@ -208,11 +257,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Power of Networking */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+      {/* 5. Power of Networking Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
         <div className="overflow-hidden rounded-2xl bg-[#0B1F3A]">
           <div className="grid lg:grid-cols-2">
-            <div className="relative h-64 lg:h-auto">
+            <div className="relative h-56 lg:h-auto">
               <img
                 src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
                 alt="Professionals networking"
@@ -220,15 +269,15 @@ export default function AboutPage() {
               />
             </div>
 
-            <div className="p-8 lg:p-12">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/40">
-                <Users className="h-7 w-7 text-white" />
+            <div className="p-6 lg:p-10">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/40">
+                <Users className="h-6 w-6 text-white" />
               </div>
-              <h2 className="mt-6 text-[19px] font-extrabold text-white">
+              <h2 className="mt-4 text-[19px] font-extrabold text-white">
                 The Power of Networking
               </h2>
-              <div className="mt-3 h-1 w-12 bg-[#E8A33D]" />
-              <p className="mt-5 leading-relaxed text-slate-300">
+              <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
+              <p className="mt-4 text-sm leading-relaxed text-slate-300">
                 At REPC, we believe meaningful connections create lasting
                 impact. Our community brings together developers, investors,
                 occupiers, consultants, architects, and industry experts to
@@ -236,13 +285,13 @@ export default function AboutPage() {
                 opportunities&mdash;together.
               </p>
 
-              <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+              <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 {stats.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="flex items-center gap-3">
-                    <Icon className="h-8 w-8 text-[#E8A33D]" />
+                  <div key={label} className="flex items-center gap-2.5">
+                    <Icon className="h-7 w-7 text-[#E8A33D]" />
                     <div>
-                      <p className="text-lg font-bold text-white">{value}</p>
-                      <p className="text-xs text-slate-300">{label}</p>
+                      <p className="text-base font-bold text-white">{value}</p>
+                      <p className="text-[11px] text-slate-300">{label}</p>
                     </div>
                   </div>
                 ))}
@@ -252,18 +301,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
-        <div className="flex flex-col items-center gap-6 rounded-2xl bg-[#0B1F3A] p-8 text-center sm:flex-row sm:justify-between sm:text-left lg:p-12">
-          <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/40">
-              <Users className="h-7 w-7 text-white" />
+      {/* 6. Call To Action (CTA) Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
+        <div className="flex flex-col items-center gap-4 rounded-2xl bg-[#0B1F3A] p-6 text-center sm:flex-row sm:justify-between sm:text-left lg:p-10">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-white/40">
+              <Users className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-[17px] font-extrabold text-white">
+              <h2 className="text-[16px] font-extrabold text-white">
                 Be a Part of Something Bigger
               </h2>
-              <p className="mt-1 text-sm text-slate-300">
+              <p className="mt-0.5 text-xs text-slate-300">
                 Join thousands of professionals who are building connections,
                 sharing knowledge, and shaping the future of real
                 estate&mdash;together.
@@ -272,7 +321,7 @@ export default function AboutPage() {
           </div>
           <a
             href="#"
-            className="shrink-0 rounded-md bg-[#E8A33D] px-6 py-3 text-sm font-bold text-[#0B1F3A] transition hover:bg-[#d6922e]"
+            className="shrink-0 rounded-md bg-[#E8A33D] px-5 py-2.5 text-sm font-bold text-[#0B1F3A] transition hover:bg-[#d6922e]"
           >
             Join the Community
           </a>

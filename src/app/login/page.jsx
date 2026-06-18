@@ -74,7 +74,7 @@ export default function LoginPage() {
           <div className="relative z-10 my-auto py-8">
             <h2 className="text-3xl font-extrabold leading-tight tracking-tight">
               India's Premier <br />
-              <span className="text-[#E8A33D]">Commercial Real Estate</span> Network
+              <span className="text-[#E8A33D]"> Real Estate</span> Network
             </h2>
             <div className="h-1 w-16 bg-[#E8A33D] my-6 rounded-full" />
 

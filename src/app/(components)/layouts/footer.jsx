@@ -1,212 +1,448 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
+import { ArrowRight, Handshake, Users, Heart } from "lucide-react";
 import {
-  Handshake,
-  Users,
-  ArrowRight,
-  Clock,
-} from "lucide-react";
+  FaLinkedinIn,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaXTwitter,
+} from "react-icons/fa6";
 
-const GOLD = "#d6a44a";
-
-// const FOOTER_LINKS = {
-//   Company: ["About Us", "Our Team", "Careers", "Press & Media", "Contact Us"],
-//   Ecosystem: ["Office Spaces", "Retail", "Hospitality", "Logistics & Industrial", "Investments", "International Trade"],
-//   Solutions: ["For Developers", "For Occupiers & Brands", "For Investors", "For Consultants", "For Service Providers", "For Government Bodies"],
-//   Resources: ["Market Intelligence", "Reports & Research", "Blog & Insights", "Webinars", "Events", "Case Studies"],
-// };
-
-const SOCIAL_LINKS = [
-  {
-    name: "LinkedIn",
-    href: "#",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-      </svg>
-    ),
-  },
-  {
-    name: "X",
-    href: "#",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2H21.5l-7.51 8.59L22 22h-6.828l-5.36-7.018L4.347 22H1.09l8.034-9.192L2 2h6.828l4.836 6.392L18.244 2Zm-2.39 18h1.833L8.084 4H6.117l9.737 16Z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Facebook",
-    href: "#",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.987h-2.54V12.3h2.54V9.797c0-2.508 1.493-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562V12.3h2.773l-.443 2.592h-2.33v6.987C18.343 21.128 22 16.991 22 12z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Instagram",
-    href: "#",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-      </svg>
-    ),
-  },
-  // {
-  //   name: "YouTube",
-  //   href: "#",
-  //   icon: (
-  //     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-  //       <path d="M21.582 7.186a2.506 2.506 0 00-1.768-1.768C18.254 5 12 5 12 5s-6.254 0-7.814.418A2.506 2.506 0 002.418 7.186C2 8.746 2 12 2 12s0 3.254.418 4.814a2.506 2.506 0 001.768 1.768C5.746 19 12 19 12 19s6.254 0 7.814-.418a2.506 2.506 0 001.768-1.768C22 15.254 22 12 22 12s0-3.254-.418-4.814zM10 15V9l6 3-6 3z" />
-  //     </svg>
-  //   ),
-  // },
+const socialLinks = [
+  { Icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
+  { Icon: FaXTwitter, href: "#", label: "X / Twitter" },
+  { Icon: FaFacebookF, href: "#", label: "Facebook" },
+  { Icon: FaInstagram, href: "#", label: "Instagram" },
+  { Icon: FaYoutube, href: "#", label: "YouTube" },
 ];
 
-const LINK_COLUMNS = [
+const navLinks = [
   {
-    heading: "Quick Links",
-    links: ["About REPC", "Membership", "Events", "Knowledge Hub", "Community Guidelines"],
+    title: "Quick Links",
+    links: [
+      { label: "About REPC", href: "/about-us" },
+      { label: "Membership", href: "#" },
+      { label: "Events", href: "/events" },
+      { label: "Knowledge Hub", href: "/knowledge-hub" },
+      { label: "Community Guidelines", href: "#" },
+    ],
   },
   {
-    heading: "Resources",
-    links: ["Articles", "Market News", "Research Reports", "Podcasts", "Career Center"],
+    title: "Resources",
+    links: [
+      { label: "Articles", href: "#" },
+      { label: "Market News", href: "#" },
+      { label: "Research Reports", href: "#" },
+      { label: "Podcasts", href: "#" },
+      { label: "Career Center", href: "#" },
+    ],
   },
   {
-    heading: "Support",
-    links: ["Contact Us", "FAQs", "Privacy Policy", "Terms of Use"],
+    title: "Support",
+    links: [
+      { label: "Contact Us", href: "/contact" },
+      { label: "FAQs", href: "#" },
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Use", href: "#" },
+    ],
   },
 ];
 
 export default function Footer() {
-  const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
-
   return (
-    <footer className="bg-[#041530] text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+    <>
+      <style>{`
+        .footer-link {
+          position: relative;
+          display: inline-block;
+          color: rgba(255,255,255,0.72);
+          transition: color 0.25s ease;
+        }
+        .footer-link::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -2px;
+          width: 0%;
+          height: 1px;
+          background: #d6a44a;
+          transition: width 0.3s ease;
+        }
+        .footer-link:hover {
+          color: #d6a44a;
+        }
+        .footer-link:hover::after {
+          width: 100%;
+        }
 
-          {/* Brand + link columns */}
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 lg:flex-1">
+        .social-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgba(255,255,255,0.75);
+          transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+        }
+        .social-btn:hover {
+          background: rgba(214,164,74,0.15);
+          border-color: #d6a44a;
+          color: #d6a44a;
+          transform: translateY(-3px);
+        }
 
-            {/* Brand */}
-            <div className="sm:col-span-2 md:col-span-1">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl font-extrabold tracking-tight">
-                  REP<span style={{ color: GOLD }}>C</span>
-                </span>
-                {/* <span className="h-8 w-px bg-white/15" aria-hidden="true" />
-                <p className="text-xs leading-tight text-slate-300">
-                  Real Estate
-                  <br />
-                  Professional Community
-                </p> */}
+        .partner-card {
+          border: 1px solid rgba(44,77,121,0.8);
+          border-radius: 16px;
+          background: linear-gradient(145deg, #071d3f 0%, #0a2248 100%);
+          padding: 16px 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 12px;
+          transition: box-shadow 0.3s, border-color 0.3s;
+          position: relative;
+          overflow: hidden;
+        }
+        .partner-card::before {
+          content: '';
+          position: absolute;
+          top: -50px;
+          right: -50px;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(214,164,74,0.07) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .partner-card:hover {
+          box-shadow: 0 0 28px rgba(214,164,74,0.14);
+          border-color: rgba(214,164,74,0.4);
+        }
+
+        .join-card {
+          border-radius: 16px;
+          background: linear-gradient(145deg, #c4882a 0%, #a36d1e 100%);
+          padding: 16px 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 12px;
+          transition: box-shadow 0.3s;
+          position: relative;
+          overflow: hidden;
+        }
+        .join-card::before {
+          content: '';
+          position: absolute;
+          bottom: -30px;
+          left: -30px;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .join-card:hover {
+          box-shadow: 0 8px 36px rgba(163,109,30,0.5);
+        }
+
+        .partner-btn {
+          height: 34px;
+          width: 100%;
+          border-radius: 8px;
+          border: 1px solid rgba(255,255,255,0.22);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 12px;
+          color: white;
+          cursor: pointer;
+          background: transparent;
+          transition: background 0.25s, border-color 0.25s;
+        }
+        .partner-btn:hover {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.45);
+        }
+
+        .join-btn {
+          height: 34px;
+          width: 100%;
+          border-radius: 8px;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 12px;
+          font-weight: 600;
+          background: white;
+          color: #a36d1e;
+          cursor: pointer;
+          transition: opacity 0.2s, transform 0.2s;
+        }
+        .join-btn:hover {
+          opacity: 0.92;
+          transform: translateY(-1px);
+        }
+
+        .footer-divider-line {
+          width: 40px;
+          height: 2px;
+          background: linear-gradient(90deg, #d6a44a, transparent);
+          margin: 10px 0 16px;
+          border-radius: 2px;
+        }
+
+        .logo-c {
+          background: linear-gradient(135deg, #d6a44a 0%, #f0c070 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .powered-link {
+          color: rgba(255,255,255,0.6);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.2s ease;
+        }
+        .powered-link:hover {
+          color: #d6a44a;
+        }
+      `}</style>
+
+      <footer
+        style={{
+          background: "linear-gradient(180deg, #04162f 0%, #030f20 100%)",
+          color: "white",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <div
+          style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 30px 0" }}
+        >
+          {/* Main Grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              gap: "24px",
+              alignItems: "start",
+            }}
+            className="footer-main-grid"
+          >
+            <style>{`
+              @media (min-width: 1024px) {
+                .footer-main-grid {
+                  grid-template-columns: 2fr 1fr 1fr 1fr 3fr !important;
+                  align-items: start !important;
+                }
+              }
+              @media (min-width: 640px) and (max-width: 1023px) {
+                .footer-main-grid {
+                  grid-template-columns: 1fr 1fr !important;
+                  align-items: start !important;
+                }
+              }
+            `}</style>
+
+            {/* ── Brand Column ── */}
+            <div>
+              {/* Logo */}
+              <div style={{ margin: "-35px 0 -5px -10px" }}>
+                <Image
+                  src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
+                  alt="REPC - Real Estate Professional Community"
+                  width={150}
+                  height={150}
+                  style={{ width: "130px", height: "auto" }}
+                  priority
+                />
               </div>
 
-              <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
-                India&apos;s largest community of real estate professionals connecting, collaborating
-                and creating opportunities.
+              {/* Tagline */}
+              <p
+                style={{
+                  marginTop: "0px",
+                  color: "rgba(255,255,255,0.65)",
+                  fontSize: "13px",
+                  lineHeight: "1.7",
+                  maxWidth: "280px",
+                }}
+              >
+                India&apos;s largest community of real estate professionals
+                connecting, collaborating and creating opportunities.
               </p>
 
-              <div className="mt-6 flex items-center gap-3">
-                {SOCIAL_LINKS.map((s) => (
-                  <Link
-                    key={s.name}
-                    href={s.href}
-                    aria-label={s.name}
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-slate-200 transition-colors hover:bg-[#d6a44a] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a44a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#041530]"
-                  >
-                    {s.icon}
+              {/* Social Icons */}
+              <div style={{ display: "flex", gap: "8px", marginTop: "20px" }}>
+                {socialLinks.map(({ Icon, href, label }) => (
+                  <Link key={label} href={href} aria-label={label} className="social-btn" style={{ width: "36px", height: "36px" }}>
+                    <Icon size={14} />
                   </Link>
                 ))}
               </div>
             </div>
 
-            {/* Link columns */}
-            {LINK_COLUMNS.map((col) => (
-              <div key={col.heading}>
-                <h4 className="text-sm font-bold text-white">{col.heading}</h4>
-                <span className="mt-2 block h-0.5 w-5" style={{ backgroundColor: GOLD }} />
-                <ul className="mt-4 space-y-2.5">
-                  {col.links.map((link) => (
-                    <li key={link}>
-                      <Link
-                        href="#"
-                        className="text-sm text-slate-400 transition-colors hover:text-[#d6a44a] focus:outline-none focus-visible:underline"
-                      >
-                        {link}
+            {/* ── Nav Columns ── */}
+            {navLinks.map(({ title, links }) => (
+              <div key={title}>
+                <h3 style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.3px" }}>
+                  {title}
+                </h3>
+                <div className="footer-divider-line" />
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {links.map(({ label, href }) => (
+                    <li key={label}>
+                      <Link href={href} className="footer-link" style={{ fontSize: "12px" }}>
+                        {label}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
-          </div>
 
-          {/* CTA cards */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:w-[440px] lg:flex-shrink-0">
-            {/* Partner With Us */}
-            <div className="flex h-full flex-col rounded-xl border border-white/15 bg-white/[0.03] p-6">
-              <Handshake className="h-7 w-7" style={{ color: GOLD }} strokeWidth={1.5} />
-              <h3 className="mt-4 flex items-center gap-2 text-base font-bold text-white">
-                Partner With Us
-                <span className="h-px w-6" style={{ backgroundColor: GOLD }} />
-              </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">
-                Collaborate with industry leaders, sponsor events, and showcase your brand to a
-                targeted audience.
-              </p>
-              <button className="mt-5 inline-flex items-center gap-2 self-start rounded-lg border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
-                Explore Partnerships
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Join Our Network */}
-            <div className="flex h-full flex-col rounded-xl bg-gradient-to-br from-[#7a4f1c] to-[#a06b29] p-6">
-              <Users className="h-7 w-7 text-white" strokeWidth={1.5} />
-              <h3 className="mt-4 flex items-center gap-2 text-base font-bold text-white">
-                Join Our Network
-                <span className="h-px w-6 bg-white/70" />
-              </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-white/90">
-                Become a part of a trusted community of real estate professionals and unlock
-                endless opportunities.
-              </p>
-              <button className="mt-5 inline-flex items-center gap-2 self-start rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[#5c3a14] transition-colors hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
-                Join REPC Now
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
-          <p>
-            © 2025 REPC. All Rights Reserved. (
-            <Link
-              href="https://ireedindia.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[#d6a44a] transition-colors hover:text-white"
+            {/* ── CTA Cards ── */}
+            <div
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}
+              className="footer-cards-grid"
             >
-              Powered by IREED MEDIA
-            </Link>
-            )
-          </p>
-          <p className="flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5" />
-            Made with <span aria-hidden="true">❤️</span> for Real Estate Professionals
-          </p>
+              <style>{`
+                @media (max-width: 640px) {
+                  .footer-cards-grid {
+                    grid-template-columns: 1fr !important;
+                  }
+                }
+              `}</style>
+
+              {/* Partner Card */}
+              <div className="partner-card">
+                {/* Icon + Title row */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "8px",
+                      background: "rgba(214,164,74,0.12)",
+                      border: "1px solid rgba(214,164,74,0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifycontent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Handshake size={16} style={{ color: "#d6a44a" }} />
+                  </div>
+                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0 }}>Partner With Us</h3>
+                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(214,164,74,0.45), transparent)" }} />
+                </div>
+
+                {/* Description */}
+                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.65)", margin: 0 }}>
+                  Collaborate with industry leaders, sponsor events, and showcase
+                  your brand to a targeted audience.
+                </p>
+
+                {/* Button */}
+                <button className="partner-btn">
+                  Explore Partnerships
+                  <ArrowRight size={12} />
+                </button>
+              </div>
+
+              {/* Join Card */}
+              <div className="join-card">
+                {/* Icon + Title row */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "8px",
+                      background: "rgba(255,255,255,0.15)",
+                      border: "1px solid rgba(255,255,255,0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Users size={16} style={{ color: "white" }} />
+                  </div>
+                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0 }}>Join Our Network</h3>
+                  <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.3)" }} />
+                </div>
+
+                {/* Description */}
+                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.82)", margin: 0 }}>
+                  Become a part of a trusted community of real estate
+                  professionals and unlock endless opportunities.
+                </p>
+
+                {/* Button */}
+                <button className="join-btn">
+                  Join REPC Now
+                  <ArrowRight size={12} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Bottom Bar ── */}
+          <div
+            style={{
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              marginTop: "48px",
+              padding: "20px 0 24px",
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>
+              © {new Date().getFullYear()} All Rights Reserved. | Powered by{" "}
+              <a 
+                href="https://ireedmedia.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="powered-link"
+              >
+                IREED MEDIA
+              </a>
+            </p>
+
+            <p
+              style={{
+                fontSize: "13px",
+                color: "rgba(255,255,255,0.45)",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              Made with{" "}
+              <Heart
+                size={12}
+                style={{ color: "#d6a44a", fill: "#d6a44a" }}
+              />{" "}
+              for Real Estate Professionals
+            </p>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
