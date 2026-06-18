@@ -5,7 +5,7 @@ import {
   TrendingUp, Handshake, ArrowRight,
   Search, ChevronDown, Bell, Award, BookOpen,
   MessageSquare, MapPin, Clock, ChevronLeft, ChevronRight,
-  Network, Menu, X
+  Network, Menu, X, Calendar
 } from "lucide-react";
 
 const FEATURE_STRIPS = [
@@ -18,19 +18,41 @@ const FEATURE_STRIPS = [
 ];
 
 const STATS_BAR = [
-  { value: "25,000+", label: "Professionals", icon: Users },
-  { value: "3,500+", label: "Companies", icon: Building2 },
-  { value: "120+", label: "Cities", icon: MapPin },
-  { value: "850+", label: "Industry Experts", icon: Users },
-  { value: "150+", label: "Active Groups", icon: Network },
-  { value: "50+", label: "Events Every Year", icon: BarChart3 },
+  { value: "25,000+", label: "Total Professionals", icon: Users },
+  { value: "1,800+", label: "Articles", icon: BookOpen },
+  { value: "500+", label: "Events", icon: Calendar },
+  { value: "3,500+", label: "Total Companies", icon: Building2 },
 ];
 
 const COMMUNITY_MEMBERS = [
-  { name: "Rohit Mehta", role: "Director – Investments", company: "Blackstone", city: "Mumbai", img: "/" },
-  { name: "Ananya Sharma", role: "Head – Workplace Solutions, India", company: "JLL", city: "Bengaluru", img: "/" },
-  { name: "Vikram Kapoor", role: "CEO", company: "Assetz Property Group", city: "Mumbai", img: "/" },
-  { name: "Neha Iyer", role: "Senior Architect", company: "Morphogenesis", city: "Delhi", img: "/" },
+  { 
+    name: "Rohit Mehta", 
+    role: "Director – Investments", 
+    company: "Blackstone", 
+    city: "Mumbai", 
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face" 
+  },
+  { 
+    name: "Ananya Sharma", 
+    role: "Head – Workplace Solutions, India", 
+    company: "JLL", 
+    city: "Bengaluru", 
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face" 
+  },
+  { 
+    name: "Vikram Kapoor", 
+    role: "CEO", 
+    company: "Assetz Property Group", 
+    city: "Mumbai", 
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" 
+  },
+  { 
+    name: "Neha Iyer", 
+    role: "Senior Architect", 
+    company: "Morphogenesis", 
+    city: "Delhi", 
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face" 
+  },
 ];
 
 const EVENTS = [
@@ -52,9 +74,16 @@ const BOTTOM_FEATURES = [
   { icon: TrendingUp, title: "Find Opportunities", desc: "Discover projects, jobs & business leads" },
 ];
 
-// ─── RESPONSIVE STYLES ────────────────────────────────────────
 const styles = `
-  * { box-sizing: border-box; }
+  .dashboard-main-wrapper * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+
+  .dashboard-main-wrapper {
+    overflow-x: hidden;
+  }
 
   .hero-section {
     position: relative;
@@ -71,133 +100,128 @@ const styles = `
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, #0d1e35 38%, rgba(13,30,53,0.85) 55%, rgba(13,30,53,0.35) 75%, rgba(13,30,53,0.1) 100%);
+    background: linear-gradient(to right, #0d1e35 45%, rgba(13,30,53,0.9) 65%, rgba(13,30,53,0.4) 85%, rgba(13,30,53,0.15) 100%);
   }
- .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 100px 20px 90px;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-}
-  .hero-text { max-width: 540px; }
- .hero-title {
-  font-size: clamp(20px, 2.5vw, 36px);
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.3;
-  margin: 0;
-}
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px 20px; 
+    min-height: auto;
+    display: flex;
+    align-items: center;
+  }
+  .hero-text { max-width: 750px; width: 100%; }
+  .hero-title {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+  }
   .hero-gold { color: #c9a84c; }
   .hero-divider {
-    width: 56px; height: 3px;
+    width: 48px; height: 3px;
     background: #c9a84c;
     border-radius: 2px;
-    margin: 14px 0 18px;
-  }
-  .hero-subtitle {
-    color: #e5e7eb;
-    font-size: 14px;
-    line-height: 1.7;
-    margin: 0 0 8px;
-    font-weight: 600;
+    margin: 12px 0 16px;
   }
   .hero-desc {
     color: #d1d5db;
-    font-size: 13.5px;
-    line-height: 1.7;
-    margin: 0 0 28px;
-  }
-  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    background: #c9a84c;
-    color: #fff;
-    padding: 11px 24px;
-    border-radius: 6px;
-    font-size: 13.5px;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .btn-outline {
-    border: 1.5px solid rgba(255,255,255,0.6);
-    color: #fff;
-    padding: 11px 24px;
-    border-radius: 6px;
-    font-size: 13.5px;
-    font-weight: 600;
-    text-decoration: none;
-    background: transparent;
-    white-space: nowrap;
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 600px;
   }
 
-  /* Search Bar */
+  .hero-stats-row {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .hero-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-stat-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12.5px;
+    color: #9ca3af;
+    margin-top: 3px;
+  }
+
+  /* Search Engine Wrapper Layout */
   .search-bar-wrap {
     position: relative;
     z-index: 2;
-    background: rgba(10,20,38,0.92);
-    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(10,20,38,0.94);
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
   .search-bar-inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 16px 20px;
+    padding: 14px 20px;
   }
   .search-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
   }
   .search-input-wrap {
-    flex: 2;
-    min-width: 180px;
+    flex: 2.2;
+    min-width: 200px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: #fff;
     border-radius: 6px;
-    padding: 0 14px;
+    padding: 0 16px;
     height: 46px;
   }
   .search-input-wrap input {
     border: none;
     outline: none;
     flex: 1;
-    font-size: 13px;
-    color: #374151;
+    font-size: 13.5px;
+    color: #111827;
     min-width: 0;
   }
   .search-select {
     flex: 1;
-    min-width: 130px;
+    min-width: 140px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #fff;
     border-radius: 6px;
-    padding: 0 14px;
+    padding: 0 16px;
     height: 46px;
     cursor: pointer;
   }
-  .search-select span { font-size: 13px; color: #9ca3af; }
+  .search-select span { font-size: 13.5px; color: #6b7280; }
   .search-btn {
     background: #c9a84c;
     color: #fff;
-    padding: 0 28px;
+    padding: 0 32px;
     height: 46px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: 700;
     border: none;
     cursor: pointer;
     white-space: nowrap;
   }
 
-  /* Feature Strip */
+  /* Core Feature Stripe Element */
   .feature-strip {
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
@@ -215,159 +239,179 @@ const styles = `
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 18px 14px;
+    padding: 16px 14px;
   }
   .feature-label { font-size: 13px; font-weight: 700; color: #1a2744; }
   .feature-desc { font-size: 11px; color: #6b7280; line-height: 1.4; margin-top: 2px; }
 
-  /* Stats Bar */
-  .stats-bar { background: #0d1e35; }
-  .stats-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 22px 16px;
-  }
-  .stat-value { font-size: 22px; font-weight: 800; color: #c9a84c; line-height: 1; }
-  .stat-label { font-size: 11px; color: #9ca3af; margin-top: 3px; }
-
-  /* Three Column */
+  /* Three Column Dashboard Section */
   .three-col-section {
     background: #f9fafb;
     padding: 40px 0;
+    width: 100%;
+    overflow: hidden;
   }
   .three-col-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
+    grid-template-columns: 2.2fr 1.4fr 1.4fr; 
+    align-items: start;
+    gap: 24px;
+  }
+  .dashboard-column {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px 16px;
+    min-height: 415px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+    min-width: 0;
   }
   .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
-  .section-title { font-size: 17px; font-weight: 800; color: #1a2744; margin: 0; }
-  .view-all { font-size: 12px; color: #c9a84c; font-weight: 600; text-decoration: none; }
+  .section-title { font-size: 16px; font-weight: 800; color: #1a2744; margin: 0; }
+  .view-all { font-size: 12.5px; color: #c9a84c; font-weight: 600; text-decoration: none; }
 
-  /* Members Grid */
+  /* Spotlight Grid Layer */
   .members-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 8px;
+    width: 100%;
   }
   .member-card {
     background: #fff;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #f0f2f5;
     border-radius: 10px;
-    padding: 14px 12px;
+    padding: 16px 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    min-width: 0;
   }
   .member-img {
-    width: 60px; height: 60px;
+    width: 56px; height: 56px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     border: 2px solid #e5e7eb;
+    background-color: #f3f4f6;
   }
-  .member-name { font-size: 12.5px; font-weight: 700; color: #1a2744; }
-  .member-role { font-size: 10.5px; color: #6b7280; margin-top: 2px; line-height: 1.3; }
-  .member-company { font-size: 10.5px; color: #6b7280; }
-  .member-city { display: flex; align-items: center; gap: 3px; margin-top: 4px; }
-  .member-city span { font-size: 10px; color: #9ca3af; }
+  .member-name { font-size: 12px; font-weight: 700; color: #1a2744; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%; }
+  .member-role { font-size: 9.5px; color: #6b7280; margin-top: 3px; line-height: 1.3; height: 26px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .member-company { font-size: 9.5px; color: #6b7280; font-weight: 500; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%; }
+  .member-city { display: flex; align-items: center; gap: 3px; margin-top: 5px; }
+  .member-city span { font-size: 9px; color: #9ca3af; }
   .connect-btn {
-    margin-top: 10px;
-    padding: 5px 20px;
+    margin-top: 12px;
+    padding: 5px 0;
     border: 1px solid #d1d5db;
-    border-radius: 5px;
-    font-size: 11px;
+    border-radius: 6px;
+    font-size: 10.5px;
     font-weight: 600;
     color: #1a2744;
     background: #fff;
     cursor: pointer;
     width: 100%;
+    transition: all 0.2s;
+  }
+  .connect-btn:hover {
+    background: #f9fafb;
+    border-color: #1a2744;
   }
 
-  /* Events */
-  .events-list { display: flex; flex-direction: column; gap: 14px; }
-  .event-card {
+  .carousel-wrap { position: relative; }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; height: 24px;
+    border-radius: 50%;
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 14px 16px;
     display: flex;
-    gap: 14px;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    z-index: 10;
+  }
+  .carousel-btn.left { left: -10px; }
+  .carousel-btn.right { right: -10px; }
+
+  /* Agenda Event Rows */
+  .events-list { display: flex; flex-direction: column; gap: 12px; }
+  .event-card {
+    background: #fff;
+    border: 1px solid #f0f2f5;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
   }
   .event-date {
-    min-width: 52px;
+    min-width: 46px;
     background: #1a2744;
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 10px;
+    padding: 6px;
     flex-shrink: 0;
   }
-  .event-day { font-size: 20px; font-weight: 800; color: #fff; line-height: 1; }
-  .event-month { font-size: 10px; color: #c9a84c; font-weight: 700; margin-top: 2px; }
-  .event-title { font-size: 13px; font-weight: 700; color: #1a2744; margin-bottom: 5px; }
-  .event-meta { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
-  .event-meta span { font-size: 11px; color: #6b7280; }
+  .event-day { font-size: 16px; font-weight: 800; color: #fff; line-height: 1; }
+  .event-month { font-size: 9px; color: #c9a84c; font-weight: 700; margin-top: 2px; }
+  .event-title { font-size: 12px; font-weight: 700; color: #1a2744; margin-bottom: 3px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+  .event-meta { display: flex; align-items: center; gap: 4px; margin-bottom: 2px; }
+  .event-meta span { font-size: 10.5px; color: #6b7280; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
   .register-btn {
     background: #1a2744;
     color: #fff;
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 6px;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
     border: none;
     cursor: pointer;
     flex-shrink: 0;
-    align-self: center;
+    margin-left: auto;
   }
 
-  /* Discussions */
+  /* Forums Discussion Rows */
   .discussion-card {
     background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 14px 16px;
+    border: 1px solid #f0f2f5;
+    border-radius: 8px;
+    padding: 12px;
     display: flex;
     gap: 12px;
     align-items: center;
     margin-bottom: 10px;
   }
+  .discussion-card:last-child { margin-bottom: 0; }
   .discussion-img {
-    width: 40px; height: 40px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
   }
-  .discussion-topic { font-size: 13px; font-weight: 600; color: #1a2744; line-height: 1.35; }
-  .discussion-meta { font-size: 11px; color: #9ca3af; margin-top: 4px; }
-  .discussion-replies { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-  .discussion-replies span { font-size: 12px; color: #6b7280; font-weight: 600; }
+  .discussion-topic { font-size: 12px; font-weight: 600; color: #1a2744; line-height: 1.3; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+  .discussion-meta { font-size: 10.5px; color: #9ca3af; margin-top: 3px; }
+  .discussion-replies { display: flex; align-items: center; gap: 4px; margin-left: auto; flex-shrink: 0; }
+  .discussion-replies span { font-size: 11px; color: #6b7280; font-weight: 600; }
 
-  /* Bottom CTA */
+  /* Bottom CTA Landing Layout */
   .bottom-cta {
     background: #fff;
-    padding: 48px 0;
+    padding: 10px 0 55px; 
     border-top: 1px solid #e5e7eb;
   }
   .bottom-inner {
@@ -375,19 +419,19 @@ const styles = `
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 1.5fr 0.8fr 1fr 1fr 1fr;
+    grid-template-columns: 1.6fr 0.7fr 1fr 1fr 1fr;
     gap: 32px;
     align-items: center;
   }
-  .bottom-title { font-size: 26px; font-weight: 800; color: #1a2744; margin: 0 0 10px; line-height: 1.25; }
-  .bottom-desc { font-size: 13px; color: #6b7280; line-height: 1.6; margin: 0 0 20px; }
+  .bottom-title { font-size: 26px; font-weight: 800; color: #1a2744; margin: 0 0 8px; line-height: 1.25; }
+  .bottom-desc { font-size: 13.5px; color: #6b7280; line-height: 1.6; margin: 0 0 16px; }
   .btn-dark {
     display: inline-block;
     background: #1a2744;
     color: #fff;
-    padding: 10px 22px;
+    padding: 11px 24px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 700;
     text-decoration: none;
   }
@@ -417,87 +461,57 @@ const styles = `
   .bottom-feature-title { font-size: 14px; font-weight: 700; color: #1a2744; }
   .bottom-feature-desc { font-size: 12px; color: #6b7280; line-height: 1.4; }
 
-  /* Carousel Arrows */
-  .carousel-wrap { position: relative; }
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    z-index: 1;
+  /* MEDIA QUERIES */
+  @media (max-width: 1240px) {
+    .three-col-inner { grid-template-columns: 1.4fr 1fr; }
+    .dashboard-column:first-child { grid-column: span 2; }
+    .members-grid { grid-template-columns: repeat(4, 1fr); }
   }
-  .carousel-btn.left { left: -14px; }
-  .carousel-btn.right { right: -14px; }
 
-  /* ─── TABLET (768px) ─── */
-  @media (max-width: 1024px) {
+  @media (max-width: 960px) {
+    .three-col-inner { grid-template-columns: 1fr; }
+    .dashboard-column:first-child { grid-column: span 1; }
     .feature-grid { grid-template-columns: repeat(3, 1fr); }
-    .feature-item:nth-child(3) { border-right: none; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .stat-item:nth-child(3) { border-right: none !important; }
-    .three-col-inner { grid-template-columns: 1fr 1fr; }
     .bottom-inner { grid-template-columns: 1fr 1fr; }
-    .bottom-illustration { display: none; }
+    .bottom-features-row { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 16px; grid-column: span 2; }
   }
 
-  /* ─── MOBILE (640px) ─── */
-  @media (max-width: 640px) {
-  .hero-content { padding: 40px 16px 36px; }
-  .hero-title { font-size: clamp(18px, 5.5vw, 26px); }
-  .hero-text { max-width: 100%; }
-  .hero-desc { display: none; }
-    .hero-btns { flex-direction: column; gap: 10px; }
-    .btn-primary, .btn-outline { text-align: center; }
+  @media (max-width: 768px) {
+    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .hero-stats-row { gap: 24px; }
+  }
 
-    .search-row { flex-direction: column; }
+  @media (max-width: 640px) {
+    .hero-content { padding: 35px 16px 15px; }
+    .hero-title { font-size: clamp(20px, 6vw, 26px); }
+    .hero-text { max-width: 100%; }
+
+    .search-row { flex-direction: column; gap: 8px; }
     .search-input-wrap, .search-select { width: 100%; flex: none; min-width: 0; }
     .search-btn { width: 100%; }
 
     .feature-grid { grid-template-columns: 1fr 1fr; }
-    .feature-item { border-right: none !important; border-bottom: 1px solid #e5e7eb; }
+    .feature-item { border-right: none !important; border-bottom: 1px solid #e5e7eb; padding: 16px 10px; }
     .feature-item:nth-last-child(-n+2) { border-bottom: none; }
 
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 16px 12px; }
-    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
-    .stat-value { font-size: 18px; }
-
-    .three-col-inner { grid-template-columns: 1fr; gap: 32px; }
-    .carousel-btn.left { left: -8px; }
-    .carousel-btn.right { right: -8px; }
-
-    .event-card { flex-wrap: wrap; }
+    .event-card { flex-wrap: wrap; gap: 10px; }
     .register-btn { width: 100%; text-align: center; margin-top: 4px; }
 
-    .bottom-inner {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-    .bottom-illustration { display: none; }
-    .bottom-features-row {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .bottom-inner { grid-template-columns: 1fr; gap: 28px; }
+    .bottom-features-row { grid-template-columns: 1fr 1fr; grid-column: span 1; }
     .bottom-title { font-size: 20px; }
+    .hero-stats-row { gap: 16px; }
+    .hero-stat-value { font-size: 20px; }
+    .hero-stat-label { font-size: 12px; }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 440px) {
     .members-grid { grid-template-columns: 1fr; }
     .bottom-features-row { grid-template-columns: 1fr !important; }
   }
 `;
 
-// ─── HERO ─────────────────────────────────────────────────────
-function HeroSection() {
+export function HeroSection() {
   return (
     <section className="hero-section">
       <div className="hero-bg" />
@@ -505,18 +519,28 @@ function HeroSection() {
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            India's Largest Community of <span className="hero-gold">Real Estate Professionals</span>
+            India's Largest Community of <br />
+            <span className="hero-gold">Real Estate Professionals</span>
           </h1>
           <div className="hero-divider" />
-          <p className="hero-subtitle">Connect. Collaborate. Grow.</p>
+          
           <p className="hero-desc">
             Join a trusted network of professionals, exchange knowledge,<br />
             discover opportunities and grow your business together.
           </p>
-          <div className="hero-btns">
-            <a href="/join" className="btn-primary">Join the Community</a>
-            <a href="/explore" className="btn-outline">Explore Community</a>
+
+          <div className="hero-stats-row">
+            {STATS_BAR.map((stat, i) => (
+              <div key={i} className="hero-stat-item">
+                <stat.icon size={24} color="#c9a84c" strokeWidth={1.5} style={{ flexShrink: 0 }} />
+                <div>
+                  <div className="hero-stat-value">{stat.value}</div>
+                  <div className="hero-stat-label">{stat.label}</div>
+                </div>
+              </div>
+            ))}
           </div>
+
         </div>
       </div>
       <div className="search-bar-wrap">
@@ -542,8 +566,7 @@ function HeroSection() {
   );
 }
 
-// ─── FEATURE STRIP ────────────────────────────────────────────
-function FeatureStrip() {
+export function FeatureStrip() {
   return (
     <section className="feature-strip">
       <div className="feature-strip-inner">
@@ -563,40 +586,21 @@ function FeatureStrip() {
   );
 }
 
-// ─── STATS BAR ───────────────────────────────────────────────
-function StatsBar() {
-  return (
-    <section className="stats-bar">
-      <div className="stats-inner">
-        <div className="stats-grid">
-          {STATS_BAR.map((stat, i) => (
-            <div key={i} className="stat-item" style={{ borderRight: i < 5 ? "1px solid rgba(255,255,255,0.08)" : "none" }}>
-              <stat.icon size={32} color="#c9a84c" strokeWidth={1.2} style={{ flexShrink: 0 }} />
-              <div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── THREE COLUMN ─────────────────────────────────────────────
-function ThreeColumnSection() {
+export function ThreeColumnSection() {
   return (
     <section className="three-col-section">
       <div className="three-col-inner">
 
-        {/* Community Spotlight */}
-        <div>
+        {/* Dashboard Column 1: Spotlight */}
+        <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Community Spotlight</h2>
             <a href="/community" className="view-all">View all</a>
           </div>
           <div className="carousel-wrap">
+            <button className="carousel-btn left">
+              <ChevronLeft size={14} color="#374151" />
+            </button>
             <div className="members-grid">
               {COMMUNITY_MEMBERS.map((m, i) => (
                 <div key={i} className="member-card">
@@ -605,24 +609,21 @@ function ThreeColumnSection() {
                   <div className="member-role">{m.role}</div>
                   <div className="member-company">{m.company}</div>
                   <div className="member-city">
-                    <MapPin size={10} color="#9ca3af" />
+                    <MapPin size={9} color="#9ca3af" />
                     <span>{m.city}</span>
                   </div>
                   <button className="connect-btn">Connect</button>
                 </div>
               ))}
             </div>
-            <button className="carousel-btn left">
-              <ChevronLeft size={14} color="#374151" />
-            </button>
             <button className="carousel-btn right">
               <ChevronRight size={14} color="#374151" />
             </button>
           </div>
         </div>
 
-        {/* Upcoming Events */}
-        <div>
+        {/* Dashboard Column 2: Upcoming Events */}
+        <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Upcoming Events</h2>
             <a href="/events" className="view-all">View all</a>
@@ -634,7 +635,7 @@ function ThreeColumnSection() {
                   <span className="event-day">{ev.day}</span>
                   <span className="event-month">{ev.month}</span>
                 </div>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="event-title">{ev.title}</div>
                   <div className="event-meta">
                     <MapPin size={11} color="#9ca3af" />
@@ -651,8 +652,8 @@ function ThreeColumnSection() {
           </div>
         </div>
 
-        {/* Popular Discussions */}
-        <div>
+        {/* Dashboard Column 3: Popular Discussions */}
+        <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Popular Discussions</h2>
             <a href="/discussions" className="view-all">View all</a>
@@ -661,7 +662,7 @@ function ThreeColumnSection() {
             {DISCUSSIONS.map((d, i) => (
               <div key={i} className="discussion-card">
                 <img src={d.img} alt={d.user} className="discussion-img" />
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="discussion-topic">{d.topic}</div>
                   <div className="discussion-meta">{d.user} · {d.time}</div>
                 </div>
@@ -679,8 +680,7 @@ function ThreeColumnSection() {
   );
 }
 
-// ─── BOTTOM CTA ───────────────────────────────────────────────
-function BottomCTASection() {
+export function BottomCTASection() {
   return (
     <section className="bottom-cta">
       <div className="bottom-inner">
@@ -710,15 +710,13 @@ function BottomCTASection() {
   );
 }
 
-// ─── PAGE ─────────────────────────────────────────────────────
 export default function Page() {
   return (
     <>
       <style>{styles}</style>
-      <main style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
+      <main className="dashboard-main-wrapper" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
         <HeroSection />
         <FeatureStrip />
-        <StatsBar />
         <ThreeColumnSection />
         <BottomCTASection />
       </main>

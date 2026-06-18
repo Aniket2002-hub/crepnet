@@ -208,6 +208,16 @@ export default function Footer() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+
+        .powered-link {
+          color: rgba(255,255,255,0.6);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.2s ease;
+        }
+        .powered-link:hover {
+          color: #d6a44a;
+        }
       `}</style>
 
       <footer
@@ -328,7 +338,7 @@ export default function Footer() {
                       border: "1px solid rgba(214,164,74,0.25)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
+                      justifycontent: "center",
                       flexShrink: 0,
                     }}
                   >
@@ -403,7 +413,15 @@ export default function Footer() {
             }}
           >
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>
-              © 2024 REPC – Real Estate Professional Community. All Rights Reserved.
+              © {new Date().getFullYear()} All Rights Reserved. | Powered by{" "}
+              <a 
+                href="https://ireedmedia.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="powered-link"
+              >
+                IREED MEDIA
+              </a>
             </p>
 
             <p

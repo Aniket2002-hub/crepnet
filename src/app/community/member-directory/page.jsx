@@ -585,39 +585,36 @@ export default function MemberDirectory() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section */}
-      <div className="relative bg-[#0B1F3A]">
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=400&fit=crop"
-          alt="Real estate professionals"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/80 to-transparent" />
+      {/* Hero Section - Exactly normalized to align with the AboutPage styles */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=400&fit=crop"
+            alt="Real estate professionals"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-6 pb-32">
-          <div className="text-sm text-white/80 flex items-center gap-2 mb-6">
-            <span>Home</span>
-            <span>›</span>
-            <span>Community</span>
-            <span>›</span>
-            <span>Member Directory</span>
-          </div>
-
-          <h1 className="text-4xl font-bold text-white leading-tight">
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
+            MEMBER DIRECTORY
+          </p>
+          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-extrabold leading-[1.3] text-white">
             Find &amp; Connect with
             <br />
-            <span className="text-orange-400">Real Estate Professionals</span>
+            Real Estate Professionals.
           </h1>
-
-          <p className="text-white/80 mt-4 max-w-xl">
+          <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
+          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
             Search, connect, and collaborate with verified real estate
             professionals across India and grow your network.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 -mt-20 relative z-10">
+      {/* Search Bar - Repositioned padding context slightly to preserve floating effect over narrower layout */}
+      <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
         <div className="bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
           <div className="md:col-span-1">
             <label className="block text-sm font-semibold text-gray-800 mb-2">
