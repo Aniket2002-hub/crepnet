@@ -110,7 +110,7 @@ const styles = `
     z-index: 2;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 72px 20px 96px; /* High padding creates empty space for the nested absolute layout bar */
+    padding: 72px 20px 96px;
     display: flex;
     align-items: center;
   }
@@ -179,14 +179,13 @@ const styles = `
   }
   .btn-hero-outline:hover { background: rgba(255,255,255,0.08); }
 
-  /* Search Engine shifted further up to overlap cleanly on top of the hero mask line */
   .search-bar-wrap {
     position: relative;
     z-index: 10;
     background: rgba(10,20,38,0.96);
     border: 1px solid rgba(255,255,255,0.08);
     max-width: 1240px;
-    margin: -72px auto 0; /* Pulled further up into the hero container space */
+    margin: -72px auto 0;
     border-radius: 8px;
     box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.4);
   }
@@ -248,7 +247,7 @@ const styles = `
   .feature-strip {
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
-    padding-top: 48px; /* Balanced spacing directly under the search console */
+    padding-top: 16px; /* Decreased gap from 48px to cleanly align under search box shadow */
   }
   .feature-strip-inner {
     max-width: 1280px;
