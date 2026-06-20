@@ -58,7 +58,7 @@ export default function Footer() {
         .footer-link {
           position: relative;
           display: inline-block;
-          color: rgba(255,255,255,0.72);
+          color: #5b6472;
           transition: color 0.25s ease;
         }
         .footer-link::after {
@@ -68,11 +68,11 @@ export default function Footer() {
           bottom: -2px;
           width: 0%;
           height: 1px;
-          background: #d6a44a;
+          background: #c4882a;
           transition: width 0.3s ease;
         }
         .footer-link:hover {
-          color: #d6a44a;
+          color: #c4882a;
         }
         .footer-link:hover::after {
           width: 100%;
@@ -82,25 +82,25 @@ export default function Footer() {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.12);
+          background: #f3f1ec;
+          border: 1px solid #e6e1d6;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: rgba(255,255,255,0.75);
+          color: #6b5a3a;
           transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
         }
         .social-btn:hover {
-          background: rgba(214,164,74,0.15);
-          border-color: #d6a44a;
-          color: #d6a44a;
+          background: rgba(196,136,42,0.12);
+          border-color: #c4882a;
+          color: #c4882a;
           transform: translateY(-3px);
         }
 
         .partner-card {
-          border: 1px solid rgba(44,77,121,0.8);
+          border: 1px solid #e6e1d6;
           border-radius: 16px;
-          background: linear-gradient(145deg, #071d3f 0%, #0a2248 100%);
+          background: #fbfaf7;
           padding: 16px 20px;
           display: flex;
           flex-direction: column;
@@ -118,12 +118,12 @@ export default function Footer() {
           width: 120px;
           height: 120px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(214,164,74,0.07) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(196,136,42,0.08) 0%, transparent 70%);
           pointer-events: none;
         }
         .partner-card:hover {
-          box-shadow: 0 0 28px rgba(214,164,74,0.14);
-          border-color: rgba(214,164,74,0.4);
+          box-shadow: 0 8px 24px rgba(196,136,42,0.12);
+          border-color: rgba(196,136,42,0.4);
         }
 
         .join-card {
@@ -146,31 +146,31 @@ export default function Footer() {
           width: 100px;
           height: 100px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
           pointer-events: none;
         }
         .join-card:hover {
-          box-shadow: 0 8px 36px rgba(163,109,30,0.5);
+          box-shadow: 0 8px 36px rgba(163,109,30,0.35);
         }
 
         .partner-btn {
           height: 34px;
           width: 100%;
           border-radius: 8px;
-          border: 1px solid rgba(255,255,255,0.22);
+          border: 1px solid #ddd6c4;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 6px;
           font-size: 12px;
-          color: white;
+          color: #1a2744;
           cursor: pointer;
           background: transparent;
           transition: background 0.25s, border-color 0.25s;
         }
         .partner-btn:hover {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(255,255,255,0.45);
+          background: rgba(196,136,42,0.08);
+          border-color: #c4882a;
         }
 
         .join-btn {
@@ -197,34 +197,34 @@ export default function Footer() {
         .footer-divider-line {
           width: 40px;
           height: 2px;
-          background: linear-gradient(90deg, #d6a44a, transparent);
+          background: linear-gradient(90deg, #c4882a, transparent);
           margin: 10px 0 16px;
           border-radius: 2px;
         }
 
         .logo-c {
-          background: linear-gradient(135deg, #d6a44a 0%, #f0c070 100%);
+          background: linear-gradient(135deg, #c4882a 0%, #e0a94f 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
         .powered-link {
-          color: rgba(255,255,255,0.6);
+          color: #5b6472;
           text-decoration: none;
           font-weight: 500;
           transition: color 0.2s ease;
         }
         .powered-link:hover {
-          color: #d6a44a;
+          color: #c4882a;
         }
       `}</style>
 
       <footer
         style={{
-          background: "linear-gradient(180deg, #04162f 0%, #030f20 100%)",
-          color: "white",
-          borderTop: "1px solid rgba(255,255,255,0.08)",
+          background: "#ffffff",
+          color: "#1a2744",
+          borderTop: "1px solid #e9ecf1",
         }}
       >
         <div
@@ -273,7 +273,7 @@ export default function Footer() {
               <p
                 style={{
                   marginTop: "0px",
-                  color: "rgba(255,255,255,0.65)",
+                  color: "#5b6472",
                   fontSize: "13px",
                   lineHeight: "1.7",
                   maxWidth: "280px",
@@ -296,7 +296,7 @@ export default function Footer() {
             {/* ── Nav Columns ── */}
             {navLinks.map(({ title, links }) => (
               <div key={title}>
-                <h3 style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.3px" }}>
+                <h3 style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.3px", color: "#1a2744" }}>
                   {title}
                 </h3>
                 <div className="footer-divider-line" />
@@ -334,22 +334,22 @@ export default function Footer() {
                       width: "36px",
                       height: "36px",
                       borderRadius: "8px",
-                      background: "rgba(214,164,74,0.12)",
-                      border: "1px solid rgba(214,164,74,0.25)",
+                      background: "rgba(196,136,42,0.12)",
+                      border: "1px solid rgba(196,136,42,0.3)",
                       display: "flex",
                       alignItems: "center",
-                      justifycontent: "center",
+                      justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
-                    <Handshake size={16} style={{ color: "#d6a44a" }} />
+                    <Handshake size={16} style={{ color: "#c4882a" }} />
                   </div>
-                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0 }}>Partner With Us</h3>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(214,164,74,0.45), transparent)" }} />
+                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0, color: "#1a2744" }}>Partner With Us</h3>
+                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(196,136,42,0.35), transparent)" }} />
                 </div>
 
                 {/* Description */}
-                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.65)", margin: 0 }}>
+                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "#5b6472", margin: 0 }}>
                   Collaborate with industry leaders, sponsor events, and showcase
                   your brand to a targeted audience.
                 </p>
@@ -380,12 +380,12 @@ export default function Footer() {
                   >
                     <Users size={16} style={{ color: "white" }} />
                   </div>
-                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0 }}>Join Our Network</h3>
+                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0, color: "white" }}>Join Our Network</h3>
                   <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.3)" }} />
                 </div>
 
                 {/* Description */}
-                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.82)", margin: 0 }}>
+                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.85)", margin: 0 }}>
                   Become a part of a trusted community of real estate
                   professionals and unlock endless opportunities.
                 </p>
@@ -402,7 +402,7 @@ export default function Footer() {
           {/* ── Bottom Bar ── */}
           <div
             style={{
-              borderTop: "1px solid rgba(255,255,255,0.08)",
+              borderTop: "1px solid #e9ecf1",
               marginTop: "48px",
               padding: "20px 0 24px",
               display: "flex",
@@ -412,7 +412,7 @@ export default function Footer() {
               gap: "12px",
             }}
           >
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>
+            <p style={{ fontSize: "13px", color: "#8b93a1" }}>
               © {new Date().getFullYear()} All Rights Reserved. | Powered by{" "}
               <a 
                 href="https://ireedmedia.com" 
@@ -427,7 +427,7 @@ export default function Footer() {
             <p
               style={{
                 fontSize: "13px",
-                color: "rgba(255,255,255,0.45)",
+                color: "#8b93a1",
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
@@ -436,7 +436,7 @@ export default function Footer() {
               Made with{" "}
               <Heart
                 size={12}
-                style={{ color: "#d6a44a", fill: "#d6a44a" }}
+                style={{ color: "#c4882a", fill: "#c4882a" }}
               />{" "}
               for Real Estate Professionals
             </p>
