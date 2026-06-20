@@ -9,7 +9,7 @@ const geist = Geist({
 });
 
 export const metadata = {
-  title: "REPC – India's Premier Network for Commercial Real Estate",
+  title: "REPC – Real Estate Professionals Community",
   description:
     "Connecting Office, Retail, Hospitality, Logistics & Investments with Global Opportunities. One Network. Endless Possibilities.",
   keywords: "commercial real estate, CRE network, India, office space, retail, logistics, investments",
