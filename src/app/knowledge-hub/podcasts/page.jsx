@@ -1,533 +1,274 @@
 "use client";
+import { useState } from "react";
 
-import { useState, useRef } from "react";
-import Link from "next/link";
-import {
-  Mic,
-  PlayCircle,
-  Clock,
-  TrendingUp,
-  MapPin,
-  Calendar,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Award,
-  Globe2,
-  Users,
-  X,
-  User,
-  Music
-} from "lucide-react";
-
-// Podcast Playlists data
-const PLAYLISTS = [
+const podcastsData = [
   {
-    icon: Mic,
-    title: "Developer Stories",
-    desc: "Behind-the-scenes interviews with builders detailing project challenges and landmark achievements."
+    id: 1, duration: "34:20", episode: "EP 07",
+    title: "The Rise of Luxury Residential in India's Top Cities",
+    guest: "Dhruv Agarwala", role: "Group CEO, Housing.com & PropTiger",
+    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
   },
   {
-    icon: Music,
-    title: "Capital & REIT Chats",
-    desc: "Dissecting private equity deals, funding rates, and public trust yields with veteran advisors."
+    id: 2, duration: "41:05", episode: "EP 08",
+    title: "Data Centres: The New Asset Class Reshaping CRE",
+    guest: "Vivek Dahiya", role: "CEO, DataVault India",
+    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
   },
   {
-    icon: TrendingUp,
-    title: "PropTech & Future Tech",
-    desc: "Speaking with automation developers, platform creators, and IoT integration leads."
+    id: 3, duration: "28:50", episode: "EP 09",
+    title: "Coworking 2.0: Beyond the Pandemic Bounce",
+    guest: "Harsh Lambah", role: "Country Head, IWG India",
+    img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80",
   },
   {
-    icon: Globe2,
-    title: "Green Decarbonization",
-    desc: "Conversations focusing on climate policies, carbon credits, and energy optimizations."
-  }
+    id: 4, duration: "37:15", episode: "EP 10",
+    title: "Hotel Investment Cycles: What Investors Must Know",
+    guest: "Achin Khanna", role: "MD, HVS Anarock",
+    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80",
+  },
+  {
+    id: 5, duration: "22:40", episode: "EP 11",
+    title: "PropTech Revolution: AI, Blockchain and Real Estate",
+    guest: "Akhil Gupta", role: "CTO, NoBroker",
+    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80",
+  },
+  {
+    id: 6, duration: "45:00", episode: "EP 12",
+    title: "Infrastructure Mega-Projects and Their Property Impact",
+    guest: "Ramesh Nair", role: "CEO, Mindspace Business Parks REIT",
+    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+  },
 ];
 
-// Latest Episodes
-const EPISODES = [
-  {
-    title: "Episode 45: The Future of Multiplexes and Malls",
-    author: "Arjun Kapoor",
-    designation: "VP, retail developers council",
-    date: "10 June 2026",
-    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=80",
-    desc: "Arjun shares how experiential retail layouts, VR theaters, and food courts are driving high mall occupancies."
-  },
-  {
-    title: "Episode 44: Green Logistics Corridor Development",
-    author: "Dr. Radhika Iyer",
-    designation: "Eco-Logistics Advisor, SafeRoute Logistics",
-    date: "03 June 2026",
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&q=80",
-    desc: "Dr. Radhika explains zero-emission logistics parks, solar-powered warehouses, and grid connectivity."
-  },
-  {
-    title: "Episode 43: Raising Global Debt for Construction",
-    author: "Sanjay Singhal",
-    designation: "Managing Director, Global Debt Corp",
-    date: "27 May 2026",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
-    desc: "Sanjay details debt restructuring models, FDI compliance guidelines, and securing lower rate funds."
-  }
-];
-
-// Highlight Photos
-const HIGHLIGHT_PHOTOS = [
-  "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=200&q=80",
-  "https://images.unsplash.com/photo-1511578314322-379afb476865?w=500&q=80",
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80"
-];
+const podcastFilters = ["All", "Residential", "Data Centres", "Coworking", "Hospitality", "PropTech", "Infrastructure"];
 
 export default function PodcastsPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [topic, setTopic] = useState("Developer Stories");
-  const [pitch, setPitch] = useState("");
+  const [playing, setPlaying] = useState(null);
+  const [active, setActive] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  const playlistsRef = useRef(null);
-  const episodesRef = useRef(null);
-  const highlightsRef = useRef(null);
+  const filtered =
+    active === "All"
+      ? podcastsData
+      : podcastsData.filter((p) =>
+          p.title.toLowerCase().includes(active.toLowerCase()) ||
+          p.role.toLowerCase().includes(active.toLowerCase())
+        );
 
-  const handleScroll = (ref, direction) => {
-    if (ref.current) {
-      const { scrollLeft } = ref.current;
-      const offset = direction === "left" ? -350 : 350;
-      ref.current.scrollTo({ left: scrollLeft + offset, behavior: "smooth" });
-    }
-  };
-
-  const handleGuestSubmit = (e) => {
-    e.preventDefault();
-    if (!fullName.trim() || !email.trim() || !pitch.trim()) {
-      alert("Please fill in required fields.");
-      return;
-    }
-    alert(`Thank you, ${fullName}! Your guest request for the "${topic}" show track has been received. Our producer will schedule a pre-interview call soon.`);
-    setFullName("");
-    setEmail("");
-    setPitch("");
-    setModalOpen(false);
-  };
+  const visible = filtered.slice(0, visibleCount);
 
   return (
-    <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
-      
-      {/* ── HERO BANNER SECTION ── */}
-      <section className="relative bg-gradient-to-r from-[#08121f] via-[#0B1F3A] to-[#142d4a] text-white pt-10 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:25px_25px]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-450">Knowledge Hub</span>
-            <span>/</span>
-            <span className="text-[#c9a84c]">Podcasts</span>
-          </nav>
+    <div className="min-h-screen bg-gray-50 font-sans">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c9a84c]/10 rounded-full border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-extrabold tracking-wide uppercase">
-                <Mic className="h-3.5 w-3.5 fill-current text-[#c9a84c] animate-pulse" />
-                CREPNET Audio Network
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                CREPNET Podcasts
-              </h1>
-              <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
-                Listen to the Experts. Grow Your Business.
-              </p>
-              <p className="text-slate-350 text-sm sm:text-base max-w-xl leading-relaxed text-slate-300">
-                Stream weekly audio interviews with property builders, legal experts, policy consultants, and investment managers. Available on all major platforms.
-              </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">50+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Episodes Released</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">10k+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Weekly Listeners</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">3</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Expert Show Hosts</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">4.9/5</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Audience Rating</p>
-                </div>
-              </div>
+      {/* Hero */}
+      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
+        <img
+          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
+          alt="hero"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 className="text-4xl font-bold mb-2">Podcasts</h1>
+          <p className="text-gray-300 mb-6 max-w-lg text-sm">
+            In-depth conversations with India's top real estate leaders, investors and innovators across all asset classes.
+          </p>
+          <div className="flex gap-2 max-w-xl">
+            <div className="flex-1 flex items-center bg-white rounded-lg px-3 gap-2">
+              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+              <input className="flex-1 py-2.5 text-gray-900 text-sm outline-none bg-transparent" placeholder="Search podcasts or guests..." />
             </div>
-
-            {/* Right Banner Image */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
-              <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80"
-                  alt="CREPNET Podcast Studio Recording"
-                  className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-[1.02]"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FLOATING CALL TO ACTION CARD ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-10">
-        <div className="bg-white rounded-2xl border border-gray-150 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex-1 space-y-2 max-w-2xl text-left">
-            <h4 className="font-extrabold text-[#0B1F3A] text-lg sm:text-xl">Be a Guest on Our Podcast</h4>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              Are you a developer with a success story? Or a fund manager who recently closed a major round? Share your knowledge with our commercial network.
-            </p>
-          </div>
-          <div className="flex items-center gap-4 shrink-0 w-full md:w-auto">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="flex-1 md:flex-none py-3.5 px-6 rounded-xl font-extrabold text-sm text-white bg-[#c9a84c] hover:bg-[#b8963e] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-center"
-            >
-              Apply as Guest
+            <button className="bg-[#c9a84c] hover:bg-[#b8973d] text-white cursor-pointer px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+              Search
             </button>
-            <button
-              onClick={() => alert("Redirecting to Spotify/Apple Podcasts lists...")}
-              className="flex-1 md:flex-none flex items-center justify-center gap-1.5 py-3.5 px-6 rounded-xl border-2 border-slate-200 text-slate-700 hover:bg-slate-55 font-bold text-sm transition-all duration-200 cursor-pointer"
-            >
-              Listen on Spotify <ArrowRight className="h-4 w-4" />
-            </button>
+          </div>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <span className="text-gray-400 text-sm">Popular:</span>
+            {["Residential", "Coworking", "Data Centres", "PropTech", "Hospitality", "Infrastructure"].map((t) => (
+              <button
+                key={t}
+                className="px-3 py-1 bg-white/10 hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors"
+              >
+                {t}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* ── PLAYLISTS SECTION ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-10">
-          <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Show Tracks</h2>
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        {/* Filter Bar */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">All Podcast Episodes</h2>
+            <p className="text-gray-500 text-sm mt-0.5">Showing {filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
           </div>
-          <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Podcast Playlists</span>
-        </div>
-
-        {/* Carousel container */}
-        <div className="relative">
-          <button
-            onClick={() => handleScroll(playlistsRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => handleScroll(playlistsRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div className="bg-white border border-gray-150 rounded-2xl shadow-sm overflow-hidden">
-            <div
-              ref={playlistsRef}
-              className="flex divide-x divide-gray-150 overflow-x-auto scrollbar-hide scroll-smooth snap-x"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {PLAYLISTS.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 px-6 py-10 flex flex-col items-center text-center snap-start justify-start group"
-                  >
-                    <div className="h-16 w-16 rounded-full border border-slate-200 bg-[#faf6f0] flex items-center justify-center text-[#0B1F3A] group-hover:bg-[#c9a84c]/15 group-hover:text-[#c9a84c] transition-all">
-                      <Icon className="h-6 w-6 stroke-[1.5]" />
-                    </div>
-                    <h3 className="font-extrabold text-[#0B1F3A] text-sm tracking-tight leading-snug mt-6 min-h-[40px] flex items-center justify-center">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-500 text-xs mt-3 leading-relaxed max-w-[200px]">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── EPISODES SHOWCASE ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-100">
-        <div className="flex justify-between items-end mb-10">
-          <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Latest Episodes</h2>
-          </div>
-          <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Recently Released</span>
-        </div>
-
-        <div className="relative">
-          <button
-            onClick={() => handleScroll(episodesRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => handleScroll(episodesRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div
-            ref={episodesRef}
-            className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide scroll-smooth snap-x"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {EPISODES.map((aw, idx) => (
-              <div
-                key={idx}
-                className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+          <div className="flex flex-wrap gap-2">
+            {podcastFilters.map((f) => (
+              <button
+                key={f}
+                onClick={() => { setActive(f); setVisibleCount(6); setPlaying(null); }}
+                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border transition-colors font-medium ${
+                  active === f
+                    ? "bg-[#c9a84c] border-[#c9a84c] text-white"
+                    : "border-gray-200 text-gray-600 hover:border-[#c9a84c] hover:text-[#c9a84c] hover:bg-amber-50"
+                }`}
               >
-                <div className="h-36 relative overflow-hidden">
-                  <img
-                    src={aw.img}
-                    alt={aw.title}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/5" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/40">
-                    <PlayCircle className="h-12 w-12 text-white fill-slate-900" />
-                  </div>
-                </div>
-                <div className="p-4 flex-1 flex flex-col justify-between text-left">
-                  <div>
-                    <span className="inline-block px-2 py-0.5 text-[9px] font-black tracking-wider bg-[#c9a84c] text-white rounded uppercase">
-                      {aw.date}
-                    </span>
-                    <h4 className="font-extrabold text-slate-900 text-sm mt-2.5 group-hover:text-[#0B1F3A] transition-colors leading-tight">
-                      {aw.title}
-                    </h4>
-                    <p className="text-slate-500 text-[10px] font-semibold mt-0.5">Guest: {aw.author} ({aw.designation})</p>
-                  </div>
-                  <p className="text-slate-400 text-[11px] mt-1.5 leading-snug">
-                    {aw.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BANNER SUBSCRIBE ON CHANNELS ── */}
-      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#0B1F3A] border border-slate-800 rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-          <div className="absolute -right-10 -bottom-10 opacity-10">
-            <Mic className="h-48 w-48 text-[#c9a84c]" />
-          </div>
-          
-          <div className="flex items-center gap-5 relative z-10">
-            <div className="hidden md:flex h-14 w-14 rounded-2xl bg-white/10 items-center justify-center text-[#c9a84c] shrink-0 border border-white/20">
-              <Mic className="h-8 w-8 text-[#c9a84c]" />
-            </div>
-            <div>
-              <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">Subscribe on Apple Podcasts or Spotify?</h3>
-              <p className="text-slate-350 text-xs sm:text-sm mt-1 max-w-xl">
-                Stay updated with weekly executive lessons, PropTech announcements, and yield calculations. Voted Top 10 Indian CRE podcast channel.
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => alert("Opening Spotify / Apple Podcast profile links...")}
-            className="w-full sm:w-auto py-3.5 px-6 rounded-xl font-extrabold text-sm text-[#0B1F3A] bg-[#c9a84c] hover:bg-amber-400 transition-colors shadow-md cursor-pointer shrink-0 text-center relative z-10"
-          >
-            Open Apple Podcasts
-          </button>
-        </div>
-      </section>
-
-      {/* ── HIGHLIGHTS GALLERY ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-10">
-          <div className="text-left">
-            <h3 className="text-xl font-extrabold text-[#0B1F3A] tracking-tight">Studio Highlights</h3>
-          </div>
-          <span className="text-xs font-bold text-slate-400 uppercase">Behind the mic</span>
-        </div>
-
-        <div className="relative">
-          <button
-            onClick={() => handleScroll(highlightsRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => handleScroll(highlightsRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div
-            ref={highlightsRef}
-            className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x scrollbar-hide"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {HIGHLIGHT_PHOTOS.map((photo, i) => (
-              <div key={i} className="min-w-[260px] sm:min-w-[300px] h-48 rounded-xl overflow-hidden shadow-sm snap-start shrink-0">
-                <img
-                  src={photo}
-                  alt={`Podcasts Highlight ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── STAT STRIP ── */}
-      <section className="pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6 text-left">
-          <div className="shrink-0 max-w-xs">
-            <h4 className="text-[#0B1F3A] font-extrabold text-lg tracking-tight">Audio Stream Stats</h4>
-          </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4 flex-1 w-full">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#c9a84c]">
-                <Award className="h-5 w-5 fill-current" />
-              </div>
-              <div>
-                <h5 className="text-slate-900 font-extrabold text-sm leading-none">15,000</h5>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mt-1">Total Listeners</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Clock className="h-5 w-5" />
-              </div>
-              <div>
-                <h5 className="text-slate-900 font-extrabold text-sm leading-none">3,500 mins</h5>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mt-1">Content Released</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Users className="h-5 w-5" />
-              </div>
-              <div>
-                <h5 className="text-slate-900 font-extrabold text-sm leading-none">40</h5>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mt-1">Guest CEOs Vetted</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Globe2 className="h-5 w-5" />
-              </div>
-              <div>
-                <h5 className="text-slate-900 font-extrabold text-sm leading-none">15</h5>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mt-1">Host Platforms</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── GUEST PROPOSAL MODAL ── */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
-          
-          <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="text-lg font-black text-[#0B1F3A] flex items-center gap-2">
-                <Mic className="h-5 w-5 text-[#c9a84c]" /> Pitch as Guest Speaker
-              </h3>
-              <button className="text-slate-400 hover:text-slate-700 p-1 rounded-lg cursor-pointer" onClick={() => setModalOpen(false)}>
-                <X className="h-5 w-5" />
+                {f}
               </button>
-            </div>
-
-            <form onSubmit={handleGuestSubmit} className="p-6 space-y-4 text-left">
-              <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Full Name</label>
-                <input
-                  type="text"
-                  required
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="e.g. Arjun Kapoor"
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
-                />
-              </div>
-
-              <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Business Email Address</label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. arjun@retaildev.in"
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
-                />
-              </div>
-
-              <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Podcast Show Track</label>
-                <select
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-700"
-                >
-                  <option value="Developer Stories">Developer Stories</option>
-                  <option value="Capital &amp; REIT Chats">Capital &amp; REIT Chats</option>
-                  <option value="PropTech &amp; Future Tech">PropTech &amp; Future Tech</option>
-                  <option value="Green Decarbonization">Green Decarbonization</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">What would you like to discuss? (Brief Pitch)</label>
-                <textarea
-                  required
-                  value={pitch}
-                  onChange={(e) => setPitch(e.target.value)}
-                  rows={4}
-                  placeholder="Briefly state your expertise, company success details, or what topic you would speak on..."
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400 resize-none"
-                />
-              </div>
-
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800 rounded-xl bg-slate-50 border border-slate-200 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 text-xs font-bold bg-[#c9a84c] hover:bg-[#b8963e] text-white rounded-xl transition-all shadow-md cursor-pointer"
-                >
-                  Submit Proposal
-                </button>
-              </div>
-            </form>
+            ))}
           </div>
         </div>
-      )}
+
+        {/* Podcasts Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visible.map((p) => (
+            <div
+              key={p.id}
+              className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-[0_4px_20px_rgba(201,168,76,0.18)] transition-all duration-200 group"
+            >
+              {/* Thumbnail */}
+              <div
+                className="relative h-48 overflow-hidden cursor-pointer"
+                onClick={() => setPlaying(playing === p.id ? null : p.id)}
+              >
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                {/* Episode badge */}
+                <span className="absolute top-3 left-3 bg-[#c9a84c] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                  {p.episode}
+                </span>
+
+                {/* Duration */}
+                <span className="absolute top-3 right-3 bg-black/70 text-white text-[10px] px-2.5 py-0.5 rounded-full">
+                  {p.duration}
+                </span>
+
+                {/* Play / Pause */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className={`w-14 h-14 rounded-full flex items-center justify-center transition-all shadow-lg ${
+                      playing === p.id
+                        ? "bg-[#c9a84c] scale-110"
+                        : "bg-white/90 group-hover:bg-[#c9a84c] group-hover:scale-110"
+                    }`}
+                  >
+                    {playing === p.id ? (
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <rect x="6" y="4" width="4" height="16" rx="1" />
+                        <rect x="14" y="4" width="4" height="16" rx="1" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 text-gray-800 group-hover:text-white ml-0.5 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                        <polygon points="5,3 19,12 5,21" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="p-4">
+                <h3 className="font-semibold text-gray-900 text-sm leading-snug mb-3 group-hover:text-[#c9a84c] transition-colors">
+                  {p.title}
+                </h3>
+
+                {/* Guest */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-[#c9a84c]/15 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-[#c9a84c]">{p.guest}</p>
+                    <p className="text-[10px] text-gray-400">{p.role}</p>
+                  </div>
+                </div>
+
+                {/* Progress bar when playing */}
+                {playing === p.id && (
+                  <div className="mb-3">
+                    <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#c9a84c] rounded-full w-1/3 animate-pulse" />
+                    </div>
+                    <p className="text-[10px] text-[#c9a84c] mt-1 font-medium">Now Playing...</p>
+                  </div>
+                )}
+
+                {/* Footer */}
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <button
+                    onClick={() => setPlaying(playing === p.id ? null : p.id)}
+                    className={`text-xs font-medium flex items-center gap-1.5 transition-colors ${
+                      playing === p.id
+                        ? "text-[#c9a84c]"
+                        : "text-gray-500 hover:text-[#c9a84c]"
+                    }`}
+                  >
+                    {playing === p.id ? (
+                      <>
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                          <rect x="6" y="4" width="4" height="16" rx="1" />
+                          <rect x="14" y="4" width="4" height="16" rx="1" />
+                        </svg>
+                        Pause Episode
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                        Play Episode
+                      </>
+                    )}
+                  </button>
+                  <button className="w-7 h-7 rounded-full border border-gray-200 hover:border-[#c9a84c] hover:bg-[#c9a84c]/10 flex items-center justify-center transition-all group/dl">
+                    <svg className="w-3.5 h-3.5 text-gray-400 group-hover/dl:text-[#c9a84c] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty */}
+        {filtered.length === 0 && (
+          <div className="text-center py-16">
+            <div className="w-14 h-14 rounded-full bg-[#c9a84c]/10 flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 text-sm">No podcast episodes found for this category.</p>
+          </div>
+        )}
+
+        {/* Load More */}
+        {visibleCount < filtered.length && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setVisibleCount((v) => v + 6)}
+              className="px-8 py-2.5 border border-[#c9a84c] cursor-pointer text-[#c9a84c] hover:bg-[#c9a84c] hover:text-white rounded-full text-sm font-medium transition-colors"
+            >
+              Load More Episodes
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
