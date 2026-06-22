@@ -477,7 +477,7 @@ const styles = `
     gap: 40px;
     align-items: center;
   }
-  .bottom-title { font-size: 28px; font-weight: 800; color: #1a2744; margin-bottom: 12px; line-height: 1.25; }
+  .bottom-title { font-size: 24px; font-weight: 800; color: #1a2744; margin-bottom: 12px; line-height: 1.25; }
   .bottom-desc { font-size: 14px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; }
   .btn-dark {
     display: inline-block;

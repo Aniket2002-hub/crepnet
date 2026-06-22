@@ -29,10 +29,10 @@ const NAV_ITEMS = [
   {
     label: "Knowledge Hub",
     dropdown: [
-      { label: "Articles", href: "" },
-      { label: "Reports", href: "" },
-      { label: "Podcasts", href: "" },
-      { label: "Market News", href: "" },
+      { label: "Articles", href: "/knowledge-hub/articles" },
+      { label: "Reports", href: "/knowledge-hub/reports" },
+      { label: "Podcasts", href: "/knowledge-hub/podcasts" },
+      { label: "Market News", href: "/knowledge-hub/market-news" },
     ],
   },
 
