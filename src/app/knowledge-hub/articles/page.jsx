@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const tagColors = {
   OFFICE: "bg-orange-500",
@@ -29,12 +30,6 @@ const allArticles = [
     author: "Neha Iyer", date: "May 16, 2024", readTime: "7 min read",
     img: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&q=80",
   },
-  // {
-  //   id: 4, tag: "RETAIL",
-  //   title: "Retail Real Estate: Evolving Consumer Behavior and Market Dynamics",
-  //   author: "Arvind Nandan", date: "May 14, 2024", readTime: "6 min read",
-  //   img: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498c?w=400&q=80",
-  // },
   {
     id: 5, tag: "POLICY",
     title: "New Industrial Corridor Policy: Impact on Real Estate Markets",
@@ -65,13 +60,17 @@ const filters = ["All", "Office", "Investments", "Sustainability", "Retail", "GC
 
 export default function ArticlesPage() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const router = useRouter();
 
   const filtered =
     activeFilter === "All"
       ? allArticles
-      : allArticles.filter(
-          (a) => a.tag === activeFilter.toUpperCase()
-        );
+      : allArticles.filter((a) => a.tag === activeFilter.toUpperCase());
+
+  // Navigate to the article detail page using the article id as slug
+  const handleArticleClick = (id) => {
+    router.push(`/knowledge-hub/articles/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -100,7 +99,7 @@ export default function ArticlesPage() {
                 placeholder="Search articles..."
               />
             </div>
-            <select className="bg-white text-gray-700 text-sm px-3 py-2.5 rounded-lg outline-none">
+            <select className="bg-white text-gray-700 cursor-pointer text-sm px-3 py-2.5 rounded-lg outline-none">
               <option>All Categories</option>
               <option>Office</option>
               <option>Investments</option>
@@ -123,7 +122,7 @@ export default function ArticlesPage() {
             {["Office Market", "Retail Trends", "Investments", "GCC", "Sustainability", "PropTech", "Policy & Regulation"].map((t) => (
               <button
                 key={t}
-                className="px-3 py-1 bg-white/10 hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors"
+                className="px-3 py-1 bg-white/10 cursor-pointer hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors"
               >
                 {t}
               </button>
@@ -165,6 +164,7 @@ export default function ArticlesPage() {
           {filtered.map((a) => (
             <article
               key={a.id}
+              onClick={() => handleArticleClick(a.id)}
               className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-[0_4px_20px_rgba(201,168,76,0.2)] transition-all duration-200 cursor-pointer group"
             >
               {/* Image */}
@@ -196,7 +196,13 @@ export default function ArticlesPage() {
 
                 {/* Read More */}
                 <div className="mt-3 pt-3 border-t border-gray-100">
-                  <button className="text-xs text-[#c9a84c] hover:text-[#b8973d] font-medium flex items-center gap-1 transition-colors">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleArticleClick(a.id);
+                    }}
+                    className="text-xs text-[#c9a84c] hover:text-[#b8973d] font-medium flex items-center gap-1 transition-colors"
+                  >
                     Read Article
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
