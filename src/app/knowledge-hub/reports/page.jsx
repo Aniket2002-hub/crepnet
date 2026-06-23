@@ -84,7 +84,7 @@ export default function ReportsPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold mb-2">Research Reports</h1>
+          <h1 className="text-4xl font-bold mb-2"> Reports</h1>
           <p className="text-gray-300 mb-6 max-w-lg text-sm">
             Authoritative market intelligence across residential, hospitality, data centres and emerging asset classes.
           </p>
