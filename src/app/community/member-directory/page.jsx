@@ -585,7 +585,7 @@ export default function MemberDirectory() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section - Exactly normalized to align with the AboutPage styles */}
+      {/* 1. Hero Banner Section */}
       <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
           <img
@@ -596,24 +596,24 @@ export default function MemberDirectory() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-12 lg:py-20">
+        {/* Increased vertical padding here slightly from py-8 -> py-10 and lg:py-12 -> lg:py-16 */}
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
             MEMBER DIRECTORY
           </p>
-          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-extrabold leading-[1.3] text-white">
+          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
             Find &amp; Connect with
             <br />
             Real Estate Professionals.
           </h1>
           <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
           <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
-            Search, connect, and collaborate with verified real estate
-            professionals across India and grow your network.
+            Search, connect, and collaborate with verified real estate professionals across India and grow your network.
           </p>
         </div>
       </section>
 
-      {/* Search Bar - Repositioned padding context slightly to preserve floating effect over narrower layout */}
+      {/* Search Bar */}
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
         <div className="bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
           <div className="md:col-span-1">
@@ -739,7 +739,7 @@ export default function MemberDirectory() {
               No members found. Try adjusting your filters.
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredMembers.map((member) => (
                 <MemberCard
                   key={member.id}

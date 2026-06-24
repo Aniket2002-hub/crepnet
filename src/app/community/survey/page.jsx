@@ -333,73 +333,36 @@ export default function SurveysPage() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section */}
-      <div className="relative bg-[#0B1F3A]">
-        <img
-          src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
-          alt="City skyline"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-[#0B1F3A]/40" />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-6 pb-10">
-          <div className="text-sm text-white/80 flex items-center gap-2 mb-6">
-            <span>Home</span>
-            <span>›</span>
-            <span>Surveys</span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div>
-              <h1 className="text-4xl font-bold text-white leading-tight">
-                Surveys &amp; Results
-              </h1>
-              <p className="text-orange-400 font-semibold mt-2">
-                Your Insights. Our Industry. Better Decisions.
-              </p>
-              <p className="text-white/80 mt-4 max-w-md">
-                CREPNET Surveys bring the real estate community together to
-                capture insights on trends, challenges, and opportunities
-                shaping our industry.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-8">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="flex items-start gap-2">
-                    <stat.icon className="w-6 h-6 text-orange-400 shrink-0" />
-                    <div>
-                      <p className="text-xl font-bold text-white">{stat.value}</p>
-                      <p className="text-xs text-white/70">{stat.label}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* spacer for the image on the right (background covers it) */}
-            <div className="hidden lg:block" />
-          </div>
-
-          {/* CTA Banner */}
-          <div className="mt-8 bg-[#16294a] border border-white/10 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                <ClipboardList className="w-6 h-6 text-orange-400" />
-              </div>
-              <div>
-                <h3 className="text-white font-semibold">Your Opinion Shapes the Future</h3>
-                <p className="text-white/70 text-sm mt-1">
-                  Participate in our surveys and help drive meaningful change
-                  across the real estate industry.
-                </p>
-              </div>
-            </div>
-            <button className="bg-orange-500 text-white font-medium px-6 py-2.5 rounded-md hover:bg-orange-600 whitespace-nowrap">
-              Participate in a Survey
-            </button>
-          </div>
+      {/* ── 1. Hero Banner Section (Synced Sizing) ── */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
+            alt="City skyline"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
-      </div>
+
+        {/* Exact padding scale matching your correct About Page banner context */}
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
+          <p className="text-sm font-bold tracking-[0.2em] text-[#E8A33D] uppercase">
+            CREPNET Surveys
+          </p>
+          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
+            Surveys &amp; Results.
+            <br />
+            Data-Driven Insights.
+            <br />
+            Shaping Strategic Decisions.
+          </h1>
+          <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
+          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
+            CREPNET Surveys bring the real estate community together to capture insights on trends, challenges, and opportunities shaping our industry.
+          </p>
+        </div>
+      </section>
 
       {/* Browse Surveys + Why Participate */}
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -418,7 +381,7 @@ export default function SurveysPage() {
                 onClick={() => setActiveSurveyTab(tab)}
                 className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
                   activeSurveyTab === tab
-                    ? "border-orange-500 text-orange-600"
+                    ? "border-[#E8A33D] text-[#E8A33D]"
                     : "border-transparent text-gray-500 hover:text-gray-800"
                 }`}
               >
@@ -452,7 +415,7 @@ export default function SurveysPage() {
               {whyParticipate.map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
                   <div className="w-8 h-8 bg-white/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                    <item.icon className="w-4 h-4 text-orange-400" />
+                    <item.icon className="w-4 h-4 text-[#E8A33D]" />
                   </div>
                   <div>
                     <p className="text-white text-sm font-semibold">{item.title}</p>
@@ -464,7 +427,7 @@ export default function SurveysPage() {
               ))}
             </div>
 
-            <button className="mt-6 border border-orange-400 text-orange-400 text-sm font-medium py-2.5 rounded-md hover:bg-orange-400/10">
+            <button className="mt-6 border border-[#E8A33D] text-[#E8A33D] text-sm font-medium py-2.5 rounded-md hover:bg-[#E8A33D]/10">
               How It Works
             </button>
           </div>
@@ -526,7 +489,7 @@ export default function SurveysPage() {
                     onClick={() => setActiveResultTab(tab)}
                     className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
                       activeResultTab === tab
-                        ? "border-orange-500 text-orange-600"
+                        ? "border-[#E8A33D] text-[#E8A33D]"
                         : "border-transparent text-gray-500 hover:text-gray-800"
                     }`}
                   >
@@ -575,79 +538,48 @@ export default function SurveysPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-4">Filters</h3>
 
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Survey</label>
-                <div className="relative">
-                  <select
-                    value={filters.survey}
-                    onChange={(e) => updateFilter("survey", e.target.value)}
-                    className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                  >
-                    <option>All Surveys</option>
-                    <option>India Office Market Outlook Survey 2024</option>
-                    <option>Retail Real Estate Trends Survey 2024</option>
-                    <option>Sustainability in Real Estate Survey 2024</option>
-                    <option>Logistics & Industrial Real Estate Survey 2023</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              {[
+                {
+                  label: "Survey",
+                  key: "survey",
+                  options: [
+                    "All Surveys",
+                    "India Office Market Outlook Survey 2024",
+                    "Retail Real Estate Trends Survey 2024",
+                    "Sustainability in Real Estate Survey 2024",
+                    "Logistics & Industrial Real Estate Survey 2023",
+                  ],
+                },
+                {
+                  label: "Year",
+                  key: "year",
+                  options: ["All Years", "2024", "2023", "2022"],
+                },
+                {
+                  label: "City",
+                  key: "city",
+                  options: ["All Cities", "Mumbai", "Bengaluru", "Delhi NCR", "Pune", "Hyderabad"],
+                },
+                {
+                  label: "Segment",
+                  key: "segment",
+                  options: ["All Segments", "Developer", "Consultant", "Broker", "Investor", "Architect", "Retailer"],
+                },
+              ].map(({ label, key, options }) => (
+                <div key={key}>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>
+                  <div className="relative">
+                    <select
+                      value={filters[key]}
+                      onChange={(e) => updateFilter(key, e.target.value)}
+                      className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
+                    >
+                      {options.map((o) => <option key={o}>{o}</option>)}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Year</label>
-                <div className="relative">
-                  <select
-                    value={filters.year}
-                    onChange={(e) => updateFilter("year", e.target.value)}
-                    className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                  >
-                    <option>All Years</option>
-                    <option>2024</option>
-                    <option>2023</option>
-                    <option>2022</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">City</label>
-                <div className="relative">
-                  <select
-                    value={filters.city}
-                    onChange={(e) => updateFilter("city", e.target.value)}
-                    className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                  >
-                    <option>All Cities</option>
-                    <option>Mumbai</option>
-                    <option>Bengaluru</option>
-                    <option>Delhi NCR</option>
-                    <option>Pune</option>
-                    <option>Hyderabad</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Segment</label>
-                <div className="relative">
-                  <select
-                    value={filters.segment}
-                    onChange={(e) => updateFilter("segment", e.target.value)}
-                    className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                  >
-                    <option>All Segments</option>
-                    <option>Developer</option>
-                    <option>Consultant</option>
-                    <option>Broker</option>
-                    <option>Investor</option>
-                    <option>Architect</option>
-                    <option>Retailer</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
+              ))}
             </div>
 
             <button className="w-full bg-[#0B1F3A] text-white text-sm font-medium py-2.5 rounded-md mt-5 hover:bg-[#0B1F3A]/90">
@@ -703,7 +635,7 @@ export default function SurveysPage() {
               key={dot}
               onClick={() => setActiveDot(dot)}
               className={`w-2 h-2 rounded-full transition-colors ${
-                activeDot === dot ? "bg-orange-500" : "bg-gray-300"
+                activeDot === dot ? "bg-[#E8A33D]" : "bg-gray-300"
               }`}
             />
           ))}
@@ -715,17 +647,16 @@ export default function SurveysPage() {
         <div className="bg-[#0B1F3A] rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-              <Lightbulb className="w-6 h-6 text-orange-400" />
+              <Lightbulb className="w-6 h-6 text-[#E8A33D]" />
             </div>
             <div>
               <h3 className="text-white font-semibold">Have a Topic in Mind?</h3>
               <p className="text-white/70 text-sm mt-1">
-                Suggest a survey topic you&apos;d like to see covered in our
-                upcoming reports.
+                Suggest a survey topic you&apos;d like to see covered in our upcoming reports.
               </p>
             </div>
           </div>
-          <button className="bg-orange-500 text-white font-medium px-6 py-2.5 rounded-md hover:bg-orange-600 whitespace-nowrap">
+          <button className="bg-[#E8A33D] text-white font-medium px-6 py-2.5 rounded-md hover:bg-[#E8A33D] whitespace-nowrap">
             Suggest a Topic
           </button>
         </div>

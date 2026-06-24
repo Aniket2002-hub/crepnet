@@ -150,7 +150,7 @@ export default function ArticleDetailPage() {
           <span className={`inline-block ${article.tagColor} text-white text-[10px] font-bold px-2.5 py-1 rounded tracking-wider mb-4`}>
             {article.tag}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3 max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-3 max-w-3xl">
             {article.title}
           </h1>
           <p className="text-gray-300 text-sm mb-4 max-w-xl">{article.excerpt}</p>
