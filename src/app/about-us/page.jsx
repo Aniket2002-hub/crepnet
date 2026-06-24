@@ -61,7 +61,7 @@ const founders = [
     name: "Vipin Arora",
     role: "Founder ",
     bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind REPC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping REPC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through REPC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
-    img: "/vipin-sir.jfif",
+    img: "/vipn-sir.jpg",
   },
   {
     name: "Bhaswar Paul",
@@ -92,7 +92,7 @@ export default function AboutPage() {
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
             ABOUT REPC
           </p>
-          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-extrabold leading-[1.3] text-white">
+          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
             Building Connections.
             <br />
             Creating Opportunities.
@@ -111,7 +111,7 @@ export default function AboutPage() {
       <section className="bg-slate-50 pb-8 lg:pb-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <div className="text-center pt-8 lg:pt-12">
-            <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
+            <h2 className="text-[19px] font-bold text-[#0B1F3A]">
               The People Behind REPC
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 text-sm">
@@ -137,7 +137,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-[16px] font-extrabold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200">
+                  <h3 className="text-[16px] font-bold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200">
                     {f.name}
                   </h3>
                   <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1">
@@ -180,7 +180,7 @@ export default function AboutPage() {
               </div>
               
               <div className="relative z-10">
-                <h3 className="text-xl font-extrabold text-white">{selectedFounder.name}</h3>
+                <h3 className="text-xl font-bold text-white">{selectedFounder.name}</h3>
                 <div className="mt-2 h-[2px] w-10 bg-[#E8A33D]" />
                 <p className="mt-2 text-xs font-medium text-slate-300 tracking-wide leading-relaxed">{selectedFounder.role}</p>
               </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
 
             <div className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto custom-scrollbar">
               <p className="text-xs uppercase tracking-widest text-[#E8A33D] font-bold">Leadership Profile</p>
-              <h4 className="text-base font-extrabold text-[#0B1F3A] mt-1">Professional Journey</h4>
+              <h4 className="text-base font-bold text-[#0B1F3A] mt-1">Professional Journey</h4>
               <p className="mt-4 text-xs md:text-sm leading-relaxed text-slate-600 whitespace-pre-line font-medium">
                 {selectedFounder.bio}
               </p>
@@ -204,7 +204,7 @@ export default function AboutPage() {
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0B1F3A]">
               <Target className="h-6 w-6 text-white" />
             </div>
-            <h2 className="mt-4 text-[18px] font-extrabold text-[#0B1F3A]">
+            <h2 className="mt-4 text-[18px] font-bold text-[#0B1F3A]">
               Our Mission
             </h2>
             <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
@@ -220,7 +220,7 @@ export default function AboutPage() {
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E8A33D]">
               <Eye className="h-6 w-6 text-white" />
             </div>
-            <h2 className="mt-4 text-[18px] font-extrabold text-[#0B1F3A]">
+            <h2 className="mt-4 text-[18px] font-bold text-[#0B1F3A]">
               Our Vision
             </h2>
             <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
@@ -236,7 +236,7 @@ export default function AboutPage() {
       {/* 4. Our Values Section */}
       <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
         <div className="text-center">
-          <h2 className="text-[19px] font-extrabold text-[#0B1F3A]">
+          <h2 className="text-[19px] font-bold text-[#0B1F3A]">
             Our Values
           </h2>
           <div className="mx-auto mt-3 h-1 w-16 bg-[#E8A33D]" />
@@ -273,7 +273,7 @@ export default function AboutPage() {
               <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/40">
                 <Users className="h-6 w-6 text-white" />
               </div>
-              <h2 className="mt-4 text-[19px] font-extrabold text-white">
+              <h2 className="mt-4 text-[19px] font-bold text-white">
                 The Power of Networking
               </h2>
               <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
@@ -309,7 +309,7 @@ export default function AboutPage() {
               <Users className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-[16px] font-extrabold text-white">
+              <h2 className="text-[16px] font-bold text-white">
                 Be a Part of Something Bigger
               </h2>
               <p className="mt-0.5 text-xs text-slate-300">

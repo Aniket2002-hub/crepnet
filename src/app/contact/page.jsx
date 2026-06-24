@@ -67,7 +67,7 @@ export default function ContactPage() {
 
           {/* Heading content */}
           <div className="space-y-4 max-w-3xl">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               We'd Love to Hear From You
             </h1>
             <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl font-medium">
@@ -157,7 +157,7 @@ export default function ContactPage() {
               <div className="space-y-1.5 w-full">
                 <h3 className="font-bold text-[#0B1F3A] text-lg leading-none">Call Us</h3>
                 <div className="h-[2.5px] w-8 bg-[#c9a84c] rounded-full" />
-                <p className="text-[#0B1F3A] font-extrabold text-base sm:text-[17px] md:text-lg tracking-tight leading-none whitespace-nowrap">
+                <p className="text-[#0B1F3A] font-bold text-base sm:text-[17px] md:text-lg tracking-tight leading-none whitespace-nowrap">
                   +91 22 1234 5678
                 </p>
                 <p className="text-slate-400 text-xs whitespace-nowrap">
@@ -175,7 +175,7 @@ export default function ContactPage() {
                 <h3 className="font-bold text-[#0B1F3A] text-lg leading-none">Email Us</h3>
                 <div className="h-[2.5px] w-8 bg-[#c9a84c] rounded-full" />
                 <div>
-                  <a href="mailto:info@repc.in" className="inline-block text-[#0B1F3A] hover:underline font-extrabold text-sm sm:text-base leading-none whitespace-nowrap">
+                  <a href="mailto:info@repc.in" className="inline-block text-[#0B1F3A] hover:underline font-bold text-sm sm:text-base leading-none whitespace-nowrap">
                     info@repc.in
                   </a>
                 </div>
@@ -318,7 +318,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-3.5 bg-[#be7a15] hover:bg-[#a5690f] text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#be7a15] hover:bg-[#a5690f] text-white font-bold text-sm rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     "Sending..."
