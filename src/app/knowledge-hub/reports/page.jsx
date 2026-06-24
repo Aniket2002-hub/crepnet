@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link"; // 1. Import Link component
 
 const reportsData = [
   {
     id: 1,
+    slug: "india-residential-market-outlook-h1-2024", // 2. Added unique slugs
     title: "India Residential Market Outlook H1 2024",
     subtitle: "Deep dive into luxury, mid and affordable segments across 8 cities",
     date: "June 2024", type: "Market Report", pages: "56 pages",
@@ -13,6 +15,7 @@ const reportsData = [
   },
   {
     id: 2,
+    slug: "india-coworking-flex-space-report-2024",
     title: "India Coworking & Flex Space Report 2024",
     subtitle: "Operators, occupiers and the evolving demand landscape",
     date: "June 2024", type: "Research Report", pages: "44 pages",
@@ -22,6 +25,7 @@ const reportsData = [
   },
   {
     id: 3,
+    slug: "data-centre-real-estate-india-2024",
     title: "Data Centre Real Estate in India 2024",
     subtitle: "Land, power and policy shaping hyperscale growth",
     date: "May 2024", type: "Sector Report", pages: "38 pages",
@@ -31,6 +35,7 @@ const reportsData = [
   },
   {
     id: 4,
+    slug: "india-hospitality-sector-investment-report-2024",
     title: "India Hospitality Sector Investment Report 2024",
     subtitle: "Cap rates, RevPAR trends and PE activity in hotels",
     date: "May 2024", type: "Investment Report", pages: "48 pages",
@@ -40,6 +45,7 @@ const reportsData = [
   },
   {
     id: 5,
+    slug: "proptech-india-investment-landscape-2024",
     title: "PropTech India Investment Landscape 2024",
     subtitle: "VC flows, startup ecosystem and emerging verticals",
     date: "April 2024", type: "Research Report", pages: "34 pages",
@@ -49,6 +55,7 @@ const reportsData = [
   },
   {
     id: 6,
+    slug: "infrastructure-real-estate-convergence-2024",
     title: "Infrastructure & Real Estate Convergence 2024",
     subtitle: "How Gati Shakti and corridor projects reshape property markets",
     date: "April 2024", type: "Policy Report", pages: "52 pages",
@@ -75,7 +82,6 @@ export default function ReportsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-
       {/* Hero */}
       <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
         <img
@@ -118,7 +124,6 @@ export default function ReportsPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
@@ -145,9 +150,11 @@ export default function ReportsPage() {
         {/* Reports Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {visible.map((r) => (
-            <div
+            /* 3. Changed standard div to Link pointing to dynamic slug folder path */
+            <Link
               key={r.id}
-              className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(201,168,76,0.25)] transition-all duration-300 cursor-pointer h-72"
+              href={`/knowledge-hub/reports/${r.slug}`}
+              className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(201,168,76,0.25)] transition-all duration-300 cursor-pointer h-72 block"
             >
               <img
                 src={r.img}
@@ -188,16 +195,16 @@ export default function ReportsPage() {
                       <p className="text-white/70 text-xs">{r.date}</p>
                       <p className="text-white/50 text-[10px] mt-0.5">{r.pages}</p>
                     </div>
-                    <button className="text-[#c9a84c] text-xs font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <span className="text-[#c9a84c] text-xs font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       View Report
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
-                    </button>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
