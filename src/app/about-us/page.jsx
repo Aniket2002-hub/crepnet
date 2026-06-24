@@ -263,7 +263,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2">
             <div className="relative h-56 lg:h-auto">
               <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
+                src="/the-power-network-img.png"
                 alt="Professionals networking"
                 className="absolute inset-0 h-full w-full object-cover"
               />
