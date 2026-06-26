@@ -24,8 +24,8 @@ export default function JoiningPage() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* --- HERO SECTION --- */}
       <section className="relative w-full bg-gray-50">
-        {/* Dark Blue Background Layer covering roughly 75% of this section */}
-        <div className="absolute top-0 left-0 w-full h-[65%] lg:h-[75%] bg-[#05152D] z-0 overflow-hidden">
+        {/* Dark Blue Background Layer with fixed height to match other pages */}
+        <div className="absolute top-0 left-0 w-full h-[450px] md:h-[500px] lg:h-[550px] bg-[#05152D] z-0 overflow-hidden">
           <div
             className="absolute inset-0 z-0 mix-blend-lighten opacity-70"
             style={{
@@ -38,23 +38,20 @@ export default function JoiningPage() {
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#05152D] via-[#05152D]/60 to-transparent"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 pt-24 pb-0 lg:pb-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="container mx-auto px-6 relative z-10 pt-8 md:pt-16 lg:pt-20 pb-0 lg:pb-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
-          <div className="space-y-8 max-w-2xl text-white pb-12 lg:pb-0">
-            <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              Be Part of India&apos;s Premier <br />
-              Commercial <span className="text-[#C59B46]">
-                Real Estate
-              </span>{" "}
-              Network
+          <div className="md:space-y-8 space-y-4 not-even: max-w-2xl text-white pb-12 lg:pb-0 ">
+            <h1 className=" text-xl md:text-3xl lg:text-4xl font-bold leading-tight ">
+              India largest community of <br />
+              <span className="text-[#C59B46]">Real Estate</span> professionals
             </h1>
             <div className="w-16 h-1 bg-[#C59B46]"></div>
 
-            <div className="space-y-4">
-              <p className="text-xl font-medium text-gray-200">
+            <div className="space-y-2 md:space-y-4">
+              <p className="md:text-xl sm:text-md font-medium text-gray-200 ">
                 Connect. Collaborate. Grow.
               </p>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400  text-sm md:text-lg ">
                 Join a trusted community of 10,000+ professionals, leading
                 companies and global partners shaping the future of commercial
                 real estate in India.
@@ -62,42 +59,41 @@ export default function JoiningPage() {
             </div>
 
             {/* Icons Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-700">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 md:pt-8 border-t border-gray-700">
               <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Users className="w-6 h-6 text-[#C59B46]" />
+                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                  <Users className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                 </div>
-                <span className="text-sm text-gray-300">
+                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
                   Expand Your
                   <br />
                   Network
                 </span>
               </div>
               <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Building2 className="w-6 h-6 text-[#C59B46]" />
+                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                  <Building2 className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                 </div>
-                <span className="text-sm text-gray-300">
-                  Discover New
-                  <br />
+                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
+                  Discover New     <br />
                   Opportunities
                 </span>
               </div>
               <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-3 rounded-full border border-gray-600 bg-white/5">
-                  <TrendingUp className="w-6 h-6 text-[#C59B46]" />
+                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                  <TrendingUp className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                 </div>
-                <span className="text-sm text-gray-300">
+                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
                   Gain Market
                   <br />
                   Intelligence
                 </span>
               </div>
               <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Handshake className="w-6 h-6 text-[#C59B46]" />
+                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                  <Handshake className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                 </div>
-                <span className="text-sm text-gray-300">
+                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
                   Collaborate &<br />
                   Grow Business
                 </span>
@@ -109,9 +105,7 @@ export default function JoiningPage() {
           <div className="flex justify-center lg:justify-end">
             <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md text-gray-900 relative z-20 flex flex-col">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Join CREPNET
-                </h2>
+                <h2 className="text-2xl font-bold text-gray-900">Join RPEC</h2>
                 <p className="text-[#C59B46] font-medium mt-1">
                   It&apos;s Free to Get Started
                 </p>
@@ -215,9 +209,7 @@ export default function JoiningPage() {
                 </div>
                 <div>
                   <select className="w-full border border-gray-300 rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
-                    <option value="" >
-                      Select Your Role
-                    </option>
+                    <option value="">Select Your Role</option>
                     <option value="developer">Developer</option>
                     <option value="investor">Investor</option>
                     <option value="broker">Broker / Consultant</option>
@@ -247,14 +239,14 @@ export default function JoiningPage() {
       </section>
 
       {/* --- WHO CAN JOIN SECTION --- */}
-      <section className="py-20 bg-gray-50">
+      <section className="pb-10 pt-10 md:pt-15 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center space-x-4 mb-12">
-            <div className="h-[1px] w-12 bg-[#C59B46]"></div>
-            <h2 className="text-3xl font-bold text-gray-900">
-              Who Can Join CREPNET?
+            <div className="h-px w-12 bg-[#C59B46]"></div>
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900">
+              Who Can Join RPEC?
             </h2>
-            <div className="h-[1px] w-12 bg-[#C59B46]"></div>
+            <div className="h-px w-12 bg-[#C59B46]"></div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -342,7 +334,7 @@ export default function JoiningPage() {
             <div className="lg:w-1/2 w-full space-y-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-3">
-                  Why Join CREPNET?
+                  Why Join RPEC?
                 </h2>
                 <div className="w-16 h-1 bg-[#C59B46]"></div>
               </div>
@@ -404,7 +396,7 @@ export default function JoiningPage() {
               {/* Quote Card */}
               <div className="absolute -left-8 -bottom-8 bg-white p-6 rounded-xl shadow-xl max-w-sm border-l-4 border-[#C59B46]">
                 <p className="text-sm text-gray-700 italic mb-4">
-                  &quot;CREPNET has helped us connect with the right partners,
+                  &quot;RPEC has helped us connect with the right partners,
                   discover great opportunities and stay ahead in a fast-evolving
                   market.&quot;
                 </p>
