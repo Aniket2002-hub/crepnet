@@ -215,7 +215,7 @@ export default function JoiningPage() {
                 </div>
                 <div>
                   <select className="w-full border border-gray-300 rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
-                    <option value="" disabled selected>
+                    <option value="" >
                       Select Your Role
                     </option>
                     <option value="developer">Developer</option>

@@ -19,6 +19,7 @@ import {
   User,
   Plus
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Developer Niches data
 const DEVELOPMENT_NICHES = [
@@ -90,6 +91,7 @@ export default function DevelopersPage() {
   const nichesRef = useRef(null);
   const developersRef = useRef(null);
   const highlightsRef = useRef(null);
+  const router = useRouter()
 
   const handleScroll = (ref, direction) => {
     if (ref.current) {
@@ -111,6 +113,9 @@ export default function DevelopersPage() {
     setCompanyName("");
     setRera("");
     setModalOpen(false);
+
+
+
   };
 
   return (
@@ -293,7 +298,8 @@ export default function DevelopersPage() {
             {DEVELOPERS.map((sp, idx) => (
               <div
                 key={idx}
-                className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+                onClick={() => router.push(`/companies/developers/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
+                className="cursor-pointer min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
               >
                 <div className="h-44 relative overflow-hidden">
                   <img

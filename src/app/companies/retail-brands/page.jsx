@@ -19,6 +19,7 @@ import {
   User,
   Plus
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Retail Niches data
 const RETAIL_NICHES = [
@@ -87,6 +88,7 @@ export default function RetailBrandsPage() {
   const [targetCity, setTargetCity] = useState("");
   const [niche, setNiche] = useState("Food & Beverage (F&B)");
 
+  const router = useRouter()
   const nichesRef = useRef(null);
   const brandsRef = useRef(null);
   const highlightsRef = useRef(null);
@@ -293,7 +295,8 @@ export default function RetailBrandsPage() {
             {BRANDS.map((sp, idx) => (
               <div
                 key={idx}
-                className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+                className="min-w-[240px] sm:min-w-[280px] cursor-pointer lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+                onClick={()=>router.push(`/companies/retail-brands/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
               >
                 <div className="h-44 relative overflow-hidden">
                   <img
