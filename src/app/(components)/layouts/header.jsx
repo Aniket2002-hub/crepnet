@@ -39,9 +39,9 @@ const NAV_ITEMS = [
   {
     label: "Companies",
     dropdown: [
-      { label: "Developers", href: "" },
-      { label: "Retail Brands", href: "" },
-      { label: "Service Providers", href: "" },
+      { label: "Developers", href: "/companies/developers" },
+      { label: "Retail Brands", href: "/companies/retail-brands" },
+      { label: "Service Providers", href: "/companies/service-providers" },
     ],
   },
 

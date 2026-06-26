@@ -14,6 +14,7 @@ import {
   MapPin,
   BadgeCheck,
 } from "lucide-react";
+import { useRouter } from "next/router";
 
 // ─────────────────────────────────────────────────────────────
 // DATA
@@ -387,7 +388,7 @@ function DeveloperCard({ developer }) {
           </div>
 
           <Link
-            href="#"
+            href={`/companies/developers/${developer.name}`}
             className="block w-full text-center text-sm font-semibold text-white bg-[#0f1a2e] hover:bg-[#1a2744] py-2.5 px-4 rounded-lg transition-colors"
           >
             View Profile

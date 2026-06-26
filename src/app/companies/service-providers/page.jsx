@@ -20,6 +20,7 @@ import {
   User,
   Plus
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Service Specialties data
 const SERVICE_SPECIALTIES = [
@@ -91,6 +92,7 @@ export default function ServiceProvidersPage() {
   const specialtiesRef = useRef(null);
   const providersRef = useRef(null);
   const highlightsRef = useRef(null);
+  const router = useRouter()
 
   const handleScroll = (ref, direction) => {
     if (ref.current) {
@@ -294,7 +296,8 @@ export default function ServiceProvidersPage() {
             {PROVIDERS.map((sp, idx) => (
               <div
                 key={idx}
-                className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+                onClick={()=>router.push(`/companies/service-providers/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
+                className="min-w-[240px] cursor-pointer sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
               >
                 <div className="h-44 relative overflow-hidden">
                   <img
