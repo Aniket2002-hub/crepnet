@@ -310,7 +310,7 @@ function ProfileModal({ member, onClose, onConnect, isConnected }) {
                 : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"
             }`}
           >
-            {isConnected ? "Request Sent" : "Connect"}
+            {isConnected ? "Request Sent" : "Message"}
           </button>
         </div>
       </div>
@@ -436,7 +436,7 @@ function MemberCard({ member, onViewProfile, onConnect, isConnected }) {
               : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"
           }`}
         >
-          {isConnected ? "Request Sent" : "Connect"}
+          {isConnected ? "Request Sent" : "Message"}
         </button>
       </div>
     </div>

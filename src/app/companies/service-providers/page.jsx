@@ -141,7 +141,7 @@ export default function ServiceProvidersPage() {
                 Verified Advisory Partners
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                CREPNET Service Providers
+                REPC Service Providers
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
                 Certified Consulting. Optimal Operations.
@@ -176,7 +176,7 @@ export default function ServiceProvidersPage() {
               <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
-                  alt="CREPNET Service Provider Advisory"
+                  alt="REPC Service Provider Advisory"
                   className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
