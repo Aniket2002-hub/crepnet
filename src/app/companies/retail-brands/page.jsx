@@ -140,7 +140,7 @@ export default function RetailBrandsPage() {
                 Verified Franchise Brands
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                CREPNET Retail Brands
+                REPC Retail Brands
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
                 Expanding Outlets. Elevating Yields.
@@ -175,7 +175,7 @@ export default function RetailBrandsPage() {
               <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80"
-                  alt="CREPNET Retail Storefront"
+                  alt="REPC Retail Storefront"
                   className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>

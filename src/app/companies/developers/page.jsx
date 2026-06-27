@@ -143,7 +143,7 @@ export default function DevelopersPage() {
                 Verified Commercial Developers
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                CREPNET Developers
+                REPC Developers
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
                 Building Infrastructure. Redefining Skyline.
@@ -178,7 +178,7 @@ export default function DevelopersPage() {
               <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
-                  alt="CREPNET Real Estate Construction"
+                  alt="REPC Real Estate Construction"
                   className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
