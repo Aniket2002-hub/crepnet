@@ -4,7 +4,6 @@ import {
   Building2,
   TrendingUp,
   Handshake,
-  MapPin,
   ShoppingBag,
   Briefcase,
   Globe,
@@ -24,7 +23,7 @@ export default function JoiningPage() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* --- HERO SECTION --- */}
       <section className="relative w-full bg-gray-50">
-        {/* Dark Blue Background Layer with fixed height to match other pages */}
+        {/* Dark Blue Background Layer with fixed height */}
         <div className="absolute top-0 left-0 w-full h-[450px] md:h-[500px] lg:h-[550px] bg-[#05152D] z-0 overflow-hidden">
           <div
             className="absolute inset-0 z-0 mix-blend-lighten opacity-70"
@@ -38,20 +37,20 @@ export default function JoiningPage() {
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#05152D] via-[#05152D]/60 to-transparent"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 pt-8 md:pt-16 lg:pt-20 pb-0 lg:pb-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="container mx-auto px-6 relative z-10 pt-8 md:pt-16 lg:pt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
-          <div className="md:space-y-8 space-y-4 not-even: max-w-2xl text-white pb-12 lg:pb-0 ">
-            <h1 className=" text-xl md:text-3xl lg:text-4xl font-bold leading-tight ">
+          <div className="md:space-y-8 space-y-4 max-w-2xl text-white pb-6 lg:pb-0">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold leading-tight">
               India largest community of <br />
               <span className="text-[#C59B46]">Real Estate</span> professionals
             </h1>
             <div className="w-16 h-1 bg-[#C59B46]"></div>
 
             <div className="space-y-2 md:space-y-4">
-              <p className="md:text-xl sm:text-md font-medium text-gray-200 ">
+              <p className="md:text-xl sm:text-md font-medium text-gray-200">
                 Connect. Collaborate. Grow.
               </p>
-              <p className="text-gray-400  text-sm md:text-lg ">
+              <p className="text-gray-400 text-sm md:text-lg">
                 Join a trusted community of 10,000+ professionals, leading
                 companies and global partners shaping the future of commercial
                 real estate in India.
@@ -75,7 +74,7 @@ export default function JoiningPage() {
                   <Building2 className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                 </div>
                 <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
-                  Discover New     <br />
+                  Discover New <br />
                   Opportunities
                 </span>
               </div>
@@ -104,7 +103,7 @@ export default function JoiningPage() {
           {/* Right Form Card */}
           <div className="flex justify-center lg:justify-end">
             <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md text-gray-900 relative z-20 flex flex-col">
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">Join RPEC</h2>
                 <p className="text-[#C59B46] font-medium mt-1">
                   It&apos;s Free to Get Started
@@ -112,7 +111,7 @@ export default function JoiningPage() {
               </div>
 
               {/* Stepper */}
-              <div className="flex justify-between items-center mb-8 relative">
+              <div className="flex justify-between items-center mb-6 relative">
                 <div className="absolute left-0 top-4 w-full h-[2px] bg-gray-200 -z-10"></div>
                 <div className="flex flex-col items-center bg-white px-2">
                   <div className="w-8 h-8 rounded-full bg-[#C59B46] text-white flex items-center justify-center font-semibold text-sm">
@@ -139,7 +138,7 @@ export default function JoiningPage() {
               </div>
 
               {/* Social Login */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-4">
                 <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 rounded-md py-2.5 text-sm font-medium hover:bg-gray-50 transition">
                   <FcGoogle className="w-5 h-5" />
                   <span>Continue with Google</span>
@@ -150,7 +149,7 @@ export default function JoiningPage() {
                 </button>
               </div>
 
-              <div className="relative flex items-center justify-center mb-6">
+              <div className="relative flex items-center justify-center mb-4">
                 <div className="border-t border-gray-200 w-full"></div>
                 <span className="bg-white px-3 text-xs text-gray-400 absolute">
                   or
@@ -208,7 +207,7 @@ export default function JoiningPage() {
                   </div>
                 </div>
                 <div>
-                  <select className="w-full border border-gray-300 rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
+                  <select className="w-full border border-gray-300 cursor-pointer rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
                     <option value="">Select Your Role</option>
                     <option value="developer">Developer</option>
                     <option value="investor">Investor</option>
@@ -218,17 +217,17 @@ export default function JoiningPage() {
 
                 <button
                   type="button"
-                  className="w-full bg-[#C59B46] hover:bg-[#b0893b] text-white rounded-md py-3 font-semibold text-sm transition mt-2"
+                  className="w-full bg-[#C59B46] hover:bg-[#b0893b] cursor-pointer text-white rounded-md py-3 font-semibold text-sm transition mt-2"
                 >
                   Get Started
                 </button>
               </form>
 
-              <div className="mt-6 text-center text-sm text-gray-600">
+              <div className="mt-4 text-center text-sm text-gray-600">
                 Already a member?{" "}
                 <a
                   href="/login"
-                  className="text-[#0077b5] font-semibold hover:underline"
+                  className="text-[#0077b5] font-semibold cursor-pointer hover:underline"
                 >
                   Login
                 </a>
@@ -239,9 +238,9 @@ export default function JoiningPage() {
       </section>
 
       {/* --- WHO CAN JOIN SECTION --- */}
-      <section className="pb-10 pt-10 md:pt-15 bg-gray-50">
+      <section className="py-6 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-center space-x-4 mb-12">
+          <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="h-px w-12 bg-[#C59B46]"></div>
             <h2 className="text-xl md:text-3xl font-bold text-gray-900">
               Who Can Join RPEC?
@@ -327,11 +326,11 @@ export default function JoiningPage() {
       </section>
 
       {/* --- WHY JOIN SECTION --- */}
-      <section className="py-20 bg-white border-t border-gray-100">
+      <section className="py-8 bg-white border-t border-gray-100">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
             {/* Left Content */}
-            <div className="lg:w-1/2 w-full space-y-10">
+            <div className="lg:w-1/2 w-full space-y-6">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-3">
                   Why Join RPEC?
@@ -339,7 +338,7 @@ export default function JoiningPage() {
                 <div className="w-16 h-1 bg-[#C59B46]"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start space-x-4">
                   <LineChart className="w-8 h-8 text-[#C59B46] shrink-0" />
                   <div>
@@ -385,7 +384,7 @@ export default function JoiningPage() {
 
             {/* Right Image / Quote */}
             <div className="lg:w-1/2 w-full relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl relative h-80 w-full">
+              <div className="rounded-2xl overflow-hidden shadow-2xl relative h-64 w-full">
                 <img
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
                   alt="Modern Office Building"
@@ -394,13 +393,13 @@ export default function JoiningPage() {
               </div>
 
               {/* Quote Card */}
-              <div className="absolute -left-8 -bottom-8 bg-white p-6 rounded-xl shadow-xl max-w-sm border-l-4 border-[#C59B46]">
-                <p className="text-sm text-gray-700 italic mb-4">
+              <div className="absolute -left-4 -bottom-4 bg-white p-4 rounded-xl shadow-xl max-w-sm border-l-4 border-[#C59B46]">
+                <p className="text-xs text-gray-700 italic mb-2">
                   &quot;RPEC has helped us connect with the right partners,
                   discover great opportunities and stay ahead in a fast-evolving
                   market.&quot;
                 </p>
-                <p className="text-sm font-bold text-gray-900">
+                <p className="text-xs font-bold text-gray-900">
                   — CEO, Leading Realty Firm
                 </p>
               </div>
@@ -410,9 +409,9 @@ export default function JoiningPage() {
       </section>
 
       {/* --- STATS SECTION --- */}
-      <section className="bg-[#05152D] py-8">
+      <section className="bg-[#05152D] py-6">
         <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-8 lg:gap-4">
+          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 lg:gap-2">
             <div className="flex items-center space-x-4">
               <Users className="w-10 h-10 text-[#C59B46]" />
               <div>
@@ -420,7 +419,7 @@ export default function JoiningPage() {
                 <div className="text-sm text-gray-400">Professionals</div>
               </div>
             </div>
-            <div className="hidden lg:block w-px h-12 bg-white/10"></div>
+            <div className="hidden lg:block w-px h-10 bg-white/10"></div>
             <div className="flex items-center space-x-4">
               <Building2 className="w-10 h-10 text-[#C59B46]" />
               <div>
@@ -428,7 +427,7 @@ export default function JoiningPage() {
                 <div className="text-sm text-gray-400">Companies</div>
               </div>
             </div>
-            <div className="hidden lg:block w-px h-12 bg-white/10"></div>
+            <div className="hidden lg:block w-px h-10 bg-white/10"></div>
             <div className="flex items-center space-x-4">
               <Globe className="w-10 h-10 text-[#C59B46]" />
               <div>
@@ -436,7 +435,7 @@ export default function JoiningPage() {
                 <div className="text-sm text-gray-400">Countries Connected</div>
               </div>
             </div>
-            <div className="hidden lg:block w-px h-12 bg-white/10"></div>
+            <div className="hidden lg:block w-px h-10 bg-white/10"></div>
             <div className="flex items-center space-x-4">
               <Handshake className="w-10 h-10 text-[#C59B46]" />
               <div>
@@ -444,7 +443,7 @@ export default function JoiningPage() {
                 <div className="text-sm text-gray-400">Opportunities</div>
               </div>
             </div>
-            <div className="hidden lg:block w-px h-12 bg-white/10"></div>
+            <div className="hidden lg:block w-px h-10 bg-white/10"></div>
             <div className="flex items-center space-x-4">
               <TrendingUp className="w-10 h-10 text-[#C59B46]" />
               <div>
@@ -457,13 +456,13 @@ export default function JoiningPage() {
       </section>
 
       {/* --- TRUST BADGES SECTION --- */}
-      <section className="bg-[#05152D] ">
-        <div className="mx-auto ">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch py-6 border-y border-[#1A2E4C] md:divide-x divide-[#1A2E4C] gap-y-8">
+      <section className="bg-[#05152D]">
+        <div className="mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch py-4 border-t border-[#1A2E4C] md:divide-x divide-[#1A2E4C] gap-y-4">
             {/* Item 1 */}
             <div className="flex items-center space-x-4 px-2 lg:px-6 w-full md:w-1/4 justify-center lg:justify-start">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#C59B46] shrink-0">
-                <BadgeCheck className="w-6 h-6 text-white" strokeWidth={1.5} />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#C59B46] shrink-0">
+                <BadgeCheck className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="text-white font-semibold text-[14px]">
@@ -477,8 +476,8 @@ export default function JoiningPage() {
 
             {/* Item 2 */}
             <div className="flex items-center space-x-4 px-2 lg:px-6 w-full md:w-1/4 justify-center lg:justify-start">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#C59B46] shrink-0">
-                <ShieldCheck className="w-6 h-6 text-white" strokeWidth={1.5} />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#C59B46] shrink-0">
+                <ShieldCheck className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="text-white font-semibold text-[14px]">
@@ -492,8 +491,8 @@ export default function JoiningPage() {
 
             {/* Item 3 */}
             <div className="flex items-center space-x-4 px-2 lg:px-6 w-full md:w-1/4 justify-center lg:justify-start">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#C59B46] shrink-0">
-                <Users className="w-6 h-6 text-white" strokeWidth={1.5} />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#C59B46] shrink-0">
+                <Users className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="text-white font-semibold text-[14px]">
@@ -507,8 +506,8 @@ export default function JoiningPage() {
 
             {/* Item 4 */}
             <div className="flex items-center space-x-4 px-2 lg:px-6 w-full md:w-1/4 justify-center lg:justify-start">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#C59B46] shrink-0">
-                <Settings className="w-6 h-6 text-white" strokeWidth={1.5} />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#C59B46] shrink-0">
+                <Settings className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="text-white font-semibold text-[14px]">
