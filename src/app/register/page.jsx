@@ -81,38 +81,40 @@ export default function RegisterPage() {
   };
 
   const inputClass = (field) =>
-    `w-full pl-9 pr-3 py-2.5 rounded-xl border text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 transition-all ${
+    `w-full pl-9 pr-3 py-2.5 rounded-xl border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 transition-all ${
       errors[field]
         ? "border-red-500 focus:ring-red-100"
-        : "border-slate-200 focus:border-[#0B1F3A] focus:ring-slate-100"
+        : "border-slate-700 bg-white focus:border-[#E8A33D] focus:ring-slate-800"
     }`;
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2 border border-gray-100">
 
-        {/* ── Left Panel ── */}
-        <div className="relative hidden md:flex flex-col justify-between p-9 text-white bg-[#0B1F3A] overflow-hidden">
+        {/* ── Left Panel (White Background) ── */}
+        <div className="relative hidden md:flex flex-col justify-between p-9 text-slate-800 bg-white overflow-hidden border-r border-slate-100">
           <div className="absolute inset-0 z-0">
             <img
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80"
               alt="Office building"
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-5"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/90 to-[#0B1F3A]/70" />
           </div>
 
-          <div className="relative z-10">
-            <Link href="/" className="inline-flex flex-col leading-none select-none">
-              <span className="text-2xl font-black tracking-tight text-[#E8A33D]">REPC</span>
-              <span className="text-[8px] tracking-[0.25em] text-slate-300 font-semibold uppercase mt-0.5">
-                Connect · Collaborate · Grow
-              </span>
+          {/* Desktop Logo Placement - Centered & Amplified */}
+          <div className="relative z-10 flex justify-center w-full pt-4">
+            <Link href="/" className="block select-none transform scale-125 transition-transform">
+              <img 
+                src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png" 
+                alt="Logo" 
+                className="h-28 w-auto object-contain mx-auto max-w-[280px]"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
             </Link>
           </div>
 
           <div className="relative z-10 my-auto py-6">
-            <h2 className="text-2xl font-extrabold leading-tight tracking-tight">
+            <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-[#0B1F3A]">
               Join <span className="text-[#E8A33D]">India's #1</span><br />
               Commercial RE Network
             </h2>
@@ -137,40 +139,42 @@ export default function RegisterPage() {
                 },
               ].map((f) => (
                 <div key={f.title} className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 shrink-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 shrink-0">
                     {f.icon}
                   </div>
                   <div>
-                    <p className="font-bold text-slate-100 text-xs">{f.title}</p>
-                    <p className="text-[11px] text-slate-300 mt-0.5 leading-relaxed">{f.desc}</p>
+                    <p className="font-bold text-slate-900 text-xs">{f.title}</p>
+                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{f.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <p className="relative z-10 text-[10px] text-slate-400">
-            &copy; {new Date().getFullYear()} REPC India. All rights reserved.
+          <p className="relative z-10 text-[10px] text-slate-400 text-center">
+            &copy; {new Date().getFullYear()} Real Estate Professionals Community. All rights reserved.
           </p>
         </div>
 
-        {/* ── Right Panel ── */}
-        <div className="p-8 sm:p-10 md:p-12 flex flex-col justify-center bg-white">
+        {/* ── Right Panel (Dark Blue Background) ── */}
+        <div className="p-8 sm:p-10 md:p-12 flex flex-col justify-center bg-[#0B1F3A] text-white">
           <div className="w-full max-w-sm mx-auto">
 
-            {/* Mobile logo */}
-            <div className="md:hidden mb-5">
-              <Link href="/" className="inline-flex flex-col leading-none">
-                <span className="text-xl font-black tracking-tight text-[#0B1F3A]">REPC</span>
-                <span className="text-[7px] tracking-[0.22em] text-[#E8A33D] font-semibold uppercase mt-0.5">
-                  Connect · Collaborate · Grow
-                </span>
+            {/* Mobile Logo Placement */}
+            <div className="md:hidden flex justify-center mb-6">
+              <Link href="/" className="block transform scale-110">
+                <img 
+                  src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
+                  alt="Logo" 
+                  className="h-20 w-auto object-contain mx-auto brightness-0 invert" 
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
               </Link>
             </div>
 
             <div className="mb-5">
-              <h3 className="text-xl font-extrabold text-[#0B1F3A] tracking-tight">Create Your Account</h3>
-              <p className="text-xs text-slate-500 mt-1.5">
+              <h3 className="text-xl font-extrabold text-white tracking-tight">Create Your Account</h3>
+              <p className="text-xs text-slate-300 mt-1.5">
                 Join 25,000+ professionals on India's premier CRE network.
               </p>
             </div>
@@ -180,7 +184,7 @@ export default function RegisterPage() {
               {/* First & Last Name */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                     First Name
                   </label>
                   <div className="relative">
@@ -196,12 +200,12 @@ export default function RegisterPage() {
                     />
                   </div>
                   {errors.firstName && (
-                    <p className="text-[10px] text-red-500 font-medium">{errors.firstName}</p>
+                    <p className="text-[10px] text-red-400 font-medium">{errors.firstName}</p>
                   )}
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                     Last Name
                   </label>
                   <div className="relative">
@@ -217,14 +221,14 @@ export default function RegisterPage() {
                     />
                   </div>
                   {errors.lastName && (
-                    <p className="text-[10px] text-red-500 font-medium">{errors.lastName}</p>
+                    <p className="text-[10px] text-red-400 font-medium">{errors.lastName}</p>
                   )}
                 </div>
               </div>
 
               {/* Email */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                   Email Address
                 </label>
                 <div className="relative">
@@ -240,14 +244,14 @@ export default function RegisterPage() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-[10px] text-red-500 font-medium">{errors.email}</p>
+                  <p className="text-[10px] text-red-400 font-medium">{errors.email}</p>
                 )}
               </div>
 
               {/* Phone & Role */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                     Phone
                   </label>
                   <div className="relative">
@@ -263,12 +267,12 @@ export default function RegisterPage() {
                     />
                   </div>
                   {errors.phone && (
-                    <p className="text-[10px] text-red-500 font-medium">{errors.phone}</p>
+                    <p className="text-[10px] text-red-400 font-medium">{errors.phone}</p>
                   )}
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                     Role
                   </label>
                   <div className="relative">
@@ -290,14 +294,14 @@ export default function RegisterPage() {
                     </select>
                   </div>
                   {errors.role && (
-                    <p className="text-[10px] text-red-500 font-medium">{errors.role}</p>
+                    <p className="text-[10px] text-red-400 font-medium">{errors.role}</p>
                   )}
                 </div>
               </div>
 
               {/* Password */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                   Password
                 </label>
                 <div className="relative">
@@ -320,13 +324,13 @@ export default function RegisterPage() {
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-[10px] text-red-500 font-medium">{errors.password}</p>
+                  <p className="text-[10px] text-red-400 font-medium">{errors.password}</p>
                 )}
               </div>
 
               {/* Confirm Password */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-300 block">
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -349,7 +353,7 @@ export default function RegisterPage() {
                   </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-[10px] text-red-500 font-medium">{errors.confirmPassword}</p>
+                  <p className="text-[10px] text-red-400 font-medium">{errors.confirmPassword}</p>
                 )}
               </div>
 
@@ -364,9 +368,9 @@ export default function RegisterPage() {
                       setAgreeTerms(e.target.checked);
                       if (errors.terms) setErrors((prev) => ({ ...prev, terms: null }));
                     }}
-                    className="mt-0.5 h-3.5 w-3.5 text-[#0B1F3A] focus:ring-[#0B1F3A] border-slate-300 rounded cursor-pointer"
+                    className="mt-0.5 h-3.5 w-3.5 text-[#E8A33D] focus:ring-[#E8A33D] border-slate-600 bg-transparent rounded cursor-pointer"
                   />
-                  <label htmlFor="terms" className="text-[11px] text-slate-500 leading-relaxed cursor-pointer">
+                  <label htmlFor="terms" className="text-[11px] text-slate-300 leading-relaxed cursor-pointer select-none">
                     I agree to the{" "}
                     <Link href="/terms" className="text-[#E8A33D] font-semibold hover:underline">
                       Terms of Service
@@ -375,11 +379,11 @@ export default function RegisterPage() {
                     <Link href="/privacy" className="text-[#E8A33D] font-semibold hover:underline">
                       Privacy Policy
                     </Link>{" "}
-                    of REPC India.
+                    of the Community.
                   </label>
                 </div>
                 {errors.terms && (
-                  <p className="text-[10px] text-red-500 font-medium mt-1">{errors.terms}</p>
+                  <p className="text-[10px] text-red-400 font-medium mt-1">{errors.terms}</p>
                 )}
               </div>
 
@@ -387,13 +391,13 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full py-3 px-4 rounded-xl text-white font-bold text-sm shadow hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
-                  isLoading ? "bg-slate-400 cursor-not-allowed" : "bg-[#0B1F3A] hover:bg-[#152e50]"
+                className={`w-full py-3 px-4 rounded-xl text-slate-900 font-bold text-sm shadow hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                  isLoading ? "bg-slate-500 text-white cursor-not-allowed" : "bg-[#E8A33D] hover:bg-[#d49230]"
                 }`}
               >
                 {isLoading ? (
                   <>
-                    <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-4 w-4 text-slate-900" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
@@ -407,7 +411,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <p className="mt-5 text-center text-[11px] font-semibold text-slate-500">
+            <p className="mt-5 text-center text-[11px] font-semibold text-slate-300">
               Already have an account?{" "}
               <Link href="/login" className="text-[#E8A33D] hover:underline font-bold">
                 Sign in

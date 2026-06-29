@@ -75,9 +75,11 @@ const DEVELOPERS = [
 
 // Highlight Photos
 const HIGHLIGHT_PHOTOS = [
-  "https://images.unsplash.com/photo-1506970180-10ed36158f25?w=500&q=80",
+  // "https://images.unsplash.com/photo-1506970180-10ed36158f25?w=500&q=80",
   "https://images.unsplash.com/photo-1511578314322-379afb476865?w=500&q=80",
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80"
+  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80",
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+  // "https://images.unsplash.com/photo-1506970180-10ed36158f25?w=500&q=80",
 ];
 
 export default function DevelopersPage() {
