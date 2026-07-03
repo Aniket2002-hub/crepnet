@@ -706,7 +706,7 @@ export function HeroSection() {
 
           <div className="hero-cta-row">
             <a href="/join" className="btn-hero-primary">Join the Community</a>
-            <a href="/explore" className="btn-hero-outline">Explore Community</a>
+            <a href="/" className="btn-hero-outline">Explore Community</a>
           </div>
         </div>
       </div>
