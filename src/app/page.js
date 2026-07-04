@@ -69,6 +69,13 @@ const DISCUSSIONS = [
   { user: "Vimal Nadar", topic: "Co-working vs Managed Offices – What's Next?", time: "1d ago", replies: 19, img: "https://randomuser.me/api/portraits/men/55.jpg" },
 ];
 
+const GLOBAL_REACH = [
+  { value: "25+", label: "years connecting", desc: "India's top real estate leaders" },
+  { value: "25,000+", label: "members", desc: "across the country" },
+  { value: "3,500+", label: "companies", desc: "developers, brokers and investors" },
+  { value: "120+", label: "cities", desc: "with active local chapters" },
+];
+
 const BOTTOM_FEATURES = [
   { icon: Users, title: "Join Groups", desc: "Be part of topic-based professional groups" },
   { icon: BookOpen, title: "Share Knowledge", desc: "Contribute articles, insights & best practices" },
@@ -91,18 +98,26 @@ const styles = `
     position: relative;
     background: #0d1e35;
     padding-bottom: 0;
+    overflow: hidden;
   }
-  .hero-bg {
+  .hero-bg-video {
     position: absolute;
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=85');
-    background-size: cover;
-    background-position: 65% center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 65% center;
+    filter: saturate(0.95) brightness(0.95) hue-rotate(-3deg);
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, #0d1e35 45%, rgba(13,30,53,0.9) 65%, rgba(13,30,53,0.4) 85%, rgba(13,30,53,0.15) 100%);
+    background: linear-gradient(to right, rgba(13,30,53,0.75) 45%, rgba(13,30,53,0.6) 65%, rgba(13,30,53,0.25) 85%, rgba(13,30,53,0.08) 100%);
+  }
+  .hero-overlay-bottom {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(13,30,53,0) 55%, rgba(13,30,53,0.55) 82%, rgba(13,30,53,0.92) 100%);
   }
   
   .hero-content {
@@ -247,7 +262,7 @@ const styles = `
   .feature-strip {
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
-    padding-top: 16px; /* Decreased gap from 48px to cleanly align under search box shadow */
+    padding-top: 16px;
   }
   .feature-strip-inner {
     max-width: 1280px;
@@ -462,6 +477,136 @@ const styles = `
   .discussion-replies { display: flex; align-items: center; gap: 4px; margin-left: auto; flex-shrink: 0; }
   .discussion-replies span { font-size: 11.5px; color: #6b7280; font-weight: 600; }
 
+  /* ===== Global Reach Section ===== */
+  .global-reach-section {
+    position: relative;
+    background: #1a2744;
+    overflow: hidden;
+  }
+  .global-reach-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1673860331570-e73d09bc673a?fm=jpg&q=70&w=2200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+  }
+  .global-reach-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(13,30,53,0.15) 0%, rgba(20,38,66,0.55) 42%, rgba(13,30,53,0.93) 76%, rgba(10,20,38,0.98) 100%);
+  }
+  .global-reach-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 20px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  .global-reach-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: #1a2744;
+    margin-bottom: 16px;
+  }
+  // .global-reach-divider {
+  //   width: 64px; height: 4px;
+  //   background: #c9a84c;
+  //   border-radius: 2px;
+  //   margin-bottom: 0;
+  // }
+  .global-reach-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .global-reach-stat {
+    padding-right: 16px;
+  }
+  .global-reach-value {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(42px, 5.4vw, 66px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .global-reach-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .global-reach-desc {
+    font-size: 14.5px;
+    color: #b9c3d4;
+    line-height: 1.5;
+  }
+
+  /* ===== Influential Minds Section ===== */
+  .minds-section {
+    position: relative;
+    background: #0d1e35;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .minds-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.5) brightness(0.75) contrast(1.05);
+  }
+  .minds-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13,30,53,0.35) 0%,
+    rgba(13,30,53,0.5) 45%,
+    rgba(13,30,53,0.75) 100%
+  );
+}
+.minds-overlay-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,39,68,0.25);
+  mix-blend-mode: multiply;
+}
+  .minds-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  // .minds-divider {
+  //   width: 64px;
+  //   height: 2px;
+  //   background: #c9a84c;
+  //   margin: 0 auto 28px;
+  //   border-radius: 2px;
+  // }
+  .minds-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(30px, 5vw, 56px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
   /* Bottom CTA Landing Layout */
   .bottom-cta {
     background: #fff;
@@ -574,6 +719,10 @@ const styles = `
     .search-bar-wrap {
       margin-top: -60px;
     }
+    .global-reach-inner {
+      padding: 100px 20px 70px;
+      min-height: 90vh;
+    }
   }
 
   @media (max-width: 768px) {
@@ -622,6 +771,16 @@ const styles = `
       margin-right: 16px;
       margin-top: -40px;
     }
+    .global-reach-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px 24px;
+    }
+    .global-reach-inner {
+      padding: 88px 20px 64px;
+      min-height: 100vh;
+    }
+    .minds-section { min-height: 420px; }
+    .minds-content { padding: 40px 20px; }
   }
 
   @media (max-width: 480px) {
@@ -676,6 +835,10 @@ const styles = `
       padding: 11px 20px;
       font-size: 13px;
     }
+    .global-reach-stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px 18px;
+    }
   }
 
   @media (max-width: 360px) {
@@ -688,8 +851,21 @@ const styles = `
 export function HeroSection() {
   return (
     <section className="hero-section">
-      <div className="hero-bg" />
+      <video
+        className="hero-bg-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=85"
+      >
+        <source
+          src="https://assets.mixkit.co/videos/315/315-720.mp4"
+          type="video/mp4"
+        />
+      </video>
       <div className="hero-overlay" />
+      <div className="hero-overlay-bottom" />
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
@@ -867,6 +1043,57 @@ export function ThreeColumnSection() {
   );
 }
 
+export function GlobalReachSection() {
+  return (
+    <section className="global-reach-section">
+      <div className="global-reach-bg" />
+      <div className="global-reach-overlay" />
+      <div className="global-reach-inner">
+        <div>
+          <h2 className="global-reach-title">Global Reach</h2>
+          <div className="global-reach-divider" />
+        </div>
+        <div className="global-reach-stats">
+          {GLOBAL_REACH.map((stat, i) => (
+            <div key={i} className="global-reach-stat">
+              <div className="global-reach-value">{stat.value}</div>
+              <div className="global-reach-label">{stat.label}</div>
+              <div className="global-reach-desc">{stat.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function InfluentialMindsSection() {
+  return (
+    <section className="minds-section">
+      <video
+        className="minds-bg-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
+      >
+        <source
+          src="https://assets.mixkit.co/videos/21246/21246-720.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div className="minds-overlay-tint" />
+      <div className="minds-overlay" />
+      <div className="minds-content">
+        <div className="minds-divider" />
+        <h2 className="minds-title">The most influential minds</h2>
+        <div className="minds-divider" style={{ marginTop: "28px", marginBottom: 0 }} />
+      </div>
+    </section>
+  );
+}
+
 export function BottomCTASection() {
   return (
     <section className="bottom-cta">
@@ -906,7 +1133,9 @@ export default function Page() {
         <FeatureStrip />
         <StatsBar />
         <ThreeColumnSection />
+        <GlobalReachSection />
         <BottomCTASection />
+        <InfluentialMindsSection />
       </main>
     </>
   );
