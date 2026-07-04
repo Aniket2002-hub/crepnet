@@ -82,6 +82,18 @@ const BOTTOM_FEATURES = [
   { icon: TrendingUp, title: "Find Opportunities", desc: "Discover projects, jobs & business leads" },
 ];
 
+const MINDS_CAPTIONS = [
+  "Ideas. Influence. Impact. The minds behind modern real estate — leadership that shapes skylines and communities.",
+  "Where the most influential minds in real estate shape the future.",
+  "The powerhouse of real estate leadership where visionaries shape the future.",
+];
+
+const KNOWLEDGE_CAPTIONS = [
+  "Knowledge that builds real estate leaders and organizations.",
+  "Developing real estate professionals. Empowering organizations.",
+  "Empowering professionals and organizations through real estate excellence.",
+];
+
 const styles = `
   .dashboard-main-wrapper * { 
     box-sizing: border-box; 
@@ -93,12 +105,15 @@ const styles = `
     overflow-x: hidden;
   }
 
-  /* ===== Hero ===== */
+  /* ===== Hero (now a true full-page hero) ===== */
   .hero-section {
     position: relative;
     background: #0d1e35;
-    padding-bottom: 0;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .hero-bg-video {
     position: absolute;
@@ -123,6 +138,8 @@ const styles = `
   .hero-content {
     position: relative;
     z-index: 2;
+    flex: 1;
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
     padding: 72px 20px 96px;
@@ -198,56 +215,60 @@ const styles = `
     position: relative;
     z-index: 10;
     background: rgba(10,20,38,0.96);
-    border: 1px solid rgba(255,255,255,0.08);
-    max-width: 1240px;
-    margin: -72px auto 0;
-    border-radius: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+    margin: -60px 0 0 0;
+    border-radius: 0;
     box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.4);
   }
   .search-bar-inner {
-    padding: 16px;
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 16px 20px;
   }
   .search-row {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     align-items: center;
     width: 100%;
   }
   .search-input-wrap {
-    flex: 2;
+    flex: 2.4;
     display: flex;
     align-items: center;
     gap: 12px;
     background: #fff;
     border-radius: 6px;
-    padding: 0 16px;
-    height: 48px;
+    padding: 0 18px;
+    height: 50px;
   }
   .search-input-wrap input {
     border: none;
     outline: none;
     flex: 1;
-    font-size: 14px;
+    font-size: 14.5px;
     color: #111827;
     min-width: 0;
   }
   .search-select {
-    flex: 1;
+    flex: 1.3;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
     background: #fff;
     border-radius: 6px;
-    padding: 0 16px;
-    height: 48px;
+    padding: 0 18px;
+    height: 50px;
     cursor: pointer;
+    white-space: nowrap;
   }
-  .search-select span { font-size: 14px; color: #4b5563; }
+  .search-select span { font-size: 14.5px; color: #4b5563; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .search-btn {
     background: #c9a84c;
     color: #fff;
-    padding: 0 36px;
-    height: 48px;
+    padding: 0 40px;
+    height: 50px;
     border-radius: 6px;
     font-size: 14.5px;
     font-weight: 700;
@@ -477,23 +498,34 @@ const styles = `
   .discussion-replies { display: flex; align-items: center; gap: 4px; margin-left: auto; flex-shrink: 0; }
   .discussion-replies span { font-size: 11.5px; color: #6b7280; font-weight: 600; }
 
-  /* ===== Global Reach Section ===== */
+  /* ===== Global Reach Section (re-worked to fade seamlessly out of the white page) ===== */
   .global-reach-section {
     position: relative;
-    background: #1a2744;
+    background: #fff;
     overflow: hidden;
   }
   .global-reach-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1673860331570-e73d09bc673a?fm=jpg&q=70&w=2200&auto=format&fit=crop');
+    background-image: url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?fm=jpg&q=80&w=2200&auto=format&fit=crop');
     background-size: cover;
-    background-position: center 30%;
+    background-position: center 35%;
+    filter: grayscale(0.55) contrast(0.92) brightness(1.15);
   }
   .global-reach-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(13,30,53,0.15) 0%, rgba(20,38,66,0.55) 42%, rgba(13,30,53,0.93) 76%, rgba(10,20,38,0.98) 100%);
+    background: linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      rgba(255,255,255,0.92) 6%,
+      rgba(255,255,255,0.55) 16%,
+      rgba(226,232,240,0.25) 28%,
+      rgba(120,138,163,0.25) 42%,
+      rgba(26,39,68,0.55) 62%,
+      rgba(13,30,53,0.88) 82%,
+      rgba(10,20,38,0.97) 100%
+    );
   }
   .global-reach-inner {
     position: relative;
@@ -514,12 +546,12 @@ const styles = `
     color: #1a2744;
     margin-bottom: 16px;
   }
-  // .global-reach-divider {
-  //   width: 64px; height: 4px;
-  //   background: #c9a84c;
-  //   border-radius: 2px;
-  //   margin-bottom: 0;
-  // }
+  .global-reach-divider {
+    width: 64px; height: 4px;
+    background: #c9a84c;
+    border-radius: 2px;
+    margin-bottom: 0;
+  }
   .global-reach-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -548,63 +580,103 @@ const styles = `
     line-height: 1.5;
   }
 
-  /* ===== Influential Minds Section ===== */
-  .minds-section {
+  /* ===== Shared "story" section style (Influential Minds / Knowledge That Empowers) ===== */
+  .story-section {
     position: relative;
     background: #0d1e35;
     overflow: hidden;
-    min-height: 520px;
+    min-height: 620px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .minds-bg-video {
+  .story-bg-video, .story-bg-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
     filter: saturate(0.5) brightness(0.75) contrast(1.05);
   }
-  .minds-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(13,30,53,0.35) 0%,
-    rgba(13,30,53,0.5) 45%,
-    rgba(13,30,53,0.75) 100%
-  );
-}
-.minds-overlay-tint {
-  position: absolute;
-  inset: 0;
-  background: rgba(26,39,68,0.25);
-  mix-blend-mode: multiply;
-}
-  .minds-content {
+  .story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(13,30,53,0.4) 0%,
+      rgba(13,30,53,0.35) 35%,
+      rgba(13,30,53,0.6) 65%,
+      rgba(13,30,53,0.88) 100%
+    );
+  }
+  .story-overlay-tint {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,39,68,0.2);
+    mix-blend-mode: multiply;
+  }
+  .story-content {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 60px 20px;
-    max-width: 900px;
+    padding: 72px 20px 56px;
+    max-width: 780px;
     margin: 0 auto;
   }
-  // .minds-divider {
+  // .story-divider {
   //   width: 64px;
   //   height: 2px;
   //   background: #c9a84c;
-  //   margin: 0 auto 28px;
+  //   margin: 0 auto 24px;
   //   border-radius: 2px;
   // }
-  .minds-title {
+  .story-title {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(30px, 5vw, 56px);
+    font-size: clamp(28px, 4.4vw, 48px);
     font-weight: 700;
     color: #fff;
     line-height: 1.2;
     letter-spacing: -0.3px;
+  }
+  .story-subdivider {
+    width: 100%;
+    max-width: 460px;
+    height: 1px;
+    background: rgba(255,255,255,0.35);
+    margin: 22px auto 22px;
+  }
+  .story-subtitle {
+    font-size: 14.5px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .story-captions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+  .story-captions li {
+    position: relative;
+    padding-left: 18px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #e2e8f0;
+    line-height: 1.55;
+  }
+  .story-captions li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c9a84c;
   }
 
   /* Bottom CTA Landing Layout */
@@ -717,7 +789,10 @@ const styles = `
       padding-top: 56px;
     }
     .search-bar-wrap {
-      margin-top: -60px;
+      margin-top: -48px;
+    }
+    .search-input-wrap, .search-select, .search-btn {
+      height: 48px;
     }
     .global-reach-inner {
       padding: 100px 20px 70px;
@@ -755,6 +830,12 @@ const styles = `
     .search-btn {
       width: 100%;
     }
+    .search-input-wrap, .search-select, .search-btn {
+      height: 48px;
+    }
+    .search-bar-inner {
+      padding: 14px;
+    }
     .hero-content {
       padding: 64px 20px 88px;
     }
@@ -767,8 +848,6 @@ const styles = `
       gap: 24px;
     }
     .search-bar-wrap {
-      margin-left: 16px;
-      margin-right: 16px;
       margin-top: -40px;
     }
     .global-reach-stats {
@@ -779,8 +858,8 @@ const styles = `
       padding: 88px 20px 64px;
       min-height: 100vh;
     }
-    .minds-section { min-height: 420px; }
-    .minds-content { padding: 40px 20px; }
+    .story-section { min-height: 520px; }
+    .story-content { padding: 48px 20px 40px; }
   }
 
   @media (max-width: 480px) {
@@ -1067,30 +1146,63 @@ export function GlobalReachSection() {
   );
 }
 
-export function InfluentialMindsSection() {
+/* Shared "story" section — used by both Influential Minds and Knowledge That Empowers.
+   Heads/subjects are framed with object-position: center top so faces are never cropped,
+   and captions sit below a divider beneath the title, matching the approved mock-up. */
+function StorySection({ title, subtitle, captions, videoSrc, poster, imgSrc, alt }) {
   return (
-    <section className="minds-section">
-      <video
-        className="minds-bg-video"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
-      >
-        <source
-          src="https://assets.mixkit.co/videos/21246/21246-720.mp4"
-          type="video/mp4"
-        />
-      </video>
-      <div className="minds-overlay-tint" />
-      <div className="minds-overlay" />
-      <div className="minds-content">
-        <div className="minds-divider" />
-        <h2 className="minds-title">The most influential minds</h2>
-        <div className="minds-divider" style={{ marginTop: "28px", marginBottom: 0 }} />
+    <section className="story-section">
+      {videoSrc ? (
+        <video
+          className="story-bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={poster}
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      ) : (
+        <img className="story-bg-img" src={imgSrc} alt={alt || ""} />
+      )}
+      <div className="story-overlay-tint" />
+      <div className="story-overlay" />
+      <div className="story-content">
+        <div className="story-divider" />
+        <h2 className="story-title">{title}</h2>
+        <div className="story-subdivider" />
+        {subtitle && <p className="story-subtitle">{subtitle}</p>}
+        <ul className="story-captions">
+          {captions.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
       </div>
     </section>
+  );
+}
+
+export function InfluentialMindsSection() {
+  return (
+    <StorySection
+      title="The most influential minds"
+      captions={MINDS_CAPTIONS}
+      videoSrc="https://assets.mixkit.co/videos/21246/21246-720.mp4"
+      poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
+    />
+  );
+}
+
+export function KnowledgeSection() {
+  return (
+    <StorySection
+      title="Knowledge That Empowers"
+      subtitle="Our Committees advance industry knowledge through research papers, articles, and strategic analysis to illuminate solutions for the challenges facing today's built environment."
+      captions={KNOWLEDGE_CAPTIONS}
+      imgSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80&auto=format&fit=crop"
+      alt="Team reviewing research and strategy"
+    />
   );
 }
 
@@ -1134,6 +1246,7 @@ export default function Page() {
         <StatsBar />
         <ThreeColumnSection />
         <GlobalReachSection />
+        {/* <KnowledgeSection /> */}
         <BottomCTASection />
         <InfluentialMindsSection />
       </main>
