@@ -232,6 +232,65 @@ export default function ReportsPage() {
           </div>
         )}
       </div>
+
+      {/* Knowledge That Empowers - Video Section */}
+      <section className="relative overflow-hidden" style={{ background: "#0d1e35", minHeight: 600 }}>
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "saturate(0.5) brightness(0.75) contrast(1.05)" }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
+        >
+          <source
+            src="https://assets.mixkit.co/videos/21246/21246-720.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div
+          className="absolute inset-0"
+          style={{ background: "rgba(26,39,68,0.25)", mixBlendMode: "multiply" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,30,53,0.35) 0%, rgba(13,30,53,0.5) 45%, rgba(13,30,53,0.75) 100%)",
+          }}
+        />
+        <div
+          className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center flex flex-col justify-center"
+          style={{ minHeight: 600 }}
+        >
+          {/* <div className="w-16 h-0.5 mx-auto mb-7" style={{ background: "#c9a84c", borderRadius: 2 }} /> */}
+          <h2
+            className="text-white font-bold mb-6"
+            style={{
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(28px, 4.5vw, 48px)",
+              lineHeight: 1.25,
+            }}
+          >
+            Knowledge That Empowers
+          </h2>
+          <p className="text-gray-200 text-base leading-relaxed max-w-2xl mx-auto mb-8">
+            Our Committees advance industry knowledge through research papers, articles, and
+            strategic analysis to illuminate solutions for the challenges facing today's built
+            environment.
+          </p>
+          {/* <a
+            href="/knowledge-hub"
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold tracking-wide uppercase hover:text-[#c9a84c] transition-colors mx-auto"
+          >
+            Learn More
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a> */}
+        </div>
+      </section>
     </div>
   );
 }
