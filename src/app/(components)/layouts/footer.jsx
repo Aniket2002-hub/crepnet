@@ -415,7 +415,7 @@ export default function Footer() {
             <p style={{ fontSize: "13px", color: "#8b93a1" }}>
               © {new Date().getFullYear()} All Rights Reserved. | Powered by{" "}
               <a 
-                href="https://ireedmedia.com" 
+                href="https://www.ireedindia.com/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="powered-link"
