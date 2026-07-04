@@ -83,9 +83,9 @@ const BOTTOM_FEATURES = [
 ];
 
 const MINDS_CAPTIONS = [
-  "Ideas. Influence. Impact. The minds behind modern real estate — leadership that shapes skylines and communities.",
-  "Where the most influential minds in real estate shape the future.",
-  "The powerhouse of real estate leadership where visionaries shape the future.",
+  "Ideas. Influence. Impact. The Minds Behind Modern Real Estate. Leadership That Shapes Skylines and Communities.",
+  "Where the Most Influential Minds in Real Estate Shape the Future.",
+  "The Powerhouse of Real Estate Leadership Where Visionaries Shape the Future. ",
 ];
 
 const KNOWLEDGE_CAPTIONS = [
@@ -617,13 +617,13 @@ const styles = `
     mix-blend-mode: multiply;
   }
   .story-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 72px 20px 56px;
-    max-width: 780px;
-    margin: 0 auto;
-  }
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 72px 20px 56px;
+  max-width: 900px;   /* was 780px */
+  margin: 0 auto;
+}
   // .story-divider {
   //   width: 64px;
   //   height: 2px;
@@ -652,22 +652,27 @@ const styles = `
     line-height: 1.6;
     margin-bottom: 28px;
   }
-  .story-captions {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    text-align: left;
-  }
-  .story-captions li {
-    position: relative;
-    padding-left: 18px;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: #e2e8f0;
-    line-height: 1.55;
-  }
+ .story-captions {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: justify;   /* full/justify align */
+  width: 100%;
+}
+.story-captions li {
+  position: relative;
+  padding-left: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: clamp(11px, 1.05vw, 14px);   /* shrinks slightly so long lines fit */
+  color: #e2e8f0;
+  line-height: 1.55;
+  text-align: justify;
+  white-space: nowrap;      /* forces one line */
+  overflow: hidden;
+  text-overflow: clip;
+}
   .story-captions li::before {
     content: "";
     position: absolute;

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as Icons from "lucide-react";
@@ -44,6 +44,29 @@ const WHY_ATTEND = [
   { iconName: "Megaphone", label: "Showcase & Brand Visibility" },
 ];
 
+const CAROUSEL_SLIDES = [
+  {
+    title: "Institutional Access",
+    desc: "Connect directly with decision-makers from sovereign wealth funds, pension funds, family offices, and private equity firms.",
+    img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80"
+  },
+  {
+    title: "Global Leadership Summits",
+    desc: "Engage in highly anticipated panel discussions addressing key shifts in real estate dynamics and asset optimization.",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80"
+  },
+  {
+    title: "C-Suite Networking",
+    desc: "Unlocking cross-border investment corridors and building high-trust partnerships within the CRE industry.",
+    img: "https://images.unsplash.com/photo-1560523160-754a9e25c68f?w=1600&q=80"
+  },
+  {
+    title: "Innovation & Future Tech",
+    desc: "Discover emerging PropTech paradigms and actionable sustainability strategies changing the built environment.",
+    img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1600&q=80"
+  }
+];
+
 function HeroBanner({ config }) {
   return (
     <section className="relative w-full overflow-hidden bg-[#0B1F3A]">
@@ -55,7 +78,6 @@ function HeroBanner({ config }) {
         className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent"
       />
 
-      {/* Watermark logo area on right */}
       <div className="absolute right-[18%] top-1/2 -translate-y-1/2 text-center opacity-80 hidden lg:block">
         <div className="border-2 border-white/30 px-6 py-3 inline-block mb-2">
           <span className="text-white font-bold text-2xl tracking-widest">REPC</span>
@@ -64,7 +86,6 @@ function HeroBanner({ config }) {
         <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Limitless Opportunities.</p>
       </div>
 
-      {/* Synced layout scale padding - matching py-10 lg:py-16 values */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-16 text-left">
         <h1 className="text-white font-bold leading-[1.3] mb-3 text-[clamp(20px,2.5vw,36px)]">
           {config.title}
@@ -74,7 +95,6 @@ function HeroBanner({ config }) {
           {config.desc}
         </p>
 
-        {/* Stats row */}
         <div className="flex flex-wrap gap-6">
           {config.stats.map((s, i) => {
             const IconComponent = Icons[s.iconName] || Icons.Calendar;
@@ -117,7 +137,6 @@ function FilterBar({
   return (
     <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4 py-3 flex-wrap">
-        {/* Tabs */}
         <div className="flex items-center gap-1 flex-wrap">
           {TABS_CONFIG.map((tab) => (
             <Link
@@ -134,7 +153,6 @@ function FilterBar({
           ))}
         </div>
 
-        {/* Filters */}
         <div className="flex items-center gap-3">
           <select
             value={locationFilter}
@@ -205,8 +223,6 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
   return (
     <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
       <div className="grid lg:grid-cols-[1fr_360px] gap-8">
-
-        {/* LEFT COLUMN */}
         <div className="border shadow-md p-4 rounded border-[#fdfdfd] text-left">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#0B1F3A]">
@@ -264,7 +280,6 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
             </div>
           )}
 
-          {/* Why Attend */}
           <div className="mt-8 bg-[#f7f3f0] rounded-2xl border border-gray-150 p-6">
             <h3 className="text-base font-bold text-[#0B1F3A] mb-5">Why Attend REPC Events?</h3>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
@@ -283,9 +298,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
           </div>
         </div>
 
-        {/* RIGHT SIDEBAR */}
         <div className="flex flex-col gap-6 text-left">
-          {/* Past Event Highlights */}
           <div>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-bold text-[#0B1F3A]">Past Event Highlights</h2>
@@ -302,7 +315,6 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
             </div>
           </div>
 
-          {/* Testimonial */}
           <div className="bg-[#0B1F3A] rounded-2xl p-6 relative">
             <span className="text-[#E8A33D] text-5xl font-serif absolute top-4 left-5 leading-none opacity-80">"</span>
             <p className="text-gray-300 text-[13px] leading-relaxed pt-5 mb-4">
@@ -320,7 +332,6 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
             </div>
           </div>
 
-          {/* Stay Updated */}
           <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
@@ -397,6 +408,65 @@ function PastEventsSection({ activeCategory, locationFilter }) {
   );
 }
 
+function FeaturedCarousel() {
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIdx((prevIdx) => (prevIdx + 1) % CAROUSEL_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="w-full pt-6 pb-0">
+      {/* Height has been upgraded to a true large immersive h-[550px] expanding into full viewports (lg:h-screen) */}
+      <div className="relative w-full h-[550px] md:h-[750px] lg:h-screen overflow-hidden bg-[#0B1F3A]">
+        {CAROUSEL_SLIDES.map((slide, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              i === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <img
+              src={slide.img}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            {/* Deep immersive gradients inspired by image_bad16e.jpg */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/60 via-transparent to-transparent" />
+            
+            {/* Text layout framing positioned deep near lower edge layout */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 lg:p-24 pb-16 md:pb-24 lg:pb-32 text-left z-20 max-w-7xl mx-auto w-full px-6 lg:px-10">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide mb-4 drop-shadow-md font-semibold">
+                {slide.title}
+              </h2>
+              <p className="text-gray-200 text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide opacity-90 max-w-3xl drop-shadow-sm font-light">
+                {slide.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* Indicators shifted carefully to stay accessible over extreme viewport sizing scales */}
+        <div className="absolute bottom-10 left-0 right-0 z-20 mx-auto max-w-7xl w-full px-6 lg:px-10 flex justify-end gap-3">
+          {CAROUSEL_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIdx(i)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === currentIdx ? "w-10 bg-[#E8A33D]" : "w-2.5 bg-white/45"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HostEventBanner() {
   return (
     <section className="bg-white border-t border-gray-100 py-6">
@@ -447,6 +517,7 @@ export default function EventsTemplate({ category }) {
         activeCategory={category}
         locationFilter={locationFilter}
       />
+      <FeaturedCarousel />
       <HostEventBanner />
     </main>
   );

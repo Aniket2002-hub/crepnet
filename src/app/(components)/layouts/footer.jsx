@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Handshake, Users, Heart } from "lucide-react";
+import { ArrowRight, Handshake, Users } from "lucide-react";
 import {
   FaLinkedinIn,
   FaFacebookF,
@@ -211,12 +211,16 @@ export default function Footer() {
 
         .powered-link {
           color: #5b6472;
-          text-decoration: none;
-          font-weight: 500;
-          transition: color 0.2s ease;
+          text-decoration: underline;
+          text-decoration-color: rgba(91, 100, 114, 0.3);
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-block;
+          transition: color 0.2s ease, text-decoration-color 0.2s ease;
         }
         .powered-link:hover {
           color: #c4882a;
+          text-decoration-color: #c4882a;
         }
       `}</style>
 
@@ -327,7 +331,6 @@ export default function Footer() {
 
               {/* Partner Card */}
               <div className="partner-card">
-                {/* Icon + Title row */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
@@ -338,7 +341,7 @@ export default function Footer() {
                       border: "1px solid rgba(196,136,42,0.3)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
+                      justifycontent: "center",
                       flexShrink: 0,
                     }}
                   >
@@ -348,13 +351,11 @@ export default function Footer() {
                   <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(196,136,42,0.35), transparent)" }} />
                 </div>
 
-                {/* Description */}
                 <p style={{ fontSize: "11px", lineHeight: "1.6", color: "#5b6472", margin: 0 }}>
                   Collaborate with industry leaders, sponsor events, and showcase
                   your brand to a targeted audience.
                 </p>
 
-                {/* Button */}
                 <button className="partner-btn">
                   Explore Partnerships
                   <ArrowRight size={12} />
@@ -363,7 +364,6 @@ export default function Footer() {
 
               {/* Join Card */}
               <div className="join-card">
-                {/* Icon + Title row */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <div
                     style={{
@@ -384,13 +384,11 @@ export default function Footer() {
                   <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.3)" }} />
                 </div>
 
-                {/* Description */}
                 <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.85)", margin: 0 }}>
                   Become a part of a trusted community of real estate
                   professionals and unlock endless opportunities.
                 </p>
 
-                {/* Button */}
                 <button className="join-btn">
                   Join REPC Now
                   <ArrowRight size={12} />
@@ -422,23 +420,6 @@ export default function Footer() {
               >
                 IREED MEDIA
               </a>
-            </p>
-
-            <p
-              style={{
-                fontSize: "13px",
-                color: "#8b93a1",
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-              }}
-            >
-              Made with{" "}
-              <Heart
-                size={12}
-                style={{ color: "#c4882a", fill: "#c4882a" }}
-              />{" "}
-              for Real Estate Professionals
             </p>
           </div>
         </div>
