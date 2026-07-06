@@ -21,28 +21,41 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-// Retail Niches data
-const RETAIL_NICHES = [
-  {
-    icon: UtensilsCrossed,
-    title: "Food & Beverage (F&B)",
-    desc: "Premium dining chains, fast-food counters, local lounges, and coffee shop franchises."
-  },
-  {
-    icon: Store,
-    title: "Fashion & Lifestyle",
-    desc: "Luxury apparel, boutique stores, large anchor supermarkets, and lifestyle cosmetics."
-  },
-  {
-    icon: Tv,
-    title: "Multiplexes & Play Zones",
-    desc: "Cinema halls, indoor kids play arenas, virtual reality zones, and bowling alleys."
-  },
-  {
-    icon: Globe2,
-    title: "Hypermarkets & Appliances",
-    desc: "Department stores, consumer electronic brand showrooms, and home decor centers."
-  }
+// Comprehensive Classification List matching image_eba0a8.png layout perfectly
+const CLASSIFICATION_COLUMNS = [
+  [
+    "Luxury Retail",
+    "High Street Retail",
+    "Shopping Centres & Malls",
+    "Mixed-Use Developments",
+    "Food & Beverage Retail",
+    "Grocery & Daily Needs Retail",
+    "Fashion & Lifestyle Retail"
+  ],
+  [
+    "Home & Living Retail",
+    "Consumer Electronics Retail",
+    "Healthcare Retail",
+    "Beauty & Personal Care",
+    "Entertainment Retail",
+    "Sports & Fitness Retail"
+  ],
+  [
+    "Education & Learning Retail",
+    "Financial Services Retail",
+    "Professional Services",
+    "Automotive Retail",
+    "Specialty Retail",
+    "Religious & Cultural Retail"
+  ],
+  [
+    "Tourism & Hospitality Retail",
+    "Cash-and-Carry Retail",
+    "E-Commerce Support Retail",
+    "Temporary Retail Formats",
+    "Institutional & Public Retail",
+    "Emerging Retail Concepts"
+  ]
 ];
 
 // Featured Retail Brands
@@ -89,7 +102,6 @@ export default function RetailBrandsPage() {
   const [niche, setNiche] = useState("Food & Beverage (F&B)");
 
   const router = useRouter()
-  const nichesRef = useRef(null);
   const brandsRef = useRef(null);
   const highlightsRef = useRef(null);
 
@@ -116,93 +128,76 @@ export default function RetailBrandsPage() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
+    <div className="bg-white min-h-screen font-sans antialiased text-slate-800">
       
-      {/* ── HERO BANNER SECTION ── */}
-      <section className="relative bg-gradient-to-r from-[#07111e] via-[#0B1F3A] to-[#162943] text-white pt-10 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:25px_25px]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-450">Companies</span>
-            <span>/</span>
-            <span className="text-[#c9a84c]">Retail Brands</span>
-          </nav>
+      {/* ── HERO BANNER SECTION (Matched layout & text sizes of About Us page) ── */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1600&q=80"
+            alt="City skyline at dusk"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c9a84c]/10 rounded-full border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-extrabold tracking-wide uppercase">
-                <Store className="h-3.5 w-3.5 fill-current text-[#c9a84c]" />
-                Verified Franchise Brands
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                REPC Retail Brands
-              </h1>
-              <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
-                Expanding Outlets. Elevating Yields.
-              </p>
-              <p className="text-slate-350 text-sm sm:text-base max-w-xl leading-relaxed text-slate-300">
-                Explore verified lists of international fashion labels, multiplex cinema chains, and restaurant groups seeking retail commercial leases and spaces.
-              </p>
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-10 text-left">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
+            COMPANIES / RETAIL BRANDS
+          </p>
+          <h1 className="max-w-2xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.3] text-white mt-2">
+            REPC Retail Brands.
+            <br />
+            Expanding Outlets.
+            <br />
+            Elevating Yields.
+          </h1>
+          <div className="mt-3 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
+          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
+            Explore verified lists of international fashion labels, multiplex cinema chains, and restaurant groups seeking retail commercial leases and spaces.
+          </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">150+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Brands Listed</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">8,000+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Active Outlets</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">350+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Partner Malls</p>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">50M+</h4>
-                  <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Monthly Footfall</p>
-                </div>
-              </div>
+          {/* Stats strip matching header alignment */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 mt-6 border-t border-white/10 max-w-3xl">
+            <div>
+              <h4 className="text-2xl font-extrabold text-white">150+</h4>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Brands Listed</p>
             </div>
-
-            {/* Right Banner Image */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
-              <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80"
-                  alt="REPC Retail Storefront"
-                  className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-[1.02]"
-                />
-              </div>
+            <div>
+              <h4 className="text-2xl font-extrabold text-[#E8A33D]">8,000+</h4>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Active Outlets</p>
+            </div>
+            <div>
+              <h4 className="text-2xl font-extrabold text-white">350+</h4>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Partner Malls</p>
+            </div>
+            <div>
+              <h4 className="text-2xl font-extrabold text-[#E8A33D]">50M+</h4>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Monthly Footfall</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── FLOATING CALL TO ACTION CARD ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-10">
-        <div className="bg-white rounded-2xl border border-gray-150 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex-1 space-y-2 max-w-2xl text-left">
-            <h4 className="font-extrabold text-[#0B1F3A] text-lg sm:text-xl">Register Brand Expansion Request</h4>
-            <p className="text-slate-500 text-sm leading-relaxed">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-6">
+        <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex-1 space-y-1 max-w-2xl text-left">
+            <h4 className="font-extrabold text-[#0B1F3A] text-lg">Register Brand Expansion Request</h4>
+            <p className="text-slate-500 text-xs leading-relaxed">
               Submit your target retail demographics, required carpet area parameters, and preferred cities to receive matching commercial property listings.
             </p>
           </div>
           <div className="flex items-center gap-4 shrink-0 w-full md:w-auto">
             <button
               onClick={() => setModalOpen(true)}
-              className="flex-1 md:flex-none py-3.5 px-6 rounded-xl font-extrabold text-sm text-white bg-[#c9a84c] hover:bg-[#b8963e] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-center"
+              className="flex-1 md:flex-none py-2.5 px-5 rounded-xl font-extrabold text-xs text-white bg-[#E8A33D] hover:bg-[#d6922e] shadow-md transition-all duration-200 cursor-pointer text-center uppercase tracking-wide"
             >
               Register Expansion
             </button>
             <button
               onClick={() => alert("Expansion parameters requirements sheet download starting...")}
-              className="flex-1 md:flex-none flex items-center justify-center gap-1.5 py-3.5 px-6 rounded-xl border-2 border-slate-200 text-slate-700 hover:bg-slate-55 font-bold text-sm transition-all duration-200 cursor-pointer"
+              className="flex-1 md:flex-none flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-xl border-2 border-slate-200 text-slate-700 hover:bg-slate-50 font-bold text-xs transition-all duration-200 cursor-pointer"
             >
               Expansion Formats <ArrowRight className="h-4 w-4" />
             </button>
@@ -210,95 +205,77 @@ export default function RetailBrandsPage() {
         </div>
       </div>
 
-      {/* ── NICHES SECTION ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-10">
+      {/* ── COMPREHENSIVE SUB-CLASSIFICATION GRID SECTION (Perfect match with image_eba0a8.png Layout) ── */}
+      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-end mb-6">
           <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Retail Sectors</h2>
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+              Retail Sectors
+            </h2>
+            <div className="mt-1.5 h-0.5 w-16 bg-[#E8A33D]" />
           </div>
-          <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Brand Segments</span>
+          <span className="text-xs font-bold text-[#E8A33D] uppercase tracking-wider">Brand Segments</span>
         </div>
 
-        {/* Carousel container */}
-        <div className="relative">
-          <button
-            onClick={() => handleScroll(nichesRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => handleScroll(nichesRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div className="bg-white border border-gray-150 rounded-2xl shadow-sm overflow-hidden">
-            <div
-              ref={nichesRef}
-              className="flex divide-x divide-gray-150 overflow-x-auto scrollbar-hide scroll-smooth snap-x"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {RETAIL_NICHES.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 px-6 py-10 flex flex-col items-center text-center snap-start justify-start group"
-                  >
-                    <div className="h-16 w-16 rounded-full border border-slate-200 bg-[#faf6f0] flex items-center justify-center text-[#0B1F3A] group-hover:bg-[#c9a84c]/15 group-hover:text-[#c9a84c] transition-all">
-                      <Icon className="h-6 w-6 stroke-[1.5]" />
-                    </div>
-                    <h3 className="font-extrabold text-[#0B1F3A] text-sm tracking-tight leading-snug mt-6 min-h-[40px] flex items-center justify-center">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-500 text-xs mt-3 leading-relaxed max-w-[200px]">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+        {/* Replicated container style from image_eba0a8.png */}
+        <div className="bg-white border border-slate-400 rounded-2xl p-8 sm:p-10 shadow-sm text-left relative overflow-hidden">
+          <p className="text-xs md:text-[13px] text-slate-500 font-medium leading-relaxed max-w-5xl mb-10">
+            The retail sector in real estate encompasses a broad range of commercial formats designed to serve different consumer needs, catchment areas, and business models. Below is a comprehensive classification of retail real estate components.
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
+            {CLASSIFICATION_COLUMNS.map((colItems, colIdx) => (
+              <ul key={colIdx} className="space-y-4">
+                {colItems.map((item, itemIdx) => (
+                  <li key={itemIdx} className="text-xs sm:text-[13px] text-[#2c3e50] font-bold flex items-start gap-3 transition-transform duration-200 hover:translate-x-1">
+                    <span className="text-slate-350 font-extrabold min-w-[20px] text-right">{itemIdx + 1}.</span>
+                    <span className="hover:text-[#E8A33D] cursor-pointer">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── BRANDS SHOWCASE ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-100">
-        <div className="flex justify-between items-end mb-10">
+      <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-100">
+        <div className="flex justify-between items-end mb-4">
           <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Active Retail Brands</h2>
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+              Active Retail Brands
+            </h2>
+            <div className="mt-1.5 h-0.5 w-16 bg-[#E8A33D]" />
           </div>
-          <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Verified Directory Members</span>
+          <span className="text-xs font-bold text-[#E8A33D] uppercase tracking-wider">Verified Directory Members</span>
         </div>
 
         <div className="relative">
           <button
             onClick={() => handleScroll(brandsRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
+            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 shadow-lg z-10 flex items-center justify-center cursor-pointer"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={() => handleScroll(brandsRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
+            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 shadow-lg z-10 flex items-center justify-center cursor-pointer"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
 
           <div
             ref={brandsRef}
-            className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide scroll-smooth snap-x"
+            className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-smooth snap-x"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {BRANDS.map((sp, idx) => (
               <div
                 key={idx}
-                className="min-w-[240px] sm:min-w-[280px] cursor-pointer lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
-                onClick={()=>router.push(`/companies/retail-brands/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
+                className="min-w-[240px] sm:min-w-[280px] cursor-pointer lg:min-w-0 lg:flex-1 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+                onClick={() => router.push(`/companies/retail-brands/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
               >
-                <div className="h-44 relative overflow-hidden">
+                <div className="h-40 relative overflow-hidden">
                   <img
                     src={sp.img}
                     alt={sp.name}
@@ -308,15 +285,15 @@ export default function RetailBrandsPage() {
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between text-left">
                   <div>
-                    <span className="inline-block px-2 py-0.5 text-[9px] font-black tracking-wider bg-[#c9a84c] text-white rounded uppercase">
+                    <span className="inline-block px-2 py-0.5 text-[9px] font-black tracking-wider bg-[#E8A33D] text-white rounded uppercase">
                       Retailer
                     </span>
-                    <h4 className="font-extrabold text-slate-900 text-sm mt-2.5 group-hover:text-[#0B1F3A] transition-colors leading-tight">
+                    <h4 className="font-extrabold text-slate-900 text-sm mt-2 group-hover:text-[#0B1F3A] transition-colors leading-tight">
                       {sp.name}
                     </h4>
                     <p className="text-slate-500 text-[10px] font-semibold mt-0.5">{sp.ambassador}</p>
                   </div>
-                  <p className="text-[#be7a15] text-[11px] font-bold mt-2.5 leading-snug">
+                  <p className="text-[#be7a15] text-[11px] font-bold mt-2 leading-snug">
                     {sp.sqft}
                   </p>
                 </div>
@@ -327,26 +304,26 @@ export default function RetailBrandsPage() {
       </section>
 
       {/* ── BANNER MULTIPLEX ALLIANCES ── */}
-      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#0B1F3A] border border-slate-800 rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+      <section className="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-2xl bg-[#0B1F3A] border border-slate-800 p-6 sm:p-8 text-white relative shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
           <div className="absolute -right-10 -bottom-10 opacity-10">
-            <Store className="h-48 w-48 text-[#c9a84c]" />
+            <Store className="h-40 w-40 text-[#E8A33D]" />
           </div>
           
-          <div className="flex items-center gap-5 relative z-10">
-            <div className="hidden md:flex h-14 w-14 rounded-2xl bg-white/10 items-center justify-center text-[#c9a84c] shrink-0 border border-white/20">
-              <Store className="h-8 w-8 text-[#c9a84c]" />
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="hidden md:flex h-12 w-12 rounded-xl bg-white/10 items-center justify-center text-[#E8A33D] shrink-0 border border-white/20">
+              <Store className="h-6 w-6 text-[#E8A33D]" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">Have Premium Shopping Center Spaces?</h3>
-              <p className="text-slate-350 text-xs sm:text-sm mt-1 max-w-xl">
+              <h3 className="text-xl font-bold tracking-tight text-white uppercase">Have Premium Shopping Center Spaces?</h3>
+              <p className="text-slate-300 text-xs mt-1 max-w-xl">
                 We coordinate retailer matchmaking roundtables letting shopping mall builders present site layouts to verified fashion, dining, and multiplex expansion heads.
               </p>
             </div>
           </div>
           <button
             onClick={() => alert("Retail lease matchmaker forms will be sent to your email.")}
-            className="w-full sm:w-auto py-3.5 px-6 rounded-xl font-extrabold text-sm text-[#0B1F3A] bg-[#c9a84c] hover:bg-amber-400 transition-colors shadow-md cursor-pointer shrink-0 text-center relative z-10"
+            className="w-full sm:w-auto py-2.5 px-5 rounded-xl font-extrabold text-xs text-[#0B1F3A] bg-[#E8A33D] hover:bg-amber-400 transition-colors shadow-md cursor-pointer shrink-0 text-center relative z-10 uppercase tracking-wider"
           >
             Submit Leasing Pitch
           </button>
@@ -354,10 +331,13 @@ export default function RetailBrandsPage() {
       </section>
 
       {/* ── HIGHLIGHTS GALLERY ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-10">
+      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-end mb-4">
           <div className="text-left">
-            <h3 className="text-xl font-extrabold text-[#0B1F3A] tracking-tight">Store Openings</h3>
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+              Store Openings
+            </h2>
+            <div className="mt-1.5 h-0.5 w-16 bg-[#E8A33D]" />
           </div>
           <span className="text-xs font-bold text-slate-400 uppercase">Leasing Success Highlights</span>
         </div>
@@ -365,24 +345,24 @@ export default function RetailBrandsPage() {
         <div className="relative">
           <button
             onClick={() => handleScroll(highlightsRef, "left")}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
+            className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 shadow-lg z-10 flex items-center justify-center cursor-pointer"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={() => handleScroll(highlightsRef, "right")}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-55 text-slate-600 hover:text-slate-900 transition-colors shadow-lg z-10 flex items-center justify-center cursor-pointer"
+            className="absolute -right-5 top-1/2 -translate-y-1/2 h-10 w-10 border border-slate-200 rounded-full bg-white hover:bg-slate-50 text-slate-600 shadow-lg z-10 flex items-center justify-center cursor-pointer"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
 
           <div
             ref={highlightsRef}
-            className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x scrollbar-hide"
+            className="flex gap-4 overflow-x-auto pb-2 scroll-smooth snap-x scrollbar-hide"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {HIGHLIGHT_PHOTOS.map((photo, i) => (
-              <div key={i} className="min-w-[260px] sm:min-w-[300px] h-48 rounded-xl overflow-hidden shadow-sm snap-start shrink-0">
+              <div key={i} className="min-w-[260px] sm:min-w-[300px] h-44 rounded-xl overflow-hidden shadow-sm snap-start shrink-0">
                 <img
                   src={photo}
                   alt={`Retail Brands Highlight ${i + 1}`}
@@ -395,16 +375,16 @@ export default function RetailBrandsPage() {
       </section>
 
       {/* ── STAT STRIP ── */}
-      <section className="pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6 text-left">
+      <section className="pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6 text-left">
           <div className="shrink-0 max-w-xs">
-            <h4 className="text-[#0B1F3A] font-extrabold text-lg tracking-tight">Retail Network Stats</h4>
+            <h4 className="text-[#0B1F3A] font-extrabold text-base tracking-tight">Retail Network Stats</h4>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4 flex-1 w-full">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#c9a84c]">
-                <Award className="h-5 w-5 fill-current" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-4 flex-1 w-full">
+            <div className="flex items-center gap-2.5">
+              <div className="h-9 w-9 rounded-full bg-slate-50 flex items-center justify-center text-[#E8A33D]">
+                <Award className="h-4 w-4 fill-current" />
               </div>
               <div>
                 <h5 className="text-slate-900 font-extrabold text-sm leading-none">100%</h5>
@@ -412,9 +392,9 @@ export default function RetailBrandsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Store className="h-5 w-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="h-9 w-9 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
+                <Store className="h-4 w-4" />
               </div>
               <div>
                 <h5 className="text-slate-900 font-extrabold text-sm leading-none">8,000+</h5>
@@ -422,9 +402,9 @@ export default function RetailBrandsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Users className="h-5 w-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="h-9 w-9 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
+                <Users className="h-4 w-4" />
               </div>
               <div>
                 <h5 className="text-slate-900 font-extrabold text-sm leading-none">40M+</h5>
@@ -432,9 +412,9 @@ export default function RetailBrandsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
-                <Globe2 className="h-5 w-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="h-9 w-9 rounded-full bg-slate-50 flex items-center justify-center text-[#0B1F3A]">
+                <Globe2 className="h-4 w-4" />
               </div>
               <div>
                 <h5 className="text-slate-900 font-extrabold text-sm leading-none">45</h5>
@@ -452,8 +432,8 @@ export default function RetailBrandsPage() {
           
           <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden">
             <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="text-lg font-black text-[#0B1F3A] flex items-center gap-2">
-                <Plus className="h-5 w-5 text-[#c9a84c]" /> Add Retail Brand
+              <h3 className="text-md font-black text-[#0B1F3A] flex items-center gap-2 uppercase tracking-wide">
+                <Plus className="h-4 w-4 text-[#E8A33D]" /> Add Retail Brand
               </h3>
               <button className="text-slate-400 hover:text-slate-700 p-1 rounded-lg cursor-pointer" onClick={() => setModalOpen(false)}>
                 <X className="h-5 w-5" />
@@ -462,60 +442,60 @@ export default function RetailBrandsPage() {
 
             <form onSubmit={handleBrandSubmit} className="p-6 space-y-4 text-left">
               <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Your Name &amp; Designation</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Your Name &amp; Designation</label>
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Raman Joshi (Head of Leasing)"
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-slate-400 text-slate-800"
                 />
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Business Email Address</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Business Email Address</label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. raman@trent.tata"
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-slate-400 text-slate-800"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Retail Brand Name</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Brand Name</label>
                   <input
                     type="text"
                     required
                     value={brandName}
                     onChange={(e) => setBrandName(e.target.value)}
                     placeholder="e.g. Westside"
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-slate-400 text-slate-800"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Target Expansion City</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Target City</label>
                   <input
                     type="text"
                     required
                     value={targetCity}
                     onChange={(e) => setTargetCity(e.target.value)}
                     placeholder="e.g. Jaipur"
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-800 placeholder-slate-400"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-slate-400 text-slate-800"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1.5">Retail Niche Track</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase block mb-1">Retail Niche Track</label>
                 <select
                   value={niche}
                   onChange={(e) => setNiche(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-slate-400 text-slate-700"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-slate-400 text-slate-700"
                 >
                   <option value="Food &amp; Beverage (F&amp;B)">Food &amp; Beverage (F&amp;B)</option>
                   <option value="Fashion &amp; Lifestyle">Fashion &amp; Lifestyle</option>
@@ -534,7 +514,7 @@ export default function RetailBrandsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 text-xs font-bold bg-[#c9a84c] hover:bg-[#b8963e] text-white rounded-xl transition-all shadow-md cursor-pointer"
+                  className="px-5 py-2 text-xs font-bold bg-[#E8A33D] hover:bg-[#b8963e] text-white rounded-xl transition-all shadow-md cursor-pointer uppercase tracking-wider"
                 >
                   Register Brand
                 </button>
