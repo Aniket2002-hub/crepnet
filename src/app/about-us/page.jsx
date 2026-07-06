@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Target,
   Eye,
@@ -14,13 +14,89 @@ import {
   MapPin,
   X,
   Briefcase,
+  Trophy,
+  Award,
+  Calendar,
+  ShieldCheck,
+  Cpu,
+  Zap,
 } from "lucide-react";
+
+// Animated Counter Component (Clean JavaScript Version)
+function AnimatedCounter({ targetValue, duration = 1500 }) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+  const hasAnimated = useRef(false);
+
+  // Extract the raw number and any suffix like "+" or ","
+  const numericString = targetValue.replace(/[^0-9]/g, "");
+  const suffix = targetValue.replace(/[0-9,]/g, ""); 
+  const targetNumber = parseInt(numericString, 10) || 0;
+  const isLargeNumber = targetNumber >= 1000;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let startTime = null;
+
+          const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            
+            // Easing function outQuad
+            const easeProgress = progress * (2 - progress);
+            const currentCount = Math.floor(easeProgress * targetNumber);
+
+            setCount(currentCount);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [targetNumber, duration]);
+
+  // Format with thousands separator if needed
+  const formatNumber = (num) => {
+    if (isLargeNumber) {
+      return num.toLocaleString();
+    }
+    return num.toString();
+  };
+
+  return (
+    <span ref={elementRef}>
+      {formatNumber(count)}
+      {suffix}
+    </span>
+  );
+}
 
 const stats = [
   { icon: Users, value: "25,000+", label: "Professionals" },
   { icon: Building2, value: "3,500+", label: "Companies" },
   { icon: MapPin, value: "120+", label: "Cities" },
   { icon: Users, value: "150+", label: "Active Groups" },
+];
+
+const storyStats = [
+  { icon: Trophy, value: "25000+", label: "Professionals Worldwide" },
+  { icon: Globe2, value: "120+", label: "Cities Reached" },
+  { icon: Award, value: "3500+", label: "Partner Companies" },
+  { icon: Calendar, value: "150+", label: "Active Networking Groups" },
 ];
 
 const values = [
@@ -56,8 +132,26 @@ const values = [
   },
 ];
 
+const philosophyItems = [
+  {
+    icon: ShieldCheck,
+    title: "Curated, Not Crowded",
+    desc: "We prioritize quality over quantity. Members are carefully selected to ensure relevance, credibility, and shared standards of excellence.",
+  },
+  {
+    icon: Cpu,
+    title: "Human-Led, Not Algorithmic",
+    desc: "Introductions are guided by insight, context, and strategic intent, never automated matching.",
+  },
+  {
+    icon: Zap,
+    title: "Outcome-Driven",
+    desc: "REPC networking is designed to support growth, collaboration, and opportunity, not casual interaction.",
+  },
+];
+
 const founders = [
-   {
+  {
     name: "Vipin Arora",
     role: "Founder ",
     bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind REPC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping REPC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through REPC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
@@ -69,7 +163,6 @@ const founders = [
     bio: "Bhaswar Paul is a visionary entrepreneur and industry leader with a deep commitment to transforming India's real estate ecosystem through collaboration, innovation, and knowledge sharing. As the Founder of REPC and CEO & Founder of IREED India, he has been instrumental in creating platforms that connect developers, investors, occupiers, consultants, service providers, and industry professionals across the real estate value chain. With extensive experience in real estate advisory, business networking, industry research, and ecosystem development, Bhaswar has consistently championed initiatives that foster meaningful partnerships, promote market intelligence, and accelerate industry growth. Under his leadership, REPC has evolved into a vibrant professional community dedicated to connecting professionals, facilitating opportunities, and driving thought leadership within the sector. His vision is centered on building a stronger, more connected real estate community where professionals can collaborate, learn, innovate, and create lasting business impact. Through REPC and IREED India, he continues to bridge industry stakeholders and contribute to the advancement of India's real estate landscape.",
     img: "/paul-sir.jpg",
   },
- 
 ];
 
 export default function AboutPage() {
@@ -88,18 +181,18 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-10">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
             ABOUT REPC
           </p>
-          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
+          <h1 className="max-w-2xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.3] text-white">
             Building Connections.
             <br />
             Creating Opportunities.
             <br />
             Shaping the Future of Real Estate.
           </h1>
-          <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
+          <div className="mt-3 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
           <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
             REPC is India&apos;s largest community of real estate
             professionals working together to learn, collaborate, and grow.
@@ -107,19 +200,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. People Behind REPC Section */}
-      <section className="bg-slate-50 pb-8 lg:pb-12">
+      {/* 2. Our Story Section */}
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-12">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          {/* Left Column: Story Content */}
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+              Our Story
+            </h2>
+            <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
+              REPC was established with a singular focus: to unify India's expansive real estate ecosystem. What started as a vision to break down silos between developers, consultants, and service providers has rapidly evolved into a powerhouse networking hub.
+            </p>
+            <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
+              Through consistent community initiatives, structured knowledge shares, and cross-functional collaborations, an extraordinary nation-wide community began to emerge.
+            </p>
+            <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
+              Today, visionary entrepreneurs, senior executives, structural experts, and industry professionals from hospitality, real estate finance, design, and regulatory sectors are interconnected through a shared standard of professional excellence.
+            </p>
+          </div>
+
+          {/* Right Column: Key Facts & Figures Cards */}
+          <div>
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] mb-4 lg:text-left text-center">
+              Key Facts and Figures
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {storyStats.map(({ icon: Icon, value, label }) => (
+                <div 
+                  key={label} 
+                  className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col items-center text-center justify-center min-h-[140px] hover:shadow-md transition duration-300"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8A33D]/10 text-[#E8A33D] mb-3">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <p className="text-2xl font-extrabold text-slate-800">
+                    <AnimatedCounter targetValue={value} />
+                  </p>
+                  <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. People Behind REPC Section */}
+      <section className="bg-slate-50 py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
-          <div className="text-center pt-8 lg:pt-12">
-            <h2 className="text-[19px] font-bold text-[#0B1F3A]">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
               The People Behind REPC
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-600 text-sm">
+            <p className="mx-auto mt-2 max-w-2xl text-slate-600 text-sm">
               REPC was founded by industry leaders with a shared vision. Click a profile to view their full bio and journey.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
             {founders.map((f) => (
               <div 
                 key={f.name} 
@@ -143,7 +280,7 @@ export default function AboutPage() {
                   <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1">
                     <Briefcase className="h-3 w-3 text-[#E8A33D]" /> {f.role}
                   </p>
-                  <p className="mt-2.5 text-xs leading-relaxed text-slate-500 line-clamp-4">
+                  <p className="mt-2 text-xs leading-relaxed text-slate-500 line-clamp-4">
                     {f.bio}
                   </p>
                 </div>
@@ -197,18 +334,18 @@ export default function AboutPage() {
         </div>
       )}
 
-      {/* 3. Mission & Vision Section */}
-      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
+      {/* 4. Mission & Vision Section */}
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-12">
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl bg-slate-50 p-6 lg:p-8">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0B1F3A]">
-              <Target className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0B1F3A]">
+              <Target className="h-5 w-5 text-white" />
             </div>
-            <h2 className="mt-4 text-[18px] font-bold text-[#0B1F3A]">
+            <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
               Our Mission
             </h2>
-            <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+            <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               To connect real estate professionals, foster collaboration,
               share knowledge, and create opportunities that drive growth,
               innovation, and long-term value for the industry and the
@@ -217,14 +354,14 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-2xl bg-slate-50 p-6 lg:p-8">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E8A33D]">
-              <Eye className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8A33D]">
+              <Eye className="h-5 w-5 text-white" />
             </div>
-            <h2 className="mt-4 text-[18px] font-bold text-[#0B1F3A]">
+            <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
               Our Vision
             </h2>
-            <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
-            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+            <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               To be the most trusted and influential real estate professional
               community, empowering leaders and shaping a sustainable and
               inclusive real estate ecosystem.
@@ -233,23 +370,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Our Values Section */}
-      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
+      {/* 5. Our Values Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12">
         <div className="text-center">
-          <h2 className="text-[19px] font-bold text-[#0B1F3A]">
+          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
             Our Values
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 bg-[#E8A33D]" />
+          <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
           {values.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-50">
-                <Icon className="h-6 w-6 text-[#0B1F3A]" />
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
+                <Icon className="h-5 w-5 text-[#0B1F3A]" />
               </div>
-              <h3 className="mt-3 font-bold text-[#0B1F3A]">{title}</h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+              <h3 className="mt-2 font-bold text-[#0B1F3A] text-sm">{title}</h3>
+              <p className="mt-1 text-xs leading-relaxed text-slate-600">
                 {desc}
               </p>
             </div>
@@ -257,8 +394,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Power of Networking Section */}
-      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
+      {/* 6. Our Networking Philosophy Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 text-center">
+        <div className="mb-6">
+          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+            Our Networking Philosophy
+          </h2>
+          <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
+          <p className="mt-3 text-sm md:text-base text-slate-500 font-medium">
+            REPC networking is built on three principles:
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+          {philosophyItems.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="flex flex-col items-center p-2">
+              <div className="flex h-10 w-10 items-center justify-center text-[#E8A33D] mb-2">
+                <Icon className="h-7 w-7 stroke-[1.5]" />
+              </div>
+              <h3 className="text-base font-bold text-[#0B1F3A] mb-1">{title}</h3>
+              <p className="text-xs md:text-sm leading-relaxed text-slate-500 font-medium max-w-xs">
+                {desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 7. Power of Networking Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12">
         <div className="overflow-hidden rounded-2xl bg-[#0B1F3A]">
           <div className="grid lg:grid-cols-2">
             <div className="relative h-56 lg:h-auto">
@@ -269,15 +433,16 @@ export default function AboutPage() {
               />
             </div>
 
-            <div className="p-6 lg:p-10">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/40">
-                <Users className="h-6 w-6 text-white" />
+            <div className="p-6 lg:p-8">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/40">
+                <Users className="h-5 w-5 text-white" />
               </div>
-              <h2 className="mt-4 text-[19px] font-bold text-white">
+              {/* Overridden layout brand header to match theme sizes */}
+              <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#E8A33D]">
                 The Power of Networking
               </h2>
-              <div className="mt-2 h-1 w-12 bg-[#E8A33D]" />
-              <p className="mt-4 text-sm leading-relaxed text-slate-300">
+              <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
+              <p className="mt-3 text-sm leading-relaxed text-slate-300">
                 At REPC, we believe meaningful connections create lasting
                 impact. Our community brings together developers, investors,
                 occupiers, consultants, architects, and industry experts to
@@ -285,12 +450,14 @@ export default function AboutPage() {
                 opportunities&mdash;together.
               </p>
 
-              <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 {stats.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="flex items-center gap-2.5">
-                    <Icon className="h-7 w-7 text-[#E8A33D]" />
+                  <div key={label} className="flex items-center gap-2">
+                    <Icon className="h-6 w-6 text-[#E8A33D]" />
                     <div>
-                      <p className="text-base font-bold text-white">{value}</p>
+                      <p className="text-base font-bold text-white">
+                        <AnimatedCounter targetValue={value} />
+                      </p>
                       <p className="text-[11px] text-slate-300">{label}</p>
                     </div>
                   </div>
@@ -301,15 +468,37 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 6. Call To Action (CTA) Section */}
-      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 lg:pb-12">
-        <div className="flex flex-col items-center gap-4 rounded-2xl bg-[#0B1F3A] p-6 text-center sm:flex-row sm:justify-between sm:text-left lg:p-10">
+      {/* 8. Flagship Membership Benefit Section */}
+      <section className="mx-auto max-w-6xl px-6 py-8 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] leading-tight">
+            NETWORKING IS THE SIGNATURE
+            <br />
+            EXPERIENCE AND FLAGSHIP BENEFIT OF
+            <br />
+            WLCC MEMBERSHIP
+          </h2>
+        </div>
+        
+        <div className="mt-6 space-y-4 max-w-3xl mx-auto text-slate-600 font-medium text-sm md:text-[15px] leading-relaxed tracking-wide">
+          <p>
+            At the World Luxury Chamber of Commerce, networking is not about volume – it is about access, relevance, and trust.
+          </p>
+          <p>
+            Every connection is intentional. Every interaction is aligned with the values of excellence, discretion, and prestige.
+          </p>
+        </div>
+      </section>
+
+      {/* 9. Call To Action (CTA) Section */}
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12">
+        <div className="flex flex-col items-center gap-4 rounded-2xl bg-[#0B1F3A] p-6 text-center sm:flex-row sm:justify-between sm:text-left lg:p-8">
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-white/40">
-              <Users className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white/40">
+              <Users className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-[16px] font-bold text-white">
+              <h2 className="text-xl font-bold text-white uppercase tracking-wide">
                 Be a Part of Something Bigger
               </h2>
               <p className="mt-0.5 text-xs text-slate-300">
