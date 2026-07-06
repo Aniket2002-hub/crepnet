@@ -232,12 +232,52 @@ function countBy(items, key) {
 
 // ---------------- COMPONENTS ----------------
 
+function LuxuryCTA() {
+  return (
+       <section className="relative w-full overflow-hidden bg-white py-32 md:py-48 ">
+      {/* Background Graphic Box - High visibility overlay layout */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/background-img.png" 
+          alt="Luxury background texture layout"
+          className="h-full w-full object-cover object-center"
+        />
+        {/* Soft custom linear layout blending backdrops natively into clean page views */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/5 to-white/95" />
+      </div>
+
+      {/* Content Layer */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        {/* Matching high-end brand header system */}
+        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
+          Join the Inner Circle of Luxury Leadership
+        </h2>
+
+        {/* Subtitle Description */}
+        <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
+          Experience the prestige of a global luxury leaders’ community.
+        </p>
+
+        {/* Call to Action Trigger */}
+        <div className="mt-10 md:mt-14">
+          <button
+            type="button"
+            className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
+          >
+            Become a Member
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProfileModal({ member, onClose, onConnect, isConnected }) {
   if (!member) return null;
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
       <div
@@ -330,7 +370,7 @@ function ConnectModal({ member, onClose, onSent }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
       <div
@@ -446,7 +486,7 @@ function MemberCard({ member, onViewProfile, onConnect, isConnected }) {
 function CheckboxFilterGroup({ title, items, counts, selected, onToggle, searchable, search, onSearchChange }) {
   return (
     <div className="py-4 border-b border-gray-200">
-      <h4 className="font-semibold text-gray-900 mb-3">{title}</h4>
+      <h4 className="font-serif text-gray-900 font-normal tracking-wide mb-3">{title}</h4>
 
       {searchable && (
         <div className="relative mb-3">
@@ -584,214 +624,218 @@ export default function MemberDirectory() {
   }, [appliedSearch, selectedCities, selectedSegments, selectedExperience, sortBy]);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* 1. Hero Banner Section */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=400&fit=crop"
-            alt="Real estate professionals"
-            className="absolute inset-0 h-full w-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
-        </div>
-
-        {/* Increased vertical padding here slightly from py-8 -> py-10 and lg:py-12 -> lg:py-16 */}
-        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
-          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
-            MEMBER DIRECTORY
-          </p>
-          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
-            Find &amp; Connect with
-            <br />
-            Real Estate Professionals.
-          </h1>
-          <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
-            Search, connect, and collaborate with verified real estate professionals across India and grow your network.
-          </p>
-        </div>
-      </section>
-
-      {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
-        <div className="bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
-          <div className="md:col-span-1">
-            <label className="block text-sm font-semibold text-gray-800 mb-2">
-              Search by Name
-            </label>
-            <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                👤
-              </span>
-              <input
-                type="text"
-                value={searchName}
-                onChange={(e) => setSearchName(e.target.value)}
-                placeholder="Enter name..."
-                className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-              />
-            </div>
+    <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
+      <div>
+        {/* 1. Hero Banner Section */}
+        <section className="relative overflow-hidden bg-[#0B1F3A]">
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=400&fit=crop"
+              alt="Real estate professionals"
+              className="absolute inset-0 h-full w-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
           </div>
 
-          <div className="md:col-span-1">
-            <label className="block text-sm font-semibold text-gray-800 mb-2">
-              Company Name
-            </label>
-            <div className="relative">
-              <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                value={searchCompany}
-                onChange={(e) => setSearchCompany(e.target.value)}
-                placeholder="Enter company name..."
-                className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-              />
-            </div>
+          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
+              MEMBER DIRECTORY
+            </p>
+            <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
+              Find &amp; Connect with
+              <br />
+              Real Estate Professionals.
+            </h1>
+            <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+            <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
+              Search, connect, and collaborate with verified real estate professionals across India and grow your network.
+            </p>
           </div>
+        </section>
 
-          <div className="md:col-span-1">
-            <label className="block text-sm font-semibold text-gray-800 mb-2">
-              City
-            </label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <select
-                value={searchCity}
-                onChange={(e) => setSearchCity(e.target.value)}
-                className="w-full border border-gray-300 rounded-md pl-9 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-              >
-                <option value="">Select city...</option>
-                {cityOptions.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            </div>
-          </div>
-
-          <div className="md:col-span-1">
-            <label className="block text-sm font-semibold text-gray-800 mb-2">
-              Segment
-            </label>
-            <div className="relative">
-              <select
-                value={searchSegment}
-                onChange={(e) => setSearchSegment(e.target.value)}
-                className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-              >
-                <option value="">Select segment...</option>
-                {segmentOptions.map((seg) => (
-                  <option key={seg} value={seg}>
-                    {seg}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            </div>
-          </div>
-
-          <div className="md:col-span-1 flex items-center gap-4">
-            <button
-              onClick={handleSearch}
-              className="flex-1 bg-[#0B1F3A] text-white font-medium py-2.5 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-[#0B1F3A]/90"
-            >
-              <Search className="w-4 h-4" />
-              Search
-            </button>
-            <button
-              onClick={handleReset}
-              className="text-blue-600 text-sm font-medium whitespace-nowrap"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Members List */}
-        <div className="lg:col-span-3">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">
-              Members ({filteredMembers.length} Results)
-            </h2>
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="border border-gray-300 rounded-md pl-3 pr-8 py-2 text-sm text-gray-700 appearance-none focus:outline-none"
-              >
-                <option value="Relevance">Sort by: Relevance</option>
-                <option value="Name (A-Z)">Name (A-Z)</option>
-                <option value="Name (Z-A)">Name (Z-A)</option>
-                <option value="Experience">Experience</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-            </div>
-          </div>
-
-          {filteredMembers.length === 0 ? (
-            <div className="text-center py-16 text-gray-500 border border-dashed border-gray-300 rounded-lg">
-              No members found. Try adjusting your filters.
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredMembers.map((member) => (
-                <MemberCard
-                  key={member.id}
-                  member={member}
-                  onViewProfile={setActiveMember}
-                  onConnect={setConnectMember}
-                  isConnected={!!connectStatus[member.id]}
+        {/* Search Bar */}
+        <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+          <div className="bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+            <div className="md:col-span-1">
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Search by Name
+              </label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                  👤
+                </span>
+                <input
+                  type="text"
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
+                  placeholder="Enter name..."
+                  className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
                 />
-              ))}
+              </div>
             </div>
-          )}
-        </div>
 
-        {/* Filters Sidebar */}
-        <div className="lg:col-span-1">
-          <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-bold text-gray-900">Filter Members</h3>
-              <button onClick={clearAllFilters} className="text-blue-600 text-sm font-medium">
-                Clear All
+            <div className="md:col-span-1">
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Company Name
+              </label>
+              <div className="relative">
+                <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchCompany}
+                  onChange={(e) => setSearchCompany(e.target.value)}
+                  placeholder="Enter company name..."
+                  className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
+                />
+              </div>
+            </div>
+
+            <div className="md:col-span-1">
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                City
+              </label>
+              <div className="relative">
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <select
+                  value={searchCity}
+                  onChange={(e) => setSearchCity(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md pl-9 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
+                >
+                  <option value="">Select city...</option>
+                  {cityOptions.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
+
+            <div className="md:col-span-1">
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Segment
+              </label>
+              <div className="relative">
+                <select
+                  value={searchSegment}
+                  onChange={(e) => setSearchSegment(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
+                >
+                  <option value="">Select segment...</option>
+                  {segmentOptions.map((seg) => (
+                    <option key={seg} value={seg}>
+                      {seg}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
+
+            <div className="md:col-span-1 flex items-center gap-4">
+              <button
+                onClick={handleSearch}
+                className="flex-1 bg-[#0B1F3A] text-white font-medium py-2.5 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-[#0B1F3A]/90"
+              >
+                <Search className="w-4 h-4" />
+                Search
+              </button>
+              <button
+                onClick={handleReset}
+                className="text-blue-600 text-sm font-medium whitespace-nowrap"
+              >
+                Reset
               </button>
             </div>
+          </div>
+        </div>
 
-            <CheckboxFilterGroup
-              title="City"
-              items={cityOptions}
-              counts={cityCounts}
-              selected={selectedCities}
-              onToggle={(val) => toggleFromArray(selectedCities, setSelectedCities, val)}
-              searchable
-              search={citySidebarSearch}
-              onSearchChange={setCitySidebarSearch}
-            />
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Members List */}
+          <div className="lg:col-span-3">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">
+                Members ({filteredMembers.length} Results)
+              </h2>
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="border border-gray-300 rounded-md pl-3 pr-8 py-2 text-sm text-gray-700 appearance-none focus:outline-none"
+                >
+                  <option value="Relevance">Sort by: Relevance</option>
+                  <option value="Name (A-Z)">Name (A-Z)</option>
+                  <option value="Name (Z-A)">Name (Z-A)</option>
+                  <option value="Experience">Experience</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
 
-            <CheckboxFilterGroup
-              title="Segment"
-              items={segmentOptions}
-              counts={segmentCounts}
-              selected={selectedSegments}
-              onToggle={(val) => toggleFromArray(selectedSegments, setSelectedSegments, val)}
-            />
+            {filteredMembers.length === 0 ? (
+              <div className="text-center py-16 text-gray-500 border border-dashed border-gray-300 rounded-lg">
+                No members found. Try adjusting your filters.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredMembers.map((member) => (
+                  <MemberCard
+                    key={member.id}
+                    member={member}
+                    onViewProfile={setActiveMember}
+                    onConnect={setConnectMember}
+                    isConnected={!!connectStatus[member.id]}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
-            <CheckboxFilterGroup
-              title="Experience"
-              items={experienceOptions}
-              counts={experienceCounts}
-              selected={selectedExperience}
-              onToggle={(val) => toggleFromArray(selectedExperience, setSelectedExperience, val)}
-            />
+          {/* Filters Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white border border-gray-200 rounded-lg p-5">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-serif text-lg font-normal text-gray-900 tracking-wide">Filter Members</h3>
+                <button onClick={clearAllFilters} className="text-blue-600 text-sm font-medium">
+                  Clear All
+                </button>
+              </div>
+
+              <CheckboxFilterGroup
+                title="City"
+                items={cityOptions}
+                counts={cityCounts}
+                selected={selectedCities}
+                onToggle={(val) => toggleFromArray(selectedCities, setSelectedCities, val)}
+                searchable
+                search={citySidebarSearch}
+                onSearchChange={setCitySidebarSearch}
+              />
+
+              <CheckboxFilterGroup
+                title="Segment"
+                items={segmentOptions}
+                counts={segmentCounts}
+                selected={selectedSegments}
+                onToggle={(val) => toggleFromArray(selectedSegments, setSelectedSegments, val)}
+              />
+
+              <CheckboxFilterGroup
+                title="Experience"
+                items={experienceOptions}
+                counts={experienceCounts}
+                selected={selectedExperience}
+                onToggle={(val) => toggleFromArray(selectedExperience, setSelectedExperience, val)}
+              />
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Luxury CTA Integrated Upper of Footer */}
+      <LuxuryCTA />
 
       <ProfileModal
         member={activeMember}

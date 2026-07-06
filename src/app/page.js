@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Users, Building2, TrendingUp, Handshake,
   Search, ChevronDown, Bell, Award, BookOpen,
@@ -94,6 +94,12 @@ const KNOWLEDGE_CAPTIONS = [
   "Empowering professionals and organizations through real estate excellence.",
 ];
 
+const MINDS_VIDEOS = [
+  "https://assets.mixkit.co/videos/21246/21246-720.mp4",
+  "https://assets.mixkit.co/videos/315/315-720.mp4",
+  "https://assets.mixkit.co/videos/42880/42880-720.mp4"
+];
+
 const styles = `
   .dashboard-main-wrapper * { 
     box-sizing: border-box; 
@@ -103,6 +109,11 @@ const styles = `
 
   .dashboard-main-wrapper {
     overflow-x: hidden;
+  }
+
+  /* Font selection update across all key component headings */
+  .hero-title, .section-title, .global-reach-title, .story-title, .bottom-title {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
   }
 
   /* ===== Hero (now a true full-page hero) ===== */
@@ -498,7 +509,7 @@ const styles = `
   .discussion-replies { display: flex; align-items: center; gap: 4px; margin-left: auto; flex-shrink: 0; }
   .discussion-replies span { font-size: 11.5px; color: #6b7280; font-weight: 600; }
 
-  /* ===== Global Reach Section (re-worked to fade seamlessly out of the white page) ===== */
+  /* ===== Global Reach Section ===== */
   .global-reach-section {
     position: relative;
     background: #fff;
@@ -561,7 +572,7 @@ const styles = `
     padding-right: 16px;
   }
   .global-reach-value {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     font-size: clamp(42px, 5.4vw, 66px);
     font-weight: 400;
     color: #fff;
@@ -580,7 +591,7 @@ const styles = `
     line-height: 1.5;
   }
 
-  /* ===== Shared "story" section style (Influential Minds / Knowledge That Empowers) ===== */
+  /* ===== Shared "story" section layout updated for left-aligned content structure (image_fa9d0a.jpg) ===== */
   .story-section {
     position: relative;
     background: #0d1e35;
@@ -588,7 +599,7 @@ const styles = `
     min-height: 620px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .story-bg-video, .story-bg-img {
     position: absolute;
@@ -597,17 +608,17 @@ const styles = `
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: saturate(0.5) brightness(0.75) contrast(1.05);
+    filter: saturate(0.5) brightness(0.28) contrast(1.05);
+    transition: opacity 1s ease-in-out;
   }
   .story-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      180deg,
-      rgba(13,30,53,0.4) 0%,
-      rgba(13,30,53,0.35) 35%,
-      rgba(13,30,53,0.6) 65%,
-      rgba(13,30,53,0.88) 100%
+      90deg,
+      rgba(13,30,53,0.85) 0%,
+      rgba(13,30,53,0.65) 45%,
+      rgba(13,30,53,0.2) 100%
     );
   }
   .story-overlay-tint {
@@ -617,62 +628,54 @@ const styles = `
     mix-blend-mode: multiply;
   }
   .story-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 72px 20px 56px;
-  max-width: 900px;   /* was 780px */
-  margin: 0 auto;
-}
-  // .story-divider {
-  //   width: 64px;
-  //   height: 2px;
-  //   background: #c9a84c;
-  //   margin: 0 auto 24px;
-  //   border-radius: 2px;
-  // }
+    position: relative;
+    z-index: 3;
+    text-align: left;
+    padding: 72px 20px 56px;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
   .story-title {
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(28px, 4.4vw, 48px);
     font-weight: 700;
     color: #fff;
     line-height: 1.2;
     letter-spacing: -0.3px;
+    text-align: left;
   }
   .story-subdivider {
     width: 100%;
     max-width: 460px;
     height: 1px;
     background: rgba(255,255,255,0.35);
-    margin: 22px auto 22px;
+    margin: 22px 0;
   }
   .story-subtitle {
     font-size: 14.5px;
     color: #cbd5e1;
     line-height: 1.6;
     margin-bottom: 28px;
+    text-align: left;
   }
- .story-captions {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  text-align: justify;   /* full/justify align */
-  width: 100%;
-}
-.story-captions li {
-  position: relative;
-  padding-left: 18px;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: clamp(11px, 1.05vw, 14px);   /* shrinks slightly so long lines fit */
-  color: #e2e8f0;
-  line-height: 1.55;
-  text-align: justify;
-  white-space: nowrap;      /* forces one line */
-  overflow: hidden;
-  text-overflow: clip;
-}
+  .story-captions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+  }
+  .story-captions li {
+    position: relative;
+    padding-left: 18px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: clamp(12px, 1.15vw, 15px);
+    color: #e2e8f0;
+    line-height: 1.55;
+    text-align: left;
+  }
   .story-captions li::before {
     content: "";
     position: absolute;
@@ -682,6 +685,31 @@ const styles = `
     height: 6px;
     border-radius: 50%;
     background: #c9a84c;
+  }
+
+  /* Slider Indicators positioning aligned right based on Screenshot 2026-07-07 000330.png */
+  .slider-indicator-container {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 15;
+  }
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .slider-dot.active {
+    background: #c9a84c;
+    width: 24px;
+    border-radius: 4px;
   }
 
   /* Bottom CTA Landing Layout */
@@ -864,7 +892,8 @@ const styles = `
       min-height: 100vh;
     }
     .story-section { min-height: 520px; }
-    .story-content { padding: 48px 20px 40px; }
+    .story-content { padding: 48px 20px 40px; text-align: left; }
+    .slider-indicator-container { right: 20px; bottom: 20px; }
   }
 
   @media (max-width: 480px) {
@@ -1151,30 +1180,43 @@ export function GlobalReachSection() {
   );
 }
 
-/* Shared "story" section — used by both Influential Minds and Knowledge That Empowers.
-   Heads/subjects are framed with object-position: center top so faces are never cropped,
-   and captions sit below a divider beneath the title, matching the approved mock-up. */
-function StorySection({ title, subtitle, captions, videoSrc, poster, imgSrc, alt }) {
+function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, alt }) {
+  const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
+
+  useEffect(() => {
+    if (videos.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentVideoIdx((prev) => (prev + 1) % videos.length);
+    }, 6000); 
+    return () => clearInterval(interval);
+  }, [videos]);
+
   return (
     <section className="story-section">
-      {videoSrc ? (
-        <video
-          className="story-bg-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={poster}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+      {videos.length > 0 ? (
+        videos.map((src, idx) => (
+          <video
+            key={src}
+            className="story-bg-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ 
+              opacity: idx === currentVideoIdx ? 1 : 0,
+              position: "absolute",
+              zIndex: idx === currentVideoIdx ? 1 : 0
+            }}
+          >
+            <source src={src} type="video/mp4" />
+          </video>
+        ))
       ) : (
         <img className="story-bg-img" src={imgSrc} alt={alt || ""} />
       )}
-      <div className="story-overlay-tint" />
-      <div className="story-overlay" />
-      <div className="story-content">
-        <div className="story-divider" />
+      <div className="story-overlay-tint" style={{ zIndex: 2 }} />
+      <div className="story-overlay" style={{ zIndex: 2 }} />
+      <div className="story-content" style={{ zIndex: 3 }}>
         <h2 className="story-title">{title}</h2>
         <div className="story-subdivider" />
         {subtitle && <p className="story-subtitle">{subtitle}</p>}
@@ -1184,6 +1226,19 @@ function StorySection({ title, subtitle, captions, videoSrc, poster, imgSrc, alt
           ))}
         </ul>
       </div>
+
+      {videos.length > 1 && (
+        <div className="slider-indicator-container">
+          {videos.map((_, dotIdx) => (
+            <button
+              key={dotIdx}
+              onClick={() => setCurrentVideoIdx(dotIdx)}
+              className={`slider-dot ${dotIdx === currentVideoIdx ? "active" : ""}`}
+              aria-label={`Go to slide ${dotIdx + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -1193,8 +1248,7 @@ export function InfluentialMindsSection() {
     <StorySection
       title="The most influential minds"
       captions={MINDS_CAPTIONS}
-      videoSrc="https://assets.mixkit.co/videos/21246/21246-720.mp4"
-      poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
+      videos={MINDS_VIDEOS}
     />
   );
 }
@@ -1251,7 +1305,6 @@ export default function Page() {
         <StatsBar />
         <ThreeColumnSection />
         <GlobalReachSection />
-        {/* <KnowledgeSection /> */}
         <BottomCTASection />
         <InfluentialMindsSection />
       </main>
