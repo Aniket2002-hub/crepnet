@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   ChevronDown,
   ChevronLeft,
@@ -206,6 +206,46 @@ function buildDonutGradient(data) {
 
 // ---------------- COMPONENTS ----------------
 
+function LuxuryCTA() {
+  return (
+     <section className="relative w-full overflow-hidden bg-white py-32 md:py-48 ">
+      {/* Background Graphic Box - High visibility overlay layout */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/background-img.png" 
+          alt="Luxury background texture layout"
+          className="h-full w-full object-cover object-center"
+        />
+        {/* Soft custom linear layout blending backdrops natively into clean page views */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/5 to-white/95" />
+      </div>
+
+      {/* Content Layer */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        {/* Matching high-end brand header system */}
+        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
+          Join the Inner Circle of Luxury Leadership
+        </h2>
+
+        {/* Subtitle Description */}
+        <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
+          Experience the prestige of a global luxury leaders’ community.
+        </p>
+
+        {/* Call to Action Trigger */}
+        <div className="mt-10 md:mt-14">
+          <button
+            type="button"
+            className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
+          >
+            Become a Member
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SurveyCard({ survey }) {
   return (
     <div className="border border-gray-200 rounded-lg bg-white overflow-hidden flex flex-col">
@@ -332,68 +372,291 @@ export default function SurveysPage() {
     });
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
+      <div>
+        {/* 1. Hero Banner Section - Main layout heading converted to premium serif layout */}
+        <section className="relative overflow-hidden bg-[#0B1F3A]">
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
+              alt="City skyline"
+              className="absolute inset-0 h-full w-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+          </div>
 
-      {/* ── 1. Hero Banner Section (Synced Sizing) ── */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
-            alt="City skyline"
-            className="absolute inset-0 h-full w-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
+              CREPNET Surveys
+            </p>
+            <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
+              Surveys &amp; Results.
+              <br />
+              Data-Driven Insights.
+              <br />
+              Shaping Strategic Decisions.
+            </h1>
+            <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+            <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
+              Search, connect, and collaborate with verified real estate professionals across India and grow your network.
+            </p>
+          </div>
+        </section>
+
+        {/* Browse Surveys + Why Participate */}
+        <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-3">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+              <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">Browse Surveys</h2>
+              <a href="#" className="text-blue-600 text-sm font-medium">
+                View All Surveys →
+              </a>
+            </div>
+
+            <div className="flex items-center gap-6 border-b border-gray-200 mb-6 overflow-x-auto">
+              {surveyTabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveSurveyTab(tab)}
+                  className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
+                    activeSurveyTab === tab
+                      ? "border-[#E8A33D] text-[#E8A33D]"
+                      : "border-transparent text-gray-500 hover:text-gray-800"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            <div className="relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {surveys.map((survey) => (
+                  <SurveyCard key={survey.title} survey={survey} />
+                ))}
+              </div>
+
+              <button className="hidden lg:flex absolute -left-5 top-1/3 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full items-center justify-center shadow-sm hover:bg-gray-50">
+                <ChevronLeft className="w-4 h-4 text-gray-600" />
+              </button>
+              <button className="hidden lg:flex absolute -right-5 top-1/3 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full items-center justify-center shadow-sm hover:bg-gray-50">
+                <ChevronRight className="w-4 h-4 text-gray-600" />
+              </button>
+            </div>
+          </div>
+
+          {/* Why Participate */}
+          <div className="lg:col-span-1">
+            <div className="bg-[#0B1F3A] rounded-xl p-6 h-full flex flex-col">
+              <h3 className="font-serif text-white font-normal text-lg mb-5 tracking-wide">Why Participate?</h3>
+
+              <div className="space-y-5 flex-1">
+                {whyParticipate.map((item) => (
+                  <div key={item.title} className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-white/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
+                      <item.icon className="w-4 h-4 text-[#E8A33D]" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold">{item.title}</p>
+                      <p className="text-white/60 text-xs mt-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <button className="mt-6 border border-[#E8A33D] text-[#E8A33D] text-sm font-medium py-2.5 rounded-md hover:bg-[#E8A33D]/10">
+                How It Works
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Exact padding scale matching your correct About Page banner context */}
-        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-12">
-          <p className="text-sm font-bold tracking-[0.2em] text-[#E8A33D] uppercase">
-            CREPNET Surveys
-          </p>
-          <h1 className="max-w-2xl text-[clamp(20px,2.5vw,36px)] font-bold leading-[1.3] text-white">
-            Surveys &amp; Results.
-            <br />
-            Data-Driven Insights.
-            <br />
-            Shaping Strategic Decisions.
-          </h1>
-          <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
-            CREPNET Surveys bring the real estate community together to capture insights on trends, challenges, and opportunities shaping our industry.
-          </p>
-        </div>
-      </section>
+        {/* Latest Survey Results */}
+        <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-3">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+              <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">Latest Survey Results</h2>
+              <a href="#" className="text-blue-600 text-sm font-medium">
+                View All Results →
+              </a>
+            </div>
 
-      {/* Browse Surveys + Why Participate */}
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Featured Report Card */}
+              <div className="md:col-span-1 border border-gray-200 rounded-lg bg-white overflow-hidden flex flex-col">
+                <div className="relative h-40">
+                  <img
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=300&fit=crop"
+                    alt="City skyline at dusk"
+                    className="w-full h-full object-cover"
+                  />
+                  <span className="absolute top-3 left-3 bg-purple-600 text-white text-xs font-semibold px-2.5 py-1 rounded">
+                    FEATURED REPORT
+                  </span>
+                </div>
+                <div className="p-4 flex-1 flex flex-col">
+                  <h3 className="font-semibold text-gray-900 leading-snug">
+                    India Office Market Outlook Survey Results 2024
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-2">
+                    A comprehensive analysis of current market sentiment, key
+                    trends, and future outlook.
+                  </p>
+
+                  <div className="mt-4 text-xs text-gray-500 space-y-1">
+                    <p className="font-medium text-gray-700">Survey Period</p>
+                    <p>Apr 15 – May 15, 2024</p>
+                    <p className="font-medium text-gray-700 pt-1">Participants</p>
+                    <p>1,250+ Professionals</p>
+                  </div>
+
+                  <button className="mt-4 border border-gray-300 text-gray-800 text-sm font-medium py-2.5 rounded-md hover:bg-gray-50 flex items-center justify-center gap-2">
+                    Download Report
+                    <Download className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Results Detail */}
+              <div className="md:col-span-2 flex flex-col">
+                <div className="flex items-center gap-6 border-b border-gray-200 mb-5 overflow-x-auto">
+                  {resultTabs.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveResultTab(tab)}
+                      className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
+                        activeResultTab === tab
+                          ? "border-[#E8A33D] text-[#E8A33D]"
+                          : "border-transparent text-gray-500 hover:text-gray-800"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Highlights grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                  {highlights.map((h) => (
+                    <div key={h.description} className="border border-gray-200 rounded-lg p-4 bg-white">
+                      <p className="text-2xl font-bold text-gray-900">{h.value}</p>
+                      <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+                        {h.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Charts */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="border border-gray-200 rounded-lg p-4 bg-white">
+                    <h4 className="font-semibold text-gray-900">Market Outlook for 2024</h4>
+                    <p className="text-xs text-gray-500 mt-1 mb-4">
+                      How do you see the overall office market performance in 2024?
+                    </p>
+                    <Donut data={marketOutlook} />
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4 bg-white">
+                    <h4 className="font-semibold text-gray-900">Top Factors Influencing Office Demand</h4>
+                    <p className="text-xs text-gray-500 mt-1 mb-4">
+                      Select the top 3 factors influencing office space demand.
+                    </p>
+                    <BarChartHorizontal data={topFactors} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Filters Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white border border-gray-200 rounded-lg p-5 sticky top-6">
+              <h3 className="font-serif text-lg font-normal text-gray-900 mb-4 tracking-wide">Filters</h3>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "Survey",
+                    key: "survey",
+                    options: [
+                      "All Surveys",
+                      "India Office Market Outlook Survey 2024",
+                      "Retail Real Estate Trends Survey 2024",
+                      "Sustainability in Real Estate Survey 2024",
+                      "Logistics & Industrial Real Estate Survey 2023",
+                    ],
+                  },
+                  {
+                    label: "Year",
+                    key: "year",
+                    options: ["All Years", "2024", "2023", "2022"],
+                  },
+                  {
+                    label: "City",
+                    key: "city",
+                    options: ["All Cities", "Mumbai", "Bengaluru", "Delhi NCR", "Pune", "Hyderabad"],
+                  },
+                  {
+                    label: "Segment",
+                    key: "segment",
+                    options: ["All Segments", "Developer", "Consultant", "Broker", "Investor", "Architect", "Retailer"],
+                  },
+                ].map(({ label, key, options }) => (
+                  <div key={key}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>
+                    <div className="relative">
+                      <select
+                        value={filters[key]}
+                        onChange={(e) => updateFilter(key, e.target.value)}
+                        className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
+                      >
+                        {options.map((o) => <option key={o}>{o}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <button className="w-full bg-[#0B1F3A] text-white text-sm font-medium py-2.5 rounded-md mt-5 hover:bg-[#0B1F3A]/90">
+                Apply Filters
+              </button>
+              <button
+                onClick={resetFilters}
+                className="w-full text-blue-600 text-sm font-medium mt-3 text-center"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Insights From Our Community */}
+        <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-            <h2 className="text-xl font-bold text-gray-900">Browse Surveys</h2>
+            <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">Insights From Our Community</h2>
             <a href="#" className="text-blue-600 text-sm font-medium">
-              View All Surveys →
+              View All Insights →
             </a>
           </div>
 
-          <div className="flex items-center gap-6 border-b border-gray-200 mb-6 overflow-x-auto">
-            {surveyTabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveSurveyTab(tab)}
-                className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
-                  activeSurveyTab === tab
-                    ? "border-[#E8A33D] text-[#E8A33D]"
-                    : "border-transparent text-gray-500 hover:text-gray-800"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
           <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {surveys.map((survey) => (
-                <SurveyCard key={survey.title} survey={survey} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {testimonials.map((t) => (
+                <div key={t.name} className="bg-white border border-gray-200 rounded-lg p-5 flex flex-col">
+                  <Quote className="w-6 h-6 text-gray-300 mb-3" />
+                  <p className="text-sm text-gray-700 flex-1 leading-relaxed">{t.quote}</p>
+                  <div className="flex items-center gap-3 mt-5">
+                    <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+                      <p className="text-xs text-gray-500">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
 
@@ -404,280 +667,60 @@ export default function SurveysPage() {
               <ChevronRight className="w-4 h-4 text-gray-600" />
             </button>
           </div>
-        </div>
 
-        {/* Why Participate */}
-        <div className="lg:col-span-1">
-          <div className="bg-[#0B1F3A] rounded-xl p-6 h-full flex flex-col">
-            <h3 className="text-white font-bold text-lg mb-5">Why Participate?</h3>
-
-            <div className="space-y-5 flex-1">
-              {whyParticipate.map((item) => (
-                <div key={item.title} className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-white/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                    <item.icon className="w-4 h-4 text-[#E8A33D]" />
-                  </div>
-                  <div>
-                    <p className="text-white text-sm font-semibold">{item.title}</p>
-                    <p className="text-white/60 text-xs mt-1 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <button className="mt-6 border border-[#E8A33D] text-[#E8A33D] text-sm font-medium py-2.5 rounded-md hover:bg-[#E8A33D]/10">
-              How It Works
-            </button>
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {[0, 1, 2, 3].map((dot) => (
+              <button
+                key={dot}
+                onClick={() => setActiveDot(dot)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  activeDot === dot ? "bg-[#E8A33D]" : "bg-gray-300"
+                }`}
+              />
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Latest Survey Results */}
-      <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-3">
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-            <h2 className="text-xl font-bold text-gray-900">Latest Survey Results</h2>
-            <a href="#" className="text-blue-600 text-sm font-medium">
-              View All Results →
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Featured Report Card */}
-            <div className="md:col-span-1 border border-gray-200 rounded-lg bg-white overflow-hidden flex flex-col">
-              <div className="relative h-40">
-                <img
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=300&fit=crop"
-                  alt="City skyline at dusk"
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute top-3 left-3 bg-purple-600 text-white text-xs font-semibold px-2.5 py-1 rounded">
-                  FEATURED REPORT
-                </span>
+        {/* Suggest a Topic Banner */}
+        <div className="max-w-7xl mx-auto px-6 pb-10">
+          <div className="bg-[#0B1F3A] rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
+                <Lightbulb className="w-6 h-6 text-[#E8A33D]" />
               </div>
-              <div className="p-4 flex-1 flex flex-col">
-                <h3 className="font-semibold text-gray-900 leading-snug">
-                  India Office Market Outlook Survey Results 2024
-                </h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  A comprehensive analysis of current market sentiment, key
-                  trends, and future outlook.
+              <div>
+                <h3 className="font-serif text-white font-normal tracking-wide">Have a Topic in Mind?</h3>
+                <p className="text-white/70 text-sm mt-1">
+                  Suggest a survey topic you&apos;d like to see covered in our upcoming reports.
                 </p>
-
-                <div className="mt-4 text-xs text-gray-500 space-y-1">
-                  <p className="font-medium text-gray-700">Survey Period</p>
-                  <p>Apr 15 – May 15, 2024</p>
-                  <p className="font-medium text-gray-700 pt-1">Participants</p>
-                  <p>1,250+ Professionals</p>
-                </div>
-
-                <button className="mt-4 border border-gray-300 text-gray-800 text-sm font-medium py-2.5 rounded-md hover:bg-gray-50 flex items-center justify-center gap-2">
-                  Download Report
-                  <Download className="w-4 h-4" />
-                </button>
               </div>
             </div>
-
-            {/* Results Detail */}
-            <div className="md:col-span-2 flex flex-col">
-              <div className="flex items-center gap-6 border-b border-gray-200 mb-5 overflow-x-auto">
-                {resultTabs.map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveResultTab(tab)}
-                    className={`pb-3 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
-                      activeResultTab === tab
-                        ? "border-[#E8A33D] text-[#E8A33D]"
-                        : "border-transparent text-gray-500 hover:text-gray-800"
-                    }`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-              </div>
-
-              {/* Highlights grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                {highlights.map((h) => (
-                  <div key={h.description} className="border border-gray-200 rounded-lg p-4 bg-white">
-                    <p className="text-2xl font-bold text-gray-900">{h.value}</p>
-                    <p className="text-xs text-gray-500 mt-2 leading-relaxed">
-                      {h.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Charts */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="border border-gray-200 rounded-lg p-4 bg-white">
-                  <h4 className="font-semibold text-gray-900">Market Outlook for 2024</h4>
-                  <p className="text-xs text-gray-500 mt-1 mb-4">
-                    How do you see the overall office market performance in 2024?
-                  </p>
-                  <Donut data={marketOutlook} />
-                </div>
-
-                <div className="border border-gray-200 rounded-lg p-4 bg-white">
-                  <h4 className="font-semibold text-gray-900">Top Factors Influencing Office Demand</h4>
-                  <p className="text-xs text-gray-500 mt-1 mb-4">
-                    Select the top 3 factors influencing office space demand.
-                  </p>
-                  <BarChartHorizontal data={topFactors} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Filters Sidebar */}
-        <div className="lg:col-span-1">
-          <div className="bg-white border border-gray-200 rounded-lg p-5 sticky top-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Filters</h3>
-
-            <div className="space-y-4">
-              {[
-                {
-                  label: "Survey",
-                  key: "survey",
-                  options: [
-                    "All Surveys",
-                    "India Office Market Outlook Survey 2024",
-                    "Retail Real Estate Trends Survey 2024",
-                    "Sustainability in Real Estate Survey 2024",
-                    "Logistics & Industrial Real Estate Survey 2023",
-                  ],
-                },
-                {
-                  label: "Year",
-                  key: "year",
-                  options: ["All Years", "2024", "2023", "2022"],
-                },
-                {
-                  label: "City",
-                  key: "city",
-                  options: ["All Cities", "Mumbai", "Bengaluru", "Delhi NCR", "Pune", "Hyderabad"],
-                },
-                {
-                  label: "Segment",
-                  key: "segment",
-                  options: ["All Segments", "Developer", "Consultant", "Broker", "Investor", "Architect", "Retailer"],
-                },
-              ].map(({ label, key, options }) => (
-                <div key={key}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>
-                  <div className="relative">
-                    <select
-                      value={filters[key]}
-                      onChange={(e) => updateFilter(key, e.target.value)}
-                      className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                    >
-                      {options.map((o) => <option key={o}>{o}</option>)}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <button className="w-full bg-[#0B1F3A] text-white text-sm font-medium py-2.5 rounded-md mt-5 hover:bg-[#0B1F3A]/90">
-              Apply Filters
-            </button>
-            <button
-              onClick={resetFilters}
-              className="w-full text-blue-600 text-sm font-medium mt-3 text-center"
-            >
-              Reset
+            <button className="bg-[#E8A33D] text-white font-medium px-6 py-2.5 rounded-md hover:bg-[#E8A33D] whitespace-nowrap">
+              Suggest a Topic
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Insights From Our Community */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-          <h2 className="text-xl font-bold text-gray-900">Insights From Our Community</h2>
-          <a href="#" className="text-blue-600 text-sm font-medium">
-            View All Insights →
-          </a>
-        </div>
-
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white border border-gray-200 rounded-lg p-5 flex flex-col">
-                <Quote className="w-6 h-6 text-gray-300 mb-3" />
-                <p className="text-sm text-gray-700 flex-1 leading-relaxed">{t.quote}</p>
-                <div className="flex items-center gap-3 mt-5">
-                  <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{t.name}</p>
-                    <p className="text-xs text-gray-500">{t.role}</p>
-                  </div>
+        {/* Trust Points */}
+        <div className="max-w-7xl mx-auto px-6 pb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-gray-200">
+            {trustPoints.map((point) => (
+              <div key={point.title} className="flex items-start gap-3">
+                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
+                  <point.icon className="w-5 h-5 text-[#0B1F3A]" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">{point.title}</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">{point.description}</p>
                 </div>
               </div>
             ))}
           </div>
-
-          <button className="hidden lg:flex absolute -left-5 top-1/3 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full items-center justify-center shadow-sm hover:bg-gray-50">
-            <ChevronLeft className="w-4 h-4 text-gray-600" />
-          </button>
-          <button className="hidden lg:flex absolute -right-5 top-1/3 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full items-center justify-center shadow-sm hover:bg-gray-50">
-            <ChevronRight className="w-4 h-4 text-gray-600" />
-          </button>
-        </div>
-
-        <div className="flex items-center justify-center gap-2 mt-6">
-          {[0, 1, 2, 3].map((dot) => (
-            <button
-              key={dot}
-              onClick={() => setActiveDot(dot)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                activeDot === dot ? "bg-[#E8A33D]" : "bg-gray-300"
-              }`}
-            />
-          ))}
         </div>
       </div>
 
-      {/* Suggest a Topic Banner */}
-      <div className="max-w-7xl mx-auto px-6 pb-10">
-        <div className="bg-[#0B1F3A] rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-              <Lightbulb className="w-6 h-6 text-[#E8A33D]" />
-            </div>
-            <div>
-              <h3 className="text-white font-semibold">Have a Topic in Mind?</h3>
-              <p className="text-white/70 text-sm mt-1">
-                Suggest a survey topic you&apos;d like to see covered in our upcoming reports.
-              </p>
-            </div>
-          </div>
-          <button className="bg-[#E8A33D] text-white font-medium px-6 py-2.5 rounded-md hover:bg-[#E8A33D] whitespace-nowrap">
-            Suggest a Topic
-          </button>
-        </div>
-      </div>
-
-      {/* Trust Points */}
-      <div className="max-w-7xl mx-auto px-6 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-gray-200">
-          {trustPoints.map((point) => (
-            <div key={point.title} className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
-                <point.icon className="w-5 h-5 text-[#0B1F3A]" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-900">{point.title}</p>
-                <p className="text-xs text-gray-500 mt-1 leading-relaxed">{point.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Luxury CTA Integrated Upper of Footer */}
+      <LuxuryCTA />
     </div>
   );
 }

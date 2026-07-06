@@ -20,6 +20,7 @@ import {
   ShieldCheck,
   Cpu,
   Zap,
+  ArrowRight, // Imported the Arrow icon for points
 } from "lucide-react";
 
 // Animated Counter Component (Clean JavaScript Version)
@@ -165,6 +166,8 @@ const founders = [
   },
 ];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 export default function AboutPage() {
   const [selectedFounder, setSelectedFounder] = useState(null);
 
@@ -185,7 +188,10 @@ export default function AboutPage() {
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
             ABOUT REPC
           </p>
-          <h1 className="max-w-2xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.3] text-white">
+          <h1 
+            style={headingFontClass}
+            className="max-w-2xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.3] text-white"
+          >
             Building Connections.
             <br />
             Creating Opportunities.
@@ -205,7 +211,10 @@ export default function AboutPage() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
           {/* Left Column: Story Content */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+            <h2 
+              style={headingFontClass}
+              className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+            >
               Our Story
             </h2>
             <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
@@ -221,7 +230,10 @@ export default function AboutPage() {
 
           {/* Right Column: Key Facts & Figures Cards */}
           <div>
-            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] mb-4 lg:text-left text-center">
+            <h2 
+              style={headingFontClass}
+              className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] mb-4 lg:text-left text-center"
+            >
               Key Facts and Figures
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -245,10 +257,13 @@ export default function AboutPage() {
       </section>
 
       {/* 3. People Behind REPC Section */}
-      <section className="bg-slate-50 py-8">
+      {/* <section className="bg-slate-50 py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+            <h2 
+              style={headingFontClass}
+              className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+            >
               The People Behind REPC
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-slate-600 text-sm">
@@ -274,7 +289,10 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-[16px] font-bold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200">
+                  <h3 
+                    style={headingFontClass}
+                    className="text-[18px] font-bold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200"
+                  >
                     {f.name}
                   </h3>
                   <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1">
@@ -288,7 +306,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Pop-up Modal Design */}
       {selectedFounder && (
@@ -317,7 +335,12 @@ export default function AboutPage() {
               </div>
               
               <div className="relative z-10">
-                <h3 className="text-xl font-bold text-white">{selectedFounder.name}</h3>
+                <h3 
+                  style={headingFontClass}
+                  className="text-xl font-bold text-white"
+                >
+                  {selectedFounder.name}
+                </h3>
                 <div className="mt-2 h-[2px] w-10 bg-[#E8A33D]" />
                 <p className="mt-2 text-xs font-medium text-slate-300 tracking-wide leading-relaxed">{selectedFounder.role}</p>
               </div>
@@ -325,7 +348,12 @@ export default function AboutPage() {
 
             <div className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto custom-scrollbar">
               <p className="text-xs uppercase tracking-widest text-[#E8A33D] font-bold">Leadership Profile</p>
-              <h4 className="text-base font-bold text-[#0B1F3A] mt-1">Professional Journey</h4>
+              <h4 
+                style={headingFontClass}
+                className="text-lg font-bold text-[#0B1F3A] mt-1"
+              >
+                Professional Journey
+              </h4>
               <p className="mt-4 text-xs md:text-sm leading-relaxed text-slate-600 whitespace-pre-line font-medium">
                 {selectedFounder.bio}
               </p>
@@ -341,7 +369,10 @@ export default function AboutPage() {
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0B1F3A]">
               <Target className="h-5 w-5 text-white" />
             </div>
-            <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+            <h2 
+              style={headingFontClass}
+              className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+            >
               Our Mission
             </h2>
             <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
@@ -357,7 +388,10 @@ export default function AboutPage() {
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8A33D]">
               <Eye className="h-5 w-5 text-white" />
             </div>
-            <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+            <h2 
+              style={headingFontClass}
+              className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+            >
               Our Vision
             </h2>
             <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
@@ -373,7 +407,10 @@ export default function AboutPage() {
       {/* 5. Our Values Section */}
       <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+          <h2 
+            style={headingFontClass}
+            className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+          >
             Our Values
           </h2>
           <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
@@ -385,7 +422,12 @@ export default function AboutPage() {
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
                 <Icon className="h-5 w-5 text-[#0B1F3A]" />
               </div>
-              <h3 className="mt-2 font-bold text-[#0B1F3A] text-sm">{title}</h3>
+              <h3 
+                style={headingFontClass}
+                className="mt-2 font-bold text-[#0B1F3A] text-sm"
+              >
+                {title}
+              </h3>
               <p className="mt-1 text-xs leading-relaxed text-slate-600">
                 {desc}
               </p>
@@ -397,7 +439,10 @@ export default function AboutPage() {
       {/* 6. Our Networking Philosophy Section */}
       <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 text-center">
         <div className="mb-6">
-          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]">
+          <h2 
+            style={headingFontClass}
+            className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
+          >
             Our Networking Philosophy
           </h2>
           <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
@@ -412,7 +457,12 @@ export default function AboutPage() {
               <div className="flex h-10 w-10 items-center justify-center text-[#E8A33D] mb-2">
                 <Icon className="h-7 w-7 stroke-[1.5]" />
               </div>
-              <h3 className="text-base font-bold text-[#0B1F3A] mb-1">{title}</h3>
+              <h3 
+                style={headingFontClass}
+                className="text-base font-bold text-[#0B1F3A] mb-1"
+              >
+                {title}
+              </h3>
               <p className="text-xs md:text-sm leading-relaxed text-slate-500 font-medium max-w-xs">
                 {desc}
               </p>
@@ -437,8 +487,10 @@ export default function AboutPage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/40">
                 <Users className="h-5 w-5 text-white" />
               </div>
-              {/* Overridden layout brand header to match theme sizes */}
-              <h2 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#E8A33D]">
+              <h2 
+                style={headingFontClass}
+                className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#E8A33D]"
+              >
                 The Power of Networking
               </h2>
               <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
@@ -468,24 +520,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 8. Flagship Membership Benefit Section */}
-      <section className="mx-auto max-w-6xl px-6 py-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] leading-tight">
-            NETWORKING IS THE SIGNATURE
-            <br />
-            EXPERIENCE AND FLAGSHIP BENEFIT OF
-            <br />
-            WLCC MEMBERSHIP
+      {/* 8. Flagship Membership Benefit Section — Arrow icons added to points */}
+      <section className="mx-auto max-w-7xl px-6 py-12 text-center">
+        <div className="max-w-5xl mx-auto">
+          <h2 
+            style={headingFontClass}
+            className="text-xl md:text-2xl lg:text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] leading-tight"
+          >
+            NETWORKING IS THE SIGNATURE EXPERIENCE AND FLAGSHIP BENEFIT OF WLCC MEMBERSHIP
           </h2>
         </div>
         
-        <div className="mt-6 space-y-4 max-w-3xl mx-auto text-slate-600 font-medium text-sm md:text-[15px] leading-relaxed tracking-wide">
-          <p>
-            At the World Luxury Chamber of Commerce, networking is not about volume – it is about access, relevance, and trust.
+        <div className="mt-8 space-y-4 max-w-7xl mx-auto flex flex-col items-center text-slate-600 font-medium text-xs md:text-sm lg:text-[15px] leading-relaxed tracking-wide">
+          <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
+            <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
+            <span>At the World Luxury Chamber of Commerce, networking is not about volume – it is about access, relevance, and trust.</span>
           </p>
-          <p>
-            Every connection is intentional. Every interaction is aligned with the values of excellence, discretion, and prestige.
+          <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
+            <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
+            <span>Every connection is intentional. Every interaction is aligned with the values of excellence, discretion, and prestige.</span>
           </p>
         </div>
       </section>
@@ -498,7 +551,10 @@ export default function AboutPage() {
               <Users className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white uppercase tracking-wide">
+              <h2 
+                style={headingFontClass}
+                className="text-xl font-bold text-white uppercase tracking-wide"
+              >
                 Be a Part of Something Bigger
               </h2>
               <p className="mt-0.5 text-xs text-slate-300">
