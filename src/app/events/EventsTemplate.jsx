@@ -67,6 +67,8 @@ const CAROUSEL_SLIDES = [
   }
 ];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 function HeroBanner({ config }) {
   return (
     <section className="relative w-full overflow-hidden bg-[#0B1F3A]">
@@ -87,7 +89,7 @@ function HeroBanner({ config }) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-16 text-left">
-        <h1 className="text-white font-bold leading-[1.3] mb-3 text-[clamp(20px,2.5vw,36px)]">
+        <h1 style={headingFontClass} className="text-white font-bold leading-[1.3] mb-3 text-[clamp(20px,2.5vw,36px)]">
           {config.title}
         </h1>
         <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
@@ -225,7 +227,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
       <div className="grid lg:grid-cols-[1fr_360px] gap-8">
         <div className="border shadow-md p-4 rounded border-[#fdfdfd] text-left">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-[#0B1F3A]">
+            <h2 style={headingFontClass} className="text-xl font-bold text-[#0B1F3A]">
               {timeFilter === "upcoming" ? "Upcoming Events" : "Past Events"}
             </h2>
             <span className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-semibold">
@@ -257,7 +259,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
                             {ev.month || ev.date.split(" ")[1] || "EVENT"}
                           </p>
                         </div>
-                        <h3 className="text-sm font-bold text-[#0B1F3A] leading-tight">{ev.title}</h3>
+                        <h3 style={headingFontClass} className="text-sm font-bold text-[#0B1F3A] leading-tight">{ev.title}</h3>
                       </div>
                       <div className="flex items-start gap-1 mb-2">
                         <Icons.MapPin size={11} className="text-gray-400 mt-0.5 shrink-0" />
@@ -281,7 +283,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
           )}
 
           <div className="mt-8 bg-[#f7f3f0] rounded-2xl border border-gray-150 p-6">
-            <h3 className="text-base font-bold text-[#0B1F3A] mb-5">Why Attend REPC Events?</h3>
+            <h3 style={headingFontClass} className="text-base font-bold text-[#0B1F3A] mb-5">Why Attend REPC Events?</h3>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               {WHY_ATTEND.map((w, i) => {
                 const IconComponent = Icons[w.iconName] || Icons.Star;
@@ -301,7 +303,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
         <div className="flex flex-col gap-6 text-left">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-bold text-[#0B1F3A]">Past Event Highlights</h2>
+              <h2 style={headingFontClass} className="text-base font-bold text-[#0B1F3A]">Past Event Highlights</h2>
               <Link href="#" className="text-[#326695] text-xs font-semibold flex items-center gap-1 hover:underline">
                 View Gallery <Icons.ArrowRight size={12} />
               </Link>
@@ -335,7 +337,7 @@ function MainContent({ activeCategory, locationFilter, timeFilter }) {
           <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
-                <h3 className="text-base font-bold text-[#0B1F3A] mb-1">Stay Updated</h3>
+                <h3 style={headingFontClass} className="text-base font-bold text-[#0B1F3A] mb-1">Stay Updated</h3>
                 <p className="text-gray-500 text-[12px] mb-4 leading-relaxed">
                   Subscribe to get the latest updates on upcoming events, conference highlights and industry sessions.
                 </p>
@@ -374,7 +376,7 @@ function PastEventsSection({ activeCategory, locationFilter }) {
     <section className="border-t border-gray-100 bg-[#0B1F3A] py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 text-left">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">Past Events &amp; Conferences</h2>
+          <h2 style={headingFontClass} className="text-xl font-bold text-white">Past Events &amp; Conferences</h2>
           <Link href="#" className="text-white text-sm font-semibold flex items-center gap-1 hover:underline">
             Explore All Past Events <Icons.ArrowRight size={14} />
           </Link>
@@ -389,7 +391,7 @@ function PastEventsSection({ activeCategory, locationFilter }) {
                 </div>
                 <div className="py-2 pr-3 flex flex-col justify-center">
                   <p className="text-[10px] font-bold text-[#E8A33D] uppercase tracking-wider mb-0.5">REPC</p>
-                  <h4 className="text-white font-bold text-xs leading-snug mb-1.5 line-clamp-2">{ev.title}</h4>
+                  <h4 style={headingFontClass} className="text-white font-bold text-xs leading-snug mb-1.5 line-clamp-2">{ev.title}</h4>
                   <div className="flex items-center gap-1 text-gray-400 text-[10px] mb-0.5">
                     <Icons.Calendar size={10} />
                     <span>{ev.date}</span>
@@ -420,7 +422,6 @@ function FeaturedCarousel() {
 
   return (
     <section className="w-full pt-6 pb-0">
-      {/* Height has been upgraded to a true large immersive h-[550px] expanding into full viewports (lg:h-screen) */}
       <div className="relative w-full h-[550px] md:h-[750px] lg:h-screen overflow-hidden bg-[#0B1F3A]">
         {CAROUSEL_SLIDES.map((slide, i) => (
           <div
@@ -434,13 +435,11 @@ function FeaturedCarousel() {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            {/* Deep immersive gradients inspired by image_bad16e.jpg */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/60 via-transparent to-transparent" />
             
-            {/* Text layout framing positioned deep near lower edge layout */}
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 lg:p-24 pb-16 md:pb-24 lg:pb-32 text-left z-20 max-w-7xl mx-auto w-full px-6 lg:px-10">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide mb-4 drop-shadow-md font-semibold">
+              <h2 style={headingFontClass} className="text-3xl md:text-5xl lg:text-6xl text-white tracking-wide mb-4 drop-shadow-md font-semibold">
                 {slide.title}
               </h2>
               <p className="text-gray-200 text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide opacity-90 max-w-3xl drop-shadow-sm font-light">
@@ -450,7 +449,6 @@ function FeaturedCarousel() {
           </div>
         ))}
 
-        {/* Indicators shifted carefully to stay accessible over extreme viewport sizing scales */}
         <div className="absolute bottom-10 left-0 right-0 z-20 mx-auto max-w-7xl w-full px-6 lg:px-10 flex justify-end gap-3">
           {CAROUSEL_SLIDES.map((_, i) => (
             <button
@@ -476,7 +474,7 @@ function HostEventBanner() {
             <Icons.Building2 size={22} strokeWidth={1.5} className="text-[#E8A33D]" />
           </div>
           <div>
-            <h3 className="text-[#0B1F3A] font-bold text-base">Host Your Event with REPC</h3>
+            <h3 style={headingFontClass} className="text-[#0B1F3A] font-bold text-base">Host Your Event with REPC</h3>
             <p className="text-gray-500 text-xs">
               Partner with us to organize impactful events that connect, engage and create lasting value.
             </p>

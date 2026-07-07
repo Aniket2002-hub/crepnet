@@ -387,7 +387,7 @@ export default function SurveysPage() {
 
           <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
-              CREPNET Surveys
+               Surveys
             </p>
             <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
               Surveys &amp; Results.
