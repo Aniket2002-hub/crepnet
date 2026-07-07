@@ -65,6 +65,8 @@ const allArticles = [
 
 const filters = ["All", "Office", "Investments", "Sustainability", "Retail", "GCC", "Policy"];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 function InvestmentHighlights() {
   const [year, setYear] = useState(0);
   const [simulating, setSimulating] = useState(false);
@@ -167,6 +169,9 @@ function InvestmentHighlights() {
     }, 900);
   };
 
+  const borderStyle = { borderColor: "rgba(255,255,255,0.03)" };
+  const graphStyle = { borderColor: "rgba(0,0,0,0.03)" };
+
   const resetSimulation = () => {
     setSimulating(false);
     setYear(0);
@@ -189,7 +194,10 @@ function InvestmentHighlights() {
             
             {/* Left Operational UI Dashboard */}
             <div className="lg:col-span-6 flex flex-col justify-center">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+              <h2 
+                style={headingFontClass}
+                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight"
+              >
                 Land Development Plan.
                 <br />
                 <span className="text-[#e2c77d]">After 5 Years.</span>
@@ -292,7 +300,7 @@ function InvestmentHighlights() {
                 className="w-full rounded-xl p-8 flex flex-col items-center justify-center text-center overflow-hidden relative border min-h-[440px]"
                 style={{
                   background: "#090e17",
-                  borderColor: "rgba(255,255,255,0.03)",
+                  borderColor: borderStyle.borderColor,
                   backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1.2px, transparent 1.2px)",
                   backgroundSize: "24px 24px",
                 }}
@@ -412,7 +420,10 @@ function InvestmentHighlights() {
                 Superior Yield
               </div>
               
-              <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight">
+              <h2 
+                style={headingFontClass}
+                className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight"
+              >
                 Beat Inflation.
                 <br />
                 <span className="text-[#e2c77d]">Build Wealth.</span>
@@ -440,7 +451,7 @@ function InvestmentHighlights() {
             <div className="lg:col-span-6">
               <div 
                 className="bg-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border"
-                style={{ borderColor: "rgba(0,0,0,0.03)" }}
+                style={{ borderColor: graphStyle.borderColor }}
               >
                 <p className="text-[10px] font-bold uppercase tracking-widest text-[#8693a6] mb-8">
                   5-Year Yield Comparison
@@ -502,7 +513,12 @@ export default function ArticlesPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-3xl font-bold mb-2">Articles</h1>
+          <h1 
+            style={headingFontClass}
+            className="text-3xl font-bold mb-2"
+          >
+            Articles
+          </h1>
           <p className="text-gray-300 mb-6 max-w-lg text-sm">
             Curated insights, expert perspectives and in-depth research to keep you informed and ahead in real estate.
           </p>
@@ -536,7 +552,12 @@ export default function ArticlesPage() {
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
-            <h2 className="text-lg font-bold text-gray-900">All Articles</h2>
+            <h2 
+              style={headingFontClass}
+              className="text-lg font-bold text-gray-900"
+            >
+              All Articles
+            </h2>
             <p className="text-gray-500 text-sm mt-0.5">Showing {filtered.length} articles</p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -596,11 +617,11 @@ export default function ArticlesPage() {
       {/* Investment Highlights - Land Development Plan + Yield Comparison */}
       <InvestmentHighlights />
 
-      {/* Knowledge That Empowers - Centered Layout Video Section */}
+      {/* Knowledge That Empowers - Re-engineered to left-aligned container layouts */}
       <section className="relative overflow-hidden w-full min-h-[600px] lg:min-h-[660px]" style={{ background: "#0c1524" }}>
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ filter: "saturate(0.4) brightness(0.65) contrast(1.05)" }}
+          style={{ filter: "saturate(0.4) brightness(0.45) contrast(1.05)" }}
           autoPlay
           loop
           muted
@@ -614,23 +635,26 @@ export default function ArticlesPage() {
         </video>
         <div
           className="absolute inset-0 z-[1]"
-          style={{ background: "rgba(12,21,36,0.3)", mixBlendMode: "multiply" }}
+          style={{ background: "rgba(12,21,36,0.45)", mixBlendMode: "multiply" }}
         />
         <div
           className="absolute inset-0 z-[2]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(12,21,36,0.4) 0%, rgba(12,21,36,0.2) 40%, rgba(12,21,36,0.3) 70%, rgba(12,21,36,0.8) 100%)",
+              "linear-gradient(90deg, rgba(12,21,36,0.85) 0%, rgba(12,21,36,0.6) 40%, rgba(12,21,36,0.2) 100%)",
           }}
         />
         
-        {/* Centered Typography Structure Content Box with Extended Top Spacing */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[600px] lg:min-h-[660px] pb-24 pt-40 lg:pt-48 flex flex-col justify-center items-center text-center">
-          <div className="max-w-2xl px-4">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-5 leading-tight">
+        {/* Swapped flex rules and positioning parameters to left align elements inside container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 min-h-[600px] lg:min-h-[660px] pb-24 pt-40 lg:pt-48 flex flex-col justify-center items-start text-left">
+          <div className="max-w-3xl">
+            <h2 
+              style={headingFontClass}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight text-left"
+            >
               Knowledge That Empowers
             </h2>
-            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-normal opacity-85">
+            <p className="text-gray-200 text-sm sm:text-base leading-relaxed font-normal opacity-90 text-left max-w-2xl">
               Our Committees advance industry knowledge through research papers, articles, and
               strategic analysis to illuminate solutions for the challenges facing today's built
               environment.

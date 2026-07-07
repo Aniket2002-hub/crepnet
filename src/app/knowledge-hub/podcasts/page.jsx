@@ -42,6 +42,8 @@ const podcastsData = [
 
 const podcastFilters = ["All", "Residential", "Data Centres", "Coworking", "Hospitality", "PropTech", "Infrastructure"];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 // ── Shared Investment Highlights Component ─────────────────────────────────────
 function InvestmentHighlights() {
   const [year, setYear] = useState(0);
@@ -167,7 +169,10 @@ function InvestmentHighlights() {
             
             {/* Left Operational UI Dashboard */}
             <div className="lg:col-span-6 flex flex-col justify-center">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+              <h2 
+                style={headingFontClass}
+                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight"
+              >
                 Land Development Plan.
                 <br />
                 <span className="text-[#e2c77d]">After 5 Years.</span>
@@ -390,7 +395,10 @@ function InvestmentHighlights() {
                 Superior Yield
               </div>
               
-              <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight">
+              <h2 
+                style={headingFontClass}
+                className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight"
+              >
                 Beat Inflation.
                 <br />
                 <span className="text-[#e2c77d]">Build Wealth.</span>
@@ -483,7 +491,12 @@ export default function PodcastsPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold mb-2">Podcasts</h1>
+          <h1 
+            style={headingFontClass}
+            className="text-4xl font-bold mb-2"
+          >
+            Podcasts
+          </h1>
           <p className="text-gray-300 mb-6 max-w-lg text-sm">
             In-depth conversations with India's top real estate leaders, investors and innovators across all asset classes.
           </p>
@@ -521,7 +534,12 @@ export default function PodcastsPage() {
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
-            <h2 className="text-xl font-bold text-gray-900">All Podcast Episodes</h2>
+            <h2 
+              style={headingFontClass}
+              className="text-xl font-bold text-gray-900"
+            >
+              All Podcast Episodes
+            </h2>
             <p className="text-gray-500 text-sm mt-0.5">Showing {filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -585,7 +603,7 @@ export default function PodcastsPage() {
                         <rect x="14" y="4" width="4" height="16" rx="1" />
                       </svg>
                     ) : (
-                      <svg className="w-5 h-5 text-gray-800 group-hover:text-white ml-0.5 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-gray-880 group-hover:text-white ml-0.5 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <polygon points="5,3 19,12 5,21" />
                       </svg>
                     )}
@@ -688,11 +706,11 @@ export default function PodcastsPage() {
       {/* Investment Highlights Section */}
       <InvestmentHighlights />
 
-      {/* Knowledge That Empowers - Video Section */}
-      <section className="relative overflow-hidden" style={{ background: "#0d1e35", minHeight: 600 }}>
+      {/* Knowledge That Empowers - Re-engineered to left-aligned container layouts */}
+      <section className="relative overflow-hidden flex items-center justify-start" style={{ background: "#0d1e35", minHeight: 600 }}>
         <video
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: "saturate(0.5) brightness(0.75) contrast(1.05)" }}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ filter: "saturate(0.5) brightness(0.4) contrast(1.05)" }}
           autoPlay
           loop
           muted
@@ -701,15 +719,22 @@ export default function PodcastsPage() {
         >
           <source src="https://assets.mixkit.co/videos/21246/21246-720.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0" style={{ background: "rgba(26,39,68,0.25)", mixBlendMode: "multiply" }} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(13,30,53,0.35) 0%, rgba(13,30,53,0.5) 45%, rgba(13,30,53,0.75) 100%)" }} />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center flex flex-col justify-center" style={{ minHeight: 600 }}>
-          <h2 className="text-white font-bold mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.25 }}>
-            Knowledge That Empowers
-          </h2>
-          <p className="text-gray-200 text-base leading-relaxed max-w-2xl mx-auto mb-8">
-            Our Committees advance industry knowledge through research papers, articles, and strategic analysis to illuminate solutions for the challenges facing today's built environment.
-          </p>
+        <div className="absolute inset-0" style={{ background: "rgba(13,30,53,0.5)", mixBlendMode: "multiply" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(13,30,53,0.85) 0%, rgba(13,30,53,0.6) 45%, rgba(13,30,53,0.1) 100%)" }} />
+        
+        {/* Swapped container node styles to left align elements inside grid context */}
+        <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-16 py-32 flex flex-col justify-center items-start text-left" style={{ minHeight: 600 }}>
+          <div className="max-w-3xl">
+            <h2 
+              style={{ ...headingFontClass, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.25 }}
+              className="text-white font-bold mb-6 text-left"
+            >
+              Knowledge That Empowers
+            </h2>
+            <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left max-w-2xl">
+              Our Committees advance industry knowledge through research papers, articles, and strategic analysis to illuminate solutions for the challenges facing today's built environment.
+            </p>
+          </div>
         </div>
       </section>
     </div>
