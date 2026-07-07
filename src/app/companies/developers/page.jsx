@@ -26,22 +26,34 @@ const DEVELOPMENT_NICHES = [
   {
     icon: Building2,
     title: "Commercial Office Parks",
-    desc: "Grade-A IT parks, Special Economic Zones, and premium high-rise executive offices."
+    desc: "Grade-A IT parks, Special Economic Zones, and premium high-rise executive offices.",
+    gradient: "from-blue-600 to-cyan-500",
+    category: "OFFICE SECTOR",
+    date: "UPDATED 2026"
   },
   {
     icon: HardHat,
     title: "Retail Shopping Centers",
-    desc: "Modern shopping malls, experiential highstreets, and integrated lifestyle hubs."
+    desc: "Modern shopping malls, experiential highstreets, and integrated lifestyle hubs.",
+    gradient: "from-purple-600 to-pink-500",
+    category: "RETAIL EDUCATION",
+    date: "UPDATED 2026"
   },
   {
     icon: TrendingUp,
     title: "Industrial & Logistics Hubs",
-    desc: "Multi-modal transport nodes, cold-chain warehouses, and modern assembly plants."
+    desc: "Multi-modal transport nodes, cold-chain warehouses, and modern assembly plants.",
+    gradient: "from-orange-600 to-yellow-500",
+    category: "INFRASTRUCTURE",
+    date: "UPDATED 2026"
   },
   {
     icon: Globe2,
     title: "Mixed-Use Townships",
-    desc: "Integrated smart cities combining workspaces, residential towers, and green parks."
+    desc: "Integrated smart cities combining workspaces, residential towers, and green parks.",
+    gradient: "from-teal-600 to-emerald-500",
+    category: "TOWNSHIPS",
+    date: "UPDATED 2026"
   }
 ];
 
@@ -49,38 +61,63 @@ const DEVELOPMENT_NICHES = [
 const DEVELOPERS = [
   {
     name: "Prestige Group Developers",
-    ambassador: "Anil Malhotra (President)",
     location: "Bengaluru, Mumbai, Chennai",
     sqft: "120 Million Sq. Ft. Delivered",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
-    desc: "Famous for Prestige Tech Cloud and landmark Grade-A commercial properties in Southern India."
+    desc: "Famous for Prestige Tech Cloud and landmark Grade-A commercial properties in Southern India.",
+    gradient: "from-blue-700 to-indigo-600",
+    category: "COMMERCIAL ASSETS",
+    date: "JULY 2, 2026"
   },
   {
     name: "DLF Limited Builders",
-    ambassador: "Rohan Singhal (Managing Director)",
     location: "Delhi-NCR, Gurugram, Kolkata",
     sqft: "150 Million Sq. Ft. Delivered",
-    img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80",
-    desc: "India's pioneer developer behind DLF CyberCity and cyber-infrastructure corridors."
+    desc: "India's pioneer developer behind DLF CyberCity and cyber-infrastructure corridors.",
+    gradient: "from-purple-700 to-indigo-800",
+    category: "CYBER INFRASTRUCTURE",
+    date: "JULY 2, 2026"
   },
   {
     name: "Embassy Group",
-    ambassador: "Priya Sharma (Head of Strategy)",
     location: "Bengaluru, Pune, Hyderabad",
     sqft: "85 Million Sq. Ft. Delivered",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
-    desc: "Pioneered premium IT park solutions and spearheaded the first commercial REIT launch in India."
+    desc: "Pioneered premium IT park solutions and spearheaded the first commercial REIT launch in India.",
+    gradient: "from-orange-600 to-red-500",
+    category: "REIT PORTFOLIO",
+    date: "JULY 1, 2026"
   }
 ];
 
-// Highlight Photos
 const HIGHLIGHT_PHOTOS = [
-  // "https://images.unsplash.com/photo-1506970180-10ed36158f25?w=500&q=80",
   "https://images.unsplash.com/photo-1511578314322-379afb476865?w=500&q=80",
   "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80",
   "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
-  // "https://images.unsplash.com/photo-1506970180-10ed36158f25?w=500&q=80",
 ];
+
+const CAROUSEL_SLIDES = [
+  {
+    title: "Institutional Access",
+    desc: "Connect directly with decision-makers from sovereign wealth funds, pension funds, family offices, and private equity firms.",
+    img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80"
+  },
+  {
+    title: "Global Leadership Summits",
+    desc: "Engage in highly anticipated panel discussions addressing key shifts in real estate dynamics and asset optimization.",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80"
+  },
+  {
+    title: "C-Suite Networking",
+    desc: "Unlocking cross-border investment corridors and building high-trust partnerships within the CRE industry.",
+    img: "https://images.unsplash.com/photo-1560523160-754a9e25c68f?w=1600&q=80"
+  },
+  {
+    title: "Innovation & Future Tech",
+    desc: "Discover emerging PropTech paradigms and actionable sustainability strategies changing the built environment.",
+    img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1600&q=80"
+  }
+];
+
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
 
 export default function DevelopersPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -93,7 +130,7 @@ export default function DevelopersPage() {
   const nichesRef = useRef(null);
   const developersRef = useRef(null);
   const highlightsRef = useRef(null);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleScroll = (ref, direction) => {
     if (ref.current) {
@@ -109,15 +146,12 @@ export default function DevelopersPage() {
       alert("Please fill in required fields.");
       return;
     }
-    alert(`Thank you, ${fullName}! Your developer directory listing request for "${companyName}" has been received. Our team will review the RERA licensing details.`);
+    alert(`Thank you, ${fullName}! Your developer directory listing request for "${companyName}" has been received.`);
     setFullName("");
     setEmail("");
     setCompanyName("");
     setRera("");
     setModalOpen(false);
-
-
-
   };
 
   return (
@@ -138,13 +172,12 @@ export default function DevelopersPage() {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
-            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c9a84c]/10 rounded-full border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-extrabold tracking-wide uppercase">
                 <Building2 className="h-3.5 w-3.5 fill-current text-[#c9a84c]" />
                 Verified Commercial Developers
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+              <h1 style={headingFontClass} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
                 REPC Developers
               </h1>
               <p className="text-xl sm:text-2xl font-bold text-[#c9a84c] tracking-tight">
@@ -157,25 +190,24 @@ export default function DevelopersPage() {
               {/* Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">120+</h4>
+                  <h4 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-white">120+</h4>
                   <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Developers Listed</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">4,500+</h4>
+                  <h4 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-[#c9a84c]">4,500+</h4>
                   <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Projects Delivered</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white">180M+</h4>
+                  <h4 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-white">180M+</h4>
                   <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Total Sq. Ft. Built</p>
                 </div>
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#c9a84c]">28</h4>
+                  <h4 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-[#c9a84c]">28</h4>
                   <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">States Reached</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Banner Image */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
               <div className="relative group max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
@@ -193,7 +225,7 @@ export default function DevelopersPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-10">
         <div className="bg-white rounded-2xl border border-gray-150 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex-1 space-y-2 max-w-2xl text-left">
-            <h4 className="font-extrabold text-[#0B1F3A] text-lg sm:text-xl">Add Your Developer Profile</h4>
+            <h4 style={headingFontClass} className="font-bold text-[#0B1F3A] text-lg sm:text-xl">Add Your Developer Profile</h4>
             <p className="text-slate-500 text-sm leading-relaxed">
               Ensure your projects, completed sq. ft. statistics, and RERA certifications are visible to international institutional investors and major corporate occupiers.
             </p>
@@ -219,12 +251,11 @@ export default function DevelopersPage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-10">
           <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Development Sectors</h2>
+            <h2 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-[#0B1F3A] tracking-tight">Development Sectors</h2>
           </div>
           <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Builder Segments</span>
         </div>
 
-        {/* Carousel container */}
         <div className="relative">
           <button
             onClick={() => handleScroll(nichesRef, "left")}
@@ -239,32 +270,32 @@ export default function DevelopersPage() {
             <ChevronRight className="h-5 w-5" />
           </button>
 
-          <div className="bg-white border border-gray-150 rounded-2xl shadow-sm overflow-hidden">
-            <div
-              ref={nichesRef}
-              className="flex divide-x divide-gray-150 overflow-x-auto scrollbar-hide scroll-smooth snap-x"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {DEVELOPMENT_NICHES.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 px-6 py-10 flex flex-col items-center text-center snap-start justify-start group"
-                  >
-                    <div className="h-16 w-16 rounded-full border border-slate-200 bg-[#faf6f0] flex items-center justify-center text-[#0B1F3A] group-hover:bg-[#c9a84c]/15 group-hover:text-[#c9a84c] transition-all">
-                      <Icon className="h-6 w-6 stroke-[1.5]" />
-                    </div>
-                    <h3 className="font-extrabold text-[#0B1F3A] text-sm tracking-tight leading-snug mt-6 min-h-[40px] flex items-center justify-center">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-500 text-xs mt-3 leading-relaxed max-w-[200px]">
-                      {item.desc}
-                    </p>
+          <div ref={nichesRef} className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth snap-x" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            {DEVELOPMENT_NICHES.map((item, idx) => (
+              <div
+                key={idx}
+                className="min-w-[300px] sm:min-w-[340px] lg:flex-1 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all snap-start flex flex-col justify-between"
+              >
+                <div className={`bg-gradient-to-r ${item.gradient} p-6 h-32 flex flex-col justify-center relative text-left`}>
+                  <h3 style={headingFontClass} className="text-white font-bold text-lg leading-tight drop-shadow-sm">
+                    {item.title}
+                  </h3>
+                  <div className="absolute right-4 bottom-4 opacity-15 text-white">
+                    <item.icon className="h-12 w-12 stroke-[1.5]" />
                   </div>
-                );
-              })}
-            </div>
+                </div>
+
+                <div className="p-5 flex-1 flex flex-col justify-between bg-slate-50/50 text-left">
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    {item.desc}
+                  </p>
+                  <div className="flex items-center justify-between border-t border-gray-100 pt-3 text-[11px] font-bold tracking-wider">
+                    <span className="text-blue-600 uppercase">{item.category}</span>
+                    <span className="text-gray-400 uppercase">{item.date}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -273,7 +304,7 @@ export default function DevelopersPage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-100">
         <div className="flex justify-between items-end mb-10">
           <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1F3A] tracking-tight">Featured Developers</h2>
+            <h2 style={headingFontClass} className="text-2xl sm:text-3xl font-bold text-[#0B1F3A] tracking-tight">Featured Developers</h2>
           </div>
           <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-wider">Top Vetted Members</span>
         </div>
@@ -292,38 +323,34 @@ export default function DevelopersPage() {
             <ChevronRight className="h-5 w-5" />
           </button>
 
-          <div
-            ref={developersRef}
-            className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide scroll-smooth snap-x"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {DEVELOPERS.map((sp, idx) => (
-              <div
-                key={idx}
-                onClick={() => router.push(`/companies/developers/${encodeURIComponent(sp.name.toLowerCase().replace(/\s+/g, '-'))}`)}
-                className="cursor-pointer min-w-[240px] sm:min-w-[280px] lg:min-w-0 lg:flex-1 bg-white border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 snap-start flex flex-col justify-start group"
+          <div ref={developersRef} className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide scroll-smooth snap-x" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            {DEVELOPERS.map((dev, i) => (
+              <div 
+                key={i} 
+                onClick={() => router.push("#")}
+                className="min-w-[300px] sm:min-w-[340px] bg-white rounded-xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col snap-start cursor-pointer"
               >
-                <div className="h-44 relative overflow-hidden">
-                  <img
-                    src={sp.img}
-                    alt={sp.name}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/5" />
+                <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-6 text-left relative min-h-[110px] flex flex-col justify-center">
+                  <div className="absolute inset-0 bg-black/10" />
+                  <h3 style={headingFontClass} className="text-white font-bold text-base leading-tight relative z-10">
+                    {dev.name}
+                  </h3>
+                  <p className="text-white/80 text-[11px] mt-1 font-medium z-10">{dev.category}</p>
                 </div>
-                <div className="p-4 flex-1 flex flex-col justify-between text-left">
-                  <div>
-                    <span className="inline-block px-2 py-0.5 text-[9px] font-black tracking-wider bg-[#c9a84c] text-white rounded uppercase">
-                      Developer
-                    </span>
-                    <h4 className="font-extrabold text-slate-900 text-sm mt-2.5 group-hover:text-[#0B1F3A] transition-colors leading-tight">
-                      {sp.name}
-                    </h4>
-                    <p className="text-slate-500 text-[10px] font-semibold mt-0.5">{sp.location}</p>
+
+                <div className="p-5 flex flex-col flex-1 text-left justify-between">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{dev.desc}</p>
+                  
+                  <div className="border-t border-gray-100 pt-3 flex flex-col gap-1 text-[11px] text-gray-400 font-medium">
+                    <div className="flex items-center gap-1">
+                      <Calendar size={11} className="text-gray-400" />
+                      <span>{dev.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <MapPin size={11} className="text-gray-400" />
+                      <span>{dev.location}</span>
+                    </div>
                   </div>
-                  <p className="text-[#be7a15] text-[11px] font-bold mt-2.5 leading-snug">
-                    {sp.sqft}
-                  </p>
                 </div>
               </div>
             ))}
@@ -343,7 +370,7 @@ export default function DevelopersPage() {
               <Building2 className="h-8 w-8 text-[#c9a84c]" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">Have Land or Joint Venture Proposals?</h3>
+              <h3 style={headingFontClass} className="text-xl sm:text-2xl font-bold tracking-tight text-white">Have Land or Joint Venture Proposals?</h3>
               <p className="text-slate-350 text-xs sm:text-sm mt-1 max-w-xl">
                 We coordinate developer roundtables letting land alliances present proposals to verified homebuilders and commercial developers.
               </p>
@@ -362,7 +389,7 @@ export default function DevelopersPage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-10">
           <div className="text-left">
-            <h3 className="text-xl font-extrabold text-[#0B1F3A] tracking-tight">Iconic Projects</h3>
+            <h3 style={headingFontClass} className="text-xl font-bold text-[#0B1F3A] tracking-tight">Iconic Projects</h3>
           </div>
           <span className="text-xs font-bold text-slate-400 uppercase">Redefining Urban Spaces</span>
         </div>
@@ -403,7 +430,7 @@ export default function DevelopersPage() {
       <section className="pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6 text-left">
           <div className="shrink-0 max-w-xs">
-            <h4 className="text-[#0B1F3A] font-extrabold text-lg tracking-tight">Developer Network Stats</h4>
+            <h4 style={headingFontClass} className="text-[#0B1F3A] font-bold text-lg tracking-tight">Developer Network Stats</h4>
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4 flex-1 w-full">
@@ -450,6 +477,50 @@ export default function DevelopersPage() {
         </div>
       </section>
 
+      {/* ── FEATURED CAROUSEL ── */}
+      <section className="w-full pt-6 pb-0">
+        <div className="relative w-full h-[550px] md:h-[750px] lg:h-screen overflow-hidden bg-[#0B1F3A]">
+          {CAROUSEL_SLIDES.map((slide, i) => (
+            <div
+              key={i}
+              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+              style={{
+                opacity: i === 0 ? 1 : 0, // Simplified display condition for initial state tracking
+                zIndex: i === 0 ? 10 : 0
+              }}
+            >
+              <img
+                src={slide.img}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/60 via-transparent to-transparent" />
+              
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 lg:p-24 pb-16 md:pb-24 lg:pb-32 text-left z-20 max-w-7xl mx-auto w-full px-6 lg:px-10">
+                <h2 style={headingFontClass} className="text-3xl md:text-5xl lg:text-6xl text-white tracking-wide mb-4 drop-shadow-md font-semibold">
+                  {slide.title}
+                </h2>
+                <p className="text-gray-200 text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide opacity-90 max-w-3xl drop-shadow-sm font-light">
+                  {slide.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <div className="absolute bottom-10 left-0 right-0 z-20 mx-auto max-w-7xl w-full px-6 lg:px-10 flex justify-end gap-3">
+            {CAROUSEL_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  i === 0 ? "w-10 bg-[#E8A33D]" : "w-2.5 bg-white/45"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── LISTING MODAL ── */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -457,7 +528,7 @@ export default function DevelopersPage() {
           
           <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden">
             <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="text-lg font-black text-[#0B1F3A] flex items-center gap-2">
+              <h3 style={headingFontClass} className="text-lg font-bold text-[#0B1F3A] flex items-center gap-2">
                 <Plus className="h-5 w-5 text-[#c9a84c]" /> Add Directory Listing
               </h3>
               <button className="text-slate-400 hover:text-slate-700 p-1 rounded-lg cursor-pointer" onClick={() => setModalOpen(false)}>
