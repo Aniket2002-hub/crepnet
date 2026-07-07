@@ -1246,7 +1246,7 @@ function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, 
 export function InfluentialMindsSection() {
   return (
     <StorySection
-      title="The most influential minds"
+      title="The Most Influential Minds"
       captions={MINDS_CAPTIONS}
       videos={MINDS_VIDEOS}
     />

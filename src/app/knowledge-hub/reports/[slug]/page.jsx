@@ -1,6 +1,8 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-// 1. Replicated your exact data array so all 6 reports pull correctly on click
+// Shared array equipped with detailed section entries and strings matching keys
 const reportsData = [
   {
     id: 1,
@@ -64,6 +66,8 @@ const reportsData = [
   },
 ];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 export default async function ReportDetailPage({ params }) {
   const { slug } = await params;
   
@@ -74,7 +78,7 @@ export default async function ReportDetailPage({ params }) {
   if (!report) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 font-sans">
-        <h1 className="text-xl font-bold text-gray-800 mb-4">Report Not Found</h1>
+        <h1 style={headingFontClass} className="text-xl font-bold text-gray-800 mb-4">Report Not Found</h1>
         <Link href="/knowledge-hub/reports" className="px-5 py-2 bg-[#c9a84c] text-white rounded-lg text-sm">
           Return to Reports
         </Link>
@@ -113,7 +117,10 @@ export default async function ReportDetailPage({ params }) {
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-3">
+          <h1 
+            style={headingFontClass}
+            className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-3"
+          >
             {report.title}
           </h1>
           <p className="text-white/70 max-w-2xl text-sm sm:text-base font-light">
@@ -128,7 +135,10 @@ export default async function ReportDetailPage({ params }) {
           
           {/* Left/Main Column: Abstract and Premium Overview Layout */}
           <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 border-b pb-3 border-gray-100">
+            <h2 
+              style={headingFontClass}
+              className="text-lg font-bold text-gray-900 mb-4 border-b pb-3 border-gray-100"
+            >
               Executive Summary & Market Analysis
             </h2>
             <div className="text-gray-600 space-y-4 text-sm leading-relaxed">
@@ -138,7 +148,7 @@ export default async function ReportDetailPage({ params }) {
               <p>
                 As detailed indicators suggest shifts in institutional funding deployment patterns, specialized assets under this spectrum continue providing strong diversification safeguards for private capital.
               </p>
-              <blockquote className="border-l-4 border-[#c9a84c] bg-amber-50/50 p-4 rounded-r-lg text-gray-700 italic my-6">
+              <blockquote className="border-l-4 border-l-[#c9a84c] bg-amber-50/50 p-4 rounded-r-lg text-gray-700 italic my-6">
                 "Strategic policy integration combined with corridor initiatives under Gati Shakti are structurally shifting valuation paradigms for real assets globally."
               </blockquote>
               <p>
@@ -151,7 +161,10 @@ export default async function ReportDetailPage({ params }) {
           <div className="flex flex-col gap-6">
             {/* Quick Metrics Cards */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">
+              <h3 
+                style={headingFontClass}
+                className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4"
+              >
                 Report Blueprint
               </h3>
               
@@ -188,7 +201,7 @@ export default async function ReportDetailPage({ params }) {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                 </svg>
               </div>
-              <h4 className="text-xs font-bold text-[#c9a84c] uppercase tracking-wide mb-1">Confidential Intelligence</h4>
+              <h4 style={headingFontClass} className="text-xs font-bold text-[#c9a84c] uppercase tracking-wide mb-1">Confidential Intelligence</h4>
               <p className="text-[11px] text-gray-400 leading-normal">
                 All data matrices, visual graphs, and statistical projections are copyrighted resources. Usage inside derivative portfolios requires clear attribute tags.
               </p>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -86,6 +86,8 @@ const relatedArticles = [
   { id: 3, tag: "SUSTAINABILITY", tagColor: "bg-green-600", title: "Sustainability in Real Estate: Building a Greener Tomorrow", date: "May 16, 2024", readTime: "7 min read", img: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&q=80" },
 ];
 
+const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+
 function VerifiedBadge() {
   return (
     <svg className="w-4 h-4 text-blue-500 inline-block ml-0.5" viewBox="0 0 20 20" fill="currentColor">
@@ -150,7 +152,10 @@ export default function ArticleDetailPage() {
           <span className={`inline-block ${article.tagColor} text-white text-[10px] font-bold px-2.5 py-1 rounded tracking-wider mb-4`}>
             {article.tag}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-3 max-w-3xl">
+          <h1 
+            style={headingFontClass}
+            className="text-3xl sm:text-4xl font-bold leading-tight mb-3 max-w-3xl"
+          >
             {article.title}
           </h1>
           <p className="text-gray-300 text-sm mb-4 max-w-xl">{article.excerpt}</p>
@@ -171,7 +176,7 @@ export default function ArticleDetailPage() {
           {/* LEFT: TOC Sticky Sidebar Menu */}
           <aside className="hidden lg:block w-52 flex-shrink-0">
             <div className="sticky top-20">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">On this page</p>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">On this page</p>
               <nav className="space-y-0.5">
                 {article.toc.map((item, idx) => (
                   <button
@@ -209,7 +214,12 @@ export default function ArticleDetailPage() {
             <div className="prose prose-sm max-w-none">
               {visibleSections.map((sec, idx) => (
                 <div key={sec.id} id={sec.id} className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-bold text-gray-900 mb-3">{sec.heading}</h2>
+                  <h2 
+                    style={headingFontClass}
+                    className="text-xl font-bold text-gray-900 mb-3"
+                  >
+                    {sec.heading}
+                  </h2>
                   <p className="text-sm text-gray-700 leading-relaxed">{sec.body}</p>
 
                   {idx === 0 && (
@@ -240,7 +250,7 @@ export default function ArticleDetailPage() {
           {/* RIGHT: Metadata Context Sidebar Widget */}
           <aside className="hidden xl:block w-64 flex-shrink-0 space-y-6">
             <div className="border border-gray-100 rounded-xl p-5 space-y-4 bg-white shadow-sm">
-              <h3 className="font-semibold text-sm text-gray-900">Article Details</h3>
+              <h3 style={headingFontClass} className="font-bold text-sm text-gray-900">Article Details</h3>
               <div>
                 <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Category</p>
                 <span className="inline-block bg-blue-50 text-blue-700 text-xs px-2.5 py-0.5 rounded-full font-medium">{article.category}</span>
