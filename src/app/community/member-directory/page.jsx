@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Search, MapPin, Building2, ChevronDown, BadgeCheck, X, Mail, Phone, Briefcase } from "lucide-react";
-
+import Link from "next/link";
 // ---------------- DATA ----------------
 
 const allMembers = [
@@ -234,38 +234,32 @@ function countBy(items, key) {
 
 function LuxuryCTA() {
   return (
-       <section className="relative w-full overflow-hidden bg-white py-32 md:py-48 ">
-      {/* Background Graphic Box - High visibility overlay layout */}
+    <section className="relative w-full overflow-hidden bg-white py-32 md:py-48 ">
       <div className="absolute inset-0 z-0">
         <img
-          src="/background-img.png" 
+          src="/background-img.png"
           alt="Luxury background texture layout"
           className="h-full w-full object-cover object-center"
         />
-        {/* Soft custom linear layout blending backdrops natively into clean page views */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/5 to-white/95" />
       </div>
 
-      {/* Content Layer */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        {/* Matching high-end brand header system */}
         <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
           Join the Inner Circle of Luxury Leadership
         </h2>
-
-        {/* Subtitle Description */}
         <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
           Experience the prestige of a global luxury leaders’ community.
         </p>
-
-        {/* Call to Action Trigger */}
         <div className="mt-10 md:mt-14">
-          <button
-            type="button"
-            className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
-          >
-            Become a Member
-          </button>
+          <Link href="/join">
+            <button
+              type="button"
+              className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
+            >
+              Become a Member
+            </button>
+          </Link>
         </div>
       </div>
     </section>
@@ -276,27 +270,14 @@ function ProfileModal({ member, onClose, onConnect, isConnected }) {
   if (!member) return null;
 
   return (
-    <div
-      className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"
-        >
+    <div className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
           <X className="w-5 h-5" />
         </button>
 
         <div className="flex items-center gap-4">
-          <img
-            src={member.img}
-            alt={member.name}
-            className="w-16 h-16 rounded-full object-cover"
-          />
+          <img src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover" />
           <div>
             <div className="flex items-center gap-1">
               <h2 className="text-lg font-bold text-gray-900">{member.name}</h2>
@@ -316,39 +297,21 @@ function ProfileModal({ member, onClose, onConnect, isConnected }) {
         <p className="text-sm text-gray-600 mt-4 leading-relaxed">{member.bio}</p>
 
         <div className="mt-4 space-y-2 text-sm text-gray-700">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-gray-400" />
-            {member.location}
-          </div>
-          <div className="flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-gray-400" />
-            {member.experience} experience
-          </div>
-          <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-gray-400" />
-            {member.email}
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4 text-gray-400" />
-            {member.phone}
-          </div>
+          <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-gray-400" />{member.location}</div>
+          <div className="flex items-center gap-2"><Briefcase className="w-4 h-4 text-gray-400" />{member.experience} experience</div>
+          <div className="flex items-center gap-2"><Mail className="w-4 h-4 text-gray-400" />{member.email}</div>
+          <div className="flex items-center gap-2"><Phone className="w-4 h-4 text-gray-400" />{member.phone}</div>
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
-          <button
-            onClick={onClose}
-            className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50"
-          >
+          <button onClick={onClose} className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50">
             Close
           </button>
           <button
             onClick={() => onConnect(member)}
             disabled={isConnected}
-            className={`text-sm font-medium py-2 rounded-md ${
-              isConnected
-                ? "bg-green-50 text-green-700 border border-green-200 cursor-default"
-                : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"
-            }`}
+            className={`text-sm font-medium py-2 rounded-md ${isConnected ? "bg-green-50 text-green-700 border border-green-200 cursor-default" : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"
+              }`}
           >
             {isConnected ? "Request Sent" : "Message"}
           </button>
@@ -360,36 +323,14 @@ function ProfileModal({ member, onClose, onConnect, isConnected }) {
 
 function ConnectModal({ member, onClose, onSent }) {
   const [message, setMessage] = useState("");
-
   if (!member) return null;
-
-  const handleSend = () => {
-    onSent(member.id);
-    onClose();
-  };
-
+  const handleSend = () => { onSent(member.id); onClose(); };
   return (
-    <div
-      className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4"
-      onClick={onClose}
-    >
-      <div
-        className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
+    <div className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><X className="w-5 h-5" /></button>
         <div className="flex items-center gap-4 mb-4">
-          <img
-            src={member.img}
-            alt={member.name}
-            className="w-14 h-14 rounded-full object-cover"
-          />
+          <img src={member.img} alt={member.name} className="w-14 h-14 rounded-full object-cover" />
           <div>
             <div className="flex items-center gap-1">
               <h2 className="text-lg font-bold text-gray-900">{member.name}</h2>
@@ -399,32 +340,11 @@ function ConnectModal({ member, onClose, onSent }) {
             <p className="text-sm text-gray-700">{member.company}</p>
           </div>
         </div>
-
-        <p className="text-sm text-gray-600 mb-3">
-          Send a connection request to {member.name}. Add a short note to introduce yourself.
-        </p>
-
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={4}
-          placeholder={`Hi ${member.name.split(" ")[0]}, I'd like to connect with you on REPC...`}
-          className="w-full border border-gray-300 rounded-md p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30 resize-none"
-        />
-
+        <p className="text-sm text-gray-600 mb-3">Send a connection request to {member.name}. Add a short note.</p>
+        <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={4} placeholder={`Hi ${member.name.split(" ")[0]}...`} className="w-full border border-gray-300 rounded-md p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30 resize-none" />
         <div className="mt-6 grid grid-cols-2 gap-3">
-          <button
-            onClick={onClose}
-            className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSend}
-            className="bg-[#0B1F3A] text-white text-sm font-medium py-2 rounded-md hover:bg-[#0B1F3A]/90"
-          >
-            Send Request
-          </button>
+          <button onClick={onClose} className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50">Cancel</button>
+          <button onClick={handleSend} className="bg-[#0B1F3A] text-white text-sm font-medium py-2 rounded-md hover:bg-[#0B1F3A]/90">Send Request</button>
         </div>
       </div>
     </div>
@@ -435,11 +355,7 @@ function MemberCard({ member, onViewProfile, onConnect, isConnected }) {
   return (
     <div className="border border-gray-200 rounded-lg p-5 bg-white flex flex-col">
       <div className="flex items-start gap-3">
-        <img
-          src={member.img}
-          alt={member.name}
-          className="w-14 h-14 rounded-full object-cover"
-        />
+        <img src={member.img} alt={member.name} className="w-14 h-14 rounded-full object-cover" />
         <div className="flex-1">
           <div className="flex items-center gap-1">
             <h3 className="font-semibold text-gray-900">{member.name}</h3>
@@ -447,37 +363,15 @@ function MemberCard({ member, onViewProfile, onConnect, isConnected }) {
           </div>
           <p className="text-sm text-gray-700 mt-0.5">{member.role}</p>
           <p className="text-sm text-gray-700">{member.company}</p>
-          <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
-            <MapPin className="w-3 h-3" />
-            {member.location}
-          </p>
+          <p className="text-xs text-gray-500 flex items-center gap-1 mt-1"><MapPin className="w-3 h-3" />{member.location}</p>
         </div>
       </div>
-
       <div className="mt-3">
-        <span className={`text-xs font-medium px-2.5 py-1 rounded ${member.tagColor}`}>
-          {member.segment}
-        </span>
+        <span className={`text-xs font-medium px-2.5 py-1 rounded ${member.tagColor}`}>{member.segment}</span>
       </div>
-
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <button
-          onClick={() => onViewProfile(member)}
-          className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50"
-        >
-          View Profile
-        </button>
-        <button
-          onClick={() => onConnect(member)}
-          disabled={isConnected}
-          className={`text-sm font-medium py-2 rounded-md ${
-            isConnected
-              ? "bg-green-50 text-green-700 border border-green-200 cursor-default"
-              : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"
-          }`}
-        >
-          {isConnected ? "Request Sent" : "Message"}
-        </button>
+        <button onClick={() => onViewProfile(member)} className="border border-gray-300 text-gray-800 text-sm font-medium py-2 rounded-md hover:bg-gray-50">View Profile</button>
+        <button onClick={() => onConnect(member)} disabled={isConnected} className={`text-sm font-medium py-2 rounded-md ${isConnected ? "bg-green-50 text-green-700 border border-green-200 cursor-default" : "bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90"}`}>{isConnected ? "Request Sent" : "Message"}</button>
       </div>
     </div>
   );
@@ -487,40 +381,22 @@ function CheckboxFilterGroup({ title, items, counts, selected, onToggle, searcha
   return (
     <div className="py-4 border-b border-gray-200">
       <h4 className="font-serif text-gray-900 font-normal tracking-wide mb-3">{title}</h4>
-
       {searchable && (
         <div className="relative mb-3">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder={`Search ${title.toLowerCase()}...`}
-            className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-          />
+          <input type="text" value={search} onChange={(e) => onSearchChange(e.target.value)} placeholder={`Search ${title.toLowerCase()}...`} className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2 text-sm focus:outline-none" />
         </div>
       )}
-
       <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
-        {items
-          .filter((item) => !search || item.toLowerCase().includes(search.toLowerCase()))
-          .map((item) => (
-            <label
-              key={item}
-              className="flex items-center justify-between text-sm text-gray-700 cursor-pointer"
-            >
-              <span className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={selected.includes(item)}
-                  onChange={() => onToggle(item)}
-                  className="w-4 h-4 rounded border-gray-300 text-[#0B1F3A] focus:ring-[#0B1F3A]"
-                />
-                {item}
-              </span>
-              <span className="text-gray-400">{counts[item] || 0}</span>
-            </label>
-          ))}
+        {items.filter((item) => !search || item.toLowerCase().includes(search.toLowerCase())).map((item) => (
+          <label key={item} className="flex items-center justify-between text-sm text-gray-700 cursor-pointer">
+            <span className="flex items-center gap-2">
+              <input type="checkbox" checked={selected.includes(item)} onChange={() => onToggle(item)} className="w-4 h-4 rounded border-gray-300 text-[#0B1F3A]" />
+              {item}
+            </span>
+            <span className="text-gray-400">{counts[item] || 0}</span>
+          </label>
+        ))}
       </div>
     </div>
   );
@@ -534,18 +410,11 @@ export default function MemberDirectory() {
   const [searchCity, setSearchCity] = useState("");
   const [searchSegment, setSearchSegment] = useState("");
 
-  const [appliedSearch, setAppliedSearch] = useState({
-    name: "",
-    company: "",
-    city: "",
-    segment: "",
-  });
-
+  const [appliedSearch, setAppliedSearch] = useState({ name: "", company: "", city: "", segment: "" });
   const [selectedCities, setSelectedCities] = useState([]);
   const [selectedSegments, setSelectedSegments] = useState([]);
   const [selectedExperience, setSelectedExperience] = useState([]);
   const [citySidebarSearch, setCitySidebarSearch] = useState("");
-
   const [sortBy, setSortBy] = useState("Relevance");
 
   const [activeMember, setActiveMember] = useState(null);
@@ -561,32 +430,17 @@ export default function MemberDirectory() {
   };
 
   const handleSearch = () => {
-    setAppliedSearch({
-      name: searchName,
-      company: searchCompany,
-      city: searchCity,
-      segment: searchSegment,
-    });
+    setAppliedSearch({ name: searchName, company: searchCompany, city: searchCity, segment: searchSegment });
   };
 
   const handleReset = () => {
-    setSearchName("");
-    setSearchCompany("");
-    setSearchCity("");
-    setSearchSegment("");
+    setSearchName(""); setSearchCompany(""); setSearchCity(""); setSearchSegment("");
     setAppliedSearch({ name: "", company: "", city: "", segment: "" });
-    setSelectedCities([]);
-    setSelectedSegments([]);
-    setSelectedExperience([]);
-    setCitySidebarSearch("");
-    setSortBy("Relevance");
+    setSelectedCities([]); setSelectedSegments([]); setSelectedExperience([]); setCitySidebarSearch(""); setSortBy("Relevance");
   };
 
   const clearAllFilters = () => {
-    setSelectedCities([]);
-    setSelectedSegments([]);
-    setSelectedExperience([]);
-    setCitySidebarSearch("");
+    setSelectedCities([]); setSelectedSegments([]); setSelectedExperience([]); setCitySidebarSearch("");
   };
 
   const filteredMembers = useMemo(() => {
@@ -595,42 +449,29 @@ export default function MemberDirectory() {
       const matchesCompany = m.company.toLowerCase().includes(appliedSearch.company.toLowerCase());
       const matchesCityDropdown = !appliedSearch.city || m.city === appliedSearch.city;
       const matchesSegmentDropdown = !appliedSearch.segment || m.segment === appliedSearch.segment;
-
       const matchesCitySidebar = selectedCities.length === 0 || selectedCities.includes(m.city);
       const matchesSegmentSidebar = selectedSegments.length === 0 || selectedSegments.includes(m.segment);
       const matchesExperience = selectedExperience.length === 0 || selectedExperience.includes(m.experience);
-
-      return (
-        matchesName &&
-        matchesCompany &&
-        matchesCityDropdown &&
-        matchesSegmentDropdown &&
-        matchesCitySidebar &&
-        matchesSegmentSidebar &&
-        matchesExperience
-      );
+      return matchesName && matchesCompany && matchesCityDropdown && matchesSegmentDropdown && matchesCitySidebar && matchesSegmentSidebar && matchesExperience;
     });
 
-    if (sortBy === "Name (A-Z)") {
-      result = [...result].sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortBy === "Name (Z-A)") {
-      result = [...result].sort((a, b) => b.name.localeCompare(a.name));
-    } else if (sortBy === "Experience") {
+    if (sortBy === "Name (A-Z)") result = [...result].sort((a, b) => a.name.localeCompare(b.name));
+    else if (sortBy === "Name (Z-A)") result = [...result].sort((a, b) => b.name.localeCompare(a.name));
+    else if (sortBy === "Experience") {
       const order = { "10+ Years": 3, "5 – 10 Years": 2, "0 – 5 Years": 1 };
       result = [...result].sort((a, b) => order[b.experience] - order[a.experience]);
     }
-
     return result;
   }, [appliedSearch, selectedCities, selectedSegments, selectedExperience, sortBy]);
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
       <div>
-        {/* 1. Hero Banner Section */}
+        {/* 1. Hero Banner Section — EXACT matching properties, paddings, text-clamps, margins and 3-line structural layout */}
         <section className="relative overflow-hidden bg-[#0B1F3A]">
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=400&fit=crop"
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=500&fit=crop"
               alt="Real estate professionals"
               className="absolute inset-0 h-full w-full object-cover opacity-60"
             />
@@ -638,13 +479,15 @@ export default function MemberDirectory() {
           </div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
-            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
               MEMBER DIRECTORY
             </p>
             <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
-              Find &amp; Connect with
+              Find & Connect with
               <br />
               Real Estate Professionals.
+              <br />
+              Grow Your Expert Network.
             </h1>
             <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
             <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
@@ -657,114 +500,60 @@ export default function MemberDirectory() {
         <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
           <div className="bg-white rounded-xl shadow-lg p-6 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
             <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-800 mb-2">
-                Search by Name
-              </label>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">Search by Name</label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                  👤
-                </span>
-                <input
-                  type="text"
-                  value={searchName}
-                  onChange={(e) => setSearchName(e.target.value)}
-                  placeholder="Enter name..."
-                  className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">👤</span>
+                <input type="text" value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Enter name..." className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30" />
               </div>
             </div>
 
             <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-800 mb-2">
-                Company Name
-              </label>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">Company Name</label>
               <div className="relative">
                 <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchCompany}
-                  onChange={(e) => setSearchCompany(e.target.value)}
-                  placeholder="Enter company name..."
-                  className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                />
+                <input type="text" value={searchCompany} onChange={(e) => setSearchCompany(e.target.value)} placeholder="Enter company name..." className="w-full border border-gray-300 rounded-md pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30" />
               </div>
             </div>
 
             <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-800 mb-2">
-                City
-              </label>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">City</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <select
-                  value={searchCity}
-                  onChange={(e) => setSearchCity(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md pl-9 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                >
+                <select value={searchCity} onChange={(e) => setSearchCity(e.target.value)} className="w-full border border-gray-300 rounded-md pl-9 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30">
                   <option value="">Select city...</option>
-                  {cityOptions.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
+                  {cityOptions.map((city) => <option key={city} value={city}>{city}</option>)}
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
             <div className="md:col-span-1">
-              <label className="block text-sm font-semibold text-gray-800 mb-2">
-                Segment
-              </label>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">Segment</label>
               <div className="relative">
-                <select
-                  value={searchSegment}
-                  onChange={(e) => setSearchSegment(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
-                >
+                <select value={searchSegment} onChange={(e) => setSearchSegment(e.target.value)} className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30">
                   <option value="">Select segment...</option>
-                  {segmentOptions.map((seg) => (
-                    <option key={seg} value={seg}>
-                      {seg}
-                    </option>
-                  ))}
+                  {segmentOptions.map((seg) => <option key={seg} value={seg}>{seg}</option>)}
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
             <div className="md:col-span-1 flex items-center gap-4">
-              <button
-                onClick={handleSearch}
-                className="flex-1 bg-[#0B1F3A] text-white font-medium py-2.5 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-[#0B1F3A]/90"
-              >
-                <Search className="w-4 h-4" />
-                Search
+              <button onClick={handleSearch} className="flex-1 bg-[#0B1F3A] text-white font-medium py-2.5 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-[#0B1F3A]/90">
+                <Search className="w-4 h-4" /> Search
               </button>
-              <button
-                onClick={handleReset}
-                className="text-blue-600 text-sm font-medium whitespace-nowrap"
-              >
-                Reset
-              </button>
+              <button onClick={handleReset} className="text-blue-600 text-sm font-medium whitespace-nowrap">Reset</button>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Members List */}
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">
-                Members ({filteredMembers.length} Results)
-              </h2>
+              <h2 className="font-serif text-xl font-normal text-gray-900 tracking-wide">Members ({filteredMembers.length} Results)</h2>
               <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="border border-gray-300 rounded-md pl-3 pr-8 py-2 text-sm text-gray-700 appearance-none focus:outline-none"
-                >
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="border border-gray-300 rounded-md pl-3 pr-8 py-2 text-sm text-gray-700 appearance-none focus:outline-none">
                   <option value="Relevance">Sort by: Relevance</option>
                   <option value="Name (A-Z)">Name (A-Z)</option>
                   <option value="Name (Z-A)">Name (Z-A)</option>
@@ -775,85 +564,33 @@ export default function MemberDirectory() {
             </div>
 
             {filteredMembers.length === 0 ? (
-              <div className="text-center py-16 text-gray-500 border border-dashed border-gray-300 rounded-lg">
-                No members found. Try adjusting your filters.
-              </div>
+              <div className="text-center py-16 text-gray-500 border border-dashed border-gray-300 rounded-lg">No members found. Try adjusting your filters.</div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredMembers.map((member) => (
-                  <MemberCard
-                    key={member.id}
-                    member={member}
-                    onViewProfile={setActiveMember}
-                    onConnect={setConnectMember}
-                    isConnected={!!connectStatus[member.id]}
-                  />
+                  <MemberCard key={member.id} member={member} onViewProfile={setActiveMember} onConnect={setConnectMember} isConnected={!!connectStatus[member.id]} />
                 ))}
               </div>
             )}
           </div>
 
-          {/* Filters Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white border border-gray-200 rounded-lg p-5">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-serif text-lg font-normal text-gray-900 tracking-wide">Filter Members</h3>
-                <button onClick={clearAllFilters} className="text-blue-600 text-sm font-medium">
-                  Clear All
-                </button>
+                <button onClick={clearAllFilters} className="text-blue-600 text-sm font-medium">Clear All</button>
               </div>
-
-              <CheckboxFilterGroup
-                title="City"
-                items={cityOptions}
-                counts={cityCounts}
-                selected={selectedCities}
-                onToggle={(val) => toggleFromArray(selectedCities, setSelectedCities, val)}
-                searchable
-                search={citySidebarSearch}
-                onSearchChange={setCitySidebarSearch}
-              />
-
-              <CheckboxFilterGroup
-                title="Segment"
-                items={segmentOptions}
-                counts={segmentCounts}
-                selected={selectedSegments}
-                onToggle={(val) => toggleFromArray(selectedSegments, setSelectedSegments, val)}
-              />
-
-              <CheckboxFilterGroup
-                title="Experience"
-                items={experienceOptions}
-                counts={experienceCounts}
-                selected={selectedExperience}
-                onToggle={(val) => toggleFromArray(selectedExperience, setSelectedExperience, val)}
-              />
+              <CheckboxFilterGroup title="City" items={cityOptions} counts={cityCounts} selected={selectedCities} onToggle={(val) => toggleFromArray(selectedCities, setSelectedCities, val)} searchable search={citySidebarSearch} onSearchChange={setCitySidebarSearch} />
+              <CheckboxFilterGroup title="Segment" items={segmentOptions} counts={segmentCounts} selected={selectedSegments} onToggle={(val) => toggleFromArray(selectedSegments, setSelectedSegments, val)} />
+              <CheckboxFilterGroup title="Experience" items={experienceOptions} counts={experienceCounts} selected={selectedExperience} onToggle={(val) => toggleFromArray(selectedExperience, setSelectedExperience, val)} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Luxury CTA Integrated Upper of Footer */}
       <LuxuryCTA />
 
-      <ProfileModal
-        member={activeMember}
-        onClose={() => setActiveMember(null)}
-        onConnect={(m) => {
-          setActiveMember(null);
-          setConnectMember(m);
-        }}
-        isConnected={activeMember ? !!connectStatus[activeMember.id] : false}
-      />
-
-      <ConnectModal
-        member={connectMember}
-        onClose={() => setConnectMember(null)}
-        onSent={(id) =>
-          setConnectStatus((prev) => ({ ...prev, [id]: true }))
-        }
-      />
+      <ProfileModal member={activeMember} onClose={() => setActiveMember(null)} onConnect={(m) => { setActiveMember(null); setConnectMember(m); }} isConnected={activeMember ? !!connectStatus[activeMember.id] : false} />
     </div>
   );
 }

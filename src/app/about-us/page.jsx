@@ -20,7 +20,7 @@ import {
   ShieldCheck,
   Cpu,
   Zap,
-  ArrowRight, // Imported the Arrow icon for points
+  ArrowRight,
 } from "lucide-react";
 
 // Animated Counter Component (Clean JavaScript Version)
@@ -29,7 +29,6 @@ function AnimatedCounter({ targetValue, duration = 1500 }) {
   const elementRef = useRef(null);
   const hasAnimated = useRef(false);
 
-  // Extract the raw number and any suffix like "+" or ","
   const numericString = targetValue.replace(/[^0-9]/g, "");
   const suffix = targetValue.replace(/[0-9,]/g, ""); 
   const targetNumber = parseInt(numericString, 10) || 0;
@@ -45,8 +44,6 @@ function AnimatedCounter({ targetValue, duration = 1500 }) {
           const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
-            
-            // Easing function outQuad
             const easeProgress = progress * (2 - progress);
             const currentCount = Math.floor(easeProgress * targetNumber);
 
@@ -70,7 +67,6 @@ function AnimatedCounter({ targetValue, duration = 1500 }) {
     return () => observer.disconnect();
   }, [targetNumber, duration]);
 
-  // Format with thousands separator if needed
   const formatNumber = (num) => {
     if (isLargeNumber) {
       return num.toLocaleString();
@@ -173,7 +169,7 @@ export default function AboutPage() {
 
   return (
     <main className="bg-white relative">
-      {/* 1. Hero Banner Section */}
+      {/* 1. Hero Banner Section — Standardized to match survey page containers precisely */}
       <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
           <img
@@ -184,13 +180,13 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:px-12 lg:py-10">
-          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D]">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
             ABOUT REPC
           </p>
           <h1 
             style={headingFontClass}
-            className="max-w-2xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.3] text-white"
+            className="max-w-2xl text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide"
           >
             Building Connections.
             <br />
@@ -198,10 +194,9 @@ export default function AboutPage() {
             <br />
             Shaping the Future of Real Estate.
           </h1>
-          <div className="mt-3 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200">
-            REPC is India&apos;s largest community of real estate
-            professionals working together to learn, collaborate, and grow.
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
+            REPC is India&apos;s largest community of real estate professionals working together to learn, collaborate, and grow.
           </p>
         </div>
       </section>
@@ -255,58 +250,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* 3. People Behind REPC Section */}
-      {/* <section className="bg-slate-50 py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
-          <div className="text-center">
-            <h2 
-              style={headingFontClass}
-              className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
-            >
-              The People Behind REPC
-            </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-slate-600 text-sm">
-              REPC was founded by industry leaders with a shared vision. Click a profile to view their full bio and journey.
-            </p>
-          </div>
-
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
-            {founders.map((f) => (
-              <div 
-                key={f.name} 
-                onClick={() => setSelectedFounder(f)}
-                className="flex flex-col gap-6 sm:flex-row sm:items-start p-4 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-100 transition duration-300 cursor-pointer group"
-              >
-                <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-xl sm:w-36 shadow-sm group-hover:scale-[1.02] transition duration-300">
-                  <img
-                    src={f.img}
-                    alt={f.name}
-                    className="absolute inset-0 h-full w-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                    <span className="bg-white/90 text-[#0B1F3A] text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm">View Bio</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 
-                    style={headingFontClass}
-                    className="text-[18px] font-bold text-[#0B1F3A] group-hover:text-[#E8A33D] transition duration-200"
-                  >
-                    {f.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1">
-                    <Briefcase className="h-3 w-3 text-[#E8A33D]" /> {f.role}
-                  </p>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-500 line-clamp-4">
-                    {f.bio}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Pop-up Modal Design */}
       {selectedFounder && (

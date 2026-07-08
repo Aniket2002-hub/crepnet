@@ -82,16 +82,29 @@ const BOTTOM_FEATURES = [
   { icon: TrendingUp, title: "Find Opportunities", desc: "Discover projects, jobs & business leads" },
 ];
 
-const MINDS_CAPTIONS = [
-  "Ideas. Influence. Impact. The Minds Behind Modern Real Estate. Leadership That Shapes Skylines and Communities.",
-  "Where the Most Influential Minds in Real Estate Shape the Future.",
-  "The Powerhouse of Real Estate Leadership Where Visionaries Shape the Future. ",
-];
-
 const KNOWLEDGE_CAPTIONS = [
   "Knowledge that builds real estate leaders and organizations.",
   "Developing real estate professionals. Empowering organizations.",
   "Empowering professionals and organizations through real estate excellence.",
+];
+
+// Each slide pairs 1:1 with a video below (same index). When the video
+// auto-advances, the heading + caption switch together.
+const MINDS_SLIDES = [
+  {
+    title: "The Most Influential Minds",
+    caption:
+      "Ideas. Influence. Impact. The Minds Behind Modern Real Estate. Leadership That Shapes Skylines and Communities.",
+  },
+  {
+    title: "Where Visionary Minds Create Extraordinary Futures",
+    caption: "Where the Most Influential Minds in Real Estate Shape the Future",
+  },
+  {
+    title: "Inspiring Excellence Through Influential Thinking",
+    caption:
+      "The Powerhouse of Real Estate Leadership Where Visionaries Shape the Future.",
+  },
 ];
 
 const MINDS_VIDEOS = [
@@ -637,18 +650,22 @@ const styles = `
     margin: 0 auto;
   }
   .story-title {
-    font-size: clamp(28px, 4.4vw, 48px);
+    font-size: clamp(24px, 3.8vw, 42px);
     font-weight: 700;
     color: #fff;
     line-height: 1.2;
     letter-spacing: -0.3px;
     text-align: left;
+    transition: opacity 0.4s ease;
+  }
+  .story-title-gold {
+    color: #fff;
   }
   .story-subdivider {
     width: 100%;
     max-width: 460px;
-    height: 1px;
-    background: rgba(255,255,255,0.35);
+    height: 2px;
+    background: #c9a84c;
     margin: 22px 0;
   }
   .story-subtitle {
@@ -669,12 +686,13 @@ const styles = `
   .story-captions li {
     position: relative;
     padding-left: 18px;
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-style: italic;
-    font-size: clamp(12px, 1.15vw, 15px);
-    color: #e2e8f0;
-    line-height: 1.55;
+    font-family: inherit;
+    font-style: normal;
+    font-size: 15px;
+    color: #cbd5e1;
+    line-height: 1.6;
     text-align: left;
+    transition: opacity 0.4s ease;
   }
   .story-captions li::before {
     content: "";
@@ -1180,7 +1198,14 @@ export function GlobalReachSection() {
   );
 }
 
-function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, alt }) {
+/**
+ * StorySection now supports two modes for its heading/caption content:
+ *  - Static mode: pass `title`, `subtitle` (optional), and `captions` (array of lines).
+ *  - Synced mode: pass `slides` (array of { title, caption } objects) whose length
+ *    matches `videos`. As the background video auto-advances, the slide at the
+ *    same index is shown — heading and caption change together with the video.
+ */
+function StorySection({ title, subtitle, captions = [], slides, videos = [], poster, imgSrc, alt, goldTitle }) {
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
 
   useEffect(() => {
@@ -1190,6 +1215,9 @@ function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, 
     }, 6000); 
     return () => clearInterval(interval);
   }, [videos]);
+
+  const activeSlide = slides ? slides[currentVideoIdx] : null;
+  const displayTitle = activeSlide ? activeSlide.title : title;
 
   return (
     <section className="story-section">
@@ -1217,13 +1245,17 @@ function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, 
       <div className="story-overlay-tint" style={{ zIndex: 2 }} />
       <div className="story-overlay" style={{ zIndex: 2 }} />
       <div className="story-content" style={{ zIndex: 3 }}>
-        <h2 className="story-title">{title}</h2>
+        <h2 className={`story-title${goldTitle ? " story-title-gold" : ""}`} key={activeSlide ? `title-${currentVideoIdx}` : "title"}>
+          {displayTitle}
+        </h2>
         <div className="story-subdivider" />
         {subtitle && <p className="story-subtitle">{subtitle}</p>}
         <ul className="story-captions">
-          {captions.map((c, i) => (
-            <li key={i}>{c}</li>
-          ))}
+          {activeSlide ? (
+            <li key={`caption-${currentVideoIdx}`}>{activeSlide.caption}</li>
+          ) : (
+            captions.map((c, i) => <li key={i}>{c}</li>)
+          )}
         </ul>
       </div>
 
@@ -1246,9 +1278,9 @@ function StorySection({ title, subtitle, captions, videos = [], poster, imgSrc, 
 export function InfluentialMindsSection() {
   return (
     <StorySection
-      title="The Most Influential Minds"
-      captions={MINDS_CAPTIONS}
+      slides={MINDS_SLIDES}
       videos={MINDS_VIDEOS}
+      goldTitle
     />
   );
 }

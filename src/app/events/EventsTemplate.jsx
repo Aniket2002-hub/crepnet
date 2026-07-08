@@ -71,7 +71,7 @@ const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New R
 
 function HeroBanner({ config }) {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0B1F3A]">
+    <section className="relative w-full overflow-hidden bg-[#0B1F3A] min-h-[300px] lg:min-h-[360px] flex items-center">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-60"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=90')" }}
@@ -88,12 +88,15 @@ function HeroBanner({ config }) {
         <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Limitless Opportunities.</p>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-16 text-left">
-        <h1 style={headingFontClass} className="text-white font-bold leading-[1.3] mb-3 text-[clamp(20px,2.5vw,36px)]">
+      {/* Sizing below (heading size/weight, divider, banner padding) matches the Surveys page hero exactly.
+          A fixed min-height is added because the Surveys heading is 3 lines and Events' is 1 line —
+          without it the two banners render at different heights even with identical padding. */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 text-left">
+        <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
           {config.title}
         </h1>
-        <div className="mt-3.5 h-[3px] w-14 rounded-sm bg-[#E8A33D]" />
-        <p className="mt-2 max-w-xl text-sm font-semibold leading-[1.7] text-slate-200 mb-6">
+        <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+        <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200 mb-6">
           {config.desc}
         </p>
 
@@ -439,7 +442,7 @@ function FeaturedCarousel() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/60 via-transparent to-transparent" />
             
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 lg:p-24 pb-16 md:pb-24 lg:pb-32 text-left z-20 max-w-7xl mx-auto w-full px-6 lg:px-10">
-              <h2 style={headingFontClass} className="text-3xl md:text-5xl lg:text-6xl text-white tracking-wide mb-4 drop-shadow-md font-semibold">
+              <h2 style={headingFontClass} className="text-2xl md:text-3xl lg:text-4xl text-white tracking-wide mb-4 drop-shadow-md font-semibold">
                 {slide.title}
               </h2>
               <p className="text-gray-200 text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide opacity-90 max-w-3xl drop-shadow-sm font-light">
