@@ -18,6 +18,7 @@ import {
   BarChart3,
   Award,
 } from "lucide-react";
+import Link from "next/link";
 
 // ---------------- DATA ----------------
 
@@ -209,38 +210,34 @@ function buildDonutGradient(data) {
 function LuxuryCTA() {
   return (
      <section className="relative w-full overflow-hidden bg-white py-32 md:py-48 ">
-      {/* Background Graphic Box - High visibility overlay layout */}
       <div className="absolute inset-0 z-0">
         <img
           src="/background-img.png" 
           alt="Luxury background texture layout"
           className="h-full w-full object-cover object-center"
         />
-        {/* Soft custom linear layout blending backdrops natively into clean page views */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/5 to-white/95" />
       </div>
 
-      {/* Content Layer */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        {/* Matching high-end brand header system */}
         <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
           Join the Inner Circle of Luxury Leadership
         </h2>
 
-        {/* Subtitle Description */}
         <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
           Experience the prestige of a global luxury leaders’ community.
         </p>
 
-        {/* Call to Action Trigger */}
-        <div className="mt-10 md:mt-14">
-          <button
-            type="button"
-            className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
-          >
-            Become a Member
-          </button>
-        </div>
+          <div className="mt-10 md:mt-14">
+            <Link href="/join">
+              <button
+                type="button"
+                className="inline-flex items-center cursor-pointer justify-center bg-[#C29B63] px-12 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:bg-[#B08952] hover:shadow-md active:scale-[0.98] rounded-[3px]"
+              >
+                Become a Member
+              </button>
+            </Link>
+          </div>
       </div>
     </section>
   );
@@ -374,7 +371,7 @@ export default function SurveysPage() {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
       <div>
-        {/* 1. Hero Banner Section - Main layout heading converted to premium serif layout */}
+        {/* 1. Hero Banner Section — Standardized height padding, clamps, and content metrics layout to mirror about page exactly */}
         <section className="relative overflow-hidden bg-[#0B1F3A]">
           <div className="absolute inset-0">
             <img
@@ -385,7 +382,7 @@ export default function SurveysPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
+          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
                Surveys
             </p>
@@ -719,7 +716,6 @@ export default function SurveysPage() {
         </div>
       </div>
 
-      {/* Luxury CTA Integrated Upper of Footer */}
       <LuxuryCTA />
     </div>
   );
