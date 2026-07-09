@@ -341,7 +341,7 @@ export default function Footer() {
                       border: "1px solid rgba(196,136,42,0.3)",
                       display: "flex",
                       alignItems: "center",
-                      justifycontent: "center",
+                      justifyContent: "center", /* <-- Capitalized 'C' fixed here */
                       flexShrink: 0,
                     }}
                   >
