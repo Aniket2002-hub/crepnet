@@ -326,6 +326,18 @@ export default function DevelopersPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
+      {/* Slim breadcrumb strip — sits above the hero so it doesn't add height to the banner itself */}
+      {/* <div className="bg-white border-b border-slate-100">
+        <nav className="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex items-center gap-2 text-xs font-semibold text-slate-400">
+          <Link href="/" className="hover:text-[#0B1F3A] transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-slate-400">Companies</span>
+          <span>/</span>
+          <span className="text-[#c9a84c]">Developers</span>
+        </nav>
+      </div> */}
+
+      {/* ── HERO BANNER — identical content structure and size to the Surveys page hero ── */}
       <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
           <img
@@ -336,32 +348,29 @@ export default function DevelopersPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-12 lg:py-8">
-          <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-400">Companies</span>
-            <span>/</span>
-            <span className="text-[#E8A33D]">Developers</span>
-          </nav>
-
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">{heroEyebrow}</p>
           <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
             REPC Developers
           </h1>
-          <div className="mt-3 h-[2px] w-16 bg-[#E8A33D]" />
-          <p className="mt-3 max-w-xl text-sm font-light leading-[1.7] text-slate-200">{heroDesc}</p>
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">{heroDesc}</p>
 
           {activeNiche && (
             <button
               onClick={() => setSelectedNiche(null)}
-              className="mt-3 text-xs font-semibold text-[#E8A33D] hover:text-white transition-colors underline underline-offset-4 cursor-pointer block"
+              className="mt-4 text-xs font-semibold text-[#E8A33D] hover:text-white transition-colors underline underline-offset-4 cursor-pointer block"
             >
               ← Back to all sectors
             </button>
           )}
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-6 pt-4 border-t border-white/10 max-w-2xl">
+      {/* Stats strip — moved out of the hero so the banner itself matches the Surveys page exactly */}
+      <div className="bg-[#0B1F3A] border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
             <div>
               <h4 className="text-2xl sm:text-3xl font-bold text-white">120+</h4>
               <p className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Developers Listed</p>
@@ -380,9 +389,9 @@ export default function DevelopersPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mt-8">
         <div className="bg-white rounded-2xl border border-gray-150 p-5 sm:p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex-1 space-y-1 max-w-2xl text-left">
             <h4 className="font-serif font-semibold text-[#0B1F3A] text-lg tracking-wide">Add Your Developer Profile</h4>
@@ -481,7 +490,6 @@ export default function DevelopersPage() {
                 href={`/companies/developers/${dev.slug}`}
                 className="min-w-[290px] sm:min-w-[330px] bg-white rounded-xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col snap-start cursor-pointer"
               >
-                {/* ── CARD HEADER UPDATED TO MATCH PRIMARY GRADIENT OVERLAY DESIGN ASPECT ── */}
                 <div className="relative p-5 text-left min-h-[100px] flex flex-col justify-center overflow-hidden rounded-t-xl bg-slate-950">
                   <img 
                     src={dev.heroImg} 
