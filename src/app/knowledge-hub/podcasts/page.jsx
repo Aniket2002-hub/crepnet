@@ -481,52 +481,36 @@ export default function PodcastsPage() {
   const visible = filtered.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans antialiased">
 
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
-        <img
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
-          alt="hero"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 
-            style={headingFontClass}
-            className="text-4xl font-bold mb-2"
-          >
-            Podcasts
+      {/* 1st Section Hero Banner — Sized and padded exactly to reflect reference parameters */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
+            alt="hero background banner layout"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
+            Surveys
+          </p>
+          <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide mt-1">
+            Podcasts &amp; Insights.
+            <br />
+            Data-Driven Intelligence.
+            <br />
+            Shaping Strategic Decisions.
           </h1>
-          <p className="text-gray-300 mb-6 max-w-lg text-sm">
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
             In-depth conversations with India's top real estate leaders, investors and innovators across all asset classes.
           </p>
-          <div className="flex gap-2 max-w-xl">
-            <div className="flex-1 flex items-center bg-white rounded-lg px-3 gap-2">
-              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <input className="flex-1 py-2.5 text-gray-900 text-sm outline-none bg-transparent" placeholder="Search podcasts or guests..." />
-            </div>
-            <button className="bg-[#c9a84c] hover:bg-[#b8973d] text-white cursor-pointer px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              Search
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <span className="text-gray-400 text-sm">Popular:</span>
-            {["Residential", "Coworking", "Data Centres", "PropTech", "Hospitality", "Infrastructure"].map((t) => (
-              <button
-                key={t}
-                className="px-3 py-1 bg-white/10 hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors"
-              >
-                {t}
-              </button>
-            ))}
-          </div>
         </div>
-      </div>
+      </section>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -613,7 +597,7 @@ export default function PodcastsPage() {
 
               {/* Body */}
               <div className="p-4">
-                <h3 className="font-semibold text-gray-900 text-sm leading-snug mb-3 group-hover:text-[#c9a84c] transition-colors">
+                <h3 className="font-semibold text-gray-900 text-sm leading-snug mb-3 group-hover:text-[#c9a84c] transition-colors font-light">
                   {p.title}
                 </h3>
 
@@ -626,7 +610,7 @@ export default function PodcastsPage() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold text-[#c9a84c]">{p.guest}</p>
-                    <p className="text-[10px] text-gray-400">{p.role}</p>
+                    <p className="text-[10px] text-gray-400 font-light">{p.role}</p>
                   </div>
                 </div>
 
@@ -636,7 +620,7 @@ export default function PodcastsPage() {
                     <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
                       <div className="h-full bg-[#c9a84c] rounded-full w-1/3 animate-pulse" />
                     </div>
-                    <p className="text-[10px] text-[#c9a84c] mt-1 font-medium">Now Playing...</p>
+                    <p className="text-[10px] text-[#c9a84c] mt-1 font-medium font-light">Now Playing...</p>
                   </div>
                 )}
 
@@ -686,7 +670,7 @@ export default function PodcastsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
               </svg>
             </div>
-            <p className="text-gray-500 text-sm">No podcast episodes found for this category.</p>
+            <p className="text-gray-500 text-sm font-light">No podcast episodes found for this category.</p>
           </div>
         )}
 
@@ -706,15 +690,12 @@ export default function PodcastsPage() {
       {/* Investment Highlights Section */}
       <InvestmentHighlights />
 
-      {/* Knowledge That Empowers - Re-engineered to left-aligned container layouts */}
+      {/* Knowledge That Empowers — Cinematic Wrapper Content Layout Container */}
       <section className="relative overflow-hidden flex items-center justify-start" style={{ background: "#0d1e35", minHeight: 600 }}>
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ filter: "saturate(0.5) brightness(0.4) contrast(1.05)" }}
-          autoPlay
-          loop
-          muted
-          playsInline
+          style={{ filter: "saturate(0.4) brightness(0.45) contrast(1.05)" }}
+          autoPlay loop muted playsInline
           poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
         >
           <source src="https://assets.mixkit.co/videos/21246/21246-720.mp4" type="video/mp4" />
@@ -722,16 +703,15 @@ export default function PodcastsPage() {
         <div className="absolute inset-0" style={{ background: "rgba(13,30,53,0.5)", mixBlendMode: "multiply" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(13,30,53,0.85) 0%, rgba(13,30,53,0.6) 45%, rgba(13,30,53,0.1) 100%)" }} />
         
-        {/* Swapped container node styles to left align elements inside grid context */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-16 py-32 flex flex-col justify-center items-start text-left" style={{ minHeight: 600 }}>
           <div className="max-w-3xl">
             <h2 
-              style={{ ...headingFontClass, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.25 }}
-              className="text-white font-bold mb-6 text-left"
+              style={{ ...headingFontClass, fontSize: "clamp(24px, 3vw, 42px)", lineHeight: 1.25 }}
+              className="text-white font-normal mb-6 text-left"
             >
               Knowledge That Empowers
             </h2>
-            <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left max-w-2xl">
+            <p className="text-slate-200 text-sm font-light leading-[1.7] text-left max-w-2xl opacity-90">
               Our Committees advance industry knowledge through research papers, articles, and strategic analysis to illuminate solutions for the challenges facing today's built environment.
             </p>
           </div>

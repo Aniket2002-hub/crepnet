@@ -21,7 +21,7 @@ const reportsData = [
     subtitle: "Operators, occupiers and the evolving demand landscape",
     date: "June 2024", type: "Research Report", pages: "44 pages",
     gradient: "from-indigo-800 to-indigo-950",
-    img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80",
+    img: "https://images.unsplash.com/photo-149736611353-6870744d04b2?w=600&q=80",
     tag: "COWORKING",
   },
   {
@@ -87,9 +87,9 @@ export default async function ReportDetailPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans pb-16">
-      {/* Dynamic Styled Hero Section with Matching Gradient & Image */}
-      <div className="relative bg-gray-900 text-white overflow-hidden min-h-[340px] flex items-center">
+    <div className="min-h-screen bg-gray-50 font-sans pb-16 antialiased">
+      {/* Dynamic Styled Hero Section with standard survey page padding heights and font sizes */}
+      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 230 }}>
         <img
           src={report.img}
           alt={report.title}
@@ -97,10 +97,10 @@ export default async function ReportDetailPage({ params }) {
         />
         <div className={`absolute inset-0 bg-gradient-to-r ${report.gradient} opacity-85`} />
         
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <div className="relative max-w-7xl mx-auto px-6 py-10 lg:px-12 lg:py-14 w-full">
           <Link 
             href="/knowledge-hub/reports" 
-            className="group inline-flex items-center gap-2 text-xs text-white/80 hover:text-[#c9a84c] mb-6 transition-colors font-medium tracking-wide uppercase"
+            className="group inline-flex items-center gap-2 text-xs text-white/80 hover:text-[#E8A33D] mb-4 transition-colors font-medium tracking-wide uppercase"
           >
             <svg className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -108,22 +108,23 @@ export default async function ReportDetailPage({ params }) {
             Back to All Reports
           </Link>
           
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-3">
             <span className="bg-white/15 text-white text-[10px] font-semibold px-3 py-1 rounded-full border border-white/20 uppercase tracking-wider">
               {report.type}
             </span>
-            <span className="bg-[#c9a84c] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider">
+            <span className="bg-[#E8A33D] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider">
               {report.tag}
             </span>
           </div>
 
           <h1 
             style={headingFontClass}
-            className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-3"
+            className="text-[clamp(24px,3vw,42px)] font-serif font-normal leading-[1.25] text-white tracking-wide mb-3 max-w-4xl"
           >
             {report.title}
           </h1>
-          <p className="text-white/70 max-w-2xl text-sm sm:text-base font-light">
+          <div className="mt-3 h-[2px] w-16 bg-[#E8A33D] mb-4" />
+          <p className="text-slate-200 font-light leading-[1.7] max-w-xl text-sm">
             {report.subtitle}
           </p>
         </div>
@@ -141,7 +142,7 @@ export default async function ReportDetailPage({ params }) {
             >
               Executive Summary & Market Analysis
             </h2>
-            <div className="text-gray-600 space-y-4 text-sm leading-relaxed">
+            <div className="text-gray-600 space-y-4 text-sm leading-relaxed font-light">
               <p>
                 This comprehensive research document outlines deep cyclical transitions observed across India's micro-markets during the first halves of the current fiscal timelines. Driven by macroeconomic variables, revised infrastructure blueprints, and targeted liquidity adjustments, the vertical segment displays resilient consolidation trajectories.
               </p>
@@ -202,7 +203,7 @@ export default async function ReportDetailPage({ params }) {
                 </svg>
               </div>
               <h4 style={headingFontClass} className="text-xs font-bold text-[#c9a84c] uppercase tracking-wide mb-1">Confidential Intelligence</h4>
-              <p className="text-[11px] text-gray-400 leading-normal">
+              <p className="text-[11px] text-gray-400 leading-normal font-light">
                 All data matrices, visual graphs, and statistical projections are copyrighted resources. Usage inside derivative portfolios requires clear attribute tags.
               </p>
             </div>

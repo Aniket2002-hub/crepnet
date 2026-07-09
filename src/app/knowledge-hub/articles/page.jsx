@@ -505,49 +505,34 @@ export default function ArticlesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans antialiased">
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"
-          alt="Real estate"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 
-            style={headingFontClass}
-            className="text-3xl font-bold mb-2"
-          >
-            Articles
+      {/* 1st Section Hero Banner — Re-engineered to exactly mirror reference survey structure dimensions */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"
+            alt="Real estate banner background"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
+          
+          <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide mt-1">
+            Articles &amp; Insights.
+            <br />
+            Data-Driven Research.
+            <br />
+            Shaping Strategic Decisions.
           </h1>
-          <p className="text-gray-300 mb-6 max-w-lg text-sm">
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
             Curated insights, expert perspectives and in-depth research to keep you informed and ahead in real estate.
           </p>
-
-          {/* Search Bar */}
-          <div className="flex gap-2 max-w-xl">
-            <div className="flex-1 flex items-center bg-white rounded-lg px-3 gap-2">
-              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <input className="flex-1 py-2.5 text-gray-900 text-sm outline-none bg-transparent" placeholder="Search articles..." />
-            </div>
-            <select className="bg-white text-gray-700 cursor-pointer text-sm px-3 py-2.5 rounded-lg outline-none">
-              <option>All Categories</option>
-              {["Office", "Investments", "Sustainability", "Retail", "GCC", "Policy"].map((opt) => (
-                <option key={opt}>{opt}</option>
-              ))}
-            </select>
-            <button className="bg-[#c9a84c] hover:bg-[#b8973d] text-white cursor-pointer px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              Search
-            </button>
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
+      {/* Main Content Content Container display context */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
@@ -614,47 +599,31 @@ export default function ArticlesPage() {
         </div>
       </div>
 
-      {/* Investment Highlights - Land Development Plan + Yield Comparison */}
+      {/* Investment Highlights */}
       <InvestmentHighlights />
 
-      {/* Knowledge That Empowers - Re-engineered to left-aligned container layouts */}
+      {/* Knowledge That Empowers */}
       <section className="relative overflow-hidden w-full min-h-[600px] lg:min-h-[660px]" style={{ background: "#0c1524" }}>
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
           style={{ filter: "saturate(0.4) brightness(0.45) contrast(1.05)" }}
-          autoPlay
-          loop
-          muted
-          playsInline
+          autoPlay loop muted playsInline
           poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
         >
-          <source
-            src="https://assets.mixkit.co/videos/21246/21246-720.mp4"
-            type="video/mp4"
-          />
+          <source src="https://assets.mixkit.co/videos/21246/21246-720.mp4" type="video/mp4" />
         </video>
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{ background: "rgba(12,21,36,0.45)", mixBlendMode: "multiply" }}
-        />
-        <div
-          className="absolute inset-0 z-[2]"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(12,21,36,0.85) 0%, rgba(12,21,36,0.6) 40%, rgba(12,21,36,0.2) 100%)",
-          }}
-        />
+        <div className="absolute inset-0 z-[1]" style={{ background: "rgba(12,21,36,0.45)", mixBlendMode: "multiply" }} />
+        <div className="absolute inset-0 z-[2]" style={{ background: "linear-gradient(90deg, rgba(12,21,36,0.85) 0%, rgba(12,21,36,0.6) 40%, rgba(12,21,36,0.2) 100%)" }} />
         
-        {/* Swapped flex rules and positioning parameters to left align elements inside container */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 min-h-[600px] lg:min-h-[660px] pb-24 pt-40 lg:pt-48 flex flex-col justify-center items-start text-left">
           <div className="max-w-3xl">
             <h2 
               style={headingFontClass}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 leading-tight text-left"
+              className="text-[clamp(24px,3vw,42px)] font-serif font-normal tracking-wide text-white mb-6 leading-tight text-left"
             >
               Knowledge That Empowers
             </h2>
-            <p className="text-gray-200 text-sm sm:text-base leading-relaxed font-normal opacity-90 text-left max-w-2xl">
+            <p className="text-slate-200 text-sm font-light leading-[1.7] opacity-90 text-left max-w-2xl">
               Our Committees advance industry knowledge through research papers, articles, and
               strategic analysis to illuminate solutions for the challenges facing today's built
               environment.

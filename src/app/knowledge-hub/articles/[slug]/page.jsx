@@ -1,9 +1,7 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
 
-// Shared array equipped with detailed section entries and strings matching keys
 const allArticles = [
   {
     id: 1,
@@ -47,43 +45,6 @@ const allArticles = [
       { id: "conclusion", heading: "Conclusion", body: "India's office market is poised for robust growth, driven by structural reforms, global demand for office space, and a young, aspirational workforce. Stakeholders who adapt early will be best placed to capitalise on the opportunity.", highlight: null },
     ],
   },
-  {
-    id: 2,
-    tag: "INVESTMENTS",
-    tagColor: "bg-purple-600",
-    slug: "real-estate-investment-outlook-2024-opportunities-risks",
-    title: "Real Estate Investment Outlook 2024: Opportunities and Risk Factors",
-    excerpt: "A deep dive into the investment landscape for Indian real estate in 2024, covering key sectors, risk factors, and emerging opportunities.",
-    date: "May 18, 2024",
-    readTime: "5 min read",
-    views: "980 views",
-    heroImg: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1400&q=80",
-    contentImg: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
-    author: {
-      name: "Vimal Nadar",
-      role: "Senior Director – Research",
-      company: "Colliers India",
-      location: "Mumbai, Maharashtra, India",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
-      bio: "Vimal leads research and market intelligence at Colliers India with over 12 years of experience tracking institutional investment trends.",
-      verified: true,
-    },
-    category: "Investments",
-    tags: ["Real Estate Investment", "REITs", "Institutional Capital", "India Market"],
-    toc: ["Introduction", "Key Investment Themes", "Risk Factors", "Sector Spotlight", "Outlook"],
-    sections: [
-      { id: "introduction", heading: "Introduction", body: "India's real estate investment market is attracting unprecedented institutional interest. With strong fundamentals and a maturing regulatory environment, 2024 presents a compelling case for both domestic and foreign investors.", highlight: null },
-      { id: "key-investment-themes", heading: "1. Key Investment Themes", body: "Logistics, data centres, and grade-A office assets continue to attract significant capital. Residential markets in metros are also seeing renewed interest from institutional players.", highlight: "Logistics and data centre assets are delivering risk-adjusted returns well above traditional asset classes.", highlightIcon: "📈" },
-      { id: "risk-factors", heading: "2. Risk Factors", body: "Global interest rate uncertainty, currency volatility, and regulatory delays remain key risks. Investors are advised to conduct thorough due diligence and focus on cash-yielding assets.", highlight: null },
-      { id: "sector-spotlight", heading: "3. Sector Spotlight", body: "Office REITs continue to outperform, with occupancy rates climbing back to pre-pandemic levels. Retail assets in prime locations are also staging a recovery.", highlight: "Indian REITs have delivered consistent distributions, making them attractive for income-seeking investors.", highlightIcon: "🏦" },
-      { id: "outlook", heading: "Outlook", body: "The investment outlook for 2024 remains positive. Strong GDP growth, infrastructure development, and a young demographic profile position India as one of the most exciting real estate markets globally.", highlight: null },
-    ],
-  },
-];
-
-const relatedArticles = [
-  { id: 2, tag: "INVESTMENTS", tagColor: "bg-purple-600", title: "Real Estate Investment Outlook 2024: Opportunities and Risk Factors", date: "May 18, 2024", readTime: "5 min read", img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80" },
-  { id: 3, tag: "SUSTAINABILITY", tagColor: "bg-green-600", title: "Sustainability in Real Estate: Building a Greener Tomorrow", date: "May 16, 2024", readTime: "7 min read", img: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&q=80" },
 ];
 
 const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
@@ -101,12 +62,10 @@ export default function ArticleDetailPage() {
   const router = useRouter();
   const slug = params?.slug;
 
-  // Find the current active article by matching the slug string
   const article = allArticles.find((a) => a.slug === slug);
 
   const [activeSection, setActiveSection] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (article?.toc?.length > 0) {
@@ -129,9 +88,7 @@ export default function ArticleDetailPage() {
   }
 
   const visibleSections = expanded ? article.sections : article.sections.slice(0, 3);
-  const related = relatedArticles.filter((r) => r.id !== article.id);
 
-  // Smooth scroll function when clicking items on the Table of Contents menu
   const scrollToSection = (item, index) => {
     setActiveSection(item);
     const sectionId = article.sections[index]?.id;
@@ -145,20 +102,25 @@ export default function ArticleDetailPage() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800">
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 300 }}>
-        <img src={article.heroImg} alt="article hero" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* 1st Section Hero Banner — Sized accurately to reflect the exact padding layouts from the survey page */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img src={article.heroImg} alt="article hero" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/90 to-transparent" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14 text-white">
           <span className={`inline-block ${article.tagColor} text-white text-[10px] font-bold px-2.5 py-1 rounded tracking-wider mb-4`}>
             {article.tag}
           </span>
           <h1 
             style={headingFontClass}
-            className="text-3xl sm:text-4xl font-bold leading-tight mb-3 max-w-3xl"
+            className="text-[clamp(24px,3vw,42px)] font-serif font-normal leading-[1.25] text-white tracking-wide mb-3 max-w-3xl"
           >
             {article.title}
           </h1>
-          <p className="text-gray-300 text-sm mb-4 max-w-xl">{article.excerpt}</p>
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200 mb-4">{article.excerpt}</p>
           <div className="flex items-center gap-3 text-xs text-gray-300 flex-wrap">
             <span className="flex items-center gap-1">⏱️ {article.date}</span>
             <span>•</span>
@@ -167,7 +129,7 @@ export default function ArticleDetailPage() {
             <span>👁️ {article.views}</span>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Main Layout Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -220,7 +182,7 @@ export default function ArticleDetailPage() {
                   >
                     {sec.heading}
                   </h2>
-                  <p className="text-sm text-gray-700 leading-relaxed">{sec.body}</p>
+                  <p className="text-sm font-light text-gray-600 leading-[1.7]">{sec.body}</p>
 
                   {idx === 0 && (
                     <img src={article.contentImg} alt="visual content" className="w-full rounded-xl mt-4 mb-2 object-cover max-h-80" />

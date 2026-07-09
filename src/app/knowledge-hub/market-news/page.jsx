@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const marketNewsData = [
   {
@@ -173,7 +174,7 @@ function ArticleBody({ body }) {
         if (block.type === "heading")
           return <h2 key={i} style={headingFontClass} className="text-lg font-bold text-gray-900 pt-3">{block.text}</h2>;
         if (block.type === "paragraph")
-          return <p key={i} className="text-sm text-gray-600 leading-relaxed">{block.text}</p>;
+          return <p key={i} className="text-sm text-gray-600 leading-relaxed font-light">{block.text}</p>;
         if (block.type === "quote")
           return (
             <blockquote key={i} className="bg-amber-50 border border-amber-200 rounded-xl p-4 my-2">
@@ -206,15 +207,15 @@ function DetailView({ article, onBack, onNavigate }) {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 380 }}>
+      {/* Hero Banner Size updated dynamically via padding metrics to align with reference parameters */}
+      <div className="relative bg-gray-900 text-white overflow-hidden">
         <img src={article.img} alt={article.title} className="absolute inset-0 w-full h-full object-cover opacity-35" />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/75 via-transparent to-transparent" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+        <div className="relative max-w-7xl mx-auto px-6 py-10 lg:px-12 lg:py-14">
           {/* Back */}
           <button
             onClick={onBack}
-            className="flex items-center gap-1.5 text-gray-300 hover:text-[#c9a84c] text-sm mb-8 transition-colors"
+            className="flex items-center gap-1.5 text-gray-300 hover:text-[#c9a84c] text-xs font-medium tracking-wider uppercase mb-6 transition-colors bg-transparent border-0 cursor-pointer"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
@@ -223,19 +224,20 @@ function DetailView({ article, onBack, onNavigate }) {
           </button>
           {/* Tag + meta */}
           <div className="flex items-center gap-3 mb-3">
-            <span className={`text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full ${article.tagColor} ${article.tagBg}`}>
+            <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${article.tagColor} ${article.tagBg}`}>
               {article.tag}
             </span>
-            <span className="text-gray-400 text-sm">{article.date}</span>
-            <span className="text-gray-400 text-sm">· {article.readTime}</span>
+            <span className="text-slate-300 text-xs font-light">{article.date}</span>
+            <span className="text-slate-300 text-xs font-light">· {article.readTime}</span>
           </div>
-          <h1 style={headingFontClass} className="text-2xl sm:text-3xl font-bold leading-snug mb-3 max-w-3xl">{article.title}</h1>
-          <p className="text-gray-300 text-sm max-w-2xl">{article.desc}</p>
+          <h1 style={headingFontClass} className="text-[clamp(24px,3vw,42px)] font-serif font-normal leading-[1.25] tracking-wide mb-3 max-w-3xl">{article.title}</h1>
+          <div className="mt-4 h-[2px] w-16 bg-[#c9a84c] mb-4" />
+          <p className="text-slate-200 font-light leading-[1.7] max-w-xl text-sm">{article.desc}</p>
         </div>
       </div>
 
       {/* Body */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main article */}
           <article className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -244,21 +246,7 @@ function DetailView({ article, onBack, onNavigate }) {
               <img src={article.authorImg} alt={article.author} className="w-10 h-10 rounded-full object-cover" />
               <div>
                 <p className="text-sm font-semibold text-gray-900">{article.author}</p>
-                <p className="text-xs text-gray-400">{article.authorRole}</p>
-              </div>
-              <div className="ml-auto flex items-center gap-2">
-                {/* Share */}
-                <button className="w-8 h-8 rounded-full border border-gray-200 hover:border-[#c9a84c] hover:bg-amber-50 flex items-center justify-center transition-colors group">
-                  <svg className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#c9a84c]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z" />
-                  </svg>
-                </button>
-                {/* Bookmark */}
-                <button className="w-8 h-8 rounded-full border border-gray-200 hover:border-[#c9a84c] hover:bg-amber-50 flex items-center justify-center transition-colors group">
-                  <svg className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                  </svg>
-                </button>
+                <p className="text-xs text-gray-400 font-light">{article.authorRole}</p>
               </div>
             </div>
 
@@ -269,7 +257,7 @@ function DetailView({ article, onBack, onNavigate }) {
               <p className="text-[11px] text-gray-400 mb-2 uppercase tracking-wide font-semibold">Tags</p>
               <div className="flex flex-wrap gap-2">
                 {[article.tag, "India Real Estate", "2024", "Market Trends"].map((t) => (
-                  <span key={t} className="px-3 py-1 bg-gray-100 hover:bg-amber-50 hover:text-[#c9a84c] rounded-full text-xs text-gray-600 cursor-pointer transition-colors">
+                  <span key={t} className="px-3 py-1 bg-gray-100 hover:bg-amber-50 hover:text-[#c9a84c] rounded-full text-xs text-gray-600 cursor-pointer transition-colors font-light">
                     {t}
                   </span>
                 ))}
@@ -287,27 +275,17 @@ function DetailView({ article, onBack, onNavigate }) {
                   <button
                     key={r.id}
                     onClick={() => onNavigate(r.id)}
-                    className="w-full text-left group flex gap-3 items-start hover:bg-gray-50 rounded-xl p-2 -mx-2 transition-colors"
+                    className="w-full text-left group flex gap-3 items-start hover:bg-gray-50 rounded-xl p-2 -mx-2 transition-colors border-0 bg-transparent cursor-pointer"
                   >
                     <img src={r.img} alt={r.title} className="w-14 h-14 rounded-lg object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-200" />
                     <div className="min-w-0">
                       <span className={`text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${r.tagColor} ${r.tagBg}`}>{r.tag}</span>
-                      <p style={headingFontClass} className="text-xs font-semibold text-gray-800 group-hover:text-[#c9a84c] transition-colors mt-1 line-clamp-2 leading-snug">{r.title}</p>
-                      <p className="text-[11px] text-gray-400 mt-0.5">{r.date}</p>
+                      <p style={headingFontClass} className="text-xs font-serif font-normal text-gray-800 group-hover:text-[#c9a84c] transition-colors mt-1 line-clamp-2 leading-snug">{r.title}</p>
+                      <p className="text-[11px] text-gray-400 font-light mt-0.5">{r.date}</p>
                     </div>
                   </button>
                 ))}
               </div>
-            </div>
-
-            {/* Subscribe CTA */}
-            <div className="bg-gradient-to-br from-[#c9a84c] to-[#a8872e] rounded-2xl p-4 text-white">
-              <p className="font-bold text-sm mb-1">Get Market Alerts</p>
-              <p className="text-xs text-amber-100 mb-3">Curated real estate news in your inbox.</p>
-              <input className="w-full rounded-lg px-3 py-2 text-sm text-gray-900 outline-none mb-2 bg-white" placeholder="Your email address" />
-              <button className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-lg py-2 text-sm font-medium transition-colors">
-                Subscribe
-              </button>
             </div>
           </aside>
         </div>
@@ -419,6 +397,9 @@ function InvestmentHighlights() {
     }, 900);
   };
 
+  const borderStyle = { borderColor: "rgba(255,255,255,0.03)" };
+  const graphStyle = { borderColor: "rgba(0,0,0,0.03)" };
+
   const resetSimulation = () => {
     setSimulating(false);
     setYear(0);
@@ -434,187 +415,89 @@ function InvestmentHighlights() {
 
   return (
     <>
-      {/* Land Development Plan */}
       <section style={{ background: "#0c1524" }} className="relative overflow-hidden select-none text-white antialiased">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Operational UI Dashboard */}
             <div className="lg:col-span-6 flex flex-col justify-center">
-              <h2 
-                style={headingFontClass}
-                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight"
-              >
-                Land Development Plan.
-                <br />
-                <span className="text-[#e2c77d]">After 5 Years.</span>
+              <h2 style={headingFontClass} className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Land Development Plan.<br /><span className="text-[#e2c77d]">After 5 Years.</span>
               </h2>
-              <p className="text-gray-400 text-sm mb-8 max-w-xl leading-relaxed font-normal opacity-70">
-                Watch raw land acquire intrinsic value over time, followed by structural
-                development options to trigger maximum exit valuation.
+              <p className="text-gray-400 text-sm mb-8 max-w-xl leading-relaxed font-light opacity-70">
+                Watch raw land acquire intrinsic value over time, followed by structural development options to trigger maximum exit valuation.
               </p>
 
-              {/* Dynamic Status Box */}
-              <div
-                className="rounded-xl p-6 mb-8 transition-all duration-300"
-                style={{ 
-                  background: "rgba(18, 30, 49, 0.6)", 
-                  border: "1px solid rgba(255, 255, 255, 0.05)",
-                  boxShadow: "inset 0 1px 2px rgba(255,255,255,0.05)"
-                }}
-              >
-                <span className="inline-block bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold px-3 py-1 rounded mb-4 tracking-wider uppercase">
-                  {current.stageTag}
-                </span>
+              <div className="rounded-xl p-6 mb-8 transition-all duration-300" style={{ background: "rgba(18, 30, 49, 0.6)", border: "1px solid rgba(255, 255, 255, 0.05)", boxShadow: "inset 0 1px 2px rgba(255,255,255,0.05)" }}>
+                <span className="inline-block bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold px-3 py-1 rounded mb-4 tracking-wider uppercase">{current.stageTag}</span>
                 <p className="text-[11px] text-gray-400 uppercase tracking-widest font-medium mb-1">Estimated Value</p>
                 <div className="flex items-baseline gap-2 mb-3">
-                  <span className="text-4xl font-extrabold text-[#e2c77d] tracking-tight">
-                    ₹{current.value.toFixed(2)} Cr
-                  </span>
-                  <span className="text-xs font-semibold text-gray-400">
-                    ({current.returnPct}% {current.isExit ? "overall return" : "return"})
-                  </span>
+                  <span className="text-4xl font-extrabold text-[#e2c77d] tracking-tight">₹{current.value.toFixed(2)} Cr</span>
+                  <span className="text-xs font-semibold text-gray-400">({current.returnPct}% {current.isExit ? "overall return" : "return"})</span>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed opacity-90">
-                  {current.desc}
-                </p>
+                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-light opacity-90">{current.desc}</p>
               </div>
 
-              {/* Timeline Tracker */}
               <div className="mb-8">
                 <div className="flex items-center justify-between text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
-                  <span>Holding Phase</span>
-                  <span>Year {year} of 5</span>
+                  <span>Holding Phase</span><span>Year {year} of 5</span>
                 </div>
-                
                 <div className="relative flex items-center justify-between px-1">
                   <div className="absolute left-1 right-1 h-[3px] rounded bg-gray-800 top-1/2 -translate-y-1/2" />
-                  <div 
-                    className="absolute left-1 h-[3px] rounded bg-[#e2c77d] top-1/2 -translate-y-1/2 transition-all duration-500 ease-out" 
-                    style={{ width: `${(year / 5) * 98}%` }}
-                  />
-
+                  <div className="absolute left-1 h-[3px] rounded bg-[#e2c77d] top-1/2 -translate-y-1/2 transition-all duration-500 ease-out" style={{ width: `${(year / 5) * 98}%` }} />
                   {[0, 1, 2, 3, 4, 5].map((i) => (
-                    <button
-                      key={i}
-                      onClick={() => !simulating && setYear(i)}
-                      disabled={simulating}
-                      className="relative z-10 w-4 h-4 rounded-full border-2 transition-all focus:outline-none disabled:cursor-not-allowed"
-                      style={
-                        i <= year
-                          ? {
-                              background: "#e2c77d",
-                              borderColor: "#e2c77d",
-                              boxShadow: i === year ? "0 0 0 6px rgba(226, 199, 125, 0.2)" : "none",
-                            }
-                          : {
-                              background: "#0c1524",
-                              borderColor: "#1e293b",
-                            }
-                      }
-                    />
+                    <button key={i} onClick={() => !simulating && setYear(i)} disabled={simulating} className="relative z-10 w-4 h-4 rounded-full border-2 transition-all focus:outline-none disabled:cursor-not-allowed" style={i <= year ? { background: "#e2c77d", borderColor: "#e2c77d", boxShadow: i === year ? "0 0 0 6px rgba(226, 199, 125, 0.2)" : "none" } : { background: "#0c1524", borderColor: "#1e293b" }} />
                   ))}
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex items-center gap-6">
-                <button
-                  onClick={runSimulation}
-                  disabled={simulating}
-                  className="bg-[#e2c77d] hover:bg-[#d1b56c] disabled:opacity-40 disabled:cursor-not-allowed text-gray-955 font-semibold px-6 py-3 rounded text-xs tracking-wider uppercase transition-all duration-200 flex items-center gap-2 shadow-lg shadow-amber-955/20"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <polygon points="6,4 20,12 6,20" />
-                  </svg>
+                <button onClick={runSimulation} disabled={simulating} className="bg-[#e2c77d] hover:bg-[#d1b56c] disabled:opacity-40 disabled:cursor-not-allowed text-gray-955 font-semibold px-6 py-3 rounded text-xs tracking-wider uppercase transition-all duration-200 flex items-center gap-2 shadow-lg shadow-amber-955/20">
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" /></svg>
                   {simulating ? "Simulating..." : "Simulate 5-Yr Hold"}
                 </button>
-                <button
-                  onClick={resetSimulation}
-                  className="text-gray-400 hover:text-white text-xs font-semibold tracking-wider uppercase flex items-center gap-2 transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0114-5.3M20 15a8 8 0 01-14 5.3" />
-                  </svg>
+                <button onClick={resetSimulation} className="text-gray-400 hover:text-white text-xs font-semibold tracking-wider uppercase flex items-center gap-2 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0114-5.3M20 15a8 8 0 01-14 5.3" /></svg>
                   Reset
                 </button>
               </div>
             </div>
 
-            {/* Right Isometric Graphical Render Container */}
             <div className="lg:col-span-6 flex flex-col items-center justify-center">
-              <div
-                className="w-full rounded-xl p-8 flex flex-col items-center justify-center text-center overflow-hidden relative border min-h-[440px]"
-                style={{
-                  background: "#090e17",
-                  borderColor: "rgba(255,255,255,0.03)",
-                  backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1.2px, transparent 1.2px)",
-                  backgroundSize: "24px 24px",
-                }}
-              >
+              <div className="w-full rounded-xl p-8 flex flex-col items-center justify-center text-center overflow-hidden relative border min-h-[440px]" style={{ background: "#090e17", borderColor: borderStyle.borderColor, backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1.2px, transparent 1.2px)", backgroundSize: "24px 24px" }}>
                 <div className="relative w-[320px] h-[220px] flex items-center justify-center scale-110">
                   <svg width="100%" height="100%" viewBox="0 0 240 180" className="overflow-visible">
-                    <polygon
-                      points="120,40 210,85 120,130 30,85"
-                      fill="#111827"
-                      stroke="rgba(255, 255, 255, 0.08)"
-                      strokeWidth="1.5"
-                    />
+                    <polygon points="120,40 210,85 120,130 30,85" fill="#111827" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1.5" />
                     <line x1="75" y1="62.5" x2="165" y2="107.5" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="1" />
                     <line x1="120" y1="40" x2="120" y2="130" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="1" />
                     <line x1="165" y1="62.5" x2="75" y2="107.5" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="1" />
-
-                    <polygon
-                      points="120,40 210,85 120,130 30,85"
-                      fill="none"
-                      stroke="#e2c77d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      className="transition-all duration-700 ease-in-out"
-                      style={{
-                        strokeDasharray: "500",
-                        strokeDashoffset: 500 - (year / 5) * 500,
-                        opacity: year > 0 ? 0.85 : 0.1
-                      }}
-                    />
-
+                    <polygon points="120,40 210,85 120,130 30,85" fill="none" stroke="#e2c77d" strokeWidth="2" strokeLinecap="round" className="transition-all duration-700 ease-in-out" style={{ strokeDasharray: "500", strokeDashoffset: 500 - (year / 5) * 500, opacity: year > 0 ? 0.85 : 0.1 }} />
                     {year <= 4 && (
                       <g className="transition-opacity duration-500 ease-in-out">
-                        <polygon
-                          points="120,42 205,85 120,128 35,85"
-                          fill="rgba(226, 199, 125, 0.02)"
-                          stroke="rgba(226, 199, 125, 0.15)"
-                          strokeWidth="1"
-                        />
+                        <polygon points="120,42 205,85 120,128 35,85" fill="rgba(226, 199, 125, 0.02)" stroke="rgba(226, 199, 125, 0.15)" strokeWidth="1" />
                         <circle cx="120" cy="85" r="3" fill="#e2c77d" className="animate-pulse" />
                         <circle cx="75" cy="62.5" r="2.5" fill="#e2c77d" opacity="0.7" />
                         <circle cx="165" cy="62.5" r="2.5" fill="#e2c77d" opacity="0.7" />
-                        
                         <line x1="75" y1="62.5" x2="75" y2={62.5 - year * 4} stroke="#e2c77d" strokeWidth="1" strokeDasharray="2" />
                         <line x1="165" y1="62.5" x2="165" y2={62.5 - year * 4} stroke="#e2c77d" strokeWidth="1" strokeDasharray="2" />
                         <circle cx="75" cy={62.5 - year * 4} r="2" fill="#e2c77d" />
                         <circle cx="165" cy={62.5 - year * 4} r="2" fill="#e2c77d" />
                       </g>
                     )}
-
                     {year === 5 && (
                       <g className="transition-all duration-700 transform translate-y-0 opacity-100">
                         <g opacity="0.85">
                           <polygon points="90,75 110,85 110,40 90,30" fill="#0d1624" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
                           <polygon points="110,85 130,75 130,30 110,40" fill="#172338" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
                           <polygon points="90,30 110,40 130,30 110,20" fill="#24344f" stroke="rgba(226, 199, 125, 0.3)" strokeWidth="0.5" />
-                          
                           <line x1="97" y1="45" x2="97" y2="65" stroke="#e2c77d" strokeWidth="1" opacity="0.4" strokeDasharray="1 3" />
                           <line x1="103" y1="48" x2="103" y2="68" stroke="#e2c77d" strokeWidth="1" opacity="0.4" strokeDasharray="1 3" />
                           <line x1="117" y1="48" x2="117" y2="68" stroke="#e2c77d" strokeWidth="1" opacity="0.4" strokeDasharray="1 3" />
                           <line x1="123" y1="45" x2="123" y2="65" stroke="#e2c77d" strokeWidth="1" opacity="0.4" strokeDasharray="1 3" />
                         </g>
-
                         <g>
                           <polygon points="110,110 145,127 145,47 110,30" fill="#0b1321" stroke="rgba(255,255,255,0.08)" strokeWidth="0.75" />
                           <polygon points="145,127 180,110 180,30 145,47" fill="#142035" stroke="rgba(255,255,255,0.08)" strokeWidth="0.75" />
                           <polygon points="110,30 145,47 180,30 145,13" fill="#20304a" stroke="#e2c77d" strokeWidth="1" />
-
                           {[0, 1, 2, 3, 4, 5].map((step) => {
                             const offset = step * 12;
                             return (
@@ -624,7 +507,6 @@ function InvestmentHighlights() {
                               </g>
                             );
                           })}
-                          
                           <line x1="145" y1="13" x2="145" y2="-2" stroke="#e2c77d" strokeWidth="1" />
                           <circle cx="145" cy="-2" r="1.5" fill="#e2c77d" className="animate-ping" />
                         </g>
@@ -632,7 +514,6 @@ function InvestmentHighlights() {
                     )}
                   </svg>
                 </div>
-
                 <div className="mt-4 max-w-sm transition-all duration-300">
                   <div className="flex items-center justify-center gap-1.5 text-white text-sm font-semibold tracking-wide">
                     {current.isExit && (
@@ -642,9 +523,7 @@ function InvestmentHighlights() {
                     )}
                     <p>{current.visualTitle}</p>
                   </div>
-                  <p className="text-gray-400 text-xs mt-1 tracking-wide font-medium opacity-75">
-                    {current.visualSubtext}
-                  </p>
+                  <p className="text-gray-400 text-xs mt-1 tracking-wide font-medium font-light opacity-75">{current.visualSubtext}</p>
                 </div>
               </div>
             </div>
@@ -657,31 +536,17 @@ function InvestmentHighlights() {
       <section ref={yieldSectionRef} className="bg-white border-t border-gray-100 font-sans select-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left Column Content */}
             <div className="lg:col-span-6">
               <div className="flex items-center gap-2 text-[#c9a84c] text-xs font-bold uppercase tracking-widest mb-4">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
                 Superior Yield
               </div>
-              
-              <h2 
-                style={headingFontClass}
-                className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight"
-              >
-                Beat Inflation.
-                <br />
-                <span className="text-[#e2c77d]">Build Wealth.</span>
+              <h2 style={headingFontClass} className="text-2xl sm:text-3xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight">
+                Beat Inflation.<br /><span className="text-[#e2c77d]">Build Wealth.</span>
               </h2>
-              
-              <p className="text-gray-500 text-sm mb-10 max-w-xl leading-relaxed font-normal opacity-90">
-                Earn passive income through rental payouts and benefit from long-term capital
-                appreciation. Fractional real estate investing gives you portfolio
-                diversification with institution-grade assets.
+              <p className="text-gray-500 text-sm mb-10 max-w-xl leading-relaxed font-light opacity-90">
+                Earn passive income through rental payouts and benefit from long-term capital appreciation. Fractional real estate investing gives you portfolio diversification with institution-grade assets.
               </p>
-              
               <div className="flex gap-12">
                 <div className="border-l-[3px] border-[#c9a84c] pl-5">
                   <p className="text-3xl font-extrabold tracking-tight text-gray-955">6-8%</p>
@@ -694,42 +559,24 @@ function InvestmentHighlights() {
               </div>
             </div>
 
-            {/* Right Column Progress Blocks */}
             <div className="lg:col-span-6">
-              <div 
-                className="bg-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border"
-                style={{ borderColor: "rgba(0,0,0,0.03)" }}
-              >
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8693a6] mb-8">
-                  5-Year Yield Comparison
-                </p>
+              <div className="bg-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border" style={{ borderColor: graphStyle.borderColor }}>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8693a6] mb-8">5-Year Yield Comparison</p>
                 <div className="space-y-6">
                   {yields.map((y) => (
                     <div key={y.label} className="group">
-                      <div
-                        className={`flex items-center justify-between text-xs mb-2 ${
-                          y.highlight ? "text-[#c49a3c] font-bold" : "text-[#4b5565] font-semibold"
-                        }`}
-                      >
+                      <div className={`flex items-center justify-between text-xs mb-2 ${y.highlight ? "text-[#c49a3c] font-bold" : "text-[#4b5565] font-semibold"}`}>
                         <span className="tracking-widest font-bold text-[11px]">{y.label}</span>
                         <span className="font-extrabold">{y.value}%</span>
                       </div>
-                      
                       <div className="h-[7px] bg-[#f3f4f6] rounded-full overflow-hidden relative">
-                        <div
-                          className={`h-full ${y.color} rounded-full transition-all ease-out`}
-                          style={{ 
-                            width: animateYields ? `${(y.value / maxYield) * 100}%` : "0%",
-                            transitionDuration: "1400ms"
-                          }}
-                        />
+                        <div className="h-full ${y.color} rounded-full transition-all ease-out" style={{ width: animateYields ? `${(y.value / maxYield) * 100}%` : "0%", transitionDuration: "1400ms" }} />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -745,7 +592,6 @@ export default function MarketNewsPage() {
 
   const selectedArticle = marketNewsData.find((n) => n.id === selectedId);
 
-  // ── Detail view ──
   if (selectedArticle) {
     return (
       <DetailView
@@ -756,7 +602,6 @@ export default function MarketNewsPage() {
     );
   }
 
-  // ── List view ──
   const filtered =
     active === "All"
       ? marketNewsData
@@ -765,48 +610,38 @@ export default function MarketNewsPage() {
   const visible = filtered.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans antialiased">
+      {/* 1st Section Hero Banner — Sized and padding-managed exactly to reflect reference parameters */}
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
+            alt="hero background"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
 
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
-        <img
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
-          alt="hero"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 style={headingFontClass} className="text-4xl font-bold mb-2">Market News</h1>
-          <p className="text-gray-300 mb-6 max-w-lg text-sm">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
+          {/* <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
+            Surveys
+          </p> */}
+          <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide mt-1">
+            Market News &amp; Trends.
+            <br />
+            Data-Driven Insights.
+            <br />
+            Shaping Strategic Decisions.
+          </h1>
+          <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
+          <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
             Stay ahead with the latest updates, deals and developments shaping India's diverse real estate landscape.
           </p>
-          <div className="flex gap-2 max-w-xl">
-            <div className="flex-1 flex items-center bg-white rounded-lg px-3 gap-2">
-              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <input className="flex-1 py-2.5 text-gray-900 text-sm outline-none bg-transparent" placeholder="Search market news..." />
-            </div>
-            <button className="bg-[#c9a84c] hover:bg-[#b8973d] text-white cursor-pointer px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              Search
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <span className="text-gray-400 text-sm">Popular:</span>
-            {["Residential", "Coworking", "Data Centres", "PropTech", "Hospitality", "Infrastructure"].map((t) => (
-              <button key={t} className="px-3 py-1 bg-white/10 hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors">
-                {t}
-              </button>
-            ))}
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content */}
+      {/* Content Grid Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
@@ -846,12 +681,12 @@ export default function MarketNewsPage() {
                   <span className={`text-[10px] font-bold uppercase tracking-wide px-2.5 py-0.5 rounded-full ${n.tagColor} ${n.tagBg}`}>
                     {n.tag}
                   </span>
-                  <span className="text-xs text-gray-400">{n.date}</span>
+                  <span className="text-xs text-gray-400 font-light">{n.date}</span>
                 </div>
                 <h3 style={headingFontClass} className="font-semibold text-gray-900 text-sm leading-snug group-hover:text-[#c9a84c] transition-colors mb-1">
                   {n.title}
                 </h3>
-                <p className="text-xs text-gray-500 line-clamp-2">{n.desc}</p>
+                <p className="text-xs text-gray-500 line-clamp-2 font-light">{n.desc}</p>
               </div>
               <div className="flex-shrink-0 self-center">
                 <div className="w-8 h-8 rounded-full border border-gray-200 group-hover:border-[#c9a84c] group-hover:bg-[#c9a84c] flex items-center justify-center transition-all">
@@ -864,7 +699,7 @@ export default function MarketNewsPage() {
           ))}
         </div>
 
-        {/* Empty */}
+        {/* Empty State view */}
         {filtered.length === 0 && (
           <div className="text-center py-16">
             <div className="w-14 h-14 rounded-full bg-[#c9a84c]/10 flex items-center justify-center mx-auto mb-3">
@@ -872,7 +707,7 @@ export default function MarketNewsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
               </svg>
             </div>
-            <p className="text-gray-500 text-sm">No news found for this category.</p>
+            <p className="text-gray-500 text-sm font-light">No news found for this category.</p>
           </div>
         )}
 
@@ -889,47 +724,31 @@ export default function MarketNewsPage() {
         )}
       </div>
 
-      {/* Investment Highlights - Land Development Plan + Yield Comparison */}
+      {/* Investment Highlights Section inclusion */}
       <InvestmentHighlights />
 
-      {/* Knowledge That Empowers - Re-engineered Left-Aligned Cinematic Container Section */}
+      {/* Cinematic Content Section */}
       <section className="relative overflow-hidden flex items-center justify-start" style={{ background: "#0d1e35", minHeight: 600 }}>
         <video
           className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ filter: "saturate(0.5) brightness(0.4) contrast(1.05)" }}
-          autoPlay
-          loop
-          muted
-          playsInline
+          style={{ filter: "saturate(0.4) brightness(0.45) contrast(1.05)" }}
+          autoPlay loop muted playsInline
           poster="https://assets.mixkit.co/videos/21246/21246-thumb-360-0.jpg"
         >
-          <source
-            src="https://assets.mixkit.co/videos/21246/21246-720.mp4"
-            type="video/mp4"
-          />
+          <source src="https://assets.mixkit.co/videos/21246/21246-720.mp4" type="video/mp4" />
         </video>
-        <div
-          className="absolute inset-0"
-          style={{ background: "rgba(13,30,53,0.5)", mixBlendMode: "multiply" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(13,30,53,0.85) 0%, rgba(13,30,53,0.65) 45%, rgba(13,30,53,0.1) 100%)",
-          }}
-        />
+        <div className="absolute inset-0" style={{ background: "rgba(13,30,53,0.5)", mixBlendMode: "multiply" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(13,30,53,0.85) 0%, rgba(13,30,53,0.65) 45%, rgba(13,30,53,0.1) 100%)" }} />
         
-        {/* Strictly Left Aligned layouts inside grid contextual widths */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-16 py-32 flex flex-col justify-center items-start text-left" style={{ minHeight: 600 }}>
           <div className="max-w-3xl">
             <h2
-              style={{ ...headingFontClass, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.25 }}
-              className="text-white font-bold mb-6 text-left"
+              style={{ ...headingFontClass, fontSize: "clamp(24px, 3vw, 42px)", lineHeight: 1.25 }}
+              className="text-white font-normal mb-6 text-left"
             >
               Knowledge That Empowers
             </h2>
-            <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left max-w-2xl">
+            <p className="text-slate-200 text-sm font-light leading-[1.7] text-left max-w-2xl opacity-90">
               Our Committees advance industry knowledge through research papers, articles, and
               strategic analysis to illuminate solutions for the challenges facing today's built
               environment.

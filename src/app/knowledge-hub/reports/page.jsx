@@ -504,49 +504,26 @@ export default function ReportsPage() {
   const visible = filtered.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Hero */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 320 }}>
+    <div className="min-h-screen bg-gray-50 font-sans antialiased">
+      {/* Hero — Standardized heights and typography layouts to mirror reference context survey parameters layout exactly */}
+      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 230 }}>
         <img
           src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
           alt="hero"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="relative max-w-7xl mx-auto px-6 py-10 lg:px-12 lg:py-14">
+         
           <h1 
             style={headingFontClass}
-            className="text-4xl font-bold mb-2"
+            className="text-[clamp(24px,3vw,42px)] font-serif font-normal leading-[1.25] tracking-wide mb-3 text-white"
           >
-             Reports
+            Reports &amp; Insights.<br />Data-Driven Insights.<br />Shaping Strategic Decisions.
           </h1>
-          <p className="text-gray-300 mb-6 max-w-lg text-sm">
+          <div className="mt-3 h-[2px] w-16 bg-[#E8A33D] mb-4" />
+          <p className="text-slate-200 font-light leading-[1.7] max-w-xl text-sm">
             Authoritative market intelligence across residential, hospitality, data centres and emerging asset classes.
           </p>
-          <div className="flex gap-2 max-w-xl">
-            <div className="flex-1 flex items-center bg-white rounded-lg px-3 gap-2">
-              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <input className="flex-1 py-2.5 text-gray-900 text-sm outline-none bg-transparent" placeholder="Search research reports..." />
-            </div>
-            <button className="bg-[#c9a84c] hover:bg-[#b8973d] text-white cursor-pointer px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              Search
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <span className="text-gray-400 text-sm">Popular:</span>
-            {["Residential", "Coworking", "Data Centres", "PropTech", "Hospitality", "Infrastructure"].map((t) => (
-              <button
-                key={t}
-                className="px-3 py-1 bg-white/10 hover:bg-[#c9a84c]/30 border border-white/20 hover:border-[#c9a84c] rounded-full text-xs text-white transition-colors"
-              >
-                {t}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -621,11 +598,11 @@ export default function ReportsPage() {
                   <h3 className="text-white font-semibold text-sm leading-snug mb-1 group-hover:text-[#c9a84c] transition-colors">
                     {r.title}
                   </h3>
-                  <p className="text-white/60 text-[11px] mb-3 leading-snug">{r.subtitle}</p>
+                  <p className="text-white/60 text-[11px] mb-3 leading-snug font-light">{r.subtitle}</p>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-white/70 text-xs">{r.date}</p>
-                      <p className="text-white/50 text-[10px] mt-0.5">{r.pages}</p>
+                      <p className="text-white/70 text-xs font-light">{r.date}</p>
+                      <p className="text-white/50 text-[10px] mt-0.5 font-light">{r.pages}</p>
                     </div>
                     <span className="text-[#c9a84c] text-xs font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       View Report
@@ -648,7 +625,7 @@ export default function ReportsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
               </svg>
             </div>
-            <p className="text-gray-500 text-sm">No reports found for this category.</p>
+            <p className="text-gray-500 text-sm font-light">No reports found for this category.</p>
           </div>
         )}
 
@@ -688,12 +665,12 @@ export default function ReportsPage() {
         <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-16 py-32 flex flex-col justify-center items-start text-left" style={{ minHeight: 600 }}>
           <div className="max-w-3xl">
             <h2 
-              style={{ ...headingFontClass, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.25 }}
-              className="text-white font-bold mb-6 text-left"
+              style={{ ...headingFontClass, fontSize: "clamp(24px, 3vw, 42px)", lineHeight: 1.25 }}
+              className="text-white font-normal mb-6 text-left"
             >
               Knowledge That Empowers
             </h2>
-            <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left max-w-2xl">
+            <p className="text-gray-200 text-sm font-light leading-[1.7] text-left max-w-2xl opacity-90">
               Our Committees advance industry knowledge through research papers, articles, and strategic analysis to illuminate solutions for the challenges facing today's built environment.
             </p>
           </div>
