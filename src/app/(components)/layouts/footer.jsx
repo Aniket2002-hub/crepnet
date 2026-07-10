@@ -24,29 +24,26 @@ const navLinks = [
     title: "Quick Links",
     links: [
       { label: "About REPC", href: "/about-us" },
-      { label: "Membership", href: "#" },
-      { label: "Events", href: "/events" },
-      { label: "Knowledge Hub", href: "/knowledge-hub" },
-      { label: "Community Guidelines", href: "#" },
+      { label: "Membership", href: "/join" },
+      { label: "Awards", href: "/events/awards" },
+     
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Articles", href: "#" },
-      { label: "Market News", href: "#" },
-      { label: "Research Reports", href: "#" },
-      { label: "Podcasts", href: "#" },
-      { label: "Career Center", href: "#" },
+      { label: "Articles", href: "/knowledge-hub/articles" },
+      { label: "Market News", href: "/knowledge-hub/market-news" },
+      { label: "Podcasts", href: "/knowledge-hub/podcasts" },
+      { label: "Reports", href: "/knowledge-hub/reports" },
     ],
   },
   {
     title: "Support",
     links: [
       { label: "Contact Us", href: "/contact" },
-      { label: "FAQs", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Use", href: "#" },
+      { label: "Privacy Policy", href: "/" },
+      { label: "Terms of Use", href: "/" },
     ],
   },
 ];
