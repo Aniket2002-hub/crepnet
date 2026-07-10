@@ -662,11 +662,11 @@ const styles = `
     color: #fff;
   }
   .story-subdivider {
-    width: 100%;
-    max-width: 460px;
-    height: 2px;
+    width: 58px;
+    height: 3px;
     background: #c9a84c;
-    margin: 22px 0;
+    border-radius: 2px;
+    margin: 16px 0 20px;
   }
   .story-subtitle {
     font-size: 14.5px;
