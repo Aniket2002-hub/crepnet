@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 /* ============================================================
-   CONTENT DATA — sourced from the REPC brief, unabridged
+   CONTENT DATA — sourced exactly from the provided REPC brief
    ============================================================ */
 
 const VISION_POINTS = [
@@ -104,7 +104,7 @@ const ADVOCACY_ITEMS = [
 ];
 
 /* ============================================================
-   STYLES — Exact Survey Page Banner Matching Sizing
+   STYLES — System Layout Adaptations
    ============================================================ */
 
 const styles = `
@@ -115,7 +115,7 @@ const styles = `
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
   }
 
-  /* ===== Hero Banner — EXACT Match to Survey Banner Design Dimensions ===== */
+  /* ===== Hero Banner (1st Section) — Adjusted Slightly Down ===== */
   .ec-hero-section {
     position: relative;
     overflow: hidden;
@@ -139,59 +139,56 @@ const styles = `
     z-index: 2;
     margin-left: auto;
     margin-right: auto;
-    max-width: 80rem; /* max-w-7xl */
-    padding: 2.5rem 1.5rem; /* px-6 py-10 */
+    max-width: 80rem;
+    padding: 2.75rem 1.5rem; /* Adjusted down slightly from 3.5rem */
   }
   @media (min-width: 1024px) {
     .ec-hero-content {
-      padding-left: 3rem;  /* lg:px-12 */
-      padding-right: 3rem; /* lg:px-12 */
-      padding-top: 3.5rem;   /* lg:py-14 */
-      padding-bottom: 3.5rem;/* lg:py-14 */
+      padding: 3.5rem 3rem; /* Adjusted down slightly from 4.5rem */
     }
   }
   .ec-hero-eyebrow {
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 600; /* font-semibold */
+    font-size: 0.875rem;
+    font-weight: 600;
     color: #E8A33D;
-    letter-spacing: 0.2em; /* tracking-[0.2em] */
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
   .ec-hero-title {
-    max-width: 42rem; /* max-w-2xl */
-    font-size: clamp(24px, 3vw, 42px); /* text-[clamp(24px,3vw,42px)] */
-    font-weight: 400; /* font-normal */
+    max-width: 42rem;
+    font-size: clamp(25px, 3.1vw, 44px);
+    font-weight: 400;
     color: #fff;
     line-height: 1.25;
-    letter-spacing: 0.025em; /* tracking-wide */
+    letter-spacing: 0.025em;
     margin-top: 0px;
   }
   .ec-hero-divider {
     height: 2px;
-    width: 4rem; /* w-16 */
+    width: 4rem;
     background: #E8A33D;
-    margin-top: 1rem; /* mt-4 */
+    margin-top: 1rem;
   }
   .ec-hero-desc {
-    max-width: 36rem; /* max-w-xl */
-    color: #e2e8f0; /* text-slate-200 */
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 300; /* font-light */
-    line-height: 1.7; /* leading-[1.7] */
-    margin-top: 1rem; /* mt-4 */
+    max-width: 36rem;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-top: 1rem;
   }
 
-  /* ===== Shared content-section ===== */
+  /* ===== Compact Section Structure ===== */
   .ec-section { padding: 20px 0; }
   .ec-section.bg-light { background: #fff; }
   .ec-section.bg-gray { background: #f9fafb; }
   .ec-section.bg-dark { background: #0d1e35; }
   .ec-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-  .ec-section-head { max-width: 700px; margin-bottom: 14px; }
+  .ec-section-head { max-width: 750px; margin-bottom: 14px; }
   .ec-head-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
   .ec-head-icon {
-    width: 36px; height: 36px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     background: rgba(201,168,76,0.12);
     display: flex;
@@ -200,7 +197,7 @@ const styles = `
     flex-shrink: 0;
   }
   .ec-eyebrow {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     color: #c9a84c;
     letter-spacing: 1.5px;
@@ -211,33 +208,33 @@ const styles = `
     font-weight: 800;
     color: #1a2744;
     line-height: 1.25;
+    margin-top: 4px;
   }
   .ec-section-title.on-dark { color: #fff; }
   .ec-divider {
     width: 48px; height: 3px;
     background: #c9a84c;
     border-radius: 2px;
-    margin: 8px 0 10px;
+    margin: 6px 0 8px;
   }
   .ec-section-desc {
     font-size: 14px;
-    color: #6b7280;
+    color: #525a66;
     line-height: 1.5;
-    max-width: 640px;
   }
   .ec-section-desc.on-dark { color: #b9c3d4; }
 
-  /* ===== Card grid ===== */
+  /* ===== Functional Grid Elements ===== */
   .ec-card-grid {
     display: grid;
     grid-template-columns: repeat(var(--cols, 3), 1fr);
-    gap: 12px;
+    gap: 10px;
   }
   .ec-item-card {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
-    padding: 12px 14px;
+    padding: 10px 14px;
     display: flex;
     align-items: flex-start;
     gap: 10px;
@@ -247,24 +244,24 @@ const styles = `
     border-color: rgba(255,255,255,0.12);
   }
   .ec-item-icon-circle {
-    width: 32px; height: 32px;
+    width: 22px; height: 22px;
     border-radius: 50%;
     background: rgba(201,168,76,0.12);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-top: 1px;
   }
   .ec-item-label {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     color: #1a2744;
-    line-height: 1.35;
-    padding-top: 4px;
+    line-height: 1.4;
   }
   .ec-item-label.on-dark { color: #fff; }
 
-  /* ===== Chip grid ===== */
+  /* ===== Fluid Chip Collections ===== */
   .ec-chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .ec-chip {
     display: inline-flex;
@@ -273,7 +270,7 @@ const styles = `
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 999px;
-    padding: 8px 14px 8px 10px;
+    padding: 6px 14px 6px 10px;
     font-size: 12.5px;
     font-weight: 600;
     color: #1a2744;
@@ -285,8 +282,8 @@ const styles = `
     flex-shrink: 0;
   }
 
-  /* ===== Vision list ===== */
-  .ec-vision-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+  /* ===== Bulleted Vision Items ===== */
+  .ec-vision-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 700px; }
   .ec-vision-list li {
     position: relative;
     padding-left: 18px;
@@ -303,12 +300,12 @@ const styles = `
     background: #c9a84c;
   }
 
-  /* ===== Closing vision banner ===== */
+  /* ===== Closing Vision Showcase (Last Section) — Stays Bold & Large ===== */
   .ec-closing-section {
     position: relative;
     background: #0d1e35;
     overflow: hidden;
-    padding: 120px 0;
+    padding: 130px 0;
   }
   .ec-closing-bg {
     position: absolute;
@@ -316,63 +313,65 @@ const styles = `
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.4) brightness(0.3);
+    filter: saturate(0.3) brightness(0.25);
   }
   .ec-closing-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(13,30,53,0.9) 0%, rgba(13,30,53,0.75) 60%, rgba(13,30,53,0.95) 100%);
+    background: linear-gradient(180deg, rgba(13,30,53,0.92) 0%, rgba(13,30,53,0.8) 60%, rgba(13,30,53,0.96) 100%);
   }
   .ec-closing-inner {
     position: relative;
     z-index: 2;
-    max-width: 820px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
     text-align: center;
   }
   .ec-closing-eyebrow {
     font-size: 12px;
     font-weight: 700;
     color: #c9a84c;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 14px;
   }
   .ec-closing-title {
-    font-size: clamp(24px, 3.4vw, 36px);
+    font-size: clamp(26px, 3.8vw, 42px);
     font-weight: 700;
     color: #fff;
-    line-height: 1.3;
-    margin-bottom: 20px;
+    line-height: 1.35;
+    margin-bottom: 24px;
   }
   .ec-closing-divider {
-    width: 48px; height: 3px;
+    width: 60px; height: 3px;
     background: #c9a84c;
     border-radius: 2px;
     margin: 0 auto 26px;
   }
   .ec-closing-para {
-    font-size: 14.5px;
+    font-size: 15px;
     color: #cbd5e1;
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 16px;
   }
   .ec-closing-para:last-child { margin-bottom: 0; }
 
-  /* ===== Responsive ===== */
+  /* ===== Breakpoint Handlers ===== */
   @media (max-width: 1024px) {
-    .ec-card-grid { grid-template-columns: repeat(2, 1fr); }
+    .ec-card-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .ec-closing-section { padding: 100px 0; }
   }
   @media (max-width: 640px) {
-    .ec-card-grid { grid-template-columns: 1fr; }
+    .ec-card-grid { grid-template-columns: 1fr !important; }
     .ec-section { padding: 12px 0; }
-    .ec-closing-section { padding: 96px 0; }
+    .ec-closing-section { padding: 80px 0; }
+    .ec-hero-content { padding: 2.25rem 1.5rem; }
   }
 `;
 
 /* ============================================================
-   REUSABLE PIECES
+   REUSABLE UI ATOMS
    ============================================================ */
 
 function SectionHead({ eyebrow, title, desc, icon: Icon, onDark }) {
@@ -380,7 +379,7 @@ function SectionHead({ eyebrow, title, desc, icon: Icon, onDark }) {
     <div className="ec-section-head">
       <div className="ec-head-row">
         <div className="ec-head-icon">
-          <Icon size={16} color="#c9a84c" strokeWidth={1.8} />
+          <Icon size={14} color="#c9a84c" strokeWidth={2} />
         </div>
         <span className="ec-eyebrow">{eyebrow}</span>
       </div>
@@ -431,7 +430,7 @@ function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light" }
 }
 
 /* ============================================================
-   PAGE SECTIONS
+   LAYOUT VIEWS
    ============================================================ */
 
 export function ExploreHero() {
@@ -441,7 +440,7 @@ export function ExploreHero() {
         <img
           className="ec-hero-bg"
           src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
-          alt="Indian city skyline"
+          alt="Indian city skyline background"
         />
         <div className="ec-hero-overlay" />
       </div>
@@ -454,9 +453,9 @@ export function ExploreHero() {
         </h1>
         <div className="ec-hero-divider" />
         <p className="ec-hero-desc">
-          REPC goes beyond networking alone — creating an ecosystem that delivers knowledge,
-          careers, business opportunities, credibility, and industry influence for every
-          stakeholder of Indian real estate.
+          The objective of REPC is to build India's largest and most influential community of real 
+          estate professionals, the focus is to go beyond networking alone to create an ecosystem that 
+          delivers knowledge, careers, business opportunities, credibility, and industry influence.
         </p>
       </div>
     </section>
@@ -468,8 +467,8 @@ export function VisionSection() {
     <section className="ec-section bg-light">
       <div className="ec-inner">
         <SectionHead
-          eyebrow="Our Foundation"
-          title="A Clear Vision"
+          eyebrow="Key Pillars"
+          title="Clear Vision"
           desc="REPC is built on three founding commitments that guide everything the community does."
           icon={Target}
         />
@@ -487,8 +486,8 @@ export function CommunityMembersSection() {
   return (
     <ChipGridSection
       id="members"
-      eyebrow={`${COMMUNITY_MEMBERS.length} Professional Categories`}
-      title="A Diverse Community of Members"
+      eyebrow="Diverse Group"
+      title="Build a Diverse Group of Community Members Comprising:"
       desc="Every stakeholder in the real estate value chain has a seat at the table."
       icon={Users}
       items={COMMUNITY_MEMBERS}
@@ -501,9 +500,9 @@ export function MembershipStructureSection() {
   return (
     <CardGridSection
       id="membership"
-      eyebrow="Membership Structure"
-      title="Choose the Membership That Fits"
-      desc="Eight membership tiers designed for individuals, startups, and large organizations alike."
+      eyebrow="Structure"
+      title="Membership Structure"
+      desc="Membership tiers designed for individuals, startups, and large organizations alike."
       icon={Layers}
       items={MEMBERSHIP_TYPES}
       cols={4}
@@ -517,11 +516,11 @@ export function CertificationsSection() {
     <CardGridSection
       id="certifications"
       eyebrow="Professional Certification"
-      title="Industry-Recognized Certifications"
+      title="Develop industry-recognized certifications such as:"
       desc="Credentials that validate expertise across every real estate discipline."
       icon={Award}
       items={CERTIFICATIONS}
-      cols={3}
+      cols={2}
       bg="gray"
     />
   );
@@ -532,11 +531,11 @@ export function KnowledgeEcosystemSection() {
     <CardGridSection
       id="knowledge"
       eyebrow="Knowledge Ecosystem"
-      title="Continuous Learning, Always On"
+      title="Offer continuous learning through:"
       desc="Regular formats that keep members ahead of the market."
       icon={BookOpen}
       items={KNOWLEDGE_ITEMS}
-      cols={4}
+      cols={3}
       bg="light"
     />
   );
@@ -551,7 +550,7 @@ export function NetworkingSection() {
       desc="Forums and summits that put members in front of the right people."
       icon={Network}
       items={NETWORKING_ITEMS}
-      cols={3}
+      cols={2}
       bg="gray"
     />
   );
@@ -566,7 +565,7 @@ export function CareerDevelopmentSection() {
       desc="Support at every stage — from first internship to executive search."
       icon={Briefcase}
       items={CAREER_ITEMS}
-      cols={4}
+      cols={3}
       bg="light"
     />
   );
@@ -577,11 +576,11 @@ export function BusinessDevelopmentSection() {
     <CardGridSection
       id="business"
       eyebrow="Business Development"
-      title="A Platform Built for Business"
-      desc="Connect with the professionals of your choice from within the member group."
+      title="REPC offers a platform to connect with professionals of choice from the member group:"
+      desc="Form strategic alignments, find clients, and secure investment pipelines safely."
       icon={TrendingUp}
       items={BUSINESS_ITEMS}
-      cols={4}
+      cols={2}
       bg="gray"
     />
   );
@@ -592,11 +591,11 @@ export function TechPlatformSection() {
     <CardGridSection
       id="technology"
       eyebrow="Technology Platform"
-      title="A Digital Home for the Community"
-      desc="Everything members need, in one connected platform."
+      title="Develop a digital platform featuring:"
+      desc="Everything members need, integrated into a high-performance modern space."
       icon={Cpu}
       items={TECH_PLATFORM_ITEMS}
-      cols={4}
+      cols={3}
       bg="dark"
     />
   );
@@ -607,10 +606,11 @@ export function BenefitsSection() {
     <CardGridSection
       id="benefits"
       eyebrow="Community Benefits"
-      title="What Members Receive"
+      title="REPC Members should receive:"
+      desc="Unmatched ROI in professional credibility, knowledge tools, and global growth structures."
       icon={Gift}
       items={BENEFITS_ITEMS}
-      cols={5}
+      cols={2}
       bg="light"
     />
   );
@@ -621,10 +621,11 @@ export function ContentStrategySection() {
     <CardGridSection
       id="content"
       eyebrow="Content Strategy"
-      title="High-Value Content, Published Regularly"
+      title="REPC to Publish high-value content regularly:"
+      desc="Stay informed with real-time breakdowns of macro policies and local updates."
       icon={Newspaper}
       items={CONTENT_STRATEGY_ITEMS}
-      cols={4}
+      cols={3}
       bg="gray"
     />
   );
@@ -635,7 +636,8 @@ export function FlagshipEventsSection() {
     <CardGridSection
       id="events"
       eyebrow="Annual Flagship Events"
-      title="Signature Events Members Look Forward To"
+      title="REPC shall host signature events such as:"
+      desc="Major interactive setups connecting policy leaders with scaling real estate founders."
       icon={Calendar}
       items={FLAGSHIP_EVENTS}
       cols={3}
@@ -648,9 +650,9 @@ export function RegionalExpansionSection() {
   return (
     <ChipGridSection
       id="regions"
-      eyebrow={`${REGIONS.length} Cities and Counting`}
-      title="Active Chapters Across Major Markets"
-      desc="REPC's regional expansion brings the community closer to where its members work."
+      eyebrow="Regional Expansion"
+      title="Create active chapters across major markets, including:"
+      desc="Local chapter hubs bringing deep actionable community context directly to your city."
       icon={MapPin}
       items={REGIONS}
       bg="gray"
@@ -663,10 +665,11 @@ export function AdvocacySection() {
     <CardGridSection
       id="advocacy"
       eyebrow="Industry Advocacy"
-      title="A Respected Industry Voice"
+      title="REPC to act as a respected industry voice by:"
+      desc="Driving deep structural improvements through data analytics and collaborative policy frameworks."
       icon={Megaphone}
       items={ADVOCACY_ITEMS}
-      cols={3}
+      cols={2}
       bg="light"
     />
   );
@@ -678,28 +681,28 @@ export function ClosingVisionSection() {
       <img
         className="ec-closing-bg"
         src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=85&auto=format&fit=crop"
-        alt="Real estate leadership"
+        alt="Real estate premium workspace structure"
       />
       <div className="ec-closing-overlay" />
       <div className="ec-closing-inner">
-        <div className="ec-closing-eyebrow">The Long-Term Vision</div>
+        <div className="ec-closing-eyebrow">A Long-Term Vision</div>
         <h2 className="ec-closing-title">
           Where Professionals Learn, Earn, Connect, Innovate, and Lead
         </h2>
         <div className="ec-closing-divider" />
         <p className="ec-closing-para">
-          REPC aspires to create India's most trusted professional ecosystem for the entire
-          real estate value chain, where professionals learn, earn, connect, innovate, and
-          lead throughout their careers.
+          REPC aspires to create India's most trusted professional ecosystem for the entire real estate 
+          value chain, where professionals learn, earn, connect, innovate, and lead throughout their 
+          careers.
         </p>
         <p className="ec-closing-para">
-          REPC is not only a networking platform — it functions as an integrated ecosystem
-          combining education, certification, career advancement, business development,
-          thought leadership, and policy engagement.
+          REPC is not only a mere networking platform, it would function as an integrated ecosystem 
+          combining education, certification, career advancement, business development, thought 
+          leadership, and policy engagement.
         </p>
         <p className="ec-closing-para">
-          This model creates lasting value for individual professionals, organizations, and
-          the broader Indian real estate industry.
+          This REPC model will create lasting value for individual professionals, organizations, and the 
+          broader Indian real estate industry.
         </p>
       </div>
     </section>
@@ -707,7 +710,7 @@ export function ClosingVisionSection() {
 }
 
 /* ============================================================
-   PAGE
+   MAIN WRAPPER INTERFACE ASSEMBLY
    ============================================================ */
 
 export default function ExploreCommunityPage() {
