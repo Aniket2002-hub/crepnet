@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Users, Building2, TrendingUp, Handshake, Award, BookOpen, MapPin,
   Network, Calendar, UserCheck, Target, Layers, Briefcase, Cpu,
@@ -8,6 +8,7 @@ import {
 
 /* ============================================================
    CONTENT DATA — sourced exactly from the provided REPC brief
+   (UNCHANGED)
    ============================================================ */
 
 const VISION_POINTS = [
@@ -104,7 +105,9 @@ const ADVOCACY_ITEMS = [
 ];
 
 /* ============================================================
-   STYLES — System Layout Adaptations
+   STYLES — Same color theme (navy / gold), new "blueprint
+   annotation" design system: corner marks, chapter numerals,
+   grid/noise textures, scroll reveals, hover motion.
    ============================================================ */
 
 const styles = `
@@ -115,24 +118,45 @@ const styles = `
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
   }
 
-  /* ===== Hero Banner (1st Section) — Adjusted Slightly Down ===== */
+  @keyframes ec-draw-line { from { width: 0; } to { width: 64px; } }
+  @keyframes ec-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes ec-drift {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(-2%, -1.5%); }
+    100% { transform: translate(0, 0); }
+  }
+
+  /* ===== Hero Banner ===== */
   .ec-hero-section {
     position: relative;
     overflow: hidden;
     background: #0B1F3A;
   }
+  .ec-hero-bg-wrap { position: absolute; inset: 0; }
   .ec-hero-bg {
     position: absolute;
-    inset: 0;
-    height: 100%;
-    width: 100%;
+    inset: -3%;
+    height: 106%;
+    width: 106%;
     object-fit: cover;
-    opacity: 0.6;
+    opacity: 0.55;
+    animation: ec-drift 26s ease-in-out infinite;
+  }
+  .ec-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,163,61,0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,163,61,0.10) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: linear-gradient(to right, black, transparent 75%);
+            mask-image: linear-gradient(to right, black, transparent 75%);
   }
   .ec-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, #0B1F3A 0%, rgba(11, 31, 58, 0.85) 60%, transparent 100%);
+    background: linear-gradient(to right, #0B1F3A 0%, rgba(11, 31, 58, 0.88) 55%, rgba(11,31,58,0.35) 100%),
+                linear-gradient(to top, #0B1F3A 0%, transparent 30%);
   }
   .ec-hero-content {
     position: relative;
@@ -140,15 +164,23 @@ const styles = `
     margin-left: auto;
     margin-right: auto;
     max-width: 80rem;
-    padding: 2.75rem 1.5rem; /* Adjusted down slightly from 3.5rem */
+    padding: 2.75rem 1.5rem;
   }
   @media (min-width: 1024px) {
-    .ec-hero-content {
-      padding: 3.5rem 3rem; /* Adjusted down slightly from 4.5rem */
-    }
+    .ec-hero-content { padding: 3.5rem 3rem; }
   }
+  .ec-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(232,163,61,0.4);
+    border-radius: 999px;
+    padding: 5px 14px 5px 10px;
+    margin-bottom: 14px;
+  }
+  .ec-hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #E8A33D; }
   .ec-hero-eyebrow {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #E8A33D;
     letter-spacing: 0.2em;
@@ -165,9 +197,10 @@ const styles = `
   }
   .ec-hero-divider {
     height: 2px;
-    width: 4rem;
+    width: 64px;
     background: #E8A33D;
     margin-top: 1rem;
+    animation: ec-draw-line 1.1s cubic-bezier(.16,1,.3,1) 0.2s both;
   }
   .ec-hero-desc {
     max-width: 36rem;
@@ -177,15 +210,91 @@ const styles = `
     line-height: 1.7;
     margin-top: 1rem;
   }
+  .ec-hero-coords {
+    display: flex;
+    gap: 22px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+  }
+  .ec-hero-coord { font-size: 11px; color: rgba(226,232,240,0.55); letter-spacing: 0.08em; }
+  .ec-hero-coord b { color: #E8A33D; font-weight: 600; }
 
   /* ===== Compact Section Structure ===== */
-  .ec-section { padding: 20px 0; }
+  .ec-section { padding: 20px 0; position: relative; }
   .ec-section.bg-light { background: #fff; }
   .ec-section.bg-gray { background: #f9fafb; }
   .ec-section.bg-dark { background: #0d1e35; }
-  .ec-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-  .ec-section-head { max-width: 750px; margin-bottom: 14px; }
+  .ec-section.bg-light::before, .ec-section.bg-gray::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,39,68,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,39,68,0.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+  }
+  .ec-section.bg-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(201,168,76,0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  /* ===== Banner sections — background photo + navy/blue fade ===== */
+  .ec-section-banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.5s ease, transform 6s ease;
+  }
+  .ec-section-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(11,31,58,0.58) 0%, rgba(19,42,74,0.32) 42%, rgba(11,31,58,0.62) 100%);
+  }
+  .ec-section.has-banner:hover .ec-section-banner-img { opacity: 0.92; transform: scale(1.03); }
+
+  /* readability boosts for text/cards sitting on a banner photo */
+  .ec-section.has-banner .ec-section-title.on-dark,
+  .ec-section.has-banner .ec-section-desc.on-dark,
+  .ec-section.has-banner .ec-chapter-num.on-dark {
+    text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+  }
+  .ec-section.has-banner .ec-item-card.on-dark {
+    background: rgba(9,18,33,0.6);
+    border-color: rgba(255,255,255,0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .ec-section.has-banner .ec-item-label.on-dark {
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .ec-section.has-banner .ec-chip {
+    background: rgba(9,18,33,0.6);
+    border-color: rgba(255,255,255,0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+
+  .ec-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; position: relative; }
+
+  .ec-section-head { max-width: 750px; margin-bottom: 14px; position: relative; padding-left: 16px; }
+  .ec-section-head::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 2px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, #c9a84c, rgba(201,168,76,0));
+  }
   .ec-head-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
   .ec-head-icon {
     width: 32px; height: 32px;
@@ -195,7 +304,10 @@ const styles = `
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 0.35s ease, background 0.35s ease;
   }
+  .ec-section:hover .ec-head-icon { transform: rotate(-8deg) scale(1.06); background: rgba(201,168,76,0.2); }
+  .ec-eyebrow-row { display: flex; align-items: baseline; gap: 10px; }
   .ec-eyebrow {
     font-size: 11px;
     font-weight: 700;
@@ -203,6 +315,14 @@ const styles = `
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
+  .ec-chapter-num {
+    font-family: ui-serif, Georgia, serif;
+    font-size: 11px;
+    color: rgba(26,39,68,0.35);
+    letter-spacing: 0.1em;
+  }
+  .ec-section-title.on-dark ~ .ec-chapter-num,
+  .ec-chapter-num.on-dark { color: rgba(255,255,255,0.35); }
   .ec-section-title {
     font-size: 24px;
     font-weight: 800;
@@ -224,6 +344,31 @@ const styles = `
   }
   .ec-section-desc.on-dark { color: #b9c3d4; }
 
+  /* corner registration marks — architectural drawing motif */
+  .ec-corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1.5px solid rgba(201,168,76,0.55);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .ec-section:hover .ec-corner { opacity: 1; }
+  .ec-corner-tl { top: 0; left: -2px; border-right: none; border-bottom: none; }
+  .ec-corner-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+  /* ===== Reveal-on-scroll ===== */
+  .ec-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .ec-reveal.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .ec-reveal { opacity: 1; transform: none; transition: none; }
+    .ec-hero-bg { animation: none; }
+    .ec-hero-divider { animation: none; width: 64px; }
+  }
+
   /* ===== Functional Grid Elements ===== */
   .ec-card-grid {
     display: grid;
@@ -233,15 +378,29 @@ const styles = `
   .ec-item-card {
     background: #fff;
     border: 1px solid #e5e7eb;
+    border-left: 2px solid transparent;
     border-radius: 8px;
     padding: 10px 14px;
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .ec-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -12px rgba(26,39,68,0.28);
+    border-color: #e5e7eb;
+    border-left-color: #c9a84c;
   }
   .ec-item-card.on-dark {
     background: rgba(255,255,255,0.04);
     border-color: rgba(255,255,255,0.12);
+    border-left-color: transparent;
+  }
+  .ec-item-card.on-dark:hover {
+    background: rgba(255,255,255,0.07);
+    border-left-color: #c9a84c;
+    box-shadow: 0 10px 26px -12px rgba(0,0,0,0.5);
   }
   .ec-item-icon-circle {
     width: 22px; height: 22px;
@@ -252,7 +411,9 @@ const styles = `
     justify-content: center;
     flex-shrink: 0;
     margin-top: 1px;
+    transition: transform 0.25s ease;
   }
+  .ec-item-card:hover .ec-item-icon-circle { transform: scale(1.25); }
   .ec-item-label {
     font-size: 13px;
     font-weight: 600;
@@ -274,13 +435,30 @@ const styles = `
     font-size: 12.5px;
     font-weight: 600;
     color: #1a2744;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .ec-chip:hover {
+    transform: translateY(-2px);
+    background: rgba(201,168,76,0.08);
+    border-color: #c9a84c;
+  }
+  .ec-section.bg-dark .ec-chip {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.16);
+    color: #fff;
+  }
+  .ec-section.bg-dark .ec-chip:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: #c9a84c;
   }
   .ec-chip-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: #c9a84c;
     flex-shrink: 0;
+    transition: transform 0.2s ease;
   }
+  .ec-chip:hover .ec-chip-dot { transform: scale(1.4); }
 
   /* ===== Bulleted Vision Items ===== */
   .ec-vision-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 700px; }
@@ -300,7 +478,7 @@ const styles = `
     background: #c9a84c;
   }
 
-  /* ===== Closing Vision Showcase (Last Section) — Stays Bold & Large ===== */
+  /* ===== Closing Vision Showcase ===== */
   .ec-closing-section {
     position: relative;
     background: #0d1e35;
@@ -315,10 +493,21 @@ const styles = `
     object-fit: cover;
     filter: saturate(0.3) brightness(0.25);
   }
+  @media (min-width: 1024px) {
+    .ec-closing-bg { background-attachment: fixed; }
+  }
   .ec-closing-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(13,30,53,0.92) 0%, rgba(13,30,53,0.8) 60%, rgba(13,30,53,0.96) 100%);
+  }
+  .ec-closing-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
   .ec-closing-inner {
     position: relative;
@@ -367,6 +556,7 @@ const styles = `
     .ec-section { padding: 12px 0; }
     .ec-closing-section { padding: 80px 0; }
     .ec-hero-content { padding: 2.25rem 1.5rem; }
+    .ec-corner { display: none; }
   }
 `;
 
@@ -374,14 +564,53 @@ const styles = `
    REUSABLE UI ATOMS
    ============================================================ */
 
-function SectionHead({ eyebrow, title, desc, icon: Icon, onDark }) {
+/** Fades + slides content up once it scrolls into view. */
+function Reveal({ children, as: Tag = "div", className = "", delay = 0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={ref}
+      className={`ec-reveal${visible ? " is-visible" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function SectionHead({ eyebrow, title, desc, icon: Icon, onDark, chapter }) {
   return (
     <div className="ec-section-head">
-      <div className="ec-head-row">
-        <div className="ec-head-icon">
-          <Icon size={14} color="#c9a84c" strokeWidth={2} />
+      <div className="ec-eyebrow-row">
+        <div className="ec-head-row" style={{ marginBottom: 0 }}>
+          <div className="ec-head-icon">
+            <Icon size={14} color="#c9a84c" strokeWidth={2} />
+          </div>
+          <span className="ec-eyebrow">{eyebrow}</span>
         </div>
-        <span className="ec-eyebrow">{eyebrow}</span>
+        {chapter && (
+          <span className={`ec-chapter-num${onDark ? " on-dark" : ""}`}>{chapter} / 15</span>
+        )}
       </div>
       <h2 className={`ec-section-title${onDark ? " on-dark" : ""}`}>{title}</h2>
       <div className="ec-divider" />
@@ -390,20 +619,32 @@ function SectionHead({ eyebrow, title, desc, icon: Icon, onDark }) {
   );
 }
 
-function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg = "light" }) {
+function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg = "light", chapter, bgImage }) {
   const onDark = bg === "dark";
   return (
-    <section id={id} className={`ec-section bg-${bg}`}>
+    <section id={id} className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}>
+      {bgImage && (
+        <>
+          <img className="ec-section-banner-img" src={bgImage} alt="" aria-hidden="true" />
+          <div className="ec-section-banner-overlay" />
+        </>
+      )}
+      <span className="ec-corner ec-corner-tl" />
+      <span className="ec-corner ec-corner-br" />
       <div className="ec-inner">
-        <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} onDark={onDark} />
+        <Reveal>
+          <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} onDark={onDark} chapter={chapter} />
+        </Reveal>
         <div className="ec-card-grid" style={{ "--cols": cols }}>
           {items.map((item, i) => (
-            <div key={i} className={`ec-item-card${onDark ? " on-dark" : ""}`}>
-              <div className="ec-item-icon-circle">
-                <span className="ec-chip-dot" />
+            <Reveal key={i} delay={Math.min(i, 8) * 40}>
+              <div className={`ec-item-card${onDark ? " on-dark" : ""}`}>
+                <div className="ec-item-icon-circle">
+                  <span className="ec-chip-dot" />
+                </div>
+                <div className={`ec-item-label${onDark ? " on-dark" : ""}`}>{item}</div>
               </div>
-              <div className={`ec-item-label${onDark ? " on-dark" : ""}`}>{item}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -411,19 +652,32 @@ function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg =
   );
 }
 
-function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light" }) {
+function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light", chapter, bgImage }) {
+  const onDark = bg === "dark";
   return (
-    <section id={id} className={`ec-section bg-${bg}`}>
+    <section id={id} className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}>
+      {bgImage && (
+        <>
+          <img className="ec-section-banner-img" src={bgImage} alt="" aria-hidden="true" />
+          <div className="ec-section-banner-overlay" />
+        </>
+      )}
+      <span className="ec-corner ec-corner-tl" />
+      <span className="ec-corner ec-corner-br" />
       <div className="ec-inner">
-        <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} />
-        <div className="ec-chip-grid">
-          {items.map((item, i) => (
-            <span key={i} className="ec-chip">
-              <span className="ec-chip-dot" />
-              {item}
-            </span>
-          ))}
-        </div>
+        <Reveal>
+          <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} onDark={onDark} chapter={chapter} />
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="ec-chip-grid">
+            {items.map((item, i) => (
+              <span key={i} className="ec-chip">
+                <span className="ec-chip-dot" />
+                {item}
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -436,16 +690,20 @@ function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light" }
 export function ExploreHero() {
   return (
     <section className="ec-hero-section">
-      <div className="absolute inset-0">
+      <div className="ec-hero-bg-wrap">
         <img
           className="ec-hero-bg"
           src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
           alt="Indian city skyline background"
         />
+        <div className="ec-hero-grid" />
         <div className="ec-hero-overlay" />
       </div>
       <div className="ec-hero-content">
-        <p className="ec-hero-eyebrow">Real Estate Professionals Community</p>
+        <div className="ec-hero-tag">
+          <span className="ec-hero-tag-dot" />
+          <p className="ec-hero-eyebrow" style={{ margin: 0 }}>Real Estate Professionals Community</p>
+        </div>
         <h1 className="ec-hero-title">
           Building India's Largest and Most
           <br />
@@ -453,10 +711,15 @@ export function ExploreHero() {
         </h1>
         <div className="ec-hero-divider" />
         <p className="ec-hero-desc">
-          The objective of REPC is to build India's largest and most influential community of real 
-          estate professionals, the focus is to go beyond networking alone to create an ecosystem that 
+          The objective of REPC is to build India's largest and most influential community of real
+          estate professionals, the focus is to go beyond networking alone to create an ecosystem that
           delivers knowledge, careers, business opportunities, credibility, and industry influence.
         </p>
+        <div className="ec-hero-coords">
+          <span className="ec-hero-coord"><b>26</b> stakeholder groups</span>
+          <span className="ec-hero-coord"><b>15</b> chapters of the plan</span>
+          <span className="ec-hero-coord"><b>15+</b> city chapters nationwide</span>
+        </div>
       </div>
     </section>
   );
@@ -465,18 +728,25 @@ export function ExploreHero() {
 export function VisionSection() {
   return (
     <section className="ec-section bg-light">
+      <span className="ec-corner ec-corner-tl" />
+      <span className="ec-corner ec-corner-br" />
       <div className="ec-inner">
-        <SectionHead
-          eyebrow="Key Pillars"
-          title="Clear Vision"
-          desc="REPC is built on three founding commitments that guide everything the community does."
-          icon={Target}
-        />
-        <ul className="ec-vision-list">
-          {VISION_POINTS.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
+        <Reveal>
+          <SectionHead
+            eyebrow="Key Pillars"
+            title="Clear Vision"
+            desc="REPC is built on three founding commitments that guide everything the community does."
+            icon={Target}
+            chapter="01"
+          />
+        </Reveal>
+        <Reveal delay={80}>
+          <ul className="ec-vision-list">
+            {VISION_POINTS.map((point, i) => (
+              <li key={i}>{point}</li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );
@@ -491,7 +761,9 @@ export function CommunityMembersSection() {
       desc="Every stakeholder in the real estate value chain has a seat at the table."
       icon={Users}
       items={COMMUNITY_MEMBERS}
-      bg="gray"
+      bg="dark"
+      bgImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80&auto=format&fit=crop"
+      chapter="02"
     />
   );
 }
@@ -507,6 +779,7 @@ export function MembershipStructureSection() {
       items={MEMBERSHIP_TYPES}
       cols={4}
       bg="light"
+      chapter="03"
     />
   );
 }
@@ -521,7 +794,9 @@ export function CertificationsSection() {
       icon={Award}
       items={CERTIFICATIONS}
       cols={2}
-      bg="gray"
+      bg="dark"
+      bgImage="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80&auto=format&fit=crop"
+      chapter="04"
     />
   );
 }
@@ -537,6 +812,7 @@ export function KnowledgeEcosystemSection() {
       items={KNOWLEDGE_ITEMS}
       cols={3}
       bg="light"
+      chapter="05"
     />
   );
 }
@@ -551,7 +827,9 @@ export function NetworkingSection() {
       icon={Network}
       items={NETWORKING_ITEMS}
       cols={2}
-      bg="gray"
+      bg="dark"
+      bgImage="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80&auto=format&fit=crop"
+      chapter="06"
     />
   );
 }
@@ -567,6 +845,7 @@ export function CareerDevelopmentSection() {
       items={CAREER_ITEMS}
       cols={3}
       bg="light"
+      chapter="07"
     />
   );
 }
@@ -582,6 +861,7 @@ export function BusinessDevelopmentSection() {
       items={BUSINESS_ITEMS}
       cols={2}
       bg="gray"
+      chapter="08"
     />
   );
 }
@@ -597,6 +877,7 @@ export function TechPlatformSection() {
       items={TECH_PLATFORM_ITEMS}
       cols={3}
       bg="dark"
+      chapter="09"
     />
   );
 }
@@ -612,6 +893,7 @@ export function BenefitsSection() {
       items={BENEFITS_ITEMS}
       cols={2}
       bg="light"
+      chapter="10"
     />
   );
 }
@@ -626,7 +908,9 @@ export function ContentStrategySection() {
       icon={Newspaper}
       items={CONTENT_STRATEGY_ITEMS}
       cols={3}
-      bg="gray"
+      bg="dark"
+      bgImage="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80&auto=format&fit=crop"
+      chapter="11"
     />
   );
 }
@@ -642,6 +926,7 @@ export function FlagshipEventsSection() {
       items={FLAGSHIP_EVENTS}
       cols={3}
       bg="light"
+      chapter="12"
     />
   );
 }
@@ -655,7 +940,9 @@ export function RegionalExpansionSection() {
       desc="Local chapter hubs bringing deep actionable community context directly to your city."
       icon={MapPin}
       items={REGIONS}
-      bg="gray"
+      bg="dark"
+      bgImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80&auto=format&fit=crop"
+      chapter="13"
     />
   );
 }
@@ -671,6 +958,7 @@ export function AdvocacySection() {
       items={ADVOCACY_ITEMS}
       cols={2}
       bg="light"
+      chapter="14"
     />
   );
 }
@@ -684,26 +972,31 @@ export function ClosingVisionSection() {
         alt="Real estate premium workspace structure"
       />
       <div className="ec-closing-overlay" />
+      <div className="ec-closing-grid" />
       <div className="ec-closing-inner">
-        <div className="ec-closing-eyebrow">A Long-Term Vision</div>
-        <h2 className="ec-closing-title">
-          Where Professionals Learn, Earn, Connect, Innovate, and Lead
-        </h2>
-        <div className="ec-closing-divider" />
-        <p className="ec-closing-para">
-          REPC aspires to create India's most trusted professional ecosystem for the entire real estate 
-          value chain, where professionals learn, earn, connect, innovate, and lead throughout their 
-          careers.
-        </p>
-        <p className="ec-closing-para">
-          REPC is not only a mere networking platform, it would function as an integrated ecosystem 
-          combining education, certification, career advancement, business development, thought 
-          leadership, and policy engagement.
-        </p>
-        <p className="ec-closing-para">
-          This REPC model will create lasting value for individual professionals, organizations, and the 
-          broader Indian real estate industry.
-        </p>
+        <Reveal>
+          <div className="ec-closing-eyebrow">Chapter 15 / 15 — A Long-Term Vision</div>
+          <h2 className="ec-closing-title">
+            Where Professionals Learn, Earn, Connect, Innovate, and Lead
+          </h2>
+          <div className="ec-closing-divider" />
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="ec-closing-para">
+            REPC aspires to create India's most trusted professional ecosystem for the entire real estate
+            value chain, where professionals learn, earn, connect, innovate, and lead throughout their
+            careers.
+          </p>
+          <p className="ec-closing-para">
+            REPC is not only a mere networking platform, it would function as an integrated ecosystem
+            combining education, certification, career advancement, business development, thought
+            leadership, and policy engagement.
+          </p>
+          <p className="ec-closing-para">
+            This REPC model will create lasting value for individual professionals, organizations, and the
+            broader Indian real estate industry.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
