@@ -77,9 +77,9 @@ const GLOBAL_REACH = [
 ];
 
 const BOTTOM_FEATURES = [
-  { icon: Users, title: "Join Groups", desc: "Be part of topic-based professional groups" },
-  { icon: BookOpen, title: "Share Knowledge", desc: "Contribute articles, insights & best practices" },
-  { icon: TrendingUp, title: "Find Opportunities", desc: "Discover projects, jobs & business leads" },
+  { icon: Users, title: "Join Groups", desc: "Be part of topic-based professional groups", link: "/join" },
+  { icon: BookOpen, title: "Share Articles", desc: "Contribute articles, insights & best practices", link: "/knowledge-hub/articles" },
+  { icon: TrendingUp, title: "Find Developers", desc: "Discover projects, jobs & business leads", link: "/companies/developers" },
 ];
 
 const KNOWLEDGE_CAPTIONS = [
@@ -88,8 +88,6 @@ const KNOWLEDGE_CAPTIONS = [
   "Empowering professionals and organizations through real estate excellence.",
 ];
 
-// Each slide pairs 1:1 with a video below (same index). When the video
-// auto-advances, the heading + caption switch together.
 const MINDS_SLIDES = [
   {
     title: "The Most Influential Minds",
@@ -124,12 +122,11 @@ const styles = `
     overflow-x: hidden;
   }
 
-  /* Font selection update across all key component headings */
   .hero-title, .section-title, .global-reach-title, .story-title, .bottom-title {
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
   }
 
-  /* ===== Hero (now a true full-page hero) ===== */
+  /* ===== Hero ===== */
   .hero-section {
     position: relative;
     background: #0d1e35;
@@ -303,7 +300,7 @@ const styles = `
   }
   .search-btn:hover { background: #b2933f; }
 
-  /* Core Feature Stripe Element */
+  /* Feature Stripe Element */
   .feature-strip {
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
@@ -604,7 +601,7 @@ const styles = `
     line-height: 1.5;
   }
 
-  /* ===== Shared "story" section layout updated for left-aligned content structure (image_fa9d0a.jpg) ===== */
+  /* ===== Story Section ===== */
   .story-section {
     position: relative;
     background: #0d1e35;
@@ -705,7 +702,6 @@ const styles = `
     background: #c9a84c;
   }
 
-  /* Slider Indicators positioning aligned right based on Screenshot 2026-07-07 000330.png */
   .slider-indicator-container {
     position: absolute;
     bottom: 30px;
@@ -741,7 +737,7 @@ const styles = `
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 1.8fr 0.8fr 3fr;
+    grid-template-columns: 1.8fr 1.2fr 3fr;
     gap: 40px;
     align-items: center;
   }
@@ -760,25 +756,39 @@ const styles = `
   }
   .btn-dark:hover { background: #111a2e; }
   
-  .bottom-illustration {
+  .bottom-illustration-box {
     background: #f3f4f6;
     border-radius: 12px;
-    height: 140px;
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .bottom-family-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
   .bottom-features-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
-  .bottom-feature {
+  .bottom-feature-link {
+    text-decoration: none;
+    color: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 12px;
+    transition: transform 0.2s ease-in-out;
+  }
+  .bottom-feature-link:hover {
+    transform: translateY(-2px);
   }
   .bottom-feature-icon {
     width: 56px; height: 56px;
@@ -817,8 +827,9 @@ const styles = `
       grid-template-columns: 1fr;
       gap: 32px;
     }
-    .bottom-illustration {
-      display: none;
+    .bottom-illustration-box {
+      max-width: 320px;
+      margin: 0 auto;
     }
   }
 
@@ -1089,7 +1100,7 @@ export function ThreeColumnSection() {
         <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Community Spotlight</h2>
-            <a href="/community" className="view-all">View all</a>
+            <a href="/community/member-directory" className="view-all">View all</a>
           </div>
           <div className="carousel-wrap">
             <button className="carousel-btn left">
@@ -1150,7 +1161,7 @@ export function ThreeColumnSection() {
         <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Popular Discussions</h2>
-            <a href="/discussions" className="view-all">View all</a>
+            <a href="/knowledge-hub/articles" className="view-all">View all</a>
           </div>
           <div>
             {DISCUSSIONS.map((d, i) => (
@@ -1198,13 +1209,6 @@ export function GlobalReachSection() {
   );
 }
 
-/**
- * StorySection now supports two modes for its heading/caption content:
- *  - Static mode: pass `title`, `subtitle` (optional), and `captions` (array of lines).
- *  - Synced mode: pass `slides` (array of { title, caption } objects) whose length
- *    matches `videos`. As the background video auto-advances, the slide at the
- *    same index is shown — heading and caption change together with the video.
- */
 function StorySection({ title, subtitle, captions = [], slides, videos = [], poster, imgSrc, alt, goldTitle }) {
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
 
@@ -1306,20 +1310,28 @@ export function BottomCTASection() {
           <p className="bottom-desc">
             Join groups, participate in discussions, share knowledge and build meaningful professional relationships.
           </p>
-          <a href="/explore" className="btn-dark">Explore Community</a>
+          <a href="/explore-community" className="btn-dark">Explore Community</a>
         </div>
-        <div className="bottom-illustration">
-          <Users size={52} color="#d1d5db" strokeWidth={1} />
+        
+        {/* Family image box container */}
+        <div className="bottom-illustration-box">
+          <img 
+            className="bottom-family-img" 
+            src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?w=600&auto=format&fit=crop&q=80" 
+            alt="Family gathered together" 
+          />
         </div>
+        
+        {/* Interactive action grid items */}
         <div className="bottom-features-row">
           {BOTTOM_FEATURES.map((f, i) => (
-            <div key={i} className="bottom-feature">
+            <a key={i} href={f.link} className="bottom-feature-link">
               <div className="bottom-feature-icon">
                 <f.icon size={26} color="#1a2744" strokeWidth={1.4} />
               </div>
               <div className="bottom-feature-title">{f.title}</div>
               <div className="bottom-feature-desc">{f.desc}</div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

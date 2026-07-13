@@ -26,7 +26,6 @@ const navLinks = [
       { label: "About REPC", href: "/about-us" },
       { label: "Membership", href: "/join" },
       { label: "Awards", href: "/events/awards" },
-     
     ],
   },
   {
@@ -164,6 +163,7 @@ export default function Footer() {
           cursor: pointer;
           background: transparent;
           transition: background 0.25s, border-color 0.25s;
+          text-decoration: none;
         }
         .partner-btn:hover {
           background: rgba(196,136,42,0.08);
@@ -185,6 +185,7 @@ export default function Footer() {
           color: #a36d1e;
           cursor: pointer;
           transition: opacity 0.2s, transform 0.2s;
+          text-decoration: none;
         }
         .join-btn:hover {
           opacity: 0.92;
@@ -338,7 +339,7 @@ export default function Footer() {
                       border: "1px solid rgba(196,136,42,0.3)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center", /* <-- Capitalized 'C' fixed here */
+                      justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
@@ -353,10 +354,10 @@ export default function Footer() {
                   your brand to a targeted audience.
                 </p>
 
-                <button className="partner-btn">
+                <Link href="/explore-community" className="partner-btn">
                   Explore Partnerships
                   <ArrowRight size={12} />
-                </button>
+                </Link>
               </div>
 
               {/* Join Card */}
@@ -386,10 +387,10 @@ export default function Footer() {
                   professionals and unlock endless opportunities.
                 </p>
 
-                <button className="join-btn">
+                <Link href="/join" className="join-btn">
                   Join REPC Now
                   <ArrowRight size={12} />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
