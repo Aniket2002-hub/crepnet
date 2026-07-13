@@ -188,7 +188,7 @@ const styles = `
   }
   .ec-hero-title {
     max-width: 42rem;
-    font-size: clamp(25px, 3.1vw, 44px);
+    font-size: clamp(20px, 2.8vw, 40px);
     font-weight: 400;
     color: #fff;
     line-height: 1.25;
@@ -705,9 +705,9 @@ export function ExploreHero() {
           <p className="ec-hero-eyebrow" style={{ margin: 0 }}>Real Estate Professionals Community</p>
         </div>
         <h1 className="ec-hero-title">
-          Building India's Largest and Most
+          Building India's Largest &
           <br />
-          Influential Real Estate Community
+          Most Influential Real Estate Community
         </h1>
         <div className="ec-hero-divider" />
         <p className="ec-hero-desc">

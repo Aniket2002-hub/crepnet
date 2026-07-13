@@ -508,7 +508,7 @@ export default function AboutPage() {
             </div>
           </div>
           <a
-            href="#"
+            href="/join"
             className="shrink-0 rounded-md bg-[#E8A33D] px-5 py-2.5 text-sm font-bold text-[#0B1F3A] transition hover:bg-[#d6922e]"
           >
             Join the Community
