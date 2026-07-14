@@ -1316,9 +1316,9 @@ export function BottomCTASection() {
         {/* Family image box container */}
         <div className="bottom-illustration-box">
           <img 
-            className="bottom-family-img" 
-            src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?w=600&auto=format&fit=crop&q=80" 
-            alt="Family gathered together" 
+            className="bottom-office-img" 
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80" 
+            alt="Professionals collaborating in an office meeting" 
           />
         </div>
         
