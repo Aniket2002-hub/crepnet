@@ -1216,7 +1216,7 @@ function StorySection({ title, subtitle, captions = [], slides, videos = [], pos
     if (videos.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentVideoIdx((prev) => (prev + 1) % videos.length);
-    }, 6000); 
+    }, 6000);
     return () => clearInterval(interval);
   }, [videos]);
 
@@ -1234,7 +1234,7 @@ function StorySection({ title, subtitle, captions = [], slides, videos = [], pos
             loop
             muted
             playsInline
-            style={{ 
+            style={{
               opacity: idx === currentVideoIdx ? 1 : 0,
               position: "absolute",
               zIndex: idx === currentVideoIdx ? 1 : 0
@@ -1312,16 +1312,17 @@ export function BottomCTASection() {
           </p>
           <a href="/explore-community" className="btn-dark">Explore Community</a>
         </div>
-        
+
         {/* Family image box container */}
-        <div className="bottom-illustration-box">
-          <img 
-            className="bottom-office-img" 
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80" 
-            alt="Professionals collaborating in an office meeting" 
-          />
-        </div>
-        
+       {/* Family image box container */}
+<div className="bottom-illustration-box">
+  <img 
+    className="bottom-office-img" 
+    src="https://images.unsplash.com/photo-1675716921224-e087a0cca69a?w=600&auto=format&fit=crop&q=80" 
+    alt="Real estate professionals networking at an industry event" 
+  />
+</div>
+
         {/* Interactive action grid items */}
         <div className="bottom-features-row">
           {BOTTOM_FEATURES.map((f, i) => (
