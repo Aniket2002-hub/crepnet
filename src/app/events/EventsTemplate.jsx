@@ -7,11 +7,13 @@ import { CATEGORIES_CONFIG, ALL_EVENTS } from "./eventsData";
 
 const TABS_CONFIG = [
   { name: "All Events", category: "all", href: "/events" },
-  { name: "Conferences", category: "conferences", href: "/events/conferences" },
-  { name: "Summits", category: "summits", href: "/events/summits" },
-  { name: "Webinars", category: "webinars", href: "/events/webinars" },
-  { name: "Networking", category: "networking", href: "/events/networking" },
   { name: "Awards", category: "awards", href: "/events/awards" },
+  { name: "Summits", category: "summits", href: "/events/summits" },
+  { name: "Conferences", category: "conferences", href: "/events/conferences" },
+   { name: "Networking", category: "networking", href: "/events/networking" },
+  { name: "Webinars", category: "webinars", href: "/events/webinars" },
+ 
+
 ];
 
 const PAST_HIGHLIGHTS = [
@@ -147,11 +149,10 @@ function FilterBar({
             <Link
               key={tab.category}
               href={tab.href}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                activeCategory === tab.category
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${activeCategory === tab.category
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-100"
-              }`}
+                }`}
             >
               {tab.name}
             </Link>
@@ -171,7 +172,7 @@ function FilterBar({
             <option>Pune</option>
             <option>Hyderabad</option>
           </select>
-          
+
           <select
             value={categoryFilter}
             onChange={handleCategoryChange}
@@ -188,21 +189,19 @@ function FilterBar({
           <div className="flex items-center border border-gray-200 rounded-md overflow-hidden text-sm">
             <button
               onClick={() => setTimeFilter("upcoming")}
-              className={`px-4 py-2 font-medium transition-colors ${
-                timeFilter === "upcoming"
+              className={`px-4 py-2 font-medium transition-colors ${timeFilter === "upcoming"
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-50"
-              }`}
+                }`}
             >
               Upcoming
             </button>
             <button
               onClick={() => setTimeFilter("past")}
-              className={`px-4 py-2 font-medium transition-colors ${
-                timeFilter === "past"
+              className={`px-4 py-2 font-medium transition-colors ${timeFilter === "past"
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-50"
-              }`}
+                }`}
             >
               Past
             </button>
@@ -429,9 +428,8 @@ function FeaturedCarousel() {
         {CAROUSEL_SLIDES.map((slide, i) => (
           <div
             key={i}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              i === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
           >
             <img
               src={slide.img}
@@ -440,7 +438,7 @@ function FeaturedCarousel() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/60 via-transparent to-transparent" />
-            
+
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 lg:p-24 pb-16 md:pb-24 lg:pb-32 text-left z-20 max-w-7xl mx-auto w-full px-6 lg:px-10">
               <h2 style={headingFontClass} className="text-2xl md:text-3xl lg:text-4xl text-white tracking-wide mb-4 drop-shadow-md font-semibold">
                 {slide.title}
@@ -457,9 +455,8 @@ function FeaturedCarousel() {
             <button
               key={i}
               onClick={() => setCurrentIdx(i)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                i === currentIdx ? "w-10 bg-[#E8A33D]" : "w-2.5 bg-white/45"
-              }`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${i === currentIdx ? "w-10 bg-[#E8A33D]" : "w-2.5 bg-white/45"
+                }`}
             />
           ))}
         </div>
