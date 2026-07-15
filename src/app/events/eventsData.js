@@ -10,6 +10,28 @@ export const CATEGORIES_CONFIG = {
       { value: "25+", label: "Cities Covered", iconName: "Globe2" },
     ]
   },
+  awards: {
+    label: "Awards",
+    title: "Awards. Excellence. Impact.",
+    desc: "Celebrating the achievements of commercial real estate developers, visionary leaders, brokerage groups, and outstanding organizations who are actively shaping the future of Indian infrastructure.",
+    stats: [
+      { value: "12+", label: "Award Categories", iconName: "Trophy" },
+      { value: "500+", label: "Awardees", iconName: "Users" },
+      { value: "2500+", label: "Nominations", iconName: "Calendar" },
+      { value: "10+", label: "Years of Excellence", iconName: "Mic2" },
+    ]
+  },
+   summits: {
+    label: "Summits",
+    title: "Summits. Strategy. Leadership.",
+    desc: "Connect directly with institutional capital partners, top developers, and multi-national occupiers in an exclusive environment designed to create transactions and growth.",
+    stats: [
+      { value: "15+", label: "Summits Completed", iconName: "Calendar" },
+      { value: "4,000+", label: "C-Suite Attendees", iconName: "Users" },
+      { value: "120+", label: "Industry Speakers", iconName: "Mic2" },
+      { value: "500+", label: "Deals Originated", iconName: "Globe2" },
+    ]
+  },
   conferences: {
     label: "Conferences",
     title: "Conferences. Knowledge. Growth.",
@@ -21,15 +43,15 @@ export const CATEGORIES_CONFIG = {
       { value: "150+", label: "Valued Sponsors", iconName: "Mic2" },
     ]
   },
-  summits: {
-    label: "Summits",
-    title: "Summits. Strategy. Leadership.",
-    desc: "Connect directly with institutional capital partners, top developers, and multi-national occupiers in an exclusive environment designed to create transactions and growth.",
+ networking: {
+    label: "Networking",
+    title: "Networking. Trust. Partnerships.",
+    desc: "Forget cold calling. Meet local and national real estate developers, verified brokers, capital managers, and corporate heads in our interactive physical mixer programs.",
     stats: [
-      { value: "15+", label: "Summits Completed", iconName: "Calendar" },
-      { value: "4,000+", label: "C-Suite Attendees", iconName: "Users" },
-      { value: "120+", label: "Industry Speakers", iconName: "Mic2" },
-      { value: "500+", label: "Deals Originated", iconName: "Globe2" },
+      { value: "100+", label: "Mixers Conducted", iconName: "Calendar" },
+      { value: "15k+", label: "Business Links", iconName: "Users" },
+      { value: "20+", label: "Local Chapters", iconName: "Share2" },
+      { value: "12", label: "Metros Covered", iconName: "MapPin" },
     ]
   },
   webinars: {
@@ -42,29 +64,9 @@ export const CATEGORIES_CONFIG = {
       { value: "150+", label: "Virtual Experts", iconName: "Mic2" },
       { value: "4.8/5", label: "Avg Member Rating", iconName: "Star" },
     ]
-  },
-  networking: {
-    label: "Networking",
-    title: "Networking. Trust. Partnerships.",
-    desc: "Forget cold calling. Meet local and national real estate developers, verified brokers, capital managers, and corporate heads in our interactive physical mixer programs.",
-    stats: [
-      { value: "100+", label: "Mixers Conducted", iconName: "Calendar" },
-      { value: "15k+", label: "Business Links", iconName: "Users" },
-      { value: "20+", label: "Local Chapters", iconName: "Share2" },
-      { value: "12", label: "Metros Covered", iconName: "MapPin" },
-    ]
-  },
-  awards: {
-    label: "Awards",
-    title: "Awards. Excellence. Impact.",
-    desc: "Celebrating the achievements of commercial real estate developers, visionary leaders, brokerage groups, and outstanding organizations who are actively shaping the future of Indian infrastructure.",
-    stats: [
-      { value: "12+", label: "Award Categories", iconName: "Trophy" },
-      { value: "500+", label: "Awardees", iconName: "Users" },
-      { value: "2500+", label: "Nominations", iconName: "Calendar" },
-      { value: "10+", label: "Years of Excellence", iconName: "Mic2" },
-    ]
   }
+  
+  
 };
 
 export const ALL_EVENTS = [
