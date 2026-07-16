@@ -73,14 +73,15 @@ const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New R
 
 function HeroBanner({ config }) {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0B1F3A] min-h-[300px] lg:min-h-[360px] flex items-center">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-60"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=90')" }}
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent"
-      />
+    <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=90"
+          alt="Events background"
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+      </div>
 
       <div className="absolute right-[18%] top-1/2 -translate-y-1/2 text-center opacity-80 hidden lg:block">
         <div className="border-2 border-white/30 px-6 py-3 inline-block mb-2">
@@ -90,10 +91,7 @@ function HeroBanner({ config }) {
         <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Limitless Opportunities.</p>
       </div>
 
-      {/* Sizing below (heading size/weight, divider, banner padding) matches the Surveys page hero exactly.
-          A fixed min-height is added because the Surveys heading is 3 lines and Events' is 1 line —
-          without it the two banners render at different heights even with identical padding. */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14 text-left">
+      <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14 text-left">
         <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
           {config.title}
         </h1>
@@ -143,13 +141,13 @@ function FilterBar({
 
   return (
     <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4 py-3 flex-wrap">
-        <div className="flex items-center gap-1 flex-wrap">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row md:items-center justify-between gap-4 py-3">
+        <div className="flex items-center gap-1 overflow-x-auto whitespace-nowrap pb-1 md:pb-0 scrollbar-hide w-full md:w-auto">
           {TABS_CONFIG.map((tab) => (
             <Link
               key={tab.category}
               href={tab.href}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${activeCategory === tab.category
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-all shrink-0 ${activeCategory === tab.category
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-100"
                 }`}
@@ -159,7 +157,7 @@ function FilterBar({
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
           <select
             value={locationFilter}
             onChange={(e) => setLocationFilter(e.target.value)}
@@ -186,10 +184,10 @@ function FilterBar({
             <option value="awards">Awards</option>
           </select>
 
-          <div className="flex items-center border border-gray-200 rounded-md overflow-hidden text-sm">
+          <div className="flex items-center justify-between border border-gray-200 rounded-md overflow-hidden text-sm">
             <button
               onClick={() => setTimeFilter("upcoming")}
-              className={`px-4 py-2 font-medium transition-colors ${timeFilter === "upcoming"
+              className={`px-4 py-2 font-medium transition-colors w-full ${timeFilter === "upcoming"
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-50"
                 }`}
@@ -198,7 +196,7 @@ function FilterBar({
             </button>
             <button
               onClick={() => setTimeFilter("past")}
-              className={`px-4 py-2 font-medium transition-colors ${timeFilter === "past"
+              className={`px-4 py-2 font-medium transition-colors w-full ${timeFilter === "past"
                   ? "bg-[#0B1F3A] text-white"
                   : "text-gray-600 hover:bg-gray-50"
                 }`}

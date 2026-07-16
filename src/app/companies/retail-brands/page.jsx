@@ -136,14 +136,14 @@ export default function RetailBrandsPage() {
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
       
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden bg-slate-950">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1600&q=80"
             alt="Retail Assets"
-            className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">

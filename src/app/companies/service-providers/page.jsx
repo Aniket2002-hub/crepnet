@@ -121,14 +121,14 @@ export default function ServiceProvidersPage() {
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
       
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden bg-slate-950">
-        <div className="absolute inset-0">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+        <div className="absolute inset-0 ">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80"
             alt="Service Providers Backdrop"
-            className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
@@ -145,7 +145,7 @@ export default function ServiceProvidersPage() {
 
       {/* ── METRICS STRIP ── */}
       <div className="bg-slate-950 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
             <div>
               <h4 className="text-2xl sm:text-3xl font-bold text-white">200+</h4>

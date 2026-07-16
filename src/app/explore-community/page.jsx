@@ -164,7 +164,7 @@ const styles = `
     margin-left: auto;
     margin-right: auto;
     max-width: 80rem;
-    padding: 2.75rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
   @media (min-width: 1024px) {
     .ec-hero-content { padding: 3.5rem 3rem; }

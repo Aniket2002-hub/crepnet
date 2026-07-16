@@ -48,13 +48,13 @@ export default function ContactPage() {
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
       
       {/* ── HERO BANNER SECTION ── */}
-      <section className="relative w-full overflow-hidden bg-[#0B1F3A]">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
         {/* Background boardroom at night image with overlay */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80"
             alt="REPC Office Boardroom overlooking night skyline"
-            className="w-full h-full object-cover opacity-50"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
@@ -67,7 +67,7 @@ export default function ContactPage() {
           <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase">Limitless Opportunities.</p>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-16 text-left">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14 text-left">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
             <Link href="/" className="text-[#c9a84c] hover:underline">Home</Link>
@@ -91,7 +91,7 @@ export default function ContactPage() {
           </div>
 
           {/* 3 Key Points */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 mt-8 border-t border-white/10 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-5 mt-8 border-t border-white/10 max-w-5xl">
             {/* Point 1 */}
             <div className="flex items-center gap-2.5">
               <div className="h-14 w-14 rounded-full border-2 border-blue-600/70 bg-[#0c1e35]/80 flex items-center justify-center text-white shrink-0 shadow-[0_0_15px_rgba(37,99,235,0.25)]">
