@@ -188,8 +188,8 @@ function InvestmentHighlights() {
   return (
     <>
       {/* Land Development Plan */}
-      <section style={{ background: "#0c1524" }} className="relative overflow-hidden select-none text-white antialiased">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section style={{ background: "#0c1524" }} className="relative overflow-hidden select-none text-white antialiased ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 ">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Operational UI Dashboard */}
@@ -505,8 +505,8 @@ export default function ArticlesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans antialiased">
-      {/* 1st Section Hero Banner — Re-engineered to exactly mirror reference survey structure dimensions */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
+
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"
@@ -535,7 +535,7 @@ export default function ArticlesPage() {
       {/* Main Content Content Container display context */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filter Bar */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
             <h2 
               style={headingFontClass}
@@ -545,12 +545,12 @@ export default function ArticlesPage() {
             </h2>
             <p className="text-gray-500 text-sm mt-0.5">Showing {filtered.length} articles</p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto scrollbar-hide">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border transition-colors font-medium ${activeFilter === f
+                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border transition-colors font-medium whitespace-nowrap shrink-0 ${activeFilter === f
                   ? "bg-[#c9a84c] border-[#c9a84c] text-white"
                   : "border-gray-200 text-gray-600 hover:border-[#c9a84c] hover:text-[#c9a84c] hover:bg-amber-50"
                   }`}

@@ -338,7 +338,7 @@ export default function DevelopersPage() {
       </div> */}
 
       {/* ── HERO BANNER — identical content structure and size to the Surveys page hero ── */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
         <div className="absolute inset-0">
           <img
             src={heroImg}

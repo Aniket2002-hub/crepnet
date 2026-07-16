@@ -72,17 +72,17 @@ export default function RetailBrandProfilePage({ params: paramsPromise }) {
     <div className="bg-[#f8fafc] min-h-screen font-sans antialiased text-slate-800">
       
       {/* ── HERO BANNER — Replicated padding, size clamps and background filters ── */}
-      <section className="relative overflow-hidden bg-slate-950 border-b border-slate-900">
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
           <img
             src={dev.heroImg}
             alt={dev.name}
-            className="absolute inset-0 h-full w-full object-cover opacity-40 object-center mix-blend-luminosity"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14 z-10">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md mb-4">
             <span className="h-1.5 w-1.5 rounded-full bg-[#E8A33D] animate-pulse" />
             <span className="text-[10px] font-bold tracking-[0.18em] text-slate-300 uppercase">

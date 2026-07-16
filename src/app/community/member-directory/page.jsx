@@ -478,7 +478,7 @@ export default function MemberDirectory() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-16">
+          <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
               MEMBER DIRECTORY
             </p>
