@@ -23,7 +23,7 @@ const navLinks = [
   {
     title: "Quick Links",
     links: [
-      { label: "About REPC", href: "/about-us" },
+      { label: "About RPEC", href: "/about-us" },
       { label: "Membership", href: "/join" },
       { label: "Awards", href: "/events/awards" },
     ],
@@ -230,7 +230,11 @@ export default function Footer() {
         }}
       >
         <div
-          style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 30px 0" }}
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "40px 30px 0",
+          }}
         >
           {/* Main Grid */}
           <div
@@ -263,7 +267,7 @@ export default function Footer() {
               <div style={{ margin: "-35px 0 -5px -10px" }}>
                 <Image
                   src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
-                  alt="REPC - Real Estate Professional Community"
+                  alt="RPEC - Real Estate Professional Community"
                   width={150}
                   height={150}
                   style={{ width: "130px", height: "auto" }}
@@ -288,7 +292,13 @@ export default function Footer() {
               {/* Social Icons */}
               <div style={{ display: "flex", gap: "8px", marginTop: "20px" }}>
                 {socialLinks.map(({ Icon, href, label }) => (
-                  <Link key={label} href={href} aria-label={label} className="social-btn" style={{ width: "36px", height: "36px" }}>
+                  <Link
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="social-btn"
+                    style={{ width: "36px", height: "36px" }}
+                  >
                     <Icon size={14} />
                   </Link>
                 ))}
@@ -298,14 +308,34 @@ export default function Footer() {
             {/* ── Nav Columns ── */}
             {navLinks.map(({ title, links }) => (
               <div key={title}>
-                <h3 style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.3px", color: "#1a2744" }}>
+                <h3
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    letterSpacing: "0.3px",
+                    color: "#1a2744",
+                  }}
+                >
                   {title}
                 </h3>
                 <div className="footer-divider-line" />
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
                   {links.map(({ label, href }) => (
                     <li key={label}>
-                      <Link href={href} className="footer-link" style={{ fontSize: "12px" }}>
+                      <Link
+                        href={href}
+                        className="footer-link"
+                        style={{ fontSize: "12px" }}
+                      >
                         {label}
                       </Link>
                     </li>
@@ -316,7 +346,11 @@ export default function Footer() {
 
             {/* ── CTA Cards ── */}
             <div
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px",
+              }}
               className="footer-cards-grid"
             >
               <style>{`
@@ -329,7 +363,9 @@ export default function Footer() {
 
               {/* Partner Card */}
               <div className="partner-card">
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
                   <div
                     style={{
                       width: "36px",
@@ -345,13 +381,36 @@ export default function Footer() {
                   >
                     <Handshake size={16} style={{ color: "#c4882a" }} />
                   </div>
-                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0, color: "#1a2744" }}>Partner With Us</h3>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(196,136,42,0.35), transparent)" }} />
+                  <h3
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 700,
+                      margin: 0,
+                      color: "#1a2744",
+                    }}
+                  >
+                    Partner With Us
+                  </h3>
+                  <div
+                    style={{
+                      flex: 1,
+                      height: "1px",
+                      background:
+                        "linear-gradient(90deg, rgba(196,136,42,0.35), transparent)",
+                    }}
+                  />
                 </div>
 
-                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "#5b6472", margin: 0 }}>
-                  Collaborate with industry leaders, sponsor events, and showcase
-                  your brand to a targeted audience.
+                <p
+                  style={{
+                    fontSize: "11px",
+                    lineHeight: "1.6",
+                    color: "#5b6472",
+                    margin: 0,
+                  }}
+                >
+                  Collaborate with industry leaders, sponsor events, and
+                  showcase your brand to a targeted audience.
                 </p>
 
                 <Link href="/explore-community" className="partner-btn">
@@ -362,7 +421,9 @@ export default function Footer() {
 
               {/* Join Card */}
               <div className="join-card">
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
                   <div
                     style={{
                       width: "36px",
@@ -378,17 +439,39 @@ export default function Footer() {
                   >
                     <Users size={16} style={{ color: "white" }} />
                   </div>
-                  <h3 style={{ fontSize: "13px", fontWeight: 700, margin: 0, color: "white" }}>Join Our Network</h3>
-                  <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.3)" }} />
+                  <h3
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 700,
+                      margin: 0,
+                      color: "white",
+                    }}
+                  >
+                    Join Our Network
+                  </h3>
+                  <div
+                    style={{
+                      flex: 1,
+                      height: "1px",
+                      background: "rgba(255,255,255,0.3)",
+                    }}
+                  />
                 </div>
 
-                <p style={{ fontSize: "11px", lineHeight: "1.6", color: "rgba(255,255,255,0.85)", margin: 0 }}>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    lineHeight: "1.6",
+                    color: "rgba(255,255,255,0.85)",
+                    margin: 0,
+                  }}
+                >
                   Become a part of a trusted community of real estate
                   professionals and unlock endless opportunities.
                 </p>
 
                 <Link href="/join" className="join-btn">
-                  Join REPC Now
+                  Join RPEC Now
                   <ArrowRight size={12} />
                 </Link>
               </div>
@@ -410,10 +493,10 @@ export default function Footer() {
           >
             <p style={{ fontSize: "13px", color: "#8b93a1" }}>
               © {new Date().getFullYear()} All Rights Reserved. | Powered by{" "}
-              <a 
-                href="https://www.ireedindia.com/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.ireedindia.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="powered-link"
               >
                 IREED MEDIA
