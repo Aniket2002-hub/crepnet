@@ -14,7 +14,7 @@ import {
   Settings,
   ChevronDown,
   LogOut,
-  User
+  User,
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
@@ -31,14 +31,17 @@ export default function AdminLayout({ children }) {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex font-sans antialiased" suppressHydrationWarning>
+    <div
+      className="min-h-screen bg-slate-900 text-slate-100 flex font-sans antialiased"
+      suppressHydrationWarning
+    >
       {/* ── Sidebar Desktop ── */}
       <aside className="hidden lg:flex flex-col w-64 bg-slate-950 border-r border-slate-800 shrink-0">
         {/* Branding */}
         <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950">
           <Link href="/admin" className="flex flex-col leading-none">
             <span className="text-xl font-black tracking-tight text-[#E8A33D] uppercase">
-              REPC Admin
+              RPEC Admin
             </span>
             <span className="text-[9px] tracking-[0.2em] text-slate-400 font-semibold uppercase mt-0.5">
               Control Panel
@@ -61,7 +64,9 @@ export default function AdminLayout({ children }) {
                     : "text-slate-400 hover:text-white hover:bg-slate-900"
                 }`}
               >
-                <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400 group-hover:text-white"}`} />
+                <Icon
+                  className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400 group-hover:text-white"}`}
+                />
                 {item.label}
               </Link>
             );
@@ -90,11 +95,16 @@ export default function AdminLayout({ children }) {
       {/* ── Mobile Sidebar (Drawer) ── */}
       <div
         className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          sidebarOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={toggleSidebar} />
+        <div
+          className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+          onClick={toggleSidebar}
+        />
 
         {/* Menu Container */}
         <aside
@@ -103,15 +113,22 @@ export default function AdminLayout({ children }) {
           }`}
         >
           <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800">
-            <Link href="/admin" className="flex flex-col leading-none" onClick={toggleSidebar}>
+            <Link
+              href="/admin"
+              className="flex flex-col leading-none"
+              onClick={toggleSidebar}
+            >
               <span className="text-lg font-black tracking-tight text-[#E8A33D] uppercase">
-                REPC Admin
+                RPEC Admin
               </span>
               <span className="text-[8px] tracking-[0.2em] text-slate-400 font-semibold uppercase mt-0.5">
                 Control Panel
               </span>
             </Link>
-            <button className="text-slate-400 hover:text-white" onClick={toggleSidebar}>
+            <button
+              className="text-slate-400 hover:text-white"
+              onClick={toggleSidebar}
+            >
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -131,7 +148,9 @@ export default function AdminLayout({ children }) {
                       : "text-slate-400 hover:text-white hover:bg-slate-900"
                   }`}
                 >
-                  <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400"}`} />
+                  <Icon
+                    className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400"}`}
+                  />
                   {item.label}
                 </Link>
               );
@@ -174,7 +193,9 @@ export default function AdminLayout({ children }) {
               <Menu className="h-6 w-6" />
             </button>
             <h1 className="text-lg font-bold text-white tracking-tight capitalize">
-              {pathname === "/admin" ? "Dashboard Overview" : pathname.split("/").pop()}
+              {pathname === "/admin"
+                ? "Dashboard Overview"
+                : pathname.split("/").pop()}
             </h1>
           </div>
 
@@ -195,16 +216,21 @@ export default function AdminLayout({ children }) {
                 <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-[#E8A33D] to-amber-300 flex items-center justify-center text-slate-950 font-black text-sm shadow-md">
                   A
                 </div>
-                <span className="hidden sm:inline text-sm font-semibold text-slate-300">Admin User</span>
+                <span className="hidden sm:inline text-sm font-semibold text-slate-300">
+                  Admin User
+                </span>
                 <ChevronDown className="h-4 w-4 text-slate-500 hidden sm:inline" />
               </button>
 
               {profileOpen && (
                 <>
-                  <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setProfileOpen(false)}
+                  />
                   <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl py-1.5 z-50 text-sm">
                     <div className="px-4 py-2 border-b border-slate-800">
-                      <p className="font-bold text-white">REPC Admin</p>
+                      <p className="font-bold text-white">RPEC Admin</p>
                       <p className="text-xs text-slate-500">admin@repc.in</p>
                     </div>
                     <Link

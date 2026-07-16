@@ -2,13 +2,13 @@ export const CATEGORIES_CONFIG = {
   all: {
     label: "All Events",
     title: "Events. Connections. Opportunities.",
-    desc: "REPC brings together industry leaders, innovators and decision makers through high-impact events, conferences and summits across India and beyond.",
+    desc: "RPEC brings together industry leaders, innovators and decision makers through high-impact events, conferences and summits across India and beyond.",
     stats: [
       { value: "50+", label: "Events Hosted", iconName: "Calendar" },
       { value: "15,000+", label: "Attendees", iconName: "Users" },
       { value: "250+", label: "Industry Speakers", iconName: "Mic2" },
       { value: "25+", label: "Cities Covered", iconName: "Globe2" },
-    ]
+    ],
   },
   awards: {
     label: "Awards",
@@ -19,9 +19,9 @@ export const CATEGORIES_CONFIG = {
       { value: "500+", label: "Awardees", iconName: "Users" },
       { value: "2500+", label: "Nominations", iconName: "Calendar" },
       { value: "10+", label: "Years of Excellence", iconName: "Mic2" },
-    ]
+    ],
   },
-   summits: {
+  summits: {
     label: "Summits",
     title: "Summits. Strategy. Leadership.",
     desc: "Connect directly with institutional capital partners, top developers, and multi-national occupiers in an exclusive environment designed to create transactions and growth.",
@@ -30,7 +30,7 @@ export const CATEGORIES_CONFIG = {
       { value: "4,000+", label: "C-Suite Attendees", iconName: "Users" },
       { value: "120+", label: "Industry Speakers", iconName: "Mic2" },
       { value: "500+", label: "Deals Originated", iconName: "Globe2" },
-    ]
+    ],
   },
   conferences: {
     label: "Conferences",
@@ -41,9 +41,9 @@ export const CATEGORIES_CONFIG = {
       { value: "10,000+", label: "Delegates Reached", iconName: "Users" },
       { value: "300+", label: "Research Papers", iconName: "BookOpen" },
       { value: "150+", label: "Valued Sponsors", iconName: "Mic2" },
-    ]
+    ],
   },
- networking: {
+  networking: {
     label: "Networking",
     title: "Networking. Trust. Partnerships.",
     desc: "Forget cold calling. Meet local and national real estate developers, verified brokers, capital managers, and corporate heads in our interactive physical mixer programs.",
@@ -52,7 +52,7 @@ export const CATEGORIES_CONFIG = {
       { value: "15k+", label: "Business Links", iconName: "Users" },
       { value: "20+", label: "Local Chapters", iconName: "Share2" },
       { value: "12", label: "Metros Covered", iconName: "MapPin" },
-    ]
+    ],
   },
   webinars: {
     label: "Webinars",
@@ -63,10 +63,8 @@ export const CATEGORIES_CONFIG = {
       { value: "25,000+", label: "Unique Streamers", iconName: "Users" },
       { value: "150+", label: "Virtual Experts", iconName: "Mic2" },
       { value: "4.8/5", label: "Avg Member Rating", iconName: "Star" },
-    ]
-  }
-  
-  
+    ],
+  },
 };
 
 export const ALL_EVENTS = [
@@ -78,12 +76,12 @@ export const ALL_EVENTS = [
     featured: true,
     date: "18",
     month: "JUN",
-    title: "REPC India Commercial Real Estate Summit 2024",
+    title: "RPEC India Commercial Real Estate Summit 2024",
     venue: "Jio World Convention Centre, Mumbai",
     desc: "India's largest gathering of CRE leaders, developers & occupiers.",
     img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80",
     location: "Mumbai",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "summits",
@@ -97,16 +95,16 @@ export const ALL_EVENTS = [
     desc: "Supply chain resilience, industrial parks & warehousing opportunities.",
     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80",
     location: "Pune",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "summits",
     type: "Summit",
-    title: "REPC Annual Real Estate Summit 2024",
+    title: "RPEC Annual Real Estate Summit 2024",
     date: "15 May 2024",
     location: "Mumbai",
     img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
   {
     category: "summits",
@@ -115,7 +113,7 @@ export const ALL_EVENTS = [
     date: "10 Feb 2024",
     location: "Delhi",
     img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
 
   // Conferences
@@ -131,7 +129,7 @@ export const ALL_EVENTS = [
     desc: "Exploring the future of retail, consumer trends & experiential destinations.",
     img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&q=80",
     location: "Delhi",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "conferences",
@@ -145,7 +143,7 @@ export const ALL_EVENTS = [
     desc: "GCC expansion, office demand outlook & future-ready workspaces.",
     img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
     location: "Bengaluru",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "conferences",
@@ -154,7 +152,7 @@ export const ALL_EVENTS = [
     date: "21 March 2024",
     location: "Bengaluru",
     img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
   {
     category: "conferences",
@@ -163,7 +161,7 @@ export const ALL_EVENTS = [
     date: "12 Dec 2023",
     location: "Hyderabad",
     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
 
   // Webinars
@@ -179,7 +177,7 @@ export const ALL_EVENTS = [
     desc: "Online course covering carbon offsets, LEED ratings, and energy dashboards.",
     img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&q=80",
     location: "Bengaluru",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "webinars",
@@ -193,7 +191,7 @@ export const ALL_EVENTS = [
     desc: "Tech talk regarding smart mall infrastructure, logistics integration, and consumer APIs.",
     img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&q=80",
     location: "Mumbai",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "webinars",
@@ -202,7 +200,7 @@ export const ALL_EVENTS = [
     date: "18 Jan 2024",
     location: "Mumbai",
     img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
 
   // Networking
@@ -218,7 +216,7 @@ export const ALL_EVENTS = [
     desc: "Informal evening social event for developers, brokers, and consultants.",
     img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&q=80",
     location: "Mumbai",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "networking",
@@ -232,7 +230,7 @@ export const ALL_EVENTS = [
     desc: "Fostering collaboration by letting tech startups pitch to VC funds.",
     img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80",
     location: "Bengaluru",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "networking",
@@ -241,7 +239,7 @@ export const ALL_EVENTS = [
     date: "25 Feb 2024",
     location: "Delhi",
     img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=300&q=80",
-    isUpcoming: false
+    isUpcoming: false,
   },
 
   // Awards
@@ -257,7 +255,7 @@ export const ALL_EVENTS = [
     desc: "Celebrating outstanding achievements, sustainable designs, and exemplary leaders in the CRE space.",
     img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&q=80",
     location: "Mumbai",
-    isUpcoming: true
+    isUpcoming: true,
   },
   {
     category: "awards",
@@ -266,6 +264,6 @@ export const ALL_EVENTS = [
     date: "12 Dec 2023",
     location: "Mumbai",
     img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=300&q=80",
-    isUpcoming: false
-  }
+    isUpcoming: false,
+  },
 ];
