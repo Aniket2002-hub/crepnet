@@ -16,6 +16,7 @@ import {
   Bell,
   Settings,
   ChevronDown,
+  ChevronRight,
   LogOut,
   User
 } from "lucide-react";
@@ -35,7 +36,7 @@ const NAV = [
     label: "Community",
     icon: Users,
     items: [
-      { label: "Member Directory", href: "/admin/community/member-directory"},
+      { label: "Member Directory", href: "/admin/community/member-directory" },
       { label: "Survey", href: "/admin/community/survey" }
     ]
   },
@@ -81,25 +82,16 @@ const PAGE_TITLES = {
   "/admin/blogs": "Blogs"
 };
 
-function BrandMark({ compact = false }) {
+function BrandMark() {
   return (
     <div className="flex items-center gap-2.5 min-w-0">
-      {/* <svg viewBox="0 0 40 40" className={compact ? "h-7 w-7 shrink-0" : "h-8 w-8 shrink-0"}>
-        <circle cx="8" cy="26" r="3" fill="#2E5AAC" />
-        <circle cx="17" cy="20" r="3" fill="#2E5AAC" />
-        <circle cx="26" cy="14" r="3" fill="#2E5AAC" />
-        <circle cx="34" cy="9" r="3" fill="#E8A33D" />
-        <path d="M8 26 L17 20 L26 14 L34 9" stroke="#2E5AAC" strokeWidth="2" fill="none" />
-        <path d="M8 29 V33 M17 23 V33 M26 17 V33 M34 12 V33" stroke="#2E5AAC" strokeWidth="2" />
-      </svg> */}
       <div className="flex flex-col leading-[1.1] min-w-0">
         <span className="text-[13px] font-black tracking-tight text-[#1B3A6B] truncate">
-          Real Estate Professionals 
+          Real Estate Professionals
         </span>
         <span className="text-[13px] font-black tracking-tight text-[#1B3A6B] -mt-0.5 truncate">
-           Community
+          Community
         </span>
-        
       </div>
     </div>
   );
@@ -126,7 +118,7 @@ export default function AdminLayout({ children }) {
   const toggleGroup = (label) =>
     setOpenGroups((prev) => (prev.includes(label) ? prev.filter((g) => g !== label) : [...prev, label]));
 
-  const pageTitle = PAGE_TITLES[pathname] || "Dashboard";
+  const pageTitle = PAGE_TITLES[pathname] || (pathname.split("/").pop() || "Dashboard");
 
   const NavContent = ({ onNavigate }) => (
     <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
@@ -140,7 +132,9 @@ export default function AdminLayout({ children }) {
               href={entry.href}
               onClick={onNavigate}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                isActive ? "bg-[#E8A33D] text-slate-950 shadow-sm" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                isActive
+                  ? "bg-[#E8A33D] text-slate-950 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
               }`}
             >
               <Icon className={`h-4.5 w-4.5 ${isActive ? "text-slate-950" : "text-slate-400"}`} />
@@ -149,47 +143,73 @@ export default function AdminLayout({ children }) {
           );
         }
 
+        // entry.type === "group"
         const GroupIcon = entry.icon;
         const isOpen = openGroups.includes(entry.label);
         const hasActiveChild = entry.items.some((i) => i.href === pathname);
 
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex font-sans antialiased" suppressHydrationWarning>
-      {/* ── Sidebar Desktop ── */}
-      <aside className="hidden lg:flex flex-col w-64 bg-slate-950 border-r border-slate-800 shrink-0">
-        {/* Branding */}
-        <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950">
-          <Link href="/admin" className="flex flex-col leading-none">
-            <span className="text-xl font-black tracking-tight text-[#E8A33D] uppercase">
-              REPC Admin
-            </span>
-            <span className="text-[9px] tracking-[0.2em] text-slate-400 font-semibold uppercase mt-0.5">
-              Control Panel
-            </span>
-          </Link>
-        </div>
+        return (
+          <div key={entry.label} className="space-y-1">
+            <button
+              type="button"
+              onClick={() => toggleGroup(entry.label)}
+              className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                hasActiveChild
+                  ? "text-slate-900 bg-slate-100"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                <GroupIcon className={`h-4.5 w-4.5 ${hasActiveChild ? "text-slate-700" : "text-slate-400"}`} />
+                {entry.label}
+              </span>
+              {isOpen ? (
+                <ChevronDown className="h-4 w-4 text-slate-400" />
+              ) : (
+                <ChevronRight className="h-4 w-4 text-slate-400" />
+              )}
+            </button>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-4 py-6 space-y-1">
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href;
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? "bg-[#E8A33D] text-slate-950 font-bold shadow-lg shadow-[#E8A33D]/20 scale-[1.02]"
-                    : "text-slate-400 hover:text-white hover:bg-slate-900"
-                }`}
-              >
-                <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400 group-hover:text-white"}`} />
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+            {isOpen && (
+              <div className="ml-4 pl-4 border-l border-slate-200 space-y-1">
+                {entry.items.map((item) => {
+                  if (item.status === "soon") {
+                    return (
+                      <div
+                        key={item.label}
+                        className="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-sm text-slate-400 cursor-not-allowed"
+                      >
+                        {item.label}
+                        <span className="text-[10px] uppercase tracking-wide font-bold bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded">
+                          Soon
+                        </span>
+                      </div>
+                    );
+                  }
+
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={onNavigate}
+                      className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                        isActive
+                          ? "bg-[#E8A33D] text-slate-950 font-bold"
+                          : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex font-sans antialiased" suppressHydrationWarning>
@@ -228,9 +248,7 @@ export default function AdminLayout({ children }) {
       {/* ── Mobile Sidebar ── */}
       <div
         className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          sidebarOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Overlay */}
@@ -242,7 +260,7 @@ export default function AdminLayout({ children }) {
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800">
+          <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200">
             <Link href="/admin" className="flex flex-col leading-none" onClick={toggleSidebar}>
               <span className="text-lg font-black tracking-tight text-[#E8A33D] uppercase">
                 REPC Admin
@@ -251,32 +269,12 @@ export default function AdminLayout({ children }) {
                 Control Panel
               </span>
             </Link>
-            <button className="text-slate-400 hover:text-white" onClick={toggleSidebar}>
+            <button className="text-slate-400 hover:text-slate-700" onClick={toggleSidebar}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <nav className="flex-1 px-4 py-6 space-y-1">
-            {menuItems.map((item) => {
-              const isActive = pathname === item.href;
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={toggleSidebar}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-[#E8A33D] text-slate-950 font-bold"
-                      : "text-slate-400 hover:text-white hover:bg-slate-900"
-                  }`}
-                >
-                  <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400"}`} />
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+          <NavContent onNavigate={toggleSidebar} />
 
           <div className="p-4 border-t border-slate-200 space-y-1">
             <Link
@@ -326,8 +324,8 @@ export default function AdminLayout({ children }) {
             >
               <Menu className="h-5 w-5" />
             </button>
-            <h1 className="text-lg font-bold text-white tracking-tight capitalize">
-              {pathname === "/admin" ? "Dashboard Overview" : pathname.split("/").pop()}
+            <h1 className="text-lg font-bold text-slate-800 tracking-tight capitalize">
+              {pageTitle}
             </h1>
           </div>
 
@@ -345,16 +343,16 @@ export default function AdminLayout({ children }) {
                 <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-[#E8A33D] to-amber-300 flex items-center justify-center text-slate-950 font-black text-xs">
                   A
                 </div>
-                <span className="hidden sm:inline text-sm font-semibold text-slate-300">Admin User</span>
+                <span className="hidden sm:inline text-sm font-semibold text-slate-600">Admin User</span>
                 <ChevronDown className="h-4 w-4 text-slate-500 hidden sm:inline" />
               </button>
 
               {profileOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
-                  <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl py-1.5 z-50 text-sm">
-                    <div className="px-4 py-2 border-b border-slate-800">
-                      <p className="font-bold text-white">REPC Admin</p>
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-2xl py-1.5 z-50 text-sm">
+                    <div className="px-4 py-2 border-b border-slate-100">
+                      <p className="font-bold text-slate-900">REPC Admin</p>
                       <p className="text-xs text-slate-500">admin@repc.in</p>
                     </div>
                     <Link

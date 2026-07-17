@@ -44,8 +44,9 @@ const NAV_ITEMS = [
       { label: "Service Providers", href: "/companies/service-providers" },
     ],
   },
-
+  { label: "CXO Members", href: "/cxo-members" },
   { label: "Contact Us", href: "/contact" },
+ 
 ];
 
 function MobileMenu() {
@@ -187,7 +188,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
-          {/* Logo Container - Expanded further to optimize readability */}
+          {/* Logo Container */}
           <Link
             href="/"
             className="flex items-center justify-start shrink-0 select-none py-1 h-full"
@@ -195,7 +196,7 @@ export default function Header() {
             <Image
               src="/Real_Estate_Professionals_Community_Logo-removebg-preview.png"
               alt="RPEC"
-              width={500} // High base buffer prevents blurriness during optimization
+              width={500}
               height={180}
               priority
               className="h-24 sm:h-28 w-auto object-contain object-left scale-110 transition-all duration-200"
