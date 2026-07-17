@@ -89,15 +89,17 @@ export default async function ReportDetailPage({ params }) {
   return (
     <div className="min-h-screen bg-gray-50 font-sans pb-16 antialiased">
       {/* Dynamic Styled Hero Section with standard survey page padding heights and font sizes */}
-      <div className="relative bg-gray-900 text-white overflow-hidden" style={{ minHeight: 230 }}>
-        <img
-          src={report.img}
-          alt={report.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
-        />
-        <div className={`absolute inset-0 bg-gradient-to-r ${report.gradient} opacity-85`} />
+      <section className="relative overflow-hidden bg-[#0B1F3A]">
+        <div className="absolute inset-0">
+          <img
+            src={report.img}
+            alt={report.title}
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
+        </div>
         
-        <div className="relative max-w-7xl mx-auto px-6 py-10 lg:px-12 lg:py-14 w-full">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
           <Link 
             href="/knowledge-hub/reports" 
             className="group inline-flex items-center gap-2 text-xs text-white/80 hover:text-[#E8A33D] mb-4 transition-colors font-medium tracking-wide uppercase"
@@ -128,7 +130,7 @@ export default async function ReportDetailPage({ params }) {
             {report.subtitle}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Main Container */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">

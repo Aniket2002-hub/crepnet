@@ -16,7 +16,8 @@ import {
   Bell,
   Settings,
   ChevronDown,
-  LogOut
+  LogOut,
+  User
 } from "lucide-react";
 
 /**
@@ -152,60 +153,43 @@ export default function AdminLayout({ children }) {
         const isOpen = openGroups.includes(entry.label);
         const hasActiveChild = entry.items.some((i) => i.href === pathname);
 
-        return (
-          <div key={entry.label} className="space-y-0.5">
-            <button
-              type="button"
-              onClick={() => toggleGroup(entry.label)}
-              className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
-                hasActiveChild ? "text-slate-900 bg-slate-100" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-              }`}
-            >
-              <span className="flex items-center gap-3">
-                <GroupIcon className="h-4.5 w-4.5 text-slate-400" />
-                {entry.label}
-              </span>
-              <ChevronDown className={`h-3.5 w-3.5 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-            </button>
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 flex font-sans antialiased" suppressHydrationWarning>
+      {/* ── Sidebar Desktop ── */}
+      <aside className="hidden lg:flex flex-col w-64 bg-slate-950 border-r border-slate-800 shrink-0">
+        {/* Branding */}
+        <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950">
+          <Link href="/admin" className="flex flex-col leading-none">
+            <span className="text-xl font-black tracking-tight text-[#E8A33D] uppercase">
+              REPC Admin
+            </span>
+            <span className="text-[9px] tracking-[0.2em] text-slate-400 font-semibold uppercase mt-0.5">
+              Control Panel
+            </span>
+          </Link>
+        </div>
 
-            {isOpen && (
-              <div className="ml-4 pl-4 border-l border-slate-200 space-y-0.5 py-1">
-                {entry.items.map((item) => {
-                  const isActive = pathname === item.href;
-                  if (item.status === "soon") {
-                    return (
-                      <div
-                        key={item.label}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium text-slate-400 cursor-default"
-                        title="Not built yet"
-                      >
-                        <span>{item.label}</span>
-                        <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded">
-                          Soon
-                        </span>
-                      </div>
-                    );
-                  }
-                  return (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      onClick={onNavigate}
-                      className={`flex items-center px-3 py-2 rounded-lg text-[13px] font-semibold transition-colors ${
-                        isActive ? "text-[#D9821E] bg-[#E8A33D]/10" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </nav>
-  );
+        {/* Navigation */}
+        <nav className="flex-1 px-4 py-6 space-y-1">
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-[#E8A33D] text-slate-950 font-bold shadow-lg shadow-[#E8A33D]/20 scale-[1.02]"
+                    : "text-slate-400 hover:text-white hover:bg-slate-900"
+                }`}
+              >
+                <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400 group-hover:text-white"}`} />
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex font-sans antialiased" suppressHydrationWarning>
@@ -244,25 +228,55 @@ export default function AdminLayout({ children }) {
       {/* ── Mobile Sidebar ── */}
       <div
         className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          sidebarOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={toggleSidebar} />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={toggleSidebar} />
+
+        {/* Menu Container */}
         <aside
           className={`absolute top-0 bottom-0 left-0 w-72 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="h-20 flex items-center justify-between px-6 border-b border-slate-200">
-            <a href="https://rpec.vercel.app/" target="_blank" rel="noopener noreferrer">
-              <BrandMark compact />
-            </a>
-            <button className="text-slate-400 hover:text-slate-600 shrink-0" onClick={toggleSidebar}>
+          <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800">
+            <Link href="/admin" className="flex flex-col leading-none" onClick={toggleSidebar}>
+              <span className="text-lg font-black tracking-tight text-[#E8A33D] uppercase">
+                REPC Admin
+              </span>
+              <span className="text-[8px] tracking-[0.2em] text-slate-400 font-semibold uppercase mt-0.5">
+                Control Panel
+              </span>
+            </Link>
+            <button className="text-slate-400 hover:text-white" onClick={toggleSidebar}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <NavContent onNavigate={toggleSidebar} />
+          <nav className="flex-1 px-4 py-6 space-y-1">
+            {menuItems.map((item) => {
+              const isActive = pathname === item.href;
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={toggleSidebar}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-[#E8A33D] text-slate-950 font-bold"
+                      : "text-slate-400 hover:text-white hover:bg-slate-900"
+                  }`}
+                >
+                  <Icon className={`h-5 w-5 ${isActive ? "text-slate-950" : "text-slate-400"}`} />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
           <div className="p-4 border-t border-slate-200 space-y-1">
             <Link
@@ -312,7 +326,9 @@ export default function AdminLayout({ children }) {
             >
               <Menu className="h-5 w-5" />
             </button>
-            <h1 className="text-sm font-bold text-slate-800 tracking-tight uppercase">{pageTitle}</h1>
+            <h1 className="text-lg font-bold text-white tracking-tight capitalize">
+              {pathname === "/admin" ? "Dashboard Overview" : pathname.split("/").pop()}
+            </h1>
           </div>
 
           <div className="flex items-center gap-3">
@@ -329,17 +345,17 @@ export default function AdminLayout({ children }) {
                 <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-[#E8A33D] to-amber-300 flex items-center justify-center text-slate-950 font-black text-xs">
                   A
                 </div>
-                <span className="hidden sm:inline text-xs font-bold text-slate-700 pr-1">Admin User</span>
-                <ChevronDown className="h-3 w-3 text-slate-400 hidden sm:inline mr-1" />
+                <span className="hidden sm:inline text-sm font-semibold text-slate-300">Admin User</span>
+                <ChevronDown className="h-4 w-4 text-slate-500 hidden sm:inline" />
               </button>
 
               {profileOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
-                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 z-50 text-xs">
-                    <div className="px-4 py-2.5 border-b border-slate-100">
-                      <p className="font-bold text-slate-900">REPC Admin</p>
-                      <p className="text-[10px] text-slate-400 font-medium">admin@repc.in</p>
+                  <div className="absolute right-0 mt-2 w-48 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl py-1.5 z-50 text-sm">
+                    <div className="px-4 py-2 border-b border-slate-800">
+                      <p className="font-bold text-white">REPC Admin</p>
+                      <p className="text-xs text-slate-500">admin@repc.in</p>
                     </div>
                     <Link
                       href="/admin"

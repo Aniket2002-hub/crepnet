@@ -9,12 +9,13 @@ const geist = Geist({
 });
 
 export const metadata = {
-  title: "REPC – Real Estate Professionals Community",
+  title: "RPEC – Real Estate Professionals Community",
   description:
     "Connecting Office, Retail, Hospitality, Logistics & Investments with Global Opportunities. One Network. Endless Possibilities.",
-  keywords: "commercial real estate, CRE network, India, office space, retail, logistics, investments",
+  keywords:
+    "commercial real estate, CRE network, India, office space, retail, logistics, investments",
   openGraph: {
-    title: "REPC – Real Estate Professionals Community",
+    title: "RPEC – Real Estate Professionals Community",
     description: "One Network. Endless Possibilities.",
     type: "website",
   },
@@ -23,19 +24,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={geist.variable} suppressHydrationWarning>
-      <body className="antialiased bg-white text-gray-900" suppressHydrationWarning>
-
+      <body
+        className="antialiased bg-white text-gray-900"
+        suppressHydrationWarning
+      >
         {/* ── Header ── */}
         <Header />
 
         {/* ── Page Content ── */}
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
 
         {/* ── Footer ── */}
         <Footer />
-
       </body>
     </html>
   );

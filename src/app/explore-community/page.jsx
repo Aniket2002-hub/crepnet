@@ -1,13 +1,28 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Users, Building2, TrendingUp, Handshake, Award, BookOpen, MapPin,
-  Network, Calendar, UserCheck, Target, Layers, Briefcase, Cpu,
-  Gift, Newspaper, Megaphone, Sparkles,
+  Users,
+  Building2,
+  TrendingUp,
+  Handshake,
+  Award,
+  BookOpen,
+  MapPin,
+  Network,
+  Calendar,
+  UserCheck,
+  Target,
+  Layers,
+  Briefcase,
+  Cpu,
+  Gift,
+  Newspaper,
+  Megaphone,
+  Sparkles,
 } from "lucide-react";
 
 /* ============================================================
-   CONTENT DATA — sourced exactly from the provided REPC brief
+   CONTENT DATA — sourced exactly from the provided RPEC brief
    (UNCHANGED)
    ============================================================ */
 
@@ -18,90 +33,186 @@ const VISION_POINTS = [
 ];
 
 const COMMUNITY_MEMBERS = [
-  "Real Estate Developers", "Channel Partners & Agents", "Sales Professionals",
-  "CRM Professionals", "Marketing Professionals", "Architects",
-  "Interior Designers", "Urban Planners", "Engineers",
-  "Construction Professionals", "Project Managers", "Facility Management Professionals",
-  "PropTech Companies", "Investors", "Banks & Housing Finance Companies",
-  "Legal Experts", "Valuers", "Chartered Accountants",
-  "Government Officials", "Consultants", "Real Estate Faculty",
-  "Students", "Entrepreneurs", "Technology Companies",
-  "Material Manufacturers", "ESG & Sustainability Experts",
+  "Real Estate Developers",
+  "Channel Partners & Agents",
+  "Sales Professionals",
+  "CRM Professionals",
+  "Marketing Professionals",
+  "Architects",
+  "Interior Designers",
+  "Urban Planners",
+  "Engineers",
+  "Construction Professionals",
+  "Project Managers",
+  "Facility Management Professionals",
+  "PropTech Companies",
+  "Investors",
+  "Banks & Housing Finance Companies",
+  "Legal Experts",
+  "Valuers",
+  "Chartered Accountants",
+  "Government Officials",
+  "Consultants",
+  "Real Estate Faculty",
+  "Students",
+  "Entrepreneurs",
+  "Technology Companies",
+  "Material Manufacturers",
+  "ESG & Sustainability Experts",
 ];
 
 const MEMBERSHIP_TYPES = [
-  "Certified Professional", "Individual Professional", "Startup Membership",
-  "Corporate Membership", "Developer Membership", "Institutional Membership",
-  "International Membership", "Lifetime Membership",
+  "Certified Professional",
+  "Individual Professional",
+  "Startup Membership",
+  "Corporate Membership",
+  "Developer Membership",
+  "Institutional Membership",
+  "International Membership",
+  "Lifetime Membership",
 ];
 
 const CERTIFICATIONS = [
-  "Certified Real Estate Professional", "Certified CRM Professional",
-  "Certified Luxury Property Advisor", "Certified Construction Manager",
-  "Certified Channel Partner", "Certified Project Manager",
-  "Certified Sales Leader", "Certified Facility Manager",
-  "Certified Real Estate Marketing Professional", "Certified PropTech Professional",
+  "Certified Real Estate Professional",
+  "Certified CRM Professional",
+  "Certified Luxury Property Advisor",
+  "Certified Construction Manager",
+  "Certified Channel Partner",
+  "Certified Project Manager",
+  "Certified Sales Leader",
+  "Certified Facility Manager",
+  "Certified Real Estate Marketing Professional",
+  "Certified PropTech Professional",
 ];
 
 const KNOWLEDGE_ITEMS = [
-  "Weekly webinars", "Industry Surveys", "Masterclasses", "Industry reports",
-  "Podcasts", "Research papers", "Case studies", "White papers",
-  "E-books", "Real estate newsletters", "Market intelligence", "Investment insights",
+  "Weekly webinars",
+  "Industry Surveys",
+  "Masterclasses",
+  "Industry reports",
+  "Podcasts",
+  "Research papers",
+  "Case studies",
+  "White papers",
+  "E-books",
+  "Real estate newsletters",
+  "Market intelligence",
+  "Investment insights",
 ];
 
 const NETWORKING_ITEMS = [
-  "National Conventions", "City Chapters", "Developer Meetups", "Investor Forums",
-  "CEO Roundtables", "Leadership Summits", "HR Summits", "Annual Awards",
-  "Women in Real Estate Forum", "Young Leaders Forum",
+  "National Conventions",
+  "City Chapters",
+  "Developer Meetups",
+  "Investor Forums",
+  "CEO Roundtables",
+  "Leadership Summits",
+  "HR Summits",
+  "Annual Awards",
+  "Women in Real Estate Forum",
+  "Young Leaders Forum",
 ];
 
 const CAREER_ITEMS = [
-  "Exclusive Job Portal", "Internship Opportunities", "Resume Reviews",
-  "Career Counseling", "Executive Search", "Leadership Development", "Mentorship Programs",
+  "Exclusive Job Portal",
+  "Internship Opportunities",
+  "Resume Reviews",
+  "Career Counseling",
+  "Executive Search",
+  "Leadership Development",
+  "Mentorship Programs",
 ];
 
 const BUSINESS_ITEMS = [
-  "Generate qualified leads", "Raise capital", "Find strategic partners",
-  "Access top consultants", "Connect with developers", "Discover investment opportunities",
-  "Form joint ventures", "Expand across India",
+  "Generate qualified leads",
+  "Raise capital",
+  "Find strategic partners",
+  "Access top consultants",
+  "Connect with developers",
+  "Discover investment opportunities",
+  "Form joint ventures",
+  "Expand across India",
 ];
 
 const TECH_PLATFORM_ITEMS = [
-  "Member Directory", "Discussion Forums", "AI-based Networking", "Mobile App",
-  "Knowledge Library", "Learning Management System", "Event Management", "Marketplace",
-  "Job Portal", "Certification Dashboard", "Digital Member ID",
+  "Member Directory",
+  "Discussion Forums",
+  "AI-based Networking",
+  "Mobile App",
+  "Knowledge Library",
+  "Learning Management System",
+  "Event Management",
+  "Marketplace",
+  "Job Portal",
+  "Certification Dashboard",
+  "Digital Member ID",
   "Continuing Professional Development Tracker",
 ];
 
 const BENEFITS_ITEMS = [
-  "Exclusive research", "Premium learning content", "Networking access",
-  "Business referrals", "Vendor discounts", "Industry certifications",
-  "Event invitations", "Awards eligibility", "Speaking opportunities", "Leadership recognition",
+  "Exclusive research",
+  "Premium learning content",
+  "Networking access",
+  "Business referrals",
+  "Vendor discounts",
+  "Industry certifications",
+  "Event invitations",
+  "Awards eligibility",
+  "Speaking opportunities",
+  "Leadership recognition",
 ];
 
 const CONTENT_STRATEGY_ITEMS = [
-  "Market updates", "Investment trends", "Policy analysis", "Regulatory changes",
-  "Sales strategies", "Marketing insights", "Construction innovations",
-  "Sustainability practices", "AI impact in real estate", "Smart cities", "Global best practices",
+  "Market updates",
+  "Investment trends",
+  "Policy analysis",
+  "Regulatory changes",
+  "Sales strategies",
+  "Marketing insights",
+  "Construction innovations",
+  "Sustainability practices",
+  "AI impact in real estate",
+  "Smart cities",
+  "Global best practices",
 ];
 
 const FLAGSHIP_EVENTS = [
-  "India Real Estate Leadership Summit", "Luxury Real Estate Forum",
-  "National Developers Conference", "Affordable Housing Forum",
-  "Real Estate Technology Expo", "Student Leadership Summit",
-  "India PropTech Summit", "Women in Real Estate Summit", "Real Estate Awards",
+  "India Real Estate Leadership Summit",
+  "Luxury Real Estate Forum",
+  "National Developers Conference",
+  "Affordable Housing Forum",
+  "Real Estate Technology Expo",
+  "Student Leadership Summit",
+  "India PropTech Summit",
+  "Women in Real Estate Summit",
+  "Real Estate Awards",
 ];
 
 const REGIONS = [
-  "Delhi NCR", "Mumbai", "Pune", "Bengaluru", "Hyderabad", "Chennai",
-  "Ahmedabad", "Kolkata", "Chandigarh", "Jaipur", "Lucknow", "Indore",
-  "Kochi", "Bhubaneswar", "Visakhapatnam",
+  "Delhi NCR",
+  "Mumbai",
+  "Pune",
+  "Bengaluru",
+  "Hyderabad",
+  "Chennai",
+  "Ahmedabad",
+  "Kolkata",
+  "Chandigarh",
+  "Jaipur",
+  "Lucknow",
+  "Indore",
+  "Kochi",
+  "Bhubaneswar",
+  "Visakhapatnam",
 ];
 
 const ADVOCACY_ITEMS = [
-  "Publishing policy recommendations", "Conducting industry surveys",
-  "Producing annual reports", "Supporting skill development",
-  "Promoting ESG adoption", "Facilitating government–industry dialogue",
+  "Publishing policy recommendations",
+  "Conducting industry surveys",
+  "Producing annual reports",
+  "Supporting skill development",
+  "Promoting ESG adoption",
+  "Facilitating government–industry dialogue",
 ];
 
 /* ============================================================
@@ -164,7 +275,7 @@ const styles = `
     margin-left: auto;
     margin-right: auto;
     max-width: 80rem;
-    padding: 2.75rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
   @media (min-width: 1024px) {
     .ec-hero-content { padding: 3.5rem 3rem; }
@@ -581,7 +692,7 @@ function Reveal({ children, as: Tag = "div", className = "", delay = 0 }) {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -609,23 +720,46 @@ function SectionHead({ eyebrow, title, desc, icon: Icon, onDark, chapter }) {
           <span className="ec-eyebrow">{eyebrow}</span>
         </div>
         {chapter && (
-          <span className={`ec-chapter-num${onDark ? " on-dark" : ""}`}>{chapter} / 15</span>
+          <span className={`ec-chapter-num${onDark ? " on-dark" : ""}`}>
+            {chapter} / 15
+          </span>
         )}
       </div>
       <h2 className={`ec-section-title${onDark ? " on-dark" : ""}`}>{title}</h2>
       <div className="ec-divider" />
-      {desc && <p className={`ec-section-desc${onDark ? " on-dark" : ""}`}>{desc}</p>}
+      {desc && (
+        <p className={`ec-section-desc${onDark ? " on-dark" : ""}`}>{desc}</p>
+      )}
     </div>
   );
 }
 
-function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg = "light", chapter, bgImage }) {
+function CardGridSection({
+  id,
+  eyebrow,
+  title,
+  desc,
+  icon,
+  items,
+  cols = 3,
+  bg = "light",
+  chapter,
+  bgImage,
+}) {
   const onDark = bg === "dark";
   return (
-    <section id={id} className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}>
+    <section
+      id={id}
+      className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}
+    >
       {bgImage && (
         <>
-          <img className="ec-section-banner-img" src={bgImage} alt="" aria-hidden="true" />
+          <img
+            className="ec-section-banner-img"
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+          />
           <div className="ec-section-banner-overlay" />
         </>
       )}
@@ -633,7 +767,14 @@ function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg =
       <span className="ec-corner ec-corner-br" />
       <div className="ec-inner">
         <Reveal>
-          <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} onDark={onDark} chapter={chapter} />
+          <SectionHead
+            eyebrow={eyebrow}
+            title={title}
+            desc={desc}
+            icon={icon}
+            onDark={onDark}
+            chapter={chapter}
+          />
         </Reveal>
         <div className="ec-card-grid" style={{ "--cols": cols }}>
           {items.map((item, i) => (
@@ -642,7 +783,9 @@ function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg =
                 <div className="ec-item-icon-circle">
                   <span className="ec-chip-dot" />
                 </div>
-                <div className={`ec-item-label${onDark ? " on-dark" : ""}`}>{item}</div>
+                <div className={`ec-item-label${onDark ? " on-dark" : ""}`}>
+                  {item}
+                </div>
               </div>
             </Reveal>
           ))}
@@ -652,13 +795,31 @@ function CardGridSection({ id, eyebrow, title, desc, icon, items, cols = 3, bg =
   );
 }
 
-function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light", chapter, bgImage }) {
+function ChipGridSection({
+  id,
+  eyebrow,
+  title,
+  desc,
+  icon,
+  items,
+  bg = "light",
+  chapter,
+  bgImage,
+}) {
   const onDark = bg === "dark";
   return (
-    <section id={id} className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}>
+    <section
+      id={id}
+      className={`ec-section bg-${bg}${bgImage ? " has-banner" : ""}`}
+    >
       {bgImage && (
         <>
-          <img className="ec-section-banner-img" src={bgImage} alt="" aria-hidden="true" />
+          <img
+            className="ec-section-banner-img"
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+          />
           <div className="ec-section-banner-overlay" />
         </>
       )}
@@ -666,7 +827,14 @@ function ChipGridSection({ id, eyebrow, title, desc, icon, items, bg = "light", 
       <span className="ec-corner ec-corner-br" />
       <div className="ec-inner">
         <Reveal>
-          <SectionHead eyebrow={eyebrow} title={title} desc={desc} icon={icon} onDark={onDark} chapter={chapter} />
+          <SectionHead
+            eyebrow={eyebrow}
+            title={title}
+            desc={desc}
+            icon={icon}
+            onDark={onDark}
+            chapter={chapter}
+          />
         </Reveal>
         <Reveal delay={80}>
           <div className="ec-chip-grid">
@@ -702,7 +870,9 @@ export function ExploreHero() {
       <div className="ec-hero-content">
         <div className="ec-hero-tag">
           <span className="ec-hero-tag-dot" />
-          <p className="ec-hero-eyebrow" style={{ margin: 0 }}>Real Estate Professionals Community</p>
+          <p className="ec-hero-eyebrow" style={{ margin: 0 }}>
+            Real Estate Professionals Community
+          </p>
         </div>
         <h1 className="ec-hero-title">
           Building India's Largest &
@@ -711,14 +881,21 @@ export function ExploreHero() {
         </h1>
         <div className="ec-hero-divider" />
         <p className="ec-hero-desc">
-          The objective of REPC is to build India's largest and most influential community of real
-          estate professionals, the focus is to go beyond networking alone to create an ecosystem that
-          delivers knowledge, careers, business opportunities, credibility, and industry influence.
+          The objective of RPEC is to build India's largest and most influential
+          community of real estate professionals, the focus is to go beyond
+          networking alone to create an ecosystem that delivers knowledge,
+          careers, business opportunities, credibility, and industry influence.
         </p>
         <div className="ec-hero-coords">
-          <span className="ec-hero-coord"><b>26</b> stakeholder groups</span>
-          <span className="ec-hero-coord"><b>15</b> chapters of the plan</span>
-          <span className="ec-hero-coord"><b>15+</b> city chapters nationwide</span>
+          <span className="ec-hero-coord">
+            <b>26</b> stakeholder groups
+          </span>
+          <span className="ec-hero-coord">
+            <b>15</b> chapters of the plan
+          </span>
+          <span className="ec-hero-coord">
+            <b>15+</b> city chapters nationwide
+          </span>
         </div>
       </div>
     </section>
@@ -735,7 +912,7 @@ export function VisionSection() {
           <SectionHead
             eyebrow="Key Pillars"
             title="Clear Vision"
-            desc="REPC is built on three founding commitments that guide everything the community does."
+            desc="RPEC is built on three founding commitments that guide everything the community does."
             icon={Target}
             chapter="01"
           />
@@ -855,7 +1032,7 @@ export function BusinessDevelopmentSection() {
     <CardGridSection
       id="business"
       eyebrow="Business Development"
-      title="REPC offers a platform to connect with professionals of choice from the member group:"
+      title="RPEC offers a platform to connect with professionals of choice from the member group:"
       desc="Form strategic alignments, find clients, and secure investment pipelines safely."
       icon={TrendingUp}
       items={BUSINESS_ITEMS}
@@ -887,7 +1064,7 @@ export function BenefitsSection() {
     <CardGridSection
       id="benefits"
       eyebrow="Community Benefits"
-      title="REPC Members should receive:"
+      title="RPEC Members should receive:"
       desc="Unmatched ROI in professional credibility, knowledge tools, and global growth structures."
       icon={Gift}
       items={BENEFITS_ITEMS}
@@ -903,7 +1080,7 @@ export function ContentStrategySection() {
     <CardGridSection
       id="content"
       eyebrow="Content Strategy"
-      title="REPC to Publish high-value content regularly:"
+      title="RPEC to Publish high-value content regularly:"
       desc="Stay informed with real-time breakdowns of macro policies and local updates."
       icon={Newspaper}
       items={CONTENT_STRATEGY_ITEMS}
@@ -920,7 +1097,7 @@ export function FlagshipEventsSection() {
     <CardGridSection
       id="events"
       eyebrow="Annual Flagship Events"
-      title="REPC shall host signature events such as:"
+      title="RPEC shall host signature events such as:"
       desc="Major interactive setups connecting policy leaders with scaling real estate founders."
       icon={Calendar}
       items={FLAGSHIP_EVENTS}
@@ -952,7 +1129,7 @@ export function AdvocacySection() {
     <CardGridSection
       id="advocacy"
       eyebrow="Industry Advocacy"
-      title="REPC to act as a respected industry voice by:"
+      title="RPEC to act as a respected industry voice by:"
       desc="Driving deep structural improvements through data analytics and collaborative policy frameworks."
       icon={Megaphone}
       items={ADVOCACY_ITEMS}
@@ -975,7 +1152,9 @@ export function ClosingVisionSection() {
       <div className="ec-closing-grid" />
       <div className="ec-closing-inner">
         <Reveal>
-          <div className="ec-closing-eyebrow">Chapter 15 / 15 — A Long-Term Vision</div>
+          <div className="ec-closing-eyebrow">
+            Chapter 15 / 15 — A Long-Term Vision
+          </div>
           <h2 className="ec-closing-title">
             Where Professionals Learn, Earn, Connect, Innovate, and Lead
           </h2>
@@ -983,18 +1162,20 @@ export function ClosingVisionSection() {
         </Reveal>
         <Reveal delay={120}>
           <p className="ec-closing-para">
-            REPC aspires to create India's most trusted professional ecosystem for the entire real estate
-            value chain, where professionals learn, earn, connect, innovate, and lead throughout their
-            careers.
+            RPEC aspires to create India's most trusted professional ecosystem
+            for the entire real estate value chain, where professionals learn,
+            earn, connect, innovate, and lead throughout their careers.
           </p>
           <p className="ec-closing-para">
-            REPC is not only a mere networking platform, it would function as an integrated ecosystem
-            combining education, certification, career advancement, business development, thought
-            leadership, and policy engagement.
+            RPEC is not only a mere networking platform, it would function as an
+            integrated ecosystem combining education, certification, career
+            advancement, business development, thought leadership, and policy
+            engagement.
           </p>
           <p className="ec-closing-para">
-            This REPC model will create lasting value for individual professionals, organizations, and the
-            broader Indian real estate industry.
+            This RPEC model will create lasting value for individual
+            professionals, organizations, and the broader Indian real estate
+            industry.
           </p>
         </Reveal>
       </div>
@@ -1012,7 +1193,10 @@ export default function ExploreCommunityPage() {
       <style>{styles}</style>
       <main
         className="ec-wrapper"
-        style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}
+        style={{
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+          minHeight: "100vh",
+        }}
       >
         <ExploreHero />
         <VisionSection />

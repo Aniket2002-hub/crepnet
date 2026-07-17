@@ -420,7 +420,6 @@ function ResultSection() {
 //
 
 function BottomCTA() {
- 
   return (
     <div className="max-w-7xl mx-auto  px-6 lg:px-10 pb-12">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-6 bg-[#011d42] p-5 sm:p-6 rounded-2xl shadow-lg">
@@ -433,7 +432,7 @@ function BottomCTA() {
               Are you a Developer?
             </h1>
             <p className="text-sm sm:text-base text-white/90 leading-snug">
-              Join REPC and unlock endless oppurtunities
+              Join RPEC and unlock endless oppurtunities
             </p>
           </div>
         </div>
@@ -459,9 +458,6 @@ export default function Listings() {
   const [city, setCity] = useState("All Cities");
   const [assetType, setAssetType] = useState("All Asset Types");
   const [sortBy, setSortBy] = useState("Featured");
-
-  
-
 
   return (
     <main className="antialiased bg-[#f8fafc] min-h-screen">

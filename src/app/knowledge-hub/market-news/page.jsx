@@ -612,7 +612,7 @@ export default function MarketNewsPage() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans antialiased">
       {/* 1st Section Hero Banner — Sized and padding-managed exactly to reflect reference parameters */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
@@ -643,17 +643,17 @@ export default function MarketNewsPage() {
       {/* Content Grid Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filter Bar */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
             <h2 style={headingFontClass} className="text-xl font-bold text-gray-900">All Market News</h2>
             <p className="text-gray-500 text-sm mt-0.5">Showing {filtered.length} result{filtered.length !== 1 ? "s" : ""}</p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto scrollbar-hide">
             {newsFilters.map((f) => (
               <button
                 key={f}
                 onClick={() => { setActive(f); setVisibleCount(6); }}
-                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border transition-colors font-medium ${
+                className={`px-4 py-1.5 text-sm rounded-full cursor-pointer border transition-colors font-medium whitespace-nowrap shrink-0 ${
                   active === f
                     ? "bg-[#c9a84c] border-[#c9a84c] text-white"
                     : "border-gray-200 text-gray-600 hover:border-[#c9a84c] hover:text-[#c9a84c] hover:bg-amber-50"

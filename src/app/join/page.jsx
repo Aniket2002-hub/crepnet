@@ -38,203 +38,203 @@ export default function JoiningPage() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10 pt-8 md:pt-16 lg:pt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Content */}
-          <div className="md:space-y-8 space-y-4 max-w-2xl text-white pb-6 lg:pb-0">
-            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold leading-tight">
-              India largest community of <br />
-              <span className="text-[#C59B46]">Real Estate</span> professionals
-            </h1>
-            <div className="w-16 h-1 bg-[#C59B46]"></div>
+            {/* Left Content */}
+            <div className="md:space-y-8 space-y-4 max-w-2xl text-white pb-6 lg:pb-0">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                India largest community of <br />
+                <span className="text-[#C59B46]">Real Estate</span> professionals
+              </h1>
+              <div className="w-16 h-1 bg-[#C59B46]"></div>
 
-            <div className="space-y-2 md:space-y-4">
-              <p className="md:text-xl sm:text-md font-medium text-gray-200">
-                Connect. Collaborate. Grow.
-              </p>
-              <p className="text-gray-400 text-sm md:text-lg">
-                Join a trusted community of 10,000+ professionals, leading
-                companies and global partners shaping the future of commercial
-                real estate in India.
-              </p>
-            </div>
-
-            {/* Icons Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 md:pt-8 border-t border-gray-700">
-              <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Users className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
-                </div>
-                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
-                  Expand Your
-                  <br />
-                  Network
-                </span>
-              </div>
-              <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Building2 className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
-                </div>
-                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
-                  Discover New <br />
-                  Opportunities
-                </span>
-              </div>
-              <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
-                  <TrendingUp className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
-                </div>
-                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
-                  Gain Market
-                  <br />
-                  Intelligence
-                </span>
-              </div>
-              <div className="flex flex-col items-center text-center space-y-3">
-                <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
-                  <Handshake className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
-                </div>
-                <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
-                  Collaborate &<br />
-                  Grow Business
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Form Card */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md text-gray-900 relative z-20 flex flex-col">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Join RPEC</h2>
-                <p className="text-[#C59B46] font-medium mt-1">
-                  It&apos;s Free to Get Started
+              <div className="space-y-2 md:space-y-4">
+                <p className="md:text-xl sm:text-md font-medium text-gray-200">
+                  Connect. Collaborate. Grow.
+                </p>
+                <p className="text-gray-400 text-sm md:text-lg">
+                  Join a trusted community of 10,000+ professionals, leading
+                  companies and global partners shaping the future of commercial
+                  real estate in India.
                 </p>
               </div>
 
-              {/* Stepper */}
-              <div className="flex justify-between items-center mb-6 relative">
-                <div className="absolute left-0 top-4 w-full h-[2px] bg-gray-200 -z-10"></div>
-                <div className="flex flex-col items-center bg-white px-2">
-                  <div className="w-8 h-8 rounded-full bg-[#C59B46] text-white flex items-center justify-center font-semibold text-sm">
-                    1
+              {/* Icons Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 md:pt-8 border-t border-gray-700">
+                <div className="flex flex-col items-center text-center space-y-3">
+                  <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                    <Users className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                   </div>
-                  <span className="text-xs text-gray-500 mt-2">
-                    Create Account
+                  <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
+                    Expand Your
+                    <br />
+                    Network
                   </span>
                 </div>
-                <div className="flex flex-col items-center bg-white px-2">
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-semibold text-sm">
-                    2
+                <div className="flex flex-col items-center text-center space-y-3">
+                  <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                    <Building2 className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                   </div>
-                  <span className="text-xs text-gray-400 mt-2">
-                    Tell Us About You
+                  <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
+                    Discover New <br />
+                    Opportunities
                   </span>
                 </div>
-                <div className="flex flex-col items-center bg-white px-2">
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-semibold text-sm">
-                    3
+                <div className="flex flex-col items-center text-center space-y-3">
+                  <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                    <TrendingUp className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
                   </div>
-                  <span className="text-xs text-gray-400 mt-2">Complete</span>
+                  <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
+                    Gain Market
+                    <br />
+                    Intelligence
+                  </span>
+                </div>
+                <div className="flex flex-col items-center text-center space-y-3">
+                  <div className="p-2 md:p-3 rounded-full border border-gray-600 bg-white/5">
+                    <Handshake className="md:w-6 md:h-6 w-4 h-4 text-[#C59B46]" />
+                  </div>
+                  <span className="text-[12px] sm:text-[14px] md:text-sm text-gray-300">
+                    Collaborate &<br />
+                    Grow Business
+                  </span>
                 </div>
               </div>
+            </div>
 
-              {/* Social Login */}
-              <div className="space-y-3 mb-4">
-                <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 rounded-md py-2.5 text-sm font-medium hover:bg-gray-50 transition">
-                  <FcGoogle className="w-5 h-5" />
-                  <span>Continue with Google</span>
-                </button>
-                <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 rounded-md py-2.5 text-sm font-medium hover:bg-gray-50 transition">
-                  <FaLinkedin className="w-5 h-5 text-[#0077b5]" />
-                  <span>Continue with LinkedIn</span>
-                </button>
-              </div>
+            {/* Right Form Card */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md text-gray-900 relative z-20 flex flex-col">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">Join RPEC</h2>
+                  <p className="text-[#C59B46] font-medium mt-1">
+                    It&apos;s Free to Get Started
+                  </p>
+                </div>
 
-              <div className="relative flex items-center justify-center mb-4">
-                <div className="border-t border-gray-200 w-full"></div>
-                <span className="bg-white px-3 text-xs text-gray-400 absolute">
-                  or
-                </span>
-              </div>
-
-              {/* Form */}
-              <form className="space-y-4">
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Users className="h-4 w-4 text-gray-400" />
+                {/* Stepper */}
+                <div className="flex justify-between items-center mb-6 relative">
+                  <div className="absolute left-0 top-4 w-full h-[2px] bg-gray-200 -z-10"></div>
+                  <div className="flex flex-col items-center bg-white px-2">
+                    <div className="w-8 h-8 rounded-full bg-[#C59B46] text-white flex items-center justify-center font-semibold text-sm">
+                      1
                     </div>
-                    <input
-                      type="text"
-                      placeholder="Full Name"
-                      className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
-                    />
+                    <span className="text-xs text-gray-500 mt-2">
+                      Create Account
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center bg-white px-2">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-semibold text-sm">
+                      2
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2">
+                      Tell Us About You
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center bg-white px-2">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-semibold text-sm">
+                      3
+                    </div>
+                    <span className="text-xs text-gray-400 mt-2">Complete</span>
                   </div>
                 </div>
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg
-                        className="h-4 w-4 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <input
-                      type="email"
-                      placeholder="Work Email"
-                      className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Building2 className="h-4 w-4 text-gray-400" />
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Company Name"
-                      className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <select className="w-full border border-gray-300 cursor-pointer rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
-                    <option value="">Select Your Role</option>
-                    <option value="developer">Developer</option>
-                    <option value="investor">Investor</option>
-                    <option value="broker">Broker / Consultant</option>
-                  </select>
+
+                {/* Social Login */}
+                <div className="space-y-3 mb-4">
+                  <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 rounded-md py-2.5 text-sm font-medium hover:bg-gray-50 transition">
+                    <FcGoogle className="w-5 h-5" />
+                    <span>Continue with Google</span>
+                  </button>
+                  <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 rounded-md py-2.5 text-sm font-medium hover:bg-gray-50 transition">
+                    <FaLinkedin className="w-5 h-5 text-[#0077b5]" />
+                    <span>Continue with LinkedIn</span>
+                  </button>
                 </div>
 
-                <button
-                  type="button"
-                  className="w-full bg-[#C59B46] hover:bg-[#b0893b] cursor-pointer text-white rounded-md py-3 font-semibold text-sm transition mt-2"
-                >
-                  Get Started
-                </button>
-              </form>
+                <div className="relative flex items-center justify-center mb-4">
+                  <div className="border-t border-gray-200 w-full"></div>
+                  <span className="bg-white px-3 text-xs text-gray-400 absolute">
+                    or
+                  </span>
+                </div>
 
-              <div className="mt-4 text-center text-sm text-gray-600">
-                Already a member?{" "}
-                <a
-                  href="/login"
-                  className="text-[#0077b5] font-semibold cursor-pointer hover:underline"
-                >
-                  Login
-                </a>
+                {/* Form */}
+                <form className="space-y-4">
+                  <div>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Users className="h-4 w-4 text-gray-400" />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg
+                          className="h-4 w-4 text-gray-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="email"
+                        placeholder="Work Email"
+                        className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Building2 className="h-4 w-4 text-gray-400" />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Company Name"
+                        className="pl-10 w-full border border-gray-300 rounded-md py-2.5 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <select className="w-full border border-gray-300 cursor-pointer rounded-md py-2.5 px-3 text-sm focus:ring-[#C59B46] focus:border-[#C59B46] outline-none text-gray-600 appearance-none bg-white">
+                      <option value="">Select Your Role</option>
+                      <option value="developer">Developer</option>
+                      <option value="investor">Investor</option>
+                      <option value="broker">Broker / Consultant</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="w-full bg-[#C59B46] hover:bg-[#b0893b] cursor-pointer text-white rounded-md py-3 font-semibold text-sm transition mt-2"
+                  >
+                    Get Started
+                  </button>
+                </form>
+
+                <div className="mt-4 text-center text-sm text-gray-600">
+                  Already a member?{" "}
+                  <a
+                    href="/login"
+                    className="text-[#0077b5] font-semibold cursor-pointer hover:underline"
+                  >
+                    Login
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* --- WHO CAN JOIN SECTION --- */}
@@ -456,7 +456,7 @@ export default function JoiningPage() {
       </section>
 
       {/* --- TRUST BADGES SECTION --- */}
-      <section className="bg-[#05152D]">
+      <section className="bg-[#05152D] p-2">
         <div className="mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch py-4 border-t border-[#1A2E4C] md:divide-x divide-[#1A2E4C] gap-y-4">
             {/* Item 1 */}

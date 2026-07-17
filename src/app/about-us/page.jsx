@@ -30,7 +30,7 @@ function AnimatedCounter({ targetValue, duration = 1500 }) {
   const hasAnimated = useRef(false);
 
   const numericString = targetValue.replace(/[^0-9]/g, "");
-  const suffix = targetValue.replace(/[0-9,]/g, ""); 
+  const suffix = targetValue.replace(/[0-9,]/g, "");
   const targetNumber = parseInt(numericString, 10) || 0;
   const isLargeNumber = targetNumber >= 1000;
 
@@ -57,7 +57,7 @@ function AnimatedCounter({ targetValue, duration = 1500 }) {
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (elementRef.current) {
@@ -143,7 +143,7 @@ const philosophyItems = [
   {
     icon: Zap,
     title: "Outcome-Driven",
-    desc: "REPC networking is designed to support growth, collaboration, and opportunity, not casual interaction.",
+    desc: "RPEC networking is designed to support growth, collaboration, and opportunity, not casual interaction.",
   },
 ];
 
@@ -151,26 +151,28 @@ const founders = [
   {
     name: "Vipin Arora",
     role: "Founder ",
-    bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind REPC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping REPC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through REPC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
+    bio: "Vipin Arora is a highly respected real estate professional with over two decades of experience across some of India's most renowned real estate organizations, including Puri Constructions, DLF, M3M, BPTP, and Pioneer Group. Throughout his career, he has played a pivotal role in driving business growth, strategic partnerships, customer engagement, and market expansion across residential, commercial, and mixed-use developments. As a founding force behind RPEC, Vipin envisioned a collaborative platform that brings together professionals from across the real estate ecosystem to connect, share knowledge, create opportunities, and drive industry advancement. His deep understanding of the sector, combined with his extensive professional network, has been instrumental in shaping RPEC into a trusted and influential community for real estate professionals. Known for his relationship-driven approach and industry expertise, Vipin continues to champion initiatives that foster meaningful collaborations, encourage thought leadership, and support the growth of India's real estate sector. Through RPEC, he remains committed to building a stronger, more connected community that empowers professionals and creates long-term value for the industry.",
     img: "/vipn-sir.jpg",
   },
   {
     name: "Bhaswar Paul",
     role: "Co-Founder ",
-    bio: "Bhaswar Paul is a visionary entrepreneur and industry leader with a deep commitment to transforming India's real estate ecosystem through collaboration, innovation, and knowledge sharing. As the Founder of REPC and CEO & Founder of IREED India, he has been instrumental in creating platforms that connect developers, investors, occupiers, consultants, service providers, and industry professionals across the real estate value chain. With extensive experience in real estate advisory, business networking, industry research, and ecosystem development, Bhaswar has consistently championed initiatives that foster meaningful partnerships, promote market intelligence, and accelerate industry growth. Under his leadership, REPC has evolved into a vibrant professional community dedicated to connecting professionals, facilitating opportunities, and driving thought leadership within the sector. His vision is centered on building a stronger, more connected real estate community where professionals can collaborate, learn, innovate, and create lasting business impact. Through REPC and IREED India, he continues to bridge industry stakeholders and contribute to the advancement of India's real estate landscape.",
+    bio: "Bhaswar Paul is a visionary entrepreneur and industry leader with a deep commitment to transforming India's real estate ecosystem through collaboration, innovation, and knowledge sharing. As the Founder of RPEC and CEO & Founder of IREED India, he has been instrumental in creating platforms that connect developers, investors, occupiers, consultants, service providers, and industry professionals across the real estate value chain. With extensive experience in real estate advisory, business networking, industry research, and ecosystem development, Bhaswar has consistently championed initiatives that foster meaningful partnerships, promote market intelligence, and accelerate industry growth. Under his leadership, RPEC has evolved into a vibrant professional community dedicated to connecting professionals, facilitating opportunities, and driving thought leadership within the sector. His vision is centered on building a stronger, more connected real estate community where professionals can collaborate, learn, innovate, and create lasting business impact. Through RPEC and IREED India, he continues to bridge industry stakeholders and contribute to the advancement of India's real estate landscape.",
     img: "/paul-sir.jpg",
   },
 ];
 
-const headingFontClass = { fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' };
+const headingFontClass = {
+  fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+};
 
 export default function AboutPage() {
   const [selectedFounder, setSelectedFounder] = useState(null);
 
   return (
-    <main className="bg-white relative">
+    <main className="bg-white relative ">
       {/* 1. Hero Banner Section — Standardized to match survey page containers precisely */}
-      <section className="relative overflow-hidden bg-[#0B1F3A]">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1600&q=80"
@@ -182,9 +184,9 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
-            ABOUT REPC
+            ABOUT RPEC
           </p>
-          <h1 
+          <h1
             style={headingFontClass}
             className="max-w-2xl text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide"
           >
@@ -196,7 +198,8 @@ export default function AboutPage() {
           </h1>
           <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
           <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
-            REPC is India&apos;s largest community of real estate professionals working together to learn, collaborate, and grow.
+            RPEC is India&apos;s largest community of real estate professionals
+            working together to learn, collaborate, and grow.
           </p>
         </div>
       </section>
@@ -206,26 +209,34 @@ export default function AboutPage() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
           {/* Left Column: Story Content */}
           <div className="space-y-4">
-            <h2 
+            <h2
               style={headingFontClass}
               className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
             >
               Our Story
             </h2>
             <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
-              REPC was established with a singular focus: to unify India's expansive real estate ecosystem. What started as a vision to break down silos between developers, consultants, and service providers has rapidly evolved into a powerhouse networking hub.
+              RPEC was established with a singular focus: to unify India's
+              expansive real estate ecosystem. What started as a vision to break
+              down silos between developers, consultants, and service providers
+              has rapidly evolved into a powerhouse networking hub.
             </p>
             <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
-              Through consistent community initiatives, structured knowledge shares, and cross-functional collaborations, an extraordinary nation-wide community began to emerge.
+              Through consistent community initiatives, structured knowledge
+              shares, and cross-functional collaborations, an extraordinary
+              nation-wide community began to emerge.
             </p>
             <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
-              Today, visionary entrepreneurs, senior executives, structural experts, and industry professionals from hospitality, real estate finance, design, and regulatory sectors are interconnected through a shared standard of professional excellence.
+              Today, visionary entrepreneurs, senior executives, structural
+              experts, and industry professionals from hospitality, real estate
+              finance, design, and regulatory sectors are interconnected through
+              a shared standard of professional excellence.
             </p>
           </div>
 
           {/* Right Column: Key Facts & Figures Cards */}
           <div>
-            <h2 
+            <h2
               style={headingFontClass}
               className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] mb-4 lg:text-left text-center"
             >
@@ -233,8 +244,8 @@ export default function AboutPage() {
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {storyStats.map(({ icon: Icon, value, label }) => (
-                <div 
-                  key={label} 
+                <div
+                  key={label}
                   className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col items-center text-center justify-center min-h-[140px] hover:shadow-md transition duration-300"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8A33D]/10 text-[#E8A33D] mb-3">
@@ -243,7 +254,9 @@ export default function AboutPage() {
                   <p className="text-2xl font-extrabold text-slate-800">
                     <AnimatedCounter targetValue={value} />
                   </p>
-                  <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">{label}</p>
+                  <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -254,13 +267,13 @@ export default function AboutPage() {
       {/* Pop-up Modal Design */}
       {selectedFounder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
-          <div 
+          <div
             className="absolute inset-0 bg-[#0B1F3A]/60 backdrop-blur-sm transition-opacity duration-300"
             onClick={() => setSelectedFounder(null)}
           />
-          
+
           <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden z-10 border border-slate-100 max-h-[90vh] flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-200">
-            <button 
+            <button
               onClick={() => setSelectedFounder(null)}
               className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition"
             >
@@ -269,29 +282,33 @@ export default function AboutPage() {
 
             <div className="relative w-full md:w-2/5 bg-[#0B1F3A] shrink-0 min-h-[240px] md:min-h-full flex flex-col justify-end p-6 md:p-8">
               <div className="absolute inset-0 z-0">
-                <img 
-                  src={selectedFounder.img} 
-                  alt={selectedFounder.name} 
+                <img
+                  src={selectedFounder.img}
+                  alt={selectedFounder.name}
                   className="w-full h-full object-cover object-top opacity-40 mix-blend-luminosity"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/50 to-transparent" />
               </div>
-              
+
               <div className="relative z-10">
-                <h3 
+                <h3
                   style={headingFontClass}
                   className="text-xl font-bold text-white"
                 >
                   {selectedFounder.name}
                 </h3>
                 <div className="mt-2 h-[2px] w-10 bg-[#E8A33D]" />
-                <p className="mt-2 text-xs font-medium text-slate-300 tracking-wide leading-relaxed">{selectedFounder.role}</p>
+                <p className="mt-2 text-xs font-medium text-slate-300 tracking-wide leading-relaxed">
+                  {selectedFounder.role}
+                </p>
               </div>
             </div>
 
             <div className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto custom-scrollbar">
-              <p className="text-xs uppercase tracking-widest text-[#E8A33D] font-bold">Leadership Profile</p>
-              <h4 
+              <p className="text-xs uppercase tracking-widest text-[#E8A33D] font-bold">
+                Leadership Profile
+              </p>
+              <h4
                 style={headingFontClass}
                 className="text-lg font-bold text-[#0B1F3A] mt-1"
               >
@@ -312,7 +329,7 @@ export default function AboutPage() {
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0B1F3A]">
               <Target className="h-5 w-5 text-white" />
             </div>
-            <h2 
+            <h2
               style={headingFontClass}
               className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
             >
@@ -320,10 +337,9 @@ export default function AboutPage() {
             </h2>
             <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              To connect real estate professionals, foster collaboration,
-              share knowledge, and create opportunities that drive growth,
-              innovation, and long-term value for the industry and the
-              communities we serve.
+              To connect real estate professionals, foster collaboration, share
+              knowledge, and create opportunities that drive growth, innovation,
+              and long-term value for the industry and the communities we serve.
             </p>
           </div>
 
@@ -331,7 +347,7 @@ export default function AboutPage() {
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8A33D]">
               <Eye className="h-5 w-5 text-white" />
             </div>
-            <h2 
+            <h2
               style={headingFontClass}
               className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
             >
@@ -350,7 +366,7 @@ export default function AboutPage() {
       {/* 5. Our Values Section */}
       <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12">
         <div className="text-center">
-          <h2 
+          <h2
             style={headingFontClass}
             className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
           >
@@ -365,7 +381,7 @@ export default function AboutPage() {
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
                 <Icon className="h-5 w-5 text-[#0B1F3A]" />
               </div>
-              <h3 
+              <h3
                 style={headingFontClass}
                 className="mt-2 font-bold text-[#0B1F3A] text-sm"
               >
@@ -382,7 +398,7 @@ export default function AboutPage() {
       {/* 6. Our Networking Philosophy Section */}
       <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-12 text-center">
         <div className="mb-6">
-          <h2 
+          <h2
             style={headingFontClass}
             className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A]"
           >
@@ -390,7 +406,7 @@ export default function AboutPage() {
           </h2>
           <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
           <p className="mt-3 text-sm md:text-base text-slate-500 font-medium">
-            REPC networking is built on three principles:
+            RPEC networking is built on three principles:
           </p>
         </div>
 
@@ -400,7 +416,7 @@ export default function AboutPage() {
               <div className="flex h-10 w-10 items-center justify-center text-[#E8A33D] mb-2">
                 <Icon className="h-7 w-7 stroke-[1.5]" />
               </div>
-              <h3 
+              <h3
                 style={headingFontClass}
                 className="text-base font-bold text-[#0B1F3A] mb-1"
               >
@@ -430,7 +446,7 @@ export default function AboutPage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/40">
                 <Users className="h-5 w-5 text-white" />
               </div>
-              <h2 
+              <h2
                 style={headingFontClass}
                 className="mt-3 text-3xl font-bold tracking-wide uppercase text-[#E8A33D]"
               >
@@ -438,7 +454,7 @@ export default function AboutPage() {
               </h2>
               <div className="mt-1.5 h-0.5 w-12 bg-[#E8A33D]" />
               <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                At REPC, we believe meaningful connections create lasting
+                At RPEC, we believe meaningful connections create lasting
                 impact. Our community brings together developers, investors,
                 occupiers, consultants, architects, and industry experts to
                 exchange ideas, solve challenges, and unlock new
@@ -466,22 +482,29 @@ export default function AboutPage() {
       {/* 8. Flagship Membership Benefit Section — Arrow icons added to points */}
       <section className="mx-auto max-w-7xl px-6 py-12 text-center">
         <div className="max-w-5xl mx-auto">
-          <h2 
+          <h2
             style={headingFontClass}
             className="text-xl md:text-2xl lg:text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] leading-tight"
           >
-            NETWORKING IS THE SIGNATURE EXPERIENCE AND FLAGSHIP BENEFIT OF WLCC MEMBERSHIP
+            NETWORKING IS THE SIGNATURE EXPERIENCE AND FLAGSHIP BENEFIT OF WLCC
+            MEMBERSHIP
           </h2>
         </div>
-        
+
         <div className="mt-8 space-y-4 max-w-7xl mx-auto flex flex-col items-center text-slate-600 font-medium text-xs md:text-sm lg:text-[15px] leading-relaxed tracking-wide">
           <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
             <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
-            <span>At the World Luxury Chamber of Commerce, networking is not about volume – it is about access, relevance, and trust.</span>
+            <span>
+              At the World Luxury Chamber of Commerce, networking is not about
+              volume – it is about access, relevance, and trust.
+            </span>
           </p>
           <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
             <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
-            <span>Every connection is intentional. Every interaction is aligned with the values of excellence, discretion, and prestige.</span>
+            <span>
+              Every connection is intentional. Every interaction is aligned with
+              the values of excellence, discretion, and prestige.
+            </span>
           </p>
         </div>
       </section>
@@ -494,7 +517,7 @@ export default function AboutPage() {
               <Users className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 
+              <h2
                 style={headingFontClass}
                 className="text-xl font-bold text-white uppercase tracking-wide"
               >

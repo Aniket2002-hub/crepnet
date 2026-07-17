@@ -105,8 +105,8 @@ export default function ArticleDetailPage() {
       {/* 1st Section Hero Banner — Sized accurately to reflect the exact padding layouts from the survey page */}
       <section className="relative overflow-hidden bg-[#0B1F3A]">
         <div className="absolute inset-0">
-          <img src={article.heroImg} alt="article hero" className="absolute inset-0 h-full w-full object-cover opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/90 to-transparent" />
+          <img src={article.heroImg} alt="article hero" className="absolute inset-0 h-full w-full object-cover opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A] via-[#0B1F3A]/85 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14 text-white">
