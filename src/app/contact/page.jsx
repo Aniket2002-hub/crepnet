@@ -51,7 +51,7 @@ export default function ContactPage() {
   return (
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800 ">
       {/* ── HERO BANNER SECTION ── */}
-      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[260px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[260px]">
         {/* Background boardroom at night image with overlay */}
         <div className="absolute inset-0 ">
           <img

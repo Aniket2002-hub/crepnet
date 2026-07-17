@@ -170,9 +170,9 @@ export default function AboutPage() {
   const [selectedFounder, setSelectedFounder] = useState(null);
 
   return (
-    <main className="bg-white relative">
+    <main className="bg-white relative ">
       {/* 1. Hero Banner Section — Standardized to match survey page containers precisely */}
-      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1600&q=80"
