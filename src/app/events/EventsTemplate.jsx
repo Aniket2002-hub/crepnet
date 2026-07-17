@@ -76,7 +76,7 @@ const headingFontClass = {
 
 function HeroBanner({ config }) {
   return (
-    <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+    <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1800&q=90"

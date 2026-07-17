@@ -506,7 +506,7 @@ export default function ArticlesPage() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans antialiased">
 
-      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"

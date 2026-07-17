@@ -612,7 +612,7 @@ export default function MarketNewsPage() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans antialiased">
       {/* 1st Section Hero Banner — Sized and padding-managed exactly to reflect reference parameters */}
-      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"

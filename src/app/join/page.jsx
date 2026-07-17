@@ -456,7 +456,7 @@ export default function JoiningPage() {
       </section>
 
       {/* --- TRUST BADGES SECTION --- */}
-      <section className="bg-[#05152D]">
+      <section className="bg-[#05152D] p-2">
         <div className="mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch py-4 border-t border-[#1A2E4C] md:divide-x divide-[#1A2E4C] gap-y-4">
             {/* Item 1 */}

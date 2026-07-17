@@ -137,7 +137,7 @@ export default function RetailBrandsPage() {
   return (
     <div className="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[260px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[260px]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1600&q=80"
