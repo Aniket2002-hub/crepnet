@@ -111,6 +111,26 @@ const MINDS_VIDEOS = [
   "https://assets.mixkit.co/videos/42880/42880-720.mp4"
 ];
 
+const DEVELOPER_LOGOS = [
+  { name: "Hero Realty", url: "https://www.ireedindia.com/homepage/brand/1.webp" },
+  { name: "Mapsko", url: "https://www.ireedindia.com/homepage/brand/2.webp" },
+  { name: "Orchid", url: "https://www.ireedindia.com/homepage/brand/4.webp" },
+  { name: "Krisumi", url: "https://www.ireedindia.com/homepage/brand/5.webp" },
+  { name: "DLF", url: "https://www.ireedindia.com/homepage/brand/6.webp" },
+  { name: "Elan", url: "https://www.ireedindia.com/homepage/brand/7.webp" },
+  { name: "Pareena", url: "https://www.ireedindia.com/homepage/brand/3.webp" },
+  { name: "Sobha", url: "https://www.ireedindia.com/homepage/brand/8.webp" },
+  { name: "Godrej Properties", url: "https://www.ireedindia.com/homepage/brand/9.webp" },
+  { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/10.webp" }
+];
+
+const MEET_IMAGES = [
+  "https://images.unsplash.com/photo-1675716921224-e087a0cca69a?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&auto=format&fit=crop&q=80"
+];
+
 const styles = `
   .dashboard-main-wrapper * { 
     box-sizing: border-box; 
@@ -124,6 +144,41 @@ const styles = `
 
   .hero-title, .section-title, .global-reach-title, .story-title, .bottom-title {
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
+  }
+
+  /* ===== Developer Logo Strip ===== */
+  .logo-marquee-section {
+    background: #fff;
+    padding: 32px 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    width: 100%;
+  }
+  .logo-marquee-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .logo-flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .dev-logo-img {
+    width: 80px;
+    height: 32px;
+    object-fit: contain;
   }
 
   /* ===== Hero ===== */
@@ -352,6 +407,7 @@ const styles = `
     flex-shrink: 0;
   }
   .stat-value { font-size: 22px; font-weight: 800; color: #c9a84c; line-height: 1; }
+  .stat-icon-circle svg { color: #c9a84c; }
   .stat-label { font-size: 12px; color: #cbd5e1; margin-top: 4px; }
 
   /* Three Column Dashboard Section */
@@ -682,7 +738,7 @@ const styles = `
   }
   .story-captions li {
     position: relative;
-    padding-left: 18px;
+    padding-left: 0; /* Removed bullet positioning space offset */
     font-family: inherit;
     font-style: normal;
     font-size: 15px;
@@ -691,16 +747,7 @@ const styles = `
     text-align: left;
     transition: opacity 0.4s ease;
   }
-  .story-captions li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #c9a84c;
-  }
+  /* Removed .story-captions li::before element to completely delete gold dot bullets */
 
   .slider-indicator-container {
     position: absolute;
@@ -730,14 +777,13 @@ const styles = `
   .bottom-cta {
     background: #fff;
     padding: 60px 0; 
-    border-top: 1px solid #e5e7eb;
   }
   .bottom-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 1.8fr 1.2fr 3fr;
+    grid-template-columns: 1.8fr 1.4fr 2.8fr;
     gap: 40px;
     align-items: center;
   }
@@ -756,27 +802,31 @@ const styles = `
   }
   .btn-dark:hover { background: #111a2e; }
   
+  /* Modern Dynamic Triangle Transition Grid Layer */
   .bottom-illustration-box {
-    background: #f3f4f6;
-    border-radius: 12px;
-    height: 150px;
+    position: relative;
+    border-radius: 20px;
+    height: 200px;
     width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
-  .bottom-family-img {
+  .triangle-slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in-out;
   }
-  
+
   .bottom-features-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
+
+  /* ===== Interactive Custom Chocolate Hover Cards with Borders ===== */
   .bottom-feature-link {
     text-decoration: none;
     color: inherit;
@@ -785,10 +835,17 @@ const styles = `
     align-items: center;
     text-align: center;
     gap: 12px;
-    transition: transform 0.2s ease-in-out;
+    padding: 24px 16px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: transparent;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .bottom-feature-link:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    background: #c9a84c;
+    border-color: #c9a84c;
+    box-shadow: 0 10px 20px -5px rgba(201, 168, 76, 0.3);
   }
   .bottom-feature-icon {
     width: 56px; height: 56px;
@@ -797,9 +854,29 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.35s ease;
   }
-  .bottom-feature-title { font-size: 14px; font-weight: 700; color: #1a2744; }
-  .bottom-feature-desc { font-size: 12.5px; color: #6b7280; line-height: 1.4; }
+  .bottom-feature-link:hover .bottom-feature-icon {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .bottom-feature-title { 
+    font-size: 14px; 
+    font-weight: 700; 
+    color: #1a2744; 
+    transition: color 0.3s ease;
+  }
+  .bottom-feature-link:hover .bottom-feature-title {
+    color: #ffffff;
+  }
+  .bottom-feature-desc { 
+    font-size: 12.5px; 
+    color: #6b7280; 
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+  .bottom-feature-link:hover .bottom-feature-desc {
+    color: rgba(255, 255, 255, 0.9);
+  }
 
   /* RESPONSIVE MEDIA QUERIES */
   @media (max-width: 1200px) {
@@ -828,8 +905,14 @@ const styles = `
       gap: 32px;
     }
     .bottom-illustration-box {
-      max-width: 320px;
+      max-width: 340px;
+      height: 220px;
       margin: 0 auto;
+    }
+    .logo-flex-row {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 20px;
     }
   }
 
@@ -1078,7 +1161,7 @@ export function StatsBar() {
         {STATS_BAR.map((stat, i) => (
           <div key={i} className="stat-block">
             <div className="stat-icon-circle">
-              <stat.icon size={20} color="#c9a84c" strokeWidth={1.8} />
+              <stat.icon size={20} strokeWidth={1.8} />
             </div>
             <div>
               <div className="stat-value">{stat.value}</div>
@@ -1301,7 +1384,46 @@ export function KnowledgeSection() {
   );
 }
 
+export function LogoMarqueeSection() {
+  return (
+    <section className="logo-marquee-section">
+      <div className="logo-marquee-inner">
+        <div className="logo-flex-row">
+          {DEVELOPER_LOGOS.map((logo, idx) => (
+            <div key={idx} className="logo-wrapper" title={logo.name}>
+              <img src={logo.url} alt={logo.name} className="dev-logo-img" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function BottomCTASection() {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveImageIndex((prevIndex) => (prevIndex + 1) % MEET_IMAGES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const getTriangleTransform = (idx) => {
+    if (idx !== activeImageIndex) {
+      const positions = [
+        "translate(100%, 100%) scale(0.7)", 
+        "translate(-100%, 100%) scale(0.7)",
+        "translate(0%, -100%) scale(0.7)",  
+        "translate(100%, -100%) scale(0.7)"
+      ];
+      return positions[idx % positions.length];
+    }
+    return "translate(0%, 0%) scale(1)";
+  };
+
   return (
     <section className="bottom-cta">
       <div className="bottom-inner">
@@ -1313,22 +1435,38 @@ export function BottomCTASection() {
           <a href="/explore-community" className="btn-dark">Explore Community</a>
         </div>
 
-        {/* Family image box container */}
-       {/* Family image box container */}
-<div className="bottom-illustration-box">
-  <img 
-    className="bottom-office-img" 
-    src="https://images.unsplash.com/photo-1675716921224-e087a0cca69a?w=600&auto=format&fit=crop&q=80" 
-    alt="Real estate professionals networking at an industry event" 
-  />
-</div>
+        <div className="bottom-illustration-box">
+          {MEET_IMAGES.map((imgUrl, i) => (
+            <img 
+              key={i}
+              className="triangle-slide" 
+              src={imgUrl} 
+              alt="Real estate professionals meeting and communicating" 
+              style={{
+                opacity: i === activeImageIndex ? 1 : 0,
+                transform: getTriangleTransform(i),
+                zIndex: i === activeImageIndex ? 5 : 1
+              }}
+            />
+          ))}
+        </div>
 
-        {/* Interactive action grid items */}
         <div className="bottom-features-row">
           {BOTTOM_FEATURES.map((f, i) => (
-            <a key={i} href={f.link} className="bottom-feature-link">
+            <a 
+              key={i} 
+              href={f.link} 
+              className="bottom-feature-link"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
               <div className="bottom-feature-icon">
-                <f.icon size={26} color="#1a2744" strokeWidth={1.4} />
+                <f.icon 
+                  size={26} 
+                  color={hoveredIndex === i ? "#ffffff" : "#1a2744"} 
+                  strokeWidth={1.4} 
+                  style={{ transition: "color 0.3s ease" }}
+                />
               </div>
               <div className="bottom-feature-title">{f.title}</div>
               <div className="bottom-feature-desc">{f.desc}</div>
@@ -1349,6 +1487,7 @@ export default function Page() {
         <FeatureStrip />
         <StatsBar />
         <ThreeColumnSection />
+        <LogoMarqueeSection />
         <GlobalReachSection />
         <BottomCTASection />
         <InfluentialMindsSection />
