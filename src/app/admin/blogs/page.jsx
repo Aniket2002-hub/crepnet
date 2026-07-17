@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import {
   Plus,
   Search,
-  Filter,
   Edit2,
   Trash2,
   X,
@@ -55,16 +54,13 @@ export default function BlogsManagement() {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
-  // Search & Filter State
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
 
-  // Modal State
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState("create"); // "create" | "edit"
+  const [modalType, setModalType] = useState("create");
   const [selectedBlog, setSelectedBlog] = useState(null);
 
-  // Form State
   const [formTitle, setFormTitle] = useState("");
   const [formAuthor, setFormAuthor] = useState("");
   const [formTags, setFormTags] = useState("");
@@ -74,7 +70,6 @@ export default function BlogsManagement() {
   const [formContent, setFormContent] = useState("");
   const [formViews, setFormViews] = useState(0);
 
-  // Load data
   useEffect(() => {
     const stored = localStorage.getItem("repc_blogs");
     if (stored) {
@@ -85,28 +80,23 @@ export default function BlogsManagement() {
     }
   }, []);
 
-  // Filter application
   useEffect(() => {
     let result = [...blogs];
 
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
-        b =>
+        (b) =>
           b.title.toLowerCase().includes(query) ||
           b.author.toLowerCase().includes(query) ||
           b.tags.toLowerCase().includes(query)
       );
     }
-
-    if (statusFilter !== "All") {
-      result = result.filter(b => b.status === statusFilter);
-    }
+    if (statusFilter !== "All") result = result.filter((b) => b.status === statusFilter);
 
     setFilteredBlogs(result);
   }, [blogs, searchQuery, statusFilter]);
 
-  // Open modal for Create
   const handleOpenCreate = () => {
     setModalType("create");
     setFormTitle("");
@@ -121,7 +111,6 @@ export default function BlogsManagement() {
     setModalOpen(true);
   };
 
-  // Open modal for Edit
   const handleOpenEdit = (blog) => {
     setModalType("edit");
     setSelectedBlog(blog);
@@ -136,7 +125,6 @@ export default function BlogsManagement() {
     setModalOpen(true);
   };
 
-  // Save Modal (Create / Edit)
   const handleSaveBlog = (e) => {
     e.preventDefault();
     if (!formTitle.trim() || !formAuthor.trim() || !formContent.trim()) {
@@ -144,8 +132,7 @@ export default function BlogsManagement() {
       return;
     }
 
-    let updatedBlogs = [];
-
+    let updatedBlogs;
     if (modalType === "create") {
       const newBlog = {
         id: `blog-${Date.now()}`,
@@ -160,19 +147,9 @@ export default function BlogsManagement() {
       };
       updatedBlogs = [newBlog, ...blogs];
     } else {
-      updatedBlogs = blogs.map(b =>
+      updatedBlogs = blogs.map((b) =>
         b.id === selectedBlog.id
-          ? {
-              ...b,
-              title: formTitle,
-              author: formAuthor,
-              tags: formTags,
-              readTime: Number(formReadTime),
-              status: formStatus,
-              date: formDate,
-              views: formViews,
-              content: formContent
-            }
+          ? { ...b, title: formTitle, author: formAuthor, tags: formTags, readTime: Number(formReadTime), status: formStatus, date: formDate, views: formViews, content: formContent }
           : b
       );
     }
@@ -180,58 +157,53 @@ export default function BlogsManagement() {
     setBlogs(updatedBlogs);
     localStorage.setItem("repc_blogs", JSON.stringify(updatedBlogs));
     setModalOpen(false);
-    alert(modalType === "create" ? "Blog post created!" : "Blog post updated!");
+    alert(modalType === "create" ? "Blog post created." : "Blog post updated.");
   };
 
-  // Delete Blog
   const handleDeleteBlog = (id) => {
-    if (!confirm("Are you sure you want to delete this blog post?")) return;
-
-    const updated = blogs.filter(b => b.id !== id);
+    if (!confirm("Delete this blog post? This cannot be undone.")) return;
+    const updated = blogs.filter((b) => b.id !== id);
     setBlogs(updated);
     localStorage.setItem("repc_blogs", JSON.stringify(updated));
   };
 
   return (
     <div className="space-y-6">
-      {/* Header bar */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-white">Blogs Administration</h2>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Blogs</h2>
           <p className="text-slate-500 text-xs mt-1">Write community posts, news summaries, and company updates.</p>
         </div>
         <button
           onClick={handleOpenCreate}
-          className="flex items-center justify-center gap-1.5 px-4 py-3 bg-[#E8A33D] text-slate-950 font-bold text-sm rounded-xl shadow-md hover:bg-amber-500 transition-all cursor-pointer shrink-0"
+          className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#E8A33D] text-slate-950 font-bold text-xs rounded-xl shadow-sm hover:bg-amber-400 transition-colors cursor-pointer shrink-0"
         >
-          <Plus className="h-4.5 w-4.5" />
+          <Plus className="h-4 w-4 stroke-[3]" />
           New Blog Post
         </button>
       </div>
 
-      {/* Search and Filters */}
-      <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row gap-4">
-        {/* Search */}
+      {/* Filters */}
+      <div className="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search blogs by title, tags, or author..."
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-slate-700 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition-colors"
           />
         </div>
 
-        {/* Filters Row */}
-        <div className="flex gap-3">
-          {/* Status Filter */}
-          <div className="flex items-center gap-2 bg-slate-900 px-3 py-1.5 border border-slate-800 rounded-xl">
-            <FileText className="h-3.5 w-3.5 text-slate-500" />
+        <div className="flex gap-2">
+          <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 border border-slate-200 rounded-xl">
+            <FileText className="h-3.5 w-3.5 text-slate-400" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-transparent border-none text-xs text-slate-300 font-medium focus:outline-none cursor-pointer"
+              className="bg-transparent border-none text-xs text-slate-700 font-medium focus:outline-none cursor-pointer"
             >
               <option value="All">All Statuses</option>
               <option value="Published">Published</option>
@@ -241,12 +213,12 @@ export default function BlogsManagement() {
         </div>
       </div>
 
-      {/* Grid List */}
-      <div className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-md">
+      {/* Table */}
+      <div className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/40 text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                 <th className="px-6 py-4">Title</th>
                 <th className="px-6 py-4">Author</th>
                 <th className="px-6 py-4">Tags</th>
@@ -257,24 +229,24 @@ export default function BlogsManagement() {
                 <th className="px-6 py-4 text-center">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800 text-sm text-slate-300">
+            <tbody className="divide-y divide-slate-100 text-xs text-slate-700">
               {filteredBlogs.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="text-center py-12 text-slate-500 font-medium">
+                  <td colSpan={8} className="text-center py-12 text-slate-400 font-medium">
                     No blogs found matching filters.
                   </td>
                 </tr>
               ) : (
                 filteredBlogs.map((blog) => (
-                  <tr key={blog.id} className="hover:bg-slate-900/40 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-slate-200">
+                  <tr key={blog.id} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-slate-900">
                       <div className="max-w-xs sm:max-w-md truncate" title={blog.title}>
                         {blog.title}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-slate-400">
+                    <td className="px-6 py-4 whitespace-nowrap text-slate-600">
                       <div className="flex items-center gap-1.5">
-                        <User className="h-3.5 w-3.5 text-slate-500" />
+                        <User className="h-3.5 w-3.5 text-slate-400" />
                         <span>{blog.author}</span>
                       </div>
                     </td>
@@ -284,53 +256,55 @@ export default function BlogsManagement() {
                           blog.tags.split(",").map((tag, i) => (
                             <span
                               key={i}
-                              className="px-2 py-0.5 text-[10px] rounded bg-slate-900 border border-slate-800 text-slate-400 font-medium flex items-center gap-0.5"
+                              className="px-2 py-0.5 text-[10px] rounded bg-slate-100 border border-slate-200 text-slate-600 font-medium flex items-center gap-0.5"
                             >
-                              <Tag className="h-2.5 w-2.5 text-slate-600" />
+                              <Tag className="h-2.5 w-2.5 text-slate-400" />
                               {tag.trim()}
                             </span>
                           ))
                         ) : (
-                          <span className="text-slate-600 text-xs">—</span>
+                          <span className="text-slate-300 text-xs">—</span>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-slate-400 text-xs font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-slate-500 text-[11px] font-medium">
                       <div className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-slate-500" />
+                        <Clock className="h-3.5 w-3.5 text-slate-400" />
                         <span>{blog.readTime} min read</span>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide ${
-                        blog.status === "Published"
-                          ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                          : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                      }`}>
+                      <span
+                        className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide border ${
+                          blog.status === "Published"
+                            ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
+                            : "bg-amber-500/10 text-amber-600 border-amber-500/20"
+                        }`}
+                      >
                         {blog.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-slate-400 text-xs">
+                    <td className="px-6 py-4 whitespace-nowrap text-slate-500">
                       <div className="flex items-center gap-1.5">
-                        <Calendar className="h-3.5 w-3.5 text-slate-500" />
+                        <Calendar className="h-3.5 w-3.5 text-slate-400" />
                         <span>{blog.date}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-slate-400 font-mono font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-slate-600 font-mono font-medium">
                       {blog.views.toLocaleString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-center gap-1.5">
                         <button
                           onClick={() => handleOpenEdit(blog)}
-                          className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-900 transition-colors"
+                          className="p-1.5 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
                           title="Edit"
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteBlog(blog.id)}
-                          className="p-1.5 text-red-500 hover:text-red-400 rounded-lg hover:bg-red-500/10 transition-colors"
+                          className="p-1.5 text-red-500 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
                           title="Delete"
                         >
                           <Trash2 className="h-4 w-4" />
@@ -345,89 +319,94 @@ export default function BlogsManagement() {
         </div>
       </div>
 
-      {/* CRUD Modal */}
+      {/* Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
-          
-          {/* Modal Content */}
-          <div className="relative bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
-            {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-white">
+          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
+
+          <div className="relative bg-white border border-slate-200 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+              <h3 className="text-base font-bold text-slate-900 tracking-tight">
                 {modalType === "create" ? "Create New Blog Post" : "Edit Blog Post"}
               </h3>
-              <button className="text-slate-400 hover:text-white p-1 rounded-lg" onClick={() => setModalOpen(false)}>
+              <button className="text-slate-400 hover:text-slate-700 p-1 rounded-lg" onClick={() => setModalOpen(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            {/* Modal Form */}
             <form onSubmit={handleSaveBlog} className="flex-1 overflow-y-auto p-6 space-y-4">
-              {/* Title */}
               <div>
-                <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Blog Title</label>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                  Blog Title
+                </label>
                 <input
                   type="text"
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
                   placeholder="Enter a post title..."
-                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-slate-700"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300"
                 />
               </div>
 
-              {/* Author & Date Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Author Name</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                    Author Name
+                  </label>
                   <input
                     type="text"
                     value={formAuthor}
                     onChange={(e) => setFormAuthor(e.target.value)}
                     placeholder="Author name..."
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-slate-700"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-slate-300"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Publish Date</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                    Publish Date
+                  </label>
                   <input
                     type="date"
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-slate-700"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:border-slate-300"
                   />
                 </div>
               </div>
 
-              {/* Tags & Status & ReadTime Row */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Tags (Comma-separated)</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                    Tags (comma separated)
+                  </label>
                   <input
                     type="text"
                     value={formTags}
                     onChange={(e) => setFormTags(e.target.value)}
                     placeholder="e.g. Design, REITs"
-                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-slate-700"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-slate-300"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Read Time (minutes)</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                    Read Time (minutes)
+                  </label>
                   <input
                     type="number"
                     value={formReadTime}
                     onChange={(e) => setFormReadTime(Number(e.target.value))}
                     min="1"
-                    className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-slate-700"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-slate-300"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Status</label>
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                    Status
+                  </label>
                   <select
                     value={formStatus}
                     onChange={(e) => setFormStatus(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-slate-700"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:border-slate-300"
                   >
                     <option value="Draft">Draft</option>
                     <option value="Published">Published</option>
@@ -435,30 +414,30 @@ export default function BlogsManagement() {
                 </div>
               </div>
 
-              {/* Content */}
               <div>
-                <label className="text-[10px] font-bold text-slate-400 uppercase block mb-1.5">Content Body</label>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
+                  Content Body
+                </label>
                 <textarea
                   value={formContent}
                   onChange={(e) => setFormContent(e.target.value)}
                   rows={6}
                   placeholder="Write the blog post content here..."
-                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-slate-700 resize-none"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 resize-none"
                 />
               </div>
 
-              {/* Submit Buttons */}
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-850">
+              <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white rounded-xl bg-slate-900 border border-slate-800 transition-colors"
+                  className="px-4 py-2.5 text-xs font-bold text-slate-500 hover:text-slate-800 rounded-xl bg-slate-50 border border-slate-200 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 text-xs font-bold bg-[#E8A33D] hover:bg-amber-500 text-slate-950 rounded-xl transition-all shadow-md cursor-pointer"
+                  className="px-5 py-2.5 text-xs font-bold bg-[#E8A33D] hover:bg-amber-400 text-slate-950 rounded-xl transition-colors shadow-sm cursor-pointer"
                 >
                   {modalType === "create" ? "Create Post" : "Save Changes"}
                 </button>

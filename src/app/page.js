@@ -1313,7 +1313,7 @@ export function BottomCTASection() {
           <a href="/explore-community" className="btn-dark">Explore Community</a>
         </div>
 
-        {/* Family image box container */}
+      
        {/* Family image box container */}
 <div className="bottom-illustration-box">
   <img 
