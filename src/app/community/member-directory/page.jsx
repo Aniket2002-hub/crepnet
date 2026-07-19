@@ -245,11 +245,12 @@ function LuxuryCTA() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
-          Join the Inner Circle of Luxury Leadership
+        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-4xl uppercase leading-tight">
+          Join the Inner Circle of  Leadership
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
-          Experience the prestige of a global luxury leaders’ community.
+          Experience the prestige of India’s real estate leaders’ community.
+
         </p>
         <div className="mt-10 md:mt-14">
           <Link href="/join">
