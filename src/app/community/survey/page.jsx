@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import {
   ChevronDown,
   ChevronLeft,
@@ -220,12 +220,12 @@ function LuxuryCTA() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-tight">
-          Join the Inner Circle of Luxury Leadership
+        <h2 className="font-serif text-2xl font-normal tracking-wider text-[#0B1F3A] sm:text-3xl md:text-4xl lg:text-4xl uppercase leading-tight">
+          Join the Inner Circle of Leadership
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-sm font-light tracking-wide text-gray-600 md:text-base">
-          Experience the prestige of a global luxury leaders’ community.
+          Experience the prestige of India’s real estate leaders’ community
         </p>
 
           <div className="mt-10 md:mt-14">
@@ -358,6 +358,7 @@ export default function SurveysPage() {
     segment: "All Segments",
   });
   const [activeDot, setActiveDot] = useState(0);
+  const [hoveredTrustIndex, setHoveredTrustIndex] = useState(null);
 
   const updateFilter = (key, value) => setFilters((prev) => ({ ...prev, [key]: value }));
   const resetFilters = () =>
@@ -371,7 +372,7 @@ export default function SurveysPage() {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
       <div>
-        {/* 1. Hero Banner Section — Standardized height padding, clamps, and content metrics layout to mirror about page exactly */}
+        {/* 1. Hero Banner Section */}
         <section className="relative overflow-hidden bg-[#0B1F3A]">
           <div className="absolute inset-0">
             <img
@@ -383,9 +384,7 @@ export default function SurveysPage() {
           </div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-12 lg:py-14">
-            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">
-               Surveys
-            </p>
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#E8A33D] uppercase">Surveys</p>
             <h1 className="max-w-2xl font-serif text-[clamp(24px,3vw,42px)] font-normal leading-[1.25] text-white tracking-wide">
               Surveys &amp; Results.
               <br />
@@ -395,7 +394,8 @@ export default function SurveysPage() {
             </h1>
             <div className="mt-4 h-[2px] w-16 bg-[#E8A33D]" />
             <p className="mt-4 max-w-xl text-sm font-light leading-[1.7] text-slate-200">
-              Search, connect, and collaborate with verified real estate professionals across India and grow your network.
+              Search, connect, and collaborate with verified real estate professionals across India and grow your
+              network.
             </p>
           </div>
         </section>
@@ -455,9 +455,7 @@ export default function SurveysPage() {
                     </div>
                     <div>
                       <p className="text-white text-sm font-semibold">{item.title}</p>
-                      <p className="text-white/60 text-xs mt-1 leading-relaxed">
-                        {item.description}
-                      </p>
+                      <p className="text-white/60 text-xs mt-1 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -498,8 +496,7 @@ export default function SurveysPage() {
                     India Office Market Outlook Survey Results 2024
                   </h3>
                   <p className="text-sm text-gray-600 mt-2">
-                    A comprehensive analysis of current market sentiment, key
-                    trends, and future outlook.
+                    A comprehensive analysis of current market sentiment, key trends, and future outlook.
                   </p>
 
                   <div className="mt-4 text-xs text-gray-500 space-y-1">
@@ -539,9 +536,7 @@ export default function SurveysPage() {
                   {highlights.map((h) => (
                     <div key={h.description} className="border border-gray-200 rounded-lg p-4 bg-white">
                       <p className="text-2xl font-bold text-gray-900">{h.value}</p>
-                      <p className="text-xs text-gray-500 mt-2 leading-relaxed">
-                        {h.description}
-                      </p>
+                      <p className="text-xs text-gray-500 mt-2 leading-relaxed">{h.description}</p>
                     </div>
                   ))}
                 </div>
@@ -610,7 +605,9 @@ export default function SurveysPage() {
                         onChange={(e) => updateFilter(key, e.target.value)}
                         className="w-full border border-gray-300 rounded-md pl-3 pr-8 py-2.5 text-sm text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0B1F3A]/30"
                       >
-                        {options.map((o) => <option key={o}>{o}</option>)}
+                        {options.map((o) => (
+                          <option key={o}>{o}</option>
+                        ))}
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                     </div>
@@ -621,10 +618,7 @@ export default function SurveysPage() {
               <button className="w-full bg-[#0B1F3A] text-white text-sm font-medium py-2.5 rounded-md mt-5 hover:bg-[#0B1F3A]/90">
                 Apply Filters
               </button>
-              <button
-                onClick={resetFilters}
-                className="w-full text-blue-600 text-sm font-medium mt-3 text-center"
-              >
+              <button onClick={resetFilters} className="w-full text-blue-600 text-sm font-medium mt-3 text-center">
                 Reset
               </button>
             </div>
@@ -698,17 +692,44 @@ export default function SurveysPage() {
           </div>
         </div>
 
-        {/* Trust Points */}
+        {/* Trust Points Section */}
         <div className="max-w-7xl mx-auto px-6 pb-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-gray-200">
-            {trustPoints.map((point) => (
-              <div key={point.title} className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
-                  <point.icon className="w-5 h-5 text-[#0B1F3A]" />
+            {trustPoints.map((point, i) => (
+              <div
+                key={point.title}
+                className="flex items-start gap-4 p-5 rounded-xl border border-gray-200 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: hoveredTrustIndex === i ? "#c9a84c" : "#ffffff",
+                  borderColor: hoveredTrustIndex === i ? "#c9a84c" : "#e5e7eb",
+                }}
+                onMouseEnter={() => setHoveredTrustIndex(i)}
+                onMouseLeave={() => setHoveredTrustIndex(null)}
+              >
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300"
+                  style={{
+                    backgroundColor: hoveredTrustIndex === i ? "rgba(255, 255, 255, 0.2)" : "#f3f4f6",
+                  }}
+                >
+                  <point.icon
+                    className="w-6 h-6 transition-colors duration-300"
+                    color={hoveredTrustIndex === i ? "#ffffff" : "#0B1F3A"}
+                  />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">{point.title}</p>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">{point.description}</p>
+                  <p
+                    className="text-sm font-bold transition-colors duration-300"
+                    style={{ color: hoveredTrustIndex === i ? "#ffffff" : "#111827" }}
+                  >
+                    {point.title}
+                  </p>
+                  <p
+                    className="text-xs mt-1 leading-relaxed transition-colors duration-300"
+                    style={{ color: hoveredTrustIndex === i ? "rgba(255, 255, 255, 0.9)" : "#6b7280" }}
+                  >
+                    {point.description}
+                  </p>
                 </div>
               </div>
             ))}

@@ -168,9 +168,11 @@ const headingFontClass = {
 
 export default function AboutPage() {
   const [selectedFounder, setSelectedFounder] = useState(null);
+  const [hoveredValue, setHoveredValue] = useState(null);
+  const [hoveredPhilosophy, setHoveredPhilosophy] = useState(null);
 
   return (
-    <main className="bg-white relative ">
+    <main className="bg-white relative">
       {/* 1. Hero Banner Section — Standardized to match survey page containers precisely */}
       <section className="relative overflow-hidden bg-[#0B1F3A] min-h-[370px]">
         <div className="absolute inset-0">
@@ -375,19 +377,40 @@ export default function AboutPage() {
           <div className="mx-auto mt-2 h-0.5 w-16 bg-[#E8A33D]" />
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
-          {values.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="text-center">
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
-                <Icon className="h-5 w-5 text-[#0B1F3A]" />
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
+          {values.map(({ icon: Icon, title, desc }, i) => (
+            <div
+              key={title}
+              className="flex flex-col items-center text-center p-6 rounded-xl border border-slate-200 bg-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-[#c9a84c] hover:border-[#c9a84c]"
+              onMouseEnter={() => setHoveredValue(i)}
+              onMouseLeave={() => setHoveredValue(null)}
+            >
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 transition-colors duration-300"
+                style={{
+                  backgroundColor: hoveredValue === i ? "rgba(255, 255, 255, 0.2)" : "",
+                }}
+              >
+                <Icon
+                  className="h-5 w-5 transition-colors duration-300"
+                  color={hoveredValue === i ? "#ffffff" : "#0B1F3A"}
+                />
               </div>
               <h3
-                style={headingFontClass}
-                className="mt-2 font-bold text-[#0B1F3A] text-sm"
+                className="mt-4 font-bold text-sm transition-colors duration-300"
+                style={{
+                  ...headingFontClass,
+                  color: hoveredValue === i ? "#ffffff" : "#0B1F3A",
+                }}
               >
                 {title}
               </h3>
-              <p className="mt-1 text-xs leading-relaxed text-slate-600">
+              <p
+                className="mt-2 text-xs leading-relaxed transition-colors duration-300"
+                style={{
+                  color: hoveredValue === i ? "rgba(255, 255, 255, 0.9)" : "#475569",
+                }}
+              >
                 {desc}
               </p>
             </div>
@@ -410,19 +433,37 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-          {philosophyItems.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex flex-col items-center p-2">
-              <div className="flex h-10 w-10 items-center justify-center text-[#E8A33D] mb-2">
+        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto mt-8">
+          {philosophyItems.map(({ icon: Icon, title, desc }, i) => (
+            <div
+              key={title}
+              className="flex flex-col items-center p-6 rounded-xl border border-slate-200 bg-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-[#c9a84c] hover:border-[#c9a84c]"
+              onMouseEnter={() => setHoveredPhilosophy(i)}
+              onMouseLeave={() => setHoveredPhilosophy(null)}
+            >
+              <div
+                className="flex h-14 w-12 items-center justify-center transition-colors duration-300"
+                style={{
+                  color: hoveredPhilosophy === i ? "#ffffff" : "#E8A33D",
+                }}
+              >
                 <Icon className="h-7 w-7 stroke-[1.5]" />
               </div>
               <h3
-                style={headingFontClass}
-                className="text-base font-bold text-[#0B1F3A] mb-1"
+                className="text-base font-bold mb-2 transition-colors duration-300"
+                style={{
+                  ...headingFontClass,
+                  color: hoveredPhilosophy === i ? "#ffffff" : "#0B1F3A",
+                }}
               >
                 {title}
               </h3>
-              <p className="text-xs md:text-sm leading-relaxed text-slate-500 font-medium max-w-xs">
+              <p
+                className="text-xs md:text-sm leading-relaxed max-w-xs transition-colors duration-300 font-medium"
+                style={{
+                  color: hoveredPhilosophy === i ? "rgba(255, 255, 255, 0.9)" : "#64748B",
+                }}
+              >
                 {desc}
               </p>
             </div>
@@ -486,7 +527,7 @@ export default function AboutPage() {
             style={headingFontClass}
             className="text-xl md:text-2xl lg:text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] leading-tight"
           >
-            NETWORKING IS THE SIGNATURE EXPERIENCE AND FLAGSHIP BENEFIT OF WLCC
+            NETWORKING IS THE SIGNATURE EXPERIENCE AND FLAGSHIP BENEFIT OF REPC
             MEMBERSHIP
           </h2>
         </div>
@@ -495,15 +536,13 @@ export default function AboutPage() {
           <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
             <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
             <span>
-              At the World Luxury Chamber of Commerce, networking is not about
-              volume – it is about access, relevance, and trust.
+              At the Real Estate Professionals Community, networking is not about volume, it is about access, relevance, and trust.
             </span>
           </p>
           <p className="flex items-center justify-center gap-2 w-full text-center md:whitespace-normal">
             <ArrowRight className="h-4 w-4 text-[#E8A33D] shrink-0" />
             <span>
-              Every connection is intentional. Every interaction is aligned with
-              the values of excellence, discretion, and prestige.
+               Every connection is intentional. Every interaction is aligned with the values of excellence, discretion, and prestige.
             </span>
           </p>
         </div>
