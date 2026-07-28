@@ -36,8 +36,8 @@ const NAV = [
     label: "Community",
     icon: Users,
     items: [
-      { label: "Member Directory", href: "/admin/community/member-directory" },
-      { label: "Survey", href: "/admin/community/survey" }
+      { label: "Member Directory", href: "/admin/member-directory" },
+      // { label: "Survey", href: "/admin/survey" }
     ]
   },
   {
