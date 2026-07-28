@@ -1,14 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Plus,
-  Pencil,
-  Trash2,
-  X,
-  GripVertical,
-  Save
-} from "lucide-react";
+import { Plus, Pencil, Trash2, X, GripVertical, Save } from "lucide-react";
 
 /**
  * /admin/community/survey
@@ -23,8 +16,18 @@ import {
 
 // ---------------- ICON OPTIONS (stored as string, rendered as label) ----------------
 const ICON_OPTIONS = [
-  "ClipboardList", "Users", "Globe", "Lightbulb", "ShieldCheck",
-  "Building2", "BarChart3", "Award", "Clock", "Calendar", "Download", "Quote"
+  "ClipboardList",
+  "Users",
+  "Globe",
+  "Lightbulb",
+  "ShieldCheck",
+  "Building2",
+  "BarChart3",
+  "Award",
+  "Clock",
+  "Calendar",
+  "Download",
+  "Quote",
 ];
 
 const STATUS_OPTIONS = ["ACTIVE", "UPCOMING", "COMPLETED"];
@@ -41,15 +44,17 @@ const SECTIONS = [
       { key: "eyebrow", label: "Eyebrow", type: "text" },
       { key: "heading", label: "Heading", type: "textarea" },
       { key: "subtext", label: "Subtext", type: "textarea" },
-      { key: "bgImage", label: "Background Image URL", type: "text" }
+      { key: "bgImage", label: "Background Image URL", type: "text" },
     ],
     initial: {
       eyebrow: "Surveys",
-      heading: "Surveys & Results.\nData-Driven Insights.\nShaping Strategic Decisions.",
+      heading:
+        "Surveys & Results.\nData-Driven Insights.\nShaping Strategic Decisions.",
       subtext:
         "Search, connect, and collaborate with verified real estate professionals across India and grow your network.",
-      bgImage: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop"
-    }
+      bgImage:
+        "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&h=500&fit=crop",
+    },
   },
   {
     id: "stats",
@@ -59,14 +64,24 @@ const SECTIONS = [
     fields: [
       { key: "icon", label: "Icon", type: "select", options: ICON_OPTIONS },
       { key: "value", label: "Value", type: "text", placeholder: "e.g. 25+" },
-      { key: "label", label: "Label", type: "text", placeholder: "e.g. Surveys Conducted" }
+      {
+        key: "label",
+        label: "Label",
+        type: "text",
+        placeholder: "e.g. Surveys Conducted",
+      },
     ],
     initial: [
-      { id: 1, icon: "ClipboardList", value: "25+", label: "Surveys Conducted" },
+      {
+        id: 1,
+        icon: "ClipboardList",
+        value: "25+",
+        label: "Surveys Conducted",
+      },
       { id: 2, icon: "Users", value: "8,500+", label: "Participants" },
       { id: 3, icon: "Globe", value: "30+", label: "Cities Covered" },
-      { id: 4, icon: "Lightbulb", value: "15+", label: "Industry Segments" }
-    ]
+      { id: 4, icon: "Lightbulb", value: "15+", label: "Industry Segments" },
+    ],
   },
   {
     id: "surveys",
@@ -74,41 +89,63 @@ const SECTIONS = [
     kind: "list",
     itemLabel: (i) => `[${i.status}] ${i.title}`,
     fields: [
-      { key: "status", label: "Status", type: "select", options: STATUS_OPTIONS },
+      {
+        key: "status",
+        label: "Status",
+        type: "select",
+        options: STATUS_OPTIONS,
+      },
       { key: "img", label: "Image URL", type: "text" },
       { key: "title", label: "Title", type: "text" },
       { key: "description", label: "Description", type: "textarea" },
       { key: "metaText", label: "Duration (e.g. 10 min)", type: "text" },
       { key: "meta2Text", label: "Closes / Opens text", type: "text" },
       { key: "cta", label: "Button Label", type: "text" },
-      { key: "ctaStyle", label: "Button Style", type: "select", options: CTA_STYLE_OPTIONS }
+      {
+        key: "ctaStyle",
+        label: "Button Style",
+        type: "select",
+        options: CTA_STYLE_OPTIONS,
+      },
     ],
     initial: [
       {
-        id: 1, status: "ACTIVE",
+        id: 1,
+        status: "ACTIVE",
         img: "https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=500&h=300&fit=crop",
         title: "India Office Market Outlook Survey 2024",
-        description: "Share your perspective on office market trends, demand, and future outlook.",
-        metaText: "10 min", meta2Text: "Closes on 30 Jun 2024",
-        cta: "Participate Now", ctaStyle: "primary"
+        description:
+          "Share your perspective on office market trends, demand, and future outlook.",
+        metaText: "10 min",
+        meta2Text: "Closes on 30 Jun 2024",
+        cta: "Participate Now",
+        ctaStyle: "primary",
       },
       {
-        id: 2, status: "UPCOMING",
+        id: 2,
+        status: "UPCOMING",
         img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=300&fit=crop",
         title: "Sustainability in Real Estate Survey 2024",
-        description: "Your insights on sustainable practices and green building adoption.",
-        metaText: "7 min", meta2Text: "Opens on 05 Jul 2024",
-        cta: "Notify Me", ctaStyle: "secondary"
+        description:
+          "Your insights on sustainable practices and green building adoption.",
+        metaText: "7 min",
+        meta2Text: "Opens on 05 Jul 2024",
+        cta: "Notify Me",
+        ctaStyle: "secondary",
       },
       {
-        id: 3, status: "COMPLETED",
+        id: 3,
+        status: "COMPLETED",
         img: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=500&h=300&fit=crop",
         title: "Logistics & Industrial Real Estate Survey 2023",
-        description: "Thank you to all participants for sharing valuable insights.",
-        metaText: "", meta2Text: "",
-        cta: "View Results", ctaStyle: "secondary"
-      }
-    ]
+        description:
+          "Thank you to all participants for sharing valuable insights.",
+        metaText: "",
+        meta2Text: "",
+        cta: "View Results",
+        ctaStyle: "secondary",
+      },
+    ],
   },
   {
     id: "whyParticipate",
@@ -118,14 +155,35 @@ const SECTIONS = [
     fields: [
       { key: "icon", label: "Icon", type: "select", options: ICON_OPTIONS },
       { key: "title", label: "Title", type: "text" },
-      { key: "description", label: "Description", type: "textarea" }
+      { key: "description", label: "Description", type: "textarea" },
     ],
     initial: [
-      { id: 1, icon: "ClipboardList", title: "Contribute to Industry Insights", description: "Your input helps build comprehensive industry reports." },
-      { id: 2, icon: "BarChart3", title: "Benchmark Your Perspective", description: "See how your views compare with industry peers." },
-      { id: 3, icon: "Lightbulb", title: "Drive Meaningful Change", description: "Help identify opportunities and challenges that matter." },
-      { id: 4, icon: "Award", title: "Be Recognized", description: "Top contributors will be featured in our insights reports." }
-    ]
+      {
+        id: 1,
+        icon: "ClipboardList",
+        title: "Contribute to Industry Insights",
+        description: "Your input helps build comprehensive industry reports.",
+      },
+      {
+        id: 2,
+        icon: "BarChart3",
+        title: "Benchmark Your Perspective",
+        description: "See how your views compare with industry peers.",
+      },
+      {
+        id: 3,
+        icon: "Lightbulb",
+        title: "Drive Meaningful Change",
+        description: "Help identify opportunities and challenges that matter.",
+      },
+      {
+        id: 4,
+        icon: "Award",
+        title: "Be Recognized",
+        description:
+          "Top contributors will be featured in our insights reports.",
+      },
+    ],
   },
   {
     id: "featuredReport",
@@ -138,17 +196,18 @@ const SECTIONS = [
       { key: "description", label: "Description", type: "textarea" },
       { key: "surveyPeriod", label: "Survey Period", type: "text" },
       { key: "participants", label: "Participants", type: "text" },
-      { key: "downloadUrl", label: "Download File URL", type: "text" }
+      { key: "downloadUrl", label: "Download File URL", type: "text" },
     ],
     initial: {
       img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=300&fit=crop",
       badge: "FEATURED REPORT",
       title: "India Office Market Outlook Survey Results 2024",
-      description: "A comprehensive analysis of current market sentiment, key trends, and future outlook.",
+      description:
+        "A comprehensive analysis of current market sentiment, key trends, and future outlook.",
       surveyPeriod: "Apr 15 – May 15, 2024",
       participants: "1,250+ Professionals",
-      downloadUrl: ""
-    }
+      downloadUrl: "",
+    },
   },
   {
     id: "highlights",
@@ -157,14 +216,33 @@ const SECTIONS = [
     itemLabel: (i) => `${i.value} — ${i.description}`,
     fields: [
       { key: "value", label: "Value", type: "text", placeholder: "e.g. 85%" },
-      { key: "description", label: "Description", type: "textarea" }
+      { key: "description", label: "Description", type: "textarea" },
     ],
     initial: [
-      { id: 1, value: "85%", description: "Respondents expect positive growth in the office market in 2024" },
-      { id: 2, value: "62%", description: "Plan to increase investments in office real estate" },
-      { id: 3, value: "56%", description: "Identify flexibility & hybrid work as the top factor shaping demand" },
-      { id: 4, value: "48%", description: "Consider sustainability as a key decision-making criteria" }
-    ]
+      {
+        id: 1,
+        value: "85%",
+        description:
+          "Respondents expect positive growth in the office market in 2024",
+      },
+      {
+        id: 2,
+        value: "62%",
+        description: "Plan to increase investments in office real estate",
+      },
+      {
+        id: 3,
+        value: "56%",
+        description:
+          "Identify flexibility & hybrid work as the top factor shaping demand",
+      },
+      {
+        id: 4,
+        value: "48%",
+        description:
+          "Consider sustainability as a key decision-making criteria",
+      },
+    ],
   },
   {
     id: "marketOutlook",
@@ -174,15 +252,15 @@ const SECTIONS = [
     fields: [
       { key: "label", label: "Label", type: "text" },
       { key: "value", label: "Value (%)", type: "number" },
-      { key: "color", label: "Color (hex)", type: "color" }
+      { key: "color", label: "Color (hex)", type: "color" },
     ],
     initial: [
       { id: 1, label: "Very Positive", value: 35, color: "#1e40af" },
       { id: 2, label: "Positive", value: 50, color: "#16a34a" },
       { id: 3, label: "Neutral", value: 10, color: "#f59e0b" },
       { id: 4, label: "Negative", value: 4, color: "#ea580c" },
-      { id: 5, label: "Very Negative", value: 1, color: "#dc2626" }
-    ]
+      { id: 5, label: "Very Negative", value: 1, color: "#dc2626" },
+    ],
   },
   {
     id: "topFactors",
@@ -191,15 +269,15 @@ const SECTIONS = [
     itemLabel: (i) => `${i.label} — ${i.value}%`,
     fields: [
       { key: "label", label: "Label", type: "text" },
-      { key: "value", label: "Value (%)", type: "number" }
+      { key: "value", label: "Value (%)", type: "number" },
     ],
     initial: [
       { id: 1, label: "Flexibility & Hybrid Work", value: 56 },
       { id: 2, label: "Location & Accessibility", value: 48 },
       { id: 3, label: "Cost Optimization", value: 42 },
       { id: 4, label: "Sustainability", value: 35 },
-      { id: 5, label: "Employee Well-being", value: 28 }
-    ]
+      { id: 5, label: "Employee Well-being", value: 28 },
+    ],
   },
   {
     id: "testimonials",
@@ -210,13 +288,34 @@ const SECTIONS = [
       { key: "quote", label: "Quote", type: "textarea" },
       { key: "name", label: "Name", type: "text" },
       { key: "role", label: "Role / Company", type: "text" },
-      { key: "img", label: "Photo URL", type: "text" }
+      { key: "img", label: "Photo URL", type: "text" },
     ],
     initial: [
-      { id: 1, quote: "The survey gave us a platform to voice our perspectives and see how the industry is evolving.", name: "Arvind Nandan", role: "Head – Leasing, Phoenix Mills Ltd.", img: "https://i.pravatar.cc/100?img=15" },
-      { id: 2, quote: "It's encouraging to see a data-driven approach to understanding real estate trends.", name: "Neha Iyer", role: "Senior Architect, Morphogenesis", img: "https://i.pravatar.cc/100?img=47" },
-      { id: 3, quote: "Participating in CREPNET surveys helps shape meaningful conversations across our industry.", name: "Vikram Kapoor", role: "CEO, Assetz Property Group", img: "https://i.pravatar.cc/100?img=33" }
-    ]
+      {
+        id: 1,
+        quote:
+          "The survey gave us a platform to voice our perspectives and see how the industry is evolving.",
+        name: "Arvind Nandan",
+        role: "Head – Leasing, Phoenix Mills Ltd.",
+        img: "https://i.pravatar.cc/100?img=15",
+      },
+      {
+        id: 2,
+        quote:
+          "It's encouraging to see a data-driven approach to understanding real estate trends.",
+        name: "Neha Iyer",
+        role: "Senior Architect, Morphogenesis",
+        img: "https://i.pravatar.cc/100?img=47",
+      },
+      {
+        id: 3,
+        quote:
+          "Participating in REPC surveys helps shape meaningful conversations across our industry.",
+        name: "Vikram Kapoor",
+        role: "CEO, Assetz Property Group",
+        img: "https://i.pravatar.cc/100?img=33",
+      },
+    ],
   },
   {
     id: "trustPoints",
@@ -226,14 +325,37 @@ const SECTIONS = [
     fields: [
       { key: "icon", label: "Icon", type: "select", options: ICON_OPTIONS },
       { key: "title", label: "Title", type: "text" },
-      { key: "description", label: "Description", type: "textarea" }
+      { key: "description", label: "Description", type: "textarea" },
     ],
     initial: [
-      { id: 1, icon: "ShieldCheck", title: "Data You Can Trust", description: "Surveys designed and analyzed by industry experts." },
-      { id: 2, icon: "Building2", title: "Wide Industry Participation", description: "Insights from a diverse network of real estate professionals." },
-      { id: 3, icon: "BarChart3", title: "Actionable Insights", description: "Turn data into decisions with expert analysis and reports." },
-      { id: 4, icon: "Users", title: "Secure & Confidential", description: "Your responses are secure and anonymity is always protected." }
-    ]
+      {
+        id: 1,
+        icon: "ShieldCheck",
+        title: "Data You Can Trust",
+        description: "Surveys designed and analyzed by industry experts.",
+      },
+      {
+        id: 2,
+        icon: "Building2",
+        title: "Wide Industry Participation",
+        description:
+          "Insights from a diverse network of real estate professionals.",
+      },
+      {
+        id: 3,
+        icon: "BarChart3",
+        title: "Actionable Insights",
+        description:
+          "Turn data into decisions with expert analysis and reports.",
+      },
+      {
+        id: 4,
+        icon: "Users",
+        title: "Secure & Confidential",
+        description:
+          "Your responses are secure and anonymity is always protected.",
+      },
+    ],
   },
   {
     id: "suggestBanner",
@@ -242,25 +364,47 @@ const SECTIONS = [
     fields: [
       { key: "heading", label: "Heading", type: "text" },
       { key: "subtext", label: "Subtext", type: "textarea" },
-      { key: "ctaLabel", label: "Button Label", type: "text" }
+      { key: "ctaLabel", label: "Button Label", type: "text" },
     ],
     initial: {
       heading: "Have a Topic in Mind?",
-      subtext: "Suggest a survey topic you'd like to see covered in our upcoming reports.",
-      ctaLabel: "Suggest a Topic"
-    }
+      subtext:
+        "Suggest a survey topic you'd like to see covered in our upcoming reports.",
+      ctaLabel: "Suggest a Topic",
+    },
   },
   {
     id: "filterOptions",
     label: "Filter Dropdown Options",
     kind: "filters",
     initial: {
-      survey: ["All Surveys", "India Office Market Outlook Survey 2024", "Retail Real Estate Trends Survey 2024", "Sustainability in Real Estate Survey 2024", "Logistics & Industrial Real Estate Survey 2023"],
+      survey: [
+        "All Surveys",
+        "India Office Market Outlook Survey 2024",
+        "Retail Real Estate Trends Survey 2024",
+        "Sustainability in Real Estate Survey 2024",
+        "Logistics & Industrial Real Estate Survey 2023",
+      ],
       year: ["All Years", "2024", "2023", "2022"],
-      city: ["All Cities", "Mumbai", "Bengaluru", "Delhi NCR", "Pune", "Hyderabad"],
-      segment: ["All Segments", "Developer", "Consultant", "Broker", "Investor", "Architect", "Retailer"]
-    }
-  }
+      city: [
+        "All Cities",
+        "Mumbai",
+        "Bengaluru",
+        "Delhi NCR",
+        "Pune",
+        "Hyderabad",
+      ],
+      segment: [
+        "All Segments",
+        "Developer",
+        "Consultant",
+        "Broker",
+        "Investor",
+        "Architect",
+        "Retailer",
+      ],
+    },
+  },
 ];
 
 function emptyItemFrom(fields) {
@@ -290,9 +434,15 @@ function FieldInput({ field, value, onChange }) {
   }
   if (field.type === "select") {
     return (
-      <select value={value ?? ""} onChange={(e) => onChange(e.target.value)} className={common}>
+      <select
+        value={value ?? ""}
+        onChange={(e) => onChange(e.target.value)}
+        className={common}
+      >
         {field.options.map((o) => (
-          <option key={o} value={o}>{o}</option>
+          <option key={o} value={o}>
+            {o}
+          </option>
         ))}
       </select>
     );
@@ -364,7 +514,9 @@ function ListSectionEditor({ section, items, setItems }) {
   function handleSave(e) {
     e.preventDefault();
     if (editingId) {
-      setItems((prev) => prev.map((it) => (it.id === editingId ? { ...it, ...form } : it)));
+      setItems((prev) =>
+        prev.map((it) => (it.id === editingId ? { ...it, ...form } : it)),
+      );
     } else {
       setItems((prev) => [...prev, { id: Date.now(), ...form }]);
     }
@@ -381,7 +533,9 @@ function ListSectionEditor({ section, items, setItems }) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-bold text-slate-900">{section.label}</h3>
-          <p className="text-xs text-slate-500 mt-0.5">{items.length} item{items.length !== 1 && "s"}</p>
+          <p className="text-xs text-slate-500 mt-0.5">
+            {items.length} item{items.length !== 1 && "s"}
+          </p>
         </div>
         <button
           onClick={openAdd}
@@ -426,7 +580,10 @@ function ListSectionEditor({ section, items, setItems }) {
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={closeModal} />
+          <div
+            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+            onClick={closeModal}
+          />
           <form
             onSubmit={handleSave}
             className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
@@ -435,7 +592,11 @@ function ListSectionEditor({ section, items, setItems }) {
               <h3 className="font-bold text-slate-900">
                 {editingId ? `Edit ${section.label}` : `Add ${section.label}`}
               </h3>
-              <button type="button" onClick={closeModal} className="text-slate-400 hover:text-slate-700">
+              <button
+                type="button"
+                onClick={closeModal}
+                className="text-slate-400 hover:text-slate-700"
+              >
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -443,11 +604,15 @@ function ListSectionEditor({ section, items, setItems }) {
             <div className="p-6 space-y-4">
               {section.fields.map((f) => (
                 <label key={f.key} className="block">
-                  <span className="block text-xs font-semibold text-slate-500 mb-1.5">{f.label}</span>
+                  <span className="block text-xs font-semibold text-slate-500 mb-1.5">
+                    {f.label}
+                  </span>
                   <FieldInput
                     field={f}
                     value={form[f.key]}
-                    onChange={(v) => setForm((prev) => ({ ...prev, [f.key]: v }))}
+                    onChange={(v) =>
+                      setForm((prev) => ({ ...prev, [f.key]: v }))
+                    }
                   />
                 </label>
               ))}
@@ -474,10 +639,15 @@ function ListSectionEditor({ section, items, setItems }) {
 
       {confirmDeleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={() => setConfirmDeleteId(null)} />
+          <div
+            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+            onClick={() => setConfirmDeleteId(null)}
+          />
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
             <h3 className="font-bold text-slate-900 mb-1">Delete this item?</h3>
-            <p className="text-sm text-slate-500 mb-6">This action can't be undone.</p>
+            <p className="text-sm text-slate-500 mb-6">
+              This action can't be undone.
+            </p>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setConfirmDeleteId(null)}
@@ -520,11 +690,20 @@ function SingletonSectionEditor({ section, data, setData }) {
   return (
     <div>
       <h3 className="font-bold text-slate-900 mb-4">{section.label}</h3>
-      <form onSubmit={handleSave} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 max-w-3xl">
+      <form
+        onSubmit={handleSave}
+        className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 max-w-3xl"
+      >
         {section.fields.map((f) => (
           <label key={f.key} className="block">
-            <span className="block text-xs font-semibold text-slate-500 mb-1.5">{f.label}</span>
-            <FieldInput field={f} value={form[f.key]} onChange={(v) => handleChange(f.key, v)} />
+            <span className="block text-xs font-semibold text-slate-500 mb-1.5">
+              {f.label}
+            </span>
+            <FieldInput
+              field={f}
+              value={form[f.key]}
+              onChange={(v) => handleChange(f.key, v)}
+            />
           </label>
         ))}
         <div className="flex items-center gap-3 pt-2">
@@ -535,7 +714,9 @@ function SingletonSectionEditor({ section, data, setData }) {
             <Save className="h-4 w-4" />
             Save Changes
           </button>
-          {saved && <span className="text-sm text-emerald-600 font-medium">Saved</span>}
+          {saved && (
+            <span className="text-sm text-emerald-600 font-medium">Saved</span>
+          )}
         </div>
       </form>
     </div>
@@ -552,7 +733,7 @@ function FilterOptionsEditor({ data, setData }) {
     { key: "survey", label: "Survey" },
     { key: "year", label: "Year" },
     { key: "city", label: "City" },
-    { key: "segment", label: "Segment" }
+    { key: "segment", label: "Segment" },
   ];
 
   function handleSave(e) {
@@ -565,16 +746,26 @@ function FilterOptionsEditor({ data, setData }) {
   return (
     <div>
       <h3 className="font-bold text-slate-900 mb-1">Filter Dropdown Options</h3>
-      <p className="text-xs text-slate-500 mb-4">One option per line. First line shows as the default ("All ...").</p>
-      <form onSubmit={handleSave} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-5 max-w-3xl">
+      <p className="text-xs text-slate-500 mb-4">
+        One option per line. First line shows as the default ("All ...").
+      </p>
+      <form
+        onSubmit={handleSave}
+        className="bg-white border border-slate-200 rounded-2xl p-6 space-y-5 max-w-3xl"
+      >
         {groups.map((g) => (
           <label key={g.key} className="block">
-            <span className="block text-xs font-semibold text-slate-500 mb-1.5">{g.label} options</span>
+            <span className="block text-xs font-semibold text-slate-500 mb-1.5">
+              {g.label} options
+            </span>
             <textarea
               rows={4}
               value={form[g.key].join("\n")}
               onChange={(e) =>
-                setForm((prev) => ({ ...prev, [g.key]: e.target.value.split("\n") }))
+                setForm((prev) => ({
+                  ...prev,
+                  [g.key]: e.target.value.split("\n"),
+                }))
               }
               className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-amber-300 resize-none font-mono"
             />
@@ -588,7 +779,9 @@ function FilterOptionsEditor({ data, setData }) {
             <Save className="h-4 w-4" />
             Save Changes
           </button>
-          {saved && <span className="text-sm text-emerald-600 font-medium">Saved</span>}
+          {saved && (
+            <span className="text-sm text-emerald-600 font-medium">Saved</span>
+          )}
         </div>
       </form>
     </div>
@@ -616,7 +809,9 @@ export default function SurveyAdminPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-slate-900">Survey Page Content</h2>
+        <h2 className="text-xl font-bold text-slate-900">
+          Survey Page Content
+        </h2>
         <p className="text-sm text-slate-500 mt-1">
           Manage every section shown on the public Surveys page
         </p>
@@ -648,7 +843,9 @@ export default function SurveyAdminPage() {
             setItems={(updater) =>
               setSectionData(
                 activeSection.id,
-                typeof updater === "function" ? updater(store[activeSection.id]) : updater
+                typeof updater === "function"
+                  ? updater(store[activeSection.id])
+                  : updater,
               )
             }
           />

@@ -1,19 +1,56 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import {
-  Users, Building2, TrendingUp, Handshake,
-  Search, ChevronDown, Bell, Award, BookOpen,
-  MapPin, Clock, ChevronLeft, ChevronRight,
-  Network, Calendar, UserCheck, MessageSquare
+  Users,
+  Building2,
+  TrendingUp,
+  Handshake,
+  Search,
+  ChevronDown,
+  Bell,
+  Award,
+  BookOpen,
+  MapPin,
+  Clock,
+  ChevronLeft,
+  ChevronRight,
+  Network,
+  Calendar,
+  UserCheck,
+  MessageSquare,
 } from "lucide-react";
 
 const FEATURE_STRIPS = [
-  { icon: Users, label: "Network", desc: "Connect with verified real estate professionals" },
-  { icon: Handshake, label: "Collaborate", desc: "Work together on projects & deals" },
-  { icon: BookOpen, label: "Learn", desc: "Access insights, articles & industry knowledge" },
-  { icon: TrendingUp, label: "Grow", desc: "Find opportunities & grow your business" },
-  { icon: Bell, label: "Stay Updated", desc: "Get the latest news, trends & updates" },
-  { icon: Award, label: "Build Reputation", desc: "Showcase your expertise & build your brand" },
+  {
+    icon: Users,
+    label: "Network",
+    desc: "Connect with verified real estate professionals",
+  },
+  {
+    icon: Handshake,
+    label: "Collaborate",
+    desc: "Work together on projects & deals",
+  },
+  {
+    icon: BookOpen,
+    label: "Learn",
+    desc: "Access insights, articles & industry knowledge",
+  },
+  {
+    icon: TrendingUp,
+    label: "Grow",
+    desc: "Find opportunities & grow your business",
+  },
+  {
+    icon: Bell,
+    label: "Stay Updated",
+    desc: "Get the latest news, trends & updates",
+  },
+  {
+    icon: Award,
+    label: "Build Reputation",
+    desc: "Showcase your expertise & build your brand",
+  },
 ];
 
 const STATS_BAR = [
@@ -31,55 +68,120 @@ const COMMUNITY_MEMBERS = [
     role: "Director – Investments",
     company: "Blackstone",
     city: "Mumbai",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face"
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
   },
   {
     name: "Ananya Sharma",
     role: "Head – Workplace Solutions, India",
     company: "JLL",
     city: "Bengaluru",
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face"
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
   },
   {
     name: "Vikram Kapoor",
     role: "CEO",
     company: "Assetz Property Group",
     city: "Mumbai",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face"
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
   },
   {
     name: "Neha Iyer",
     role: "Senior Architect",
     company: "Morphogenesis",
     city: "Delhi",
-    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
   },
 ];
 
 const EVENTS = [
-  { day: "18", month: "JUN", title: "CREPNET Annual Summit 2024", venue: "Jio World Convention Centre, Mumbai", time: "09:00 AM – 06:00 PM IST" },
-  { day: "24", month: "JUN", title: "Retail Real Estate Networking Meet", venue: "The Leela Ambience, Gurugram", time: "04:00 PM – 07:00 PM IST" },
-  { day: "07", month: "JUL", title: "GCC & Office Leadership Forum", venue: "ITC Gardenia, Bengaluru", time: "09:30 AM – 05:00 PM IST" },
+  {
+    day: "18",
+    month: "JUN",
+    title: "REPC Annual Summit 2024",
+    venue: "Jio World Convention Centre, Mumbai",
+    time: "09:00 AM – 06:00 PM IST",
+  },
+  {
+    day: "24",
+    month: "JUN",
+    title: "Retail Real Estate Networking Meet",
+    venue: "The Leela Ambience, Gurugram",
+    time: "04:00 PM – 07:00 PM IST",
+  },
+  {
+    day: "07",
+    month: "JUL",
+    title: "GCC & Office Leadership Forum",
+    venue: "ITC Gardenia, Bengaluru",
+    time: "09:30 AM – 05:00 PM IST",
+  },
 ];
 
 const DISCUSSIONS = [
-  { user: "Arvind Nandan", topic: "Future of Office Spaces in Tier 2 Cities", time: "2h ago", replies: 32, img: "https://randomuser.me/api/portraits/men/11.jpg" },
-  { user: "Puneet Khurana", topic: "How to Evaluate Retail Locations Effectively?", time: "5h ago", replies: 28, img: "https://randomuser.me/api/portraits/men/22.jpg" },
-  { user: "Neha Iyer", topic: "Sustainability in Real Estate Development", time: "1d ago", replies: 41, img: "https://randomuser.me/api/portraits/women/68.jpg" },
-  { user: "Vimal Nadar", topic: "Co-working vs Managed Offices – What's Next?", time: "1d ago", replies: 19, img: "https://randomuser.me/api/portraits/men/55.jpg" },
+  {
+    user: "Arvind Nandan",
+    topic: "Future of Office Spaces in Tier 2 Cities",
+    time: "2h ago",
+    replies: 32,
+    img: "https://randomuser.me/api/portraits/men/11.jpg",
+  },
+  {
+    user: "Puneet Khurana",
+    topic: "How to Evaluate Retail Locations Effectively?",
+    time: "5h ago",
+    replies: 28,
+    img: "https://randomuser.me/api/portraits/men/22.jpg",
+  },
+  {
+    user: "Neha Iyer",
+    topic: "Sustainability in Real Estate Development",
+    time: "1d ago",
+    replies: 41,
+    img: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    user: "Vimal Nadar",
+    topic: "Co-working vs Managed Offices – What's Next?",
+    time: "1d ago",
+    replies: 19,
+    img: "https://randomuser.me/api/portraits/men/55.jpg",
+  },
 ];
 
 const GLOBAL_REACH = [
-  { value: "25+", label: "years connecting", desc: "India's top real estate leaders" },
+  {
+    value: "25+",
+    label: "years connecting",
+    desc: "India's top real estate leaders",
+  },
   { value: "25,000+", label: "members", desc: "across the country" },
-  { value: "3,500+", label: "companies", desc: "developers, brokers and investors" },
+  {
+    value: "3,500+",
+    label: "companies",
+    desc: "developers, brokers and investors",
+  },
   { value: "120+", label: "cities", desc: "with active local chapters" },
 ];
 
 const BOTTOM_FEATURES = [
-  { icon: Users, title: "Join Groups", desc: "Be part of topic-based professional groups", link: "/join" },
-  { icon: BookOpen, title: "Share Articles", desc: "Contribute articles, insights & best practices", link: "/knowledge-hub/articles" },
-  { icon: TrendingUp, title: "Find Developers", desc: "Discover projects, jobs & business leads", link: "/companies/developers" },
+  {
+    icon: Users,
+    title: "Join Groups",
+    desc: "Be part of topic-based professional groups",
+    link: "/join",
+  },
+  {
+    icon: BookOpen,
+    title: "Share Articles",
+    desc: "Contribute articles, insights & best practices",
+    link: "/knowledge-hub/articles",
+  },
+  {
+    icon: TrendingUp,
+    title: "Find Developers",
+    desc: "Discover projects, jobs & business leads",
+    link: "/companies/developers",
+  },
 ];
 
 const KNOWLEDGE_CAPTIONS = [
@@ -108,11 +210,14 @@ const MINDS_SLIDES = [
 const MINDS_VIDEOS = [
   "https://assets.mixkit.co/videos/21246/21246-720.mp4",
   "https://assets.mixkit.co/videos/315/315-720.mp4",
-  "https://assets.mixkit.co/videos/42880/42880-720.mp4"
+  "https://assets.mixkit.co/videos/42880/42880-720.mp4",
 ];
 
 const DEVELOPER_LOGOS = [
-  { name: "Hero Realty", url: "https://www.ireedindia.com/homepage/brand/1.webp" },
+  {
+    name: "Hero Realty",
+    url: "https://www.ireedindia.com/homepage/brand/1.webp",
+  },
   { name: "Mapsko", url: "https://www.ireedindia.com/homepage/brand/2.webp" },
   { name: "Orchid", url: "https://www.ireedindia.com/homepage/brand/4.webp" },
   { name: "Krisumi", url: "https://www.ireedindia.com/homepage/brand/5.webp" },
@@ -120,15 +225,18 @@ const DEVELOPER_LOGOS = [
   { name: "Elan", url: "https://www.ireedindia.com/homepage/brand/7.webp" },
   { name: "Pareena", url: "https://www.ireedindia.com/homepage/brand/3.webp" },
   { name: "Sobha", url: "https://www.ireedindia.com/homepage/brand/8.webp" },
-  { name: "Godrej Properties", url: "https://www.ireedindia.com/homepage/brand/9.webp" },
-  { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/10.webp" }
+  {
+    name: "Godrej Properties",
+    url: "https://www.ireedindia.com/homepage/brand/9.webp",
+  },
+  { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/10.webp" },
 ];
 
 const MEET_IMAGES = [
   "https://images.unsplash.com/photo-1675716921224-e087a0cca69a?w=600&auto=format&fit=crop&q=80",
   "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&auto=format&fit=crop&q=80",
   "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&auto=format&fit=crop&q=80"
+  "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&auto=format&fit=crop&q=80",
 ];
 
 const styles = `
@@ -1106,8 +1214,12 @@ export function HeroSection() {
           </p>
 
           <div className="hero-cta-row">
-            <a href="/join" className="btn-hero-primary">Join the Community</a>
-            <a href="/explore-community" className="btn-hero-outline">Explore Community</a>
+            <a href="/join" className="btn-hero-primary">
+              Join the Community
+            </a>
+            <a href="/explore-community" className="btn-hero-outline">
+              Explore Community
+            </a>
           </div>
         </div>
       </div>
@@ -1140,8 +1252,17 @@ export function FeatureStrip() {
       <div className="feature-strip-inner">
         <div className="feature-grid">
           {FEATURE_STRIPS.map((item, i) => (
-            <div key={i} className="feature-item" style={{ borderRight: i < 5 ? "1px solid #e5e7eb" : "none" }}>
-              <item.icon size={32} color="#1a2744" strokeWidth={1.2} style={{ flexShrink: 0, marginTop: "2px" }} />
+            <div
+              key={i}
+              className="feature-item"
+              style={{ borderRight: i < 5 ? "1px solid #e5e7eb" : "none" }}
+            >
+              <item.icon
+                size={32}
+                color="#1a2744"
+                strokeWidth={1.2}
+                style={{ flexShrink: 0, marginTop: "2px" }}
+              />
               <div>
                 <div className="feature-label">{item.label}</div>
                 <div className="feature-desc">{item.desc}</div>
@@ -1178,12 +1299,13 @@ export function ThreeColumnSection() {
   return (
     <section className="three-col-section">
       <div className="three-col-inner">
-
         {/* Dashboard Column 1: Spotlight */}
         <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Community Spotlight</h2>
-            <a href="/community/member-directory" className="view-all">View all</a>
+            <a href="/community/member-directory" className="view-all">
+              View all
+            </a>
           </div>
           <div className="carousel-wrap">
             <button className="carousel-btn left">
@@ -1214,7 +1336,9 @@ export function ThreeColumnSection() {
         <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Upcoming Events</h2>
-            <a href="/events" className="view-all">View all</a>
+            <a href="/events" className="view-all">
+              View all
+            </a>
           </div>
           <div className="events-list">
             {EVENTS.map((ev, i) => (
@@ -1244,7 +1368,9 @@ export function ThreeColumnSection() {
         <div className="dashboard-column">
           <div className="section-header">
             <h2 className="section-title">Popular Discussions</h2>
-            <a href="/knowledge-hub/articles" className="view-all">View all</a>
+            <a href="/knowledge-hub/articles" className="view-all">
+              View all
+            </a>
           </div>
           <div>
             {DISCUSSIONS.map((d, i) => (
@@ -1252,7 +1378,9 @@ export function ThreeColumnSection() {
                 <img src={d.img} alt={d.user} className="discussion-img" />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="discussion-topic">{d.topic}</div>
-                  <div className="discussion-meta">{d.user} · {d.time}</div>
+                  <div className="discussion-meta">
+                    {d.user} · {d.time}
+                  </div>
                 </div>
                 <div className="discussion-replies">
                   <MessageSquare size={14} color="#9ca3af" />
@@ -1262,7 +1390,6 @@ export function ThreeColumnSection() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -1292,7 +1419,17 @@ export function GlobalReachSection() {
   );
 }
 
-function StorySection({ title, subtitle, captions = [], slides, videos = [], poster, imgSrc, alt, goldTitle }) {
+function StorySection({
+  title,
+  subtitle,
+  captions = [],
+  slides,
+  videos = [],
+  poster,
+  imgSrc,
+  alt,
+  goldTitle,
+}) {
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
 
   useEffect(() => {
@@ -1320,7 +1457,7 @@ function StorySection({ title, subtitle, captions = [], slides, videos = [], pos
             style={{
               opacity: idx === currentVideoIdx ? 1 : 0,
               position: "absolute",
-              zIndex: idx === currentVideoIdx ? 1 : 0
+              zIndex: idx === currentVideoIdx ? 1 : 0,
             }}
           >
             <source src={src} type="video/mp4" />
@@ -1332,7 +1469,10 @@ function StorySection({ title, subtitle, captions = [], slides, videos = [], pos
       <div className="story-overlay-tint" style={{ zIndex: 2 }} />
       <div className="story-overlay" style={{ zIndex: 2 }} />
       <div className="story-content" style={{ zIndex: 3 }}>
-        <h2 className={`story-title${goldTitle ? " story-title-gold" : ""}`} key={activeSlide ? `title-${currentVideoIdx}` : "title"}>
+        <h2
+          className={`story-title${goldTitle ? " story-title-gold" : ""}`}
+          key={activeSlide ? `title-${currentVideoIdx}` : "title"}
+        >
           {displayTitle}
         </h2>
         <div className="story-subdivider" />
@@ -1363,13 +1503,7 @@ function StorySection({ title, subtitle, captions = [], slides, videos = [], pos
 }
 
 export function InfluentialMindsSection() {
-  return (
-    <StorySection
-      slides={MINDS_SLIDES}
-      videos={MINDS_VIDEOS}
-      goldTitle
-    />
-  );
+  return <StorySection slides={MINDS_SLIDES} videos={MINDS_VIDEOS} goldTitle />;
 }
 
 export function KnowledgeSection() {
@@ -1414,10 +1548,10 @@ export function BottomCTASection() {
   const getTriangleTransform = (idx) => {
     if (idx !== activeImageIndex) {
       const positions = [
-        "translate(100%, 100%) scale(0.7)", 
+        "translate(100%, 100%) scale(0.7)",
         "translate(-100%, 100%) scale(0.7)",
-        "translate(0%, -100%) scale(0.7)",  
-        "translate(100%, -100%) scale(0.7)"
+        "translate(0%, -100%) scale(0.7)",
+        "translate(100%, -100%) scale(0.7)",
       ];
       return positions[idx % positions.length];
     }
@@ -1430,22 +1564,25 @@ export function BottomCTASection() {
         <div>
           <h2 className="bottom-title">Create. Connect. Collaborate.</h2>
           <p className="bottom-desc">
-            Join groups, participate in discussions, share knowledge and build meaningful professional relationships.
+            Join groups, participate in discussions, share knowledge and build
+            meaningful professional relationships.
           </p>
-          <a href="/explore-community" className="btn-dark">Explore Community</a>
+          <a href="/explore-community" className="btn-dark">
+            Explore Community
+          </a>
         </div>
 
         <div className="bottom-illustration-box">
           {MEET_IMAGES.map((imgUrl, i) => (
-            <img 
+            <img
               key={i}
-              className="triangle-slide" 
-              src={imgUrl} 
-              alt="Real estate professionals meeting and communicating" 
+              className="triangle-slide"
+              src={imgUrl}
+              alt="Real estate professionals meeting and communicating"
               style={{
                 opacity: i === activeImageIndex ? 1 : 0,
                 transform: getTriangleTransform(i),
-                zIndex: i === activeImageIndex ? 5 : 1
+                zIndex: i === activeImageIndex ? 5 : 1,
               }}
             />
           ))}
@@ -1453,18 +1590,18 @@ export function BottomCTASection() {
 
         <div className="bottom-features-row">
           {BOTTOM_FEATURES.map((f, i) => (
-            <a 
-              key={i} 
-              href={f.link} 
+            <a
+              key={i}
+              href={f.link}
               className="bottom-feature-link"
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="bottom-feature-icon">
-                <f.icon 
-                  size={26} 
-                  color={hoveredIndex === i ? "#ffffff" : "#1a2744"} 
-                  strokeWidth={1.4} 
+                <f.icon
+                  size={26}
+                  color={hoveredIndex === i ? "#ffffff" : "#1a2744"}
+                  strokeWidth={1.4}
                   style={{ transition: "color 0.3s ease" }}
                 />
               </div>
@@ -1482,7 +1619,13 @@ export default function Page() {
   return (
     <>
       <style>{styles}</style>
-      <main className="dashboard-main-wrapper" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", minHeight: "100vh" }}>
+      <main
+        className="dashboard-main-wrapper"
+        style={{
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+          minHeight: "100vh",
+        }}
+      >
         <HeroSection />
         <FeatureStrip />
         <StatsBar />

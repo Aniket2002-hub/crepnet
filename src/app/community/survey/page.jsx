@@ -163,7 +163,7 @@ const testimonials = [
   },
   {
     quote:
-      "Participating in CREPNET surveys helps shape meaningful conversations and drive positive change across our industry.",
+      "Participating in REPC surveys helps shape meaningful conversations and drive positive change across our industry.",
     name: "Vikram Kapoor",
     role: "CEO, Assetz Property Group",
     img: "https://i.pravatar.cc/100?img=33",

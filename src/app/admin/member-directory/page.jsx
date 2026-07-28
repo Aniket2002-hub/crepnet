@@ -500,23 +500,6 @@ export default function MemberDirectoryPage() {
         </div>
       )}
 
-      {/* shared input styling */}
-      <style jsx global>{`
-        .input {
-          width: 100%;
-          padding: 0.625rem 0.875rem;
-          border-radius: 0.75rem;
-          border: 1px solid #e2e8f0;
-          font-size: 0.875rem;
-          color: #1e293b;
-          background: white;
-        }
-        .input:focus {
-          outline: none;
-          box-shadow: 0 0 0 2px #fcd34d;
-          border-color: #fcd34d;
-        }
-      `}</style>
     </div>
   );
 }
