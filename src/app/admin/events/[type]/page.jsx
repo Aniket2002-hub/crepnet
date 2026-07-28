@@ -286,9 +286,9 @@ export default function EventsPage() {
           <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={closeEventModal} />
           <form
             onSubmit={handleSave}
-            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden"
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 sticky top-0 bg-white rounded-t-2xl">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white shrink-0">
               <h3 className="font-bold text-slate-900">
                 {editingId ? "Edit Event" : "Add Event"}
               </h3>
@@ -297,7 +297,7 @@ export default function EventsPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-5 overflow-y-auto bg-slate-50/50 flex-1">
               <Field label="Event Title">
                 <input
                   required
@@ -352,7 +352,7 @@ export default function EventsPage() {
               </Field>
             </div>
 
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200 sticky bottom-0 bg-white rounded-b-2xl">
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200 bg-white shrink-0">
               <button
                 type="button"
                 onClick={closeEventModal}
@@ -483,8 +483,8 @@ export default function EventsPage() {
 
 function Field({ label, children }) {
   return (
-    <label className="block">
-      <span className="block text-xs font-semibold text-slate-500 mb-1.5">{label}</span>
+    <label className="block group">
+      <span className="block text-[13px] font-bold text-slate-700 mb-2 group-focus-within:text-[#E8A33D] transition-colors">{label}</span>
       {children}
     </label>
   );
