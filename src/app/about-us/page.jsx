@@ -13,7 +13,6 @@ import {
   Building2,
   MapPin,
   X,
-  Briefcase,
   Trophy,
   Award,
   Calendar,
@@ -91,9 +90,9 @@ const stats = [
 
 const storyStats = [
   { icon: Trophy, value: "25000+", label: "Professionals Worldwide" },
-  { icon: Globe2, value: "120+", label: "Cities Reached" },
-  { icon: Award, value: "3500+", label: "Partner Companies" },
-  { icon: Calendar, value: "150+", label: "Active Networking Groups" },
+  { icon: Globe2, value: "15+", label: "Global Cities" },
+  { icon: Award, value: "25+", label: "Global Developers" },
+  { icon: Calendar, value: "50+", label: "Global Networking Groups" },
 ];
 
 const values = [
@@ -218,7 +217,7 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-sm md:text-base leading-relaxed text-slate-600 font-medium">
-              RPEC was established with a singular focus: to unify India's
+              RPEC Foundation is established with a singular focus: to unify India's
               expansive real estate ecosystem. What started as a vision to break
               down silos between developers, consultants, and service providers
               has rapidly evolved into a powerhouse networking hub.
@@ -236,13 +235,13 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Right Column: Key Facts & Figures Cards */}
+          {/* Right Column: Our Aim Cards */}
           <div>
             <h2
               style={headingFontClass}
               className="text-3xl font-bold tracking-wide uppercase text-[#0B1F3A] mb-4 lg:text-left text-center"
             >
-              Key Facts and Figures
+              Our Aim
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {storyStats.map(({ icon: Icon, value, label }) => (
