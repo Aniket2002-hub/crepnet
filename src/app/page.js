@@ -18,11 +18,11 @@ const FEATURE_STRIPS = [
 
 const STATS_BAR = [
   { value: "25,000+", label: "Professionals", icon: Users },
-  { value: "3,500+", label: "Companies", icon: Building2 },
-  { value: "120+", label: "Cities", icon: MapPin },
-  { value: "850+", label: "Industry Experts", icon: UserCheck },
-  { value: "150+", label: "Active Groups", icon: Network },
-  { value: "50+", label: "Events Every Year", icon: Calendar },
+  { value: "500+", label: "Companies", icon: Building2 },
+  { value: "25+", label: "Cities", icon: MapPin },
+  { value: "2500+", label: "Industry Experts", icon: UserCheck },
+  { value: "50+", label: "Active Groups", icon: Network },
+  { value: "25+", label: "Events Every Year", icon: Calendar },
 ];
 
 const COMMUNITY_MEMBERS = [
@@ -70,10 +70,10 @@ const DISCUSSIONS = [
 ];
 
 const GLOBAL_REACH = [
-  { value: "25+", label: "years connecting", desc: "India's top real estate leaders" },
+  { value: "3+", label: "years connecting", desc: "India's top real estate leaders" },
   { value: "25,000+", label: "members", desc: "across the country" },
-  { value: "3,500+", label: "companies", desc: "developers, brokers and investors" },
-  { value: "120+", label: "cities", desc: "with active local chapters" },
+  { value: "25+", label: "companies", desc: "developers, brokers and investors" },
+  { value: "15+", label: "cities", desc: "with active local chapters" },
 ];
 
 const BOTTOM_FEATURES = [
@@ -112,16 +112,19 @@ const MINDS_VIDEOS = [
 ];
 
 const DEVELOPER_LOGOS = [
-  { name: "Hero Realty", url: "https://www.ireedindia.com/homepage/brand/1.webp" },
-  { name: "Mapsko", url: "https://www.ireedindia.com/homepage/brand/2.webp" },
-  { name: "Orchid", url: "https://www.ireedindia.com/homepage/brand/4.webp" },
-  { name: "Krisumi", url: "https://www.ireedindia.com/homepage/brand/5.webp" },
-  { name: "DLF", url: "https://www.ireedindia.com/homepage/brand/6.webp" },
-  { name: "Elan", url: "https://www.ireedindia.com/homepage/brand/7.webp" },
-  { name: "Pareena", url: "https://www.ireedindia.com/homepage/brand/3.webp" },
-  { name: "Sobha", url: "https://www.ireedindia.com/homepage/brand/8.webp" },
-  { name: "Godrej Properties", url: "https://www.ireedindia.com/homepage/brand/9.webp" },
-  { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/10.webp" }
+  { name: "DLF", url: "https://www.ireedindia.com/homepage/brand/1.webp" },
+  { name: "Sobha", url: "https://www.ireedindia.com/homepage/brand/4.webp" },
+  { name: "Whiteland", url: "https://www.ireedindia.com/homepage/brand/8.webp" },
+  { name: "ELAN", url: "https://www.ireedindia.com/homepage/brand/2.webp" },
+  { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/6.webp" },
+
+  { name: "Godrej Properties", url: "https://www.ireedindia.com/homepage/brand/5.webp" },
+
+  // { name: "Devika", url: "https://www.ireedindia.com/homepage/brand/7.webp" },
+  // { name: "Pareena", url: "https://www.ireedindia.com/homepage/brand/3.webp" },
+
+  // { name: "Conscient", url: "https://www.ireedindia.com/homepage/brand/9.webp" },
+  // { name: "Kwiller", url: "https://www.ireedindia.com/homepage/brand/10.webp" }
 ];
 
 const MEET_IMAGES = [
@@ -149,7 +152,7 @@ const styles = `
   /* ===== Developer Logo Strip ===== */
   .logo-marquee-section {
     background: #fff;
-    padding: 32px 0;
+    padding: 40px 0;
     border-top: 1px solid #e5e7eb;
     border-bottom: 1px solid #e5e7eb;
     width: 100%;
@@ -163,7 +166,7 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 20px;
     width: 100%;
     flex-wrap: nowrap;
   }
@@ -171,13 +174,14 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 32px;
+    width: 160px;
+    height: 64px;
     flex-shrink: 0;
   }
   .dev-logo-img {
-    width: 80px;
-    height: 32px;
+    width: 100%;
+    height: 100%;
+    max-height: 64px;
     object-fit: contain;
   }
 
@@ -580,6 +584,7 @@ const styles = `
     position: relative;
     background: #fff;
     overflow: hidden;
+    min-height: 100vh; /* Restored full full-bleed section scale */
   }
   .global-reach-bg {
     position: absolute;
@@ -610,7 +615,7 @@ const styles = `
     max-width: 1280px;
     margin: 0 auto;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; /* Preserves overall background image frame */
     padding: 120px 20px 90px;
     display: flex;
     flex-direction: column;
@@ -618,13 +623,14 @@ const styles = `
     box-sizing: border-box;
   }
   .global-reach-title {
-    font-size: 34px;
+    font-size: 38px;
     font-weight: 800;
     color: #1a2744;
     margin-bottom: 16px;
   }
   .global-reach-divider {
-    width: 64px; height: 4px;
+    width: 64px; 
+    height: 4px;
     background: #c9a84c;
     border-radius: 2px;
     margin-bottom: 0;
@@ -633,17 +639,19 @@ const styles = `
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
+    margin-top: auto;
+    padding-bottom: 20px;
   }
   .global-reach-stat {
     padding-right: 16px;
   }
   .global-reach-value {
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-size: clamp(42px, 5.4vw, 66px);
+    font-size: clamp(48px, 6vw, 76px);
     font-weight: 400;
     color: #fff;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .global-reach-label {
     font-size: 18px;
@@ -652,9 +660,9 @@ const styles = `
     margin-bottom: 6px;
   }
   .global-reach-desc {
-    font-size: 14.5px;
+    font-size: 14px;
     color: #b9c3d4;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
   /* ===== Story Section ===== */
@@ -738,7 +746,7 @@ const styles = `
   }
   .story-captions li {
     position: relative;
-    padding-left: 0; /* Removed bullet positioning space offset */
+    padding-left: 0;
     font-family: inherit;
     font-style: normal;
     font-size: 15px;
@@ -747,7 +755,6 @@ const styles = `
     text-align: left;
     transition: opacity 0.4s ease;
   }
-  /* Removed .story-captions li::before element to completely delete gold dot bullets */
 
   .slider-indicator-container {
     position: absolute;
@@ -1414,9 +1421,9 @@ export function BottomCTASection() {
   const getTriangleTransform = (idx) => {
     if (idx !== activeImageIndex) {
       const positions = [
-        "translate(100%, 100%) scale(0.7)", 
+        "translate(100%, 100%) scale(0.7)",
         "translate(-100%, 100%) scale(0.7)",
-        "translate(0%, -100%) scale(0.7)",  
+        "translate(0%, -100%) scale(0.7)",
         "translate(100%, -100%) scale(0.7)"
       ];
       return positions[idx % positions.length];
@@ -1437,11 +1444,11 @@ export function BottomCTASection() {
 
         <div className="bottom-illustration-box">
           {MEET_IMAGES.map((imgUrl, i) => (
-            <img 
+            <img
               key={i}
-              className="triangle-slide" 
-              src={imgUrl} 
-              alt="Real estate professionals meeting and communicating" 
+              className="triangle-slide"
+              src={imgUrl}
+              alt="Real estate professionals meeting and communicating"
               style={{
                 opacity: i === activeImageIndex ? 1 : 0,
                 transform: getTriangleTransform(i),
@@ -1453,18 +1460,18 @@ export function BottomCTASection() {
 
         <div className="bottom-features-row">
           {BOTTOM_FEATURES.map((f, i) => (
-            <a 
-              key={i} 
-              href={f.link} 
+            <a
+              key={i}
+              href={f.link}
               className="bottom-feature-link"
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="bottom-feature-icon">
-                <f.icon 
-                  size={26} 
-                  color={hoveredIndex === i ? "#ffffff" : "#1a2744"} 
-                  strokeWidth={1.4} 
+                <f.icon
+                  size={26}
+                  color={hoveredIndex === i ? "#ffffff" : "#1a2744"}
+                  strokeWidth={1.4}
                   style={{ transition: "color 0.3s ease" }}
                 />
               </div>
