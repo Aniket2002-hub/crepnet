@@ -18,11 +18,11 @@ const FEATURE_STRIPS = [
 
 const STATS_BAR = [
   { value: "25,000+", label: "Professionals", icon: Users },
-  { value: "500+", label: "Companies", icon: Building2 },
-  { value: "25+", label: "Cities", icon: MapPin },
-  { value: "2500+", label: "Industry Experts", icon: UserCheck },
-  { value: "50+", label: "Active Groups", icon: Network },
-  { value: "25+", label: "Events Every Year", icon: Calendar },
+  { value: "3,500+", label: "Companies", icon: Building2 },
+  { value: "120+", label: "Cities", icon: MapPin },
+  { value: "850+", label: "Industry Experts", icon: UserCheck },
+  { value: "150+", label: "Active Groups", icon: Network },
+  { value: "50+", label: "Events Every Year", icon: Calendar },
 ];
 
 const COMMUNITY_MEMBERS = [
@@ -70,10 +70,10 @@ const DISCUSSIONS = [
 ];
 
 const GLOBAL_REACH = [
-  { value: "3+", label: "years connecting", desc: "India's top real estate leaders" },
-  { value: "25,000+", label: "members", desc: "across the country" },
-  { value: "25+", label: "companies", desc: "developers, brokers and investors" },
-  { value: "15+", label: "cities", desc: "with active local chapters" },
+  { value: "3", label: "Continents" },
+  { value: "25,000+", label: "Members" },
+  { value: "25+", label: "Developers" },
+  { value: "15+", label: "Global Cities"},
 ];
 
 const BOTTOM_FEATURES = [
@@ -117,14 +117,7 @@ const DEVELOPER_LOGOS = [
   { name: "Whiteland", url: "https://www.ireedindia.com/homepage/brand/8.webp" },
   { name: "ELAN", url: "https://www.ireedindia.com/homepage/brand/2.webp" },
   { name: "Omaxe", url: "https://www.ireedindia.com/homepage/brand/6.webp" },
-
   { name: "Godrej Properties", url: "https://www.ireedindia.com/homepage/brand/5.webp" },
-
-  // { name: "Devika", url: "https://www.ireedindia.com/homepage/brand/7.webp" },
-  // { name: "Pareena", url: "https://www.ireedindia.com/homepage/brand/3.webp" },
-
-  // { name: "Conscient", url: "https://www.ireedindia.com/homepage/brand/9.webp" },
-  // { name: "Kwiller", url: "https://www.ireedindia.com/homepage/brand/10.webp" }
 ];
 
 const MEET_IMAGES = [
@@ -145,23 +138,99 @@ const styles = `
     overflow-x: hidden;
   }
 
-  .hero-title, .section-title, .global-reach-title, .story-title, .bottom-title {
+  .hero-title, .section-title, .global-reach-title, .story-title, .bottom-title, .stats-bar-header, .empower-banner-heading, .marquee-heading {
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
   }
 
-  /* ===== Developer Logo Strip ===== */
+  /* ===== Empower & Developer Marquee Section ===== */
+  .developer-section-wrap {
+    width: 100%;
+    background: #fff;
+  }
+
+  .empower-banner {
+    background: linear-gradient(135deg, #b8973d 0%, #c9a84c 50%, #d8ba5f 100%);
+    padding: 36px 20px;
+    color: #1a2744;
+  }
+
+  .empower-banner-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .empower-banner-heading {
+    font-size: clamp(24px, 3.2vw, 40px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .empower-banner-text {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #101c33;
+    font-weight: 500;
+  }
+
   .logo-marquee-section {
     background: #fff;
-    padding: 40px 0;
-    border-top: 1px solid #e5e7eb;
+    padding: 32px 0 40px;
     border-bottom: 1px solid #e5e7eb;
     width: 100%;
   }
+
   .logo-marquee-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
   }
+
+  .marquee-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .marquee-heading {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a2744;
+    margin: 0;
+  }
+
+  .marquee-nav-btns {
+    display: flex;
+    gap: 8px;
+  }
+
+  .marquee-nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a2744;
+    transition: all 0.2s ease;
+  }
+
+  .marquee-nav-btn:hover {
+    background: #1a2744;
+    color: #fff;
+    border-color: #1a2744;
+  }
+
   .logo-flex-row {
     display: flex;
     align-items: center;
@@ -170,6 +239,7 @@ const styles = `
     width: 100%;
     flex-wrap: nowrap;
   }
+
   .logo-wrapper {
     display: flex;
     align-items: center;
@@ -177,7 +247,16 @@ const styles = `
     width: 160px;
     height: 64px;
     flex-shrink: 0;
+    filter: grayscale(1);
+    opacity: 0.85;
+    transition: all 0.3s ease;
   }
+
+  .logo-wrapper:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
   .dev-logo-img {
     width: 100%;
     height: 100%;
@@ -383,7 +462,22 @@ const styles = `
   .feature-label { font-size: 13.5px; font-weight: 700; color: #1a2744; }
   .feature-desc { font-size: 11.5px; color: #6b7280; line-height: 1.4; margin-top: 4px; }
 
-  /* ===== Stats Bar ===== */
+  /* ===== Stats Bar & Header ===== */
+  .stats-bar-wrapper {
+    background: #fff;
+    padding-top: 36px;
+  }
+  .stats-header-inner {
+    max-width: 1280px;
+    margin: 0 auto 16px auto;
+    padding: 0 20px;
+  }
+  .stats-bar-header {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a2744;
+    margin: 0;
+  }
   .stats-bar {
     background: #0d1e35;
     padding: 32px 0;
@@ -392,6 +486,8 @@ const styles = `
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+  .stats-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
@@ -584,7 +680,7 @@ const styles = `
     position: relative;
     background: #fff;
     overflow: hidden;
-    min-height: 100vh; /* Restored full full-bleed section scale */
+    min-height: 100vh;
   }
   .global-reach-bg {
     position: absolute;
@@ -615,7 +711,7 @@ const styles = `
     max-width: 1280px;
     margin: 0 auto;
     width: 100%;
-    min-height: 100vh; /* Preserves overall background image frame */
+    min-height: 100vh;
     padding: 120px 20px 90px;
     display: flex;
     flex-direction: column;
@@ -887,6 +983,10 @@ const styles = `
 
   /* RESPONSIVE MEDIA QUERIES */
   @media (max-width: 1200px) {
+    .empower-banner-inner {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
     .three-col-inner { 
       grid-template-columns: 1fr 1fr; 
     }
@@ -903,7 +1003,7 @@ const styles = `
     .feature-item:nth-child(4), .feature-item:nth-child(5), .feature-item:nth-child(6) {
       border-bottom: none;
     }
-    .stats-bar-inner {
+    .stats-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
@@ -962,7 +1062,7 @@ const styles = `
     .members-grid { 
       grid-template-columns: repeat(2, 1fr); 
     }
-    .stats-bar-inner {
+    .stats-grid {
       grid-template-columns: repeat(2, 1fr);
     }
     .feature-grid {
@@ -1025,7 +1125,7 @@ const styles = `
     .feature-item:last-child {
       border-bottom: none !important;
     }
-    .stats-bar-inner {
+    .stats-grid {
       grid-template-columns: 1fr;
     }
     .members-grid { 
@@ -1163,21 +1263,28 @@ export function FeatureStrip() {
 
 export function StatsBar() {
   return (
-    <section className="stats-bar">
-      <div className="stats-bar-inner">
-        {STATS_BAR.map((stat, i) => (
-          <div key={i} className="stat-block">
-            <div className="stat-icon-circle">
-              <stat.icon size={20} strokeWidth={1.8} />
-            </div>
-            <div>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          </div>
-        ))}
+    <div className="stats-bar-wrapper">
+      <div className="stats-header-inner">
+        <h2 className="stats-bar-header">REPC Aims At:</h2>
       </div>
-    </section>
+      <section className="stats-bar">
+        <div className="stats-bar-inner">
+          <div className="stats-grid">
+            {STATS_BAR.map((stat, i) => (
+              <div key={i} className="stat-block">
+                <div className="stat-icon-circle">
+                  <stat.icon size={20} strokeWidth={1.8} />
+                </div>
+                <div>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -1393,17 +1500,43 @@ export function KnowledgeSection() {
 
 export function LogoMarqueeSection() {
   return (
-    <section className="logo-marquee-section">
-      <div className="logo-marquee-inner">
-        <div className="logo-flex-row">
-          {DEVELOPER_LOGOS.map((logo, idx) => (
-            <div key={idx} className="logo-wrapper" title={logo.name}>
-              <img src={logo.url} alt={logo.name} className="dev-logo-img" />
-            </div>
-          ))}
+    <div className="developer-section-wrap">
+      {/* Gold Banner above Logos */}
+      <div className="empower-banner">
+        <div className="empower-banner-inner">
+          <h2 className="empower-banner-heading">
+            Empowering Young People to Lead, Act and be Heard
+          </h2>
+          <p className="empower-banner-text">
+            Through REPC network, PAN India collaboration and partnerships will be formed across real estate stakeholders, we enable young and emerging leaders to tackle pressing challenges and shape the future.
+          </p>
         </div>
       </div>
-    </section>
+
+      {/* Developer Logos Strip */}
+      <section className="logo-marquee-section">
+        <div className="logo-marquee-inner">
+          <div className="marquee-header-row">
+            <h3 className="marquee-heading">Popular Real Estate Developers</h3>
+            <div className="marquee-nav-btns">
+              <button className="marquee-nav-btn" aria-label="Previous logos">
+                <ChevronLeft size={16} />
+              </button>
+              <button className="marquee-nav-btn" aria-label="Next logos">
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+          <div className="logo-flex-row">
+            {DEVELOPER_LOGOS.map((logo, idx) => (
+              <div key={idx} className="logo-wrapper" title={logo.name}>
+                <img src={logo.url} alt={logo.name} className="dev-logo-img" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 
