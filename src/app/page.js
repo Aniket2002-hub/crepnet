@@ -1282,7 +1282,7 @@ export function GlobalReachSection() {
       <div className="global-reach-overlay" />
       <div className="global-reach-inner">
         <div>
-          <h2 className="global-reach-title">Global Reach</h2>
+          <h2 className="global-reach-title">REPC Global Outreach</h2>
           <div className="global-reach-divider" />
         </div>
         <div className="global-reach-stats">
