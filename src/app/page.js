@@ -70,10 +70,10 @@ const DISCUSSIONS = [
 ];
 
 const GLOBAL_REACH = [
-  { value: "3", label: "Continents", desc: "global reach" },
-  { value: "25K+", label: "Members", desc: "across the world" },
-  { value: "25+", label: "Developers", desc: "and leading brands" },
-  { value: "15+", label: "Global Cities", desc: "with active presence" },
+  { value: "3", label: "Continents" },
+  { value: "25K+", label: "Members" },
+  { value: "25+", label: "Developers" },
+  { value: "15+", label: "Global Cities" },
 ];
 
 const BOTTOM_FEATURES = [
