@@ -70,10 +70,10 @@ const DISCUSSIONS = [
 ];
 
 const GLOBAL_REACH = [
-  { value: "3", label: "Continents" },
-  { value: "25,000+", label: "Members" },
-  { value: "25+", label: "Developers" },
-  { value: "15+", label: "Global Cities"},
+  { value: "3", label: "Continents", desc: "global reach" },
+  { value: "25K+", label: "Members", desc: "across the world" },
+  { value: "25+", label: "Developers", desc: "and leading brands" },
+  { value: "15+", label: "Global Cities", desc: "with active presence" },
 ];
 
 const BOTTOM_FEATURES = [
@@ -716,7 +716,11 @@ const styles = `
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
+  }
+  .global-reach-inner > div:first-child {
+    width: 100%;
   }
   .global-reach-title {
     font-size: 38px;
@@ -733,30 +737,38 @@ const styles = `
   }
   .global-reach-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    margin-top: auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    justify-items: center;
+    padding-top: 60px;
     padding-bottom: 20px;
   }
   .global-reach-stat {
-    padding-right: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
   .global-reach-value {
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-size: clamp(48px, 6vw, 76px);
+    font-size: clamp(36px, 4vw, 52px);
     font-weight: 400;
     color: #fff;
     line-height: 1;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .global-reach-label {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .global-reach-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: #b9c3d4;
     line-height: 1.4;
   }
@@ -1104,7 +1116,8 @@ const styles = `
     }
     .global-reach-stats {
       grid-template-columns: repeat(2, 1fr);
-      gap: 48px 24px;
+      gap: 32px 20px;
+      padding-top: 40px;
     }
     .global-reach-inner {
       padding: 88px 20px 64px;
@@ -1168,8 +1181,9 @@ const styles = `
       font-size: 13px;
     }
     .global-reach-stats {
-      grid-template-columns: 1fr 1fr;
-      gap: 36px 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 16px;
+      padding-top: 24px;
     }
   }
 
